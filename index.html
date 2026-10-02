@@ -63,7 +63,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .name{font-size:32px;line-height:42px;margin:0;display:flex;align-items:flex-start;gap:10px;font-weight:400}
 .name i{width:8px;height:8px;border-radius:50%;background:var(--ok);margin-top:8px;box-shadow:0 0 10px rgba(124,255,79,.6)}
 .role{font-size:18px;color:var(--muted);margin:0}
-.bio{font-size:16px;line-height:20px;font-weight:500;margin:30px 0 0;color:var(--muted)}
+.bio{font-size:26px;line-height:28px;letter-spacing:-.05em;font-weight:500;margin:30px 0 0;color:var(--muted)}
 .bio b{color:#fff;font-weight:500}
 .links{display:flex;gap:16px;margin-top:32px;flex-wrap:wrap}
 .links a{display:flex;align-items:center;gap:6px;font-size:16px;line-height:20px}
@@ -96,7 +96,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .caret{width:22px;height:22px;border-radius:40px;background:#fff;display:grid;place-items:center;transition:transform .4s ease;flex:none}
 .ap.open .caret{transform:rotate(180deg)}
 .steps{position:relative;margin-top:16px;overflow:hidden;transition:height .6s cubic-bezier(.2,.7,.2,1)}
-.steps::after{content:"";position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(rgba(6,6,6,0),var(--bg));pointer-events:none;transition:opacity .4s}
+.steps::after{content:"";position:absolute;left:0;right:0;top:0;height:100%;max-height:120px;background:linear-gradient(rgba(6,6,6,.35),rgba(6,6,6,.7) 45%,var(--bg) 92%);pointer-events:none;transition:opacity .4s}
 .ap.open .steps::after{opacity:0}
 .step{position:relative;padding-left:15px;padding-bottom:40px}
 .step::before{content:"";position:absolute;left:1px;top:14px;bottom:-14px;border-left:1px dashed #323232}
@@ -143,7 +143,8 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .row{display:flex;justify-content:space-between;gap:8px;padding:16px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:18px}
 .row:first-child{padding-top:0}
 .row div:last-child{text-align:right}
-.row small{display:block;font-size:14px;font-weight:300;color:#5a5a5a;margin-top:4px;line-height:20px}
+.row small{display:block;font-size:14px;font-weight:300;color:#404040;margin-top:4px;line-height:20px}
+.exp .row:last-child{border-bottom:0;padding-bottom:0}
 .awards{margin-top:80px}
 .awards small{color:var(--muted);font-weight:400}
 
@@ -190,7 +191,6 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 
 <main class="wrap" id="top">
   <section class="hero" id="about">
-    <div class="glow"></div>
     <div class="drop" id="drop" aria-label="Ключевые слова"></div>
     <div class="gut">
       <div class="who rv" data-hero>
@@ -200,7 +200,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
           <p class="role">Product Designer</p>
         </div>
       </div>
-      <p class="bio rv" data-hero><b>Привет! Я продуктовый дизайнер из </b>Москвы. Сейчас я открыт к новым предложениям. Как гибридный дизайнер, за 8+ лет карьеры я совмещал роли продуктового дизайнера, арт-директора и менеджера проектов и получил опыт работы над продуктами в финтехе, трэвеле и e-commerce</p>
+      <p class="bio rv" data-hero><b>8+ лет проектирую цифровые продукты - </b>финтех и платёжные сервисы, маркетплейсы, B2B-системы и e-commerce,<b> от первой идеи до релиза.</b></p>
       <div class="links rv" data-hero>
         <a href="https://t.me/" target="_blank" rel="noopener">Telegram <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#767676" stroke-width="1.4" fill="none"/></svg></a>
         <a href="#" >Max <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#767676" stroke-width="1.4" fill="none"/></svg></a>
@@ -259,7 +259,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   </section>
 
   <section class="gut exp" id="exp">
-    <p class="big rv"><b>8+ лет проектирую цифровые продукты - </b>финтех и платёжные сервисы, маркетплейсы, B2B-системы и e-commerce,<b> от первой идеи до релиза.</b></p>
+    <h2 class="h2 rv">Опыт работы</h2>
     <div class="rows" id="rows"></div>
   </section>
 
@@ -326,7 +326,7 @@ const GROUPS=[
  ['UX/UI дизайн',['Figma','Pixso','Спектр','Protopie'],['figma','pixso','protopie']],
  ['Графика',['Photoshop','Illustrator','Blender','Higgsfield'],['photoshop','illustrator','blender','higgsfield']],
  ['Motion',['After Effects','LottieFiles','React Bits','Jitter'],['after-effects','lottiefiles','jitter','react-bits']],
- ['Handoff',['Figma Dev Mode','Zeplin'],['figma','zeplin']]
+ ['Handoff',['Figma Dev Mode','Zeplin'],['zeplin','figma-dev']]
 ];
 const EXP=[['EvaCodes','full-time','Продуктовый дизайнер','2024-2026'],['Aragon','full-time','Продуктовый дизайнер','2023-2024'],['iCrypto World','full-time','Продуктовый дизайнер','2021-2022'],['KOTELOV','contract','UX/UI Designer','2021-2021'],['MetaLamp','full-time','UX/UI Designer','2020-2021'],['Аутстафф студия','contract','Web-design','2017-2020']];
 const MENU=[['Обо мне','Кто я, чем занимаюсь и как со мной связаться.','#about'],['От идеи до релиза','Продукты, которые я вёл от исследования до передачи в разработку.','#cases'],['Мой подход к дизайну','Этапы, через которые проходит каждый мой проект.','#approach'],['Работа с AI','Как я с помощью AI быстро собираю MVP и проверяю гипотезы.','#ai'],['Мой стек технологий','Инструменты, в которых я работаю на каждом этапе.','#stack'],['Опыт работы','Компании и проекты, в которых я работал с 2017 года.','#exp']];
@@ -360,7 +360,7 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{if(
 
 /* ---------- approach collapse ---------- */
 const steps=$('#steps'),ap=$('#approach'),apBtn=$('#apBtn');
-function collapsedH(){const f=steps.children[0];return f.offsetHeight+12;}
+function collapsedH(){return 70;}
 function setSteps(open){ap.classList.toggle('open',open);apBtn.setAttribute('aria-expanded',open);apBtn.setAttribute('aria-label',open?'Свернуть этапы':'Показать все этапы');steps.style.height=(open?steps.scrollHeight:collapsedH())+'px';}
 setSteps(false);apBtn.addEventListener('click',()=>setSteps(!ap.classList.contains('open')));
 addEventListener('resize',()=>setSteps(ap.classList.contains('open')));
