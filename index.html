@@ -171,23 +171,8 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 /* reveal (Butter-style blur-in) */
 .js .rv{opacity:0;filter:blur(14px);transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),filter .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .js .rv.in{opacity:1;filter:none;transform:none}
-/* sentence reveal with blue glow */
-.js .rv.tx{opacity:1;filter:none;transform:none}
-.js .sn{display:inline;position:relative;opacity:0;filter:blur(12px)}
-.js .in .sn{animation:sn 1.25s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--d,0s) + var(--i,0) * .32s)}
-@keyframes sn{
-  0%{opacity:0;filter:blur(12px);top:.35em;color:var(--g1);text-shadow:-6px 0 18px var(--g1),6px 0 26px var(--g2),0 0 40px var(--g2)}
-  45%{opacity:1;filter:blur(1.5px);top:0;color:var(--g1);text-shadow:-4px 0 14px var(--g1),4px 0 22px var(--g2),0 0 34px var(--g2)}
-  100%{opacity:1;filter:none;top:0;text-shadow:0 0 0 transparent,0 0 0 transparent,0 0 0 transparent}}
-.sn{--g1:#9fdcff;--g2:#3c6bff}
-.sn.c1{--g1:#7cc4ff;--g2:#3c2cff}
-.sn.c2{--g1:#b9d4ff;--g2:#043ae5}
-.sub .sn{--d:.18s}
-.ai-card .sn{--d:.25s}
-.ai-card .sub .sn,.ai-card p .sn{--d:.45s}
 @media (prefers-reduced-motion:reduce){
   .js .rv{opacity:1;filter:none;transform:none;transition:none}
-  .js .sn,.js .in .sn{opacity:1;filter:none;animation:none}
   .loader,.menu,.steps,.caret{transition:none}
   .menu.open .mlist li{animation:none}
 }
@@ -215,7 +200,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
           <p class="role">Product Designer</p>
         </div>
       </div>
-      <p class="bio rv tx" data-hero><b>Привет! Я продуктовый дизайнер из </b>Москвы. Сейчас я открыт к новым предложениям. Как гибридный дизайнер, за 8+ лет карьеры я совмещал роли продуктового дизайнера, арт-директора и менеджера проектов и получил опыт работы над продуктами в финтехе, трэвеле и e-commerce</p>
+      <p class="bio rv" data-hero><b>Привет! Я продуктовый дизайнер из </b>Москвы. Сейчас я открыт к новым предложениям. Как гибридный дизайнер, за 8+ лет карьеры я совмещал роли продуктового дизайнера, арт-директора и менеджера проектов и получил опыт работы над продуктами в финтехе, трэвеле и e-commerce</p>
       <div class="links rv" data-hero>
         <a href="https://t.me/" target="_blank" rel="noopener">Telegram <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#767676" stroke-width="1.4" fill="none"/></svg></a>
         <a href="#" >Max <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#767676" stroke-width="1.4" fill="none"/></svg></a>
@@ -274,7 +259,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   </section>
 
   <section class="gut exp" id="exp">
-    <p class="big rv tx"><b>8+ лет проектирую цифровые продукты - </b>финтех и платёжные сервисы, маркетплейсы, B2B-системы и e-commerce,<b> от первой идеи до релиза.</b></p>
+    <p class="big rv"><b>8+ лет проектирую цифровые продукты - </b>финтех и платёжные сервисы, маркетплейсы, B2B-системы и e-commerce,<b> от первой идеи до релиза.</b></p>
     <div class="rows" id="rows"></div>
   </section>
 
@@ -392,20 +377,6 @@ addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
 const prog=$('#prog');
 function onScroll(){const h=document.documentElement.scrollHeight-innerHeight;prog.style.width=(h>0?Math.min(100,scrollY/h*100):0)+'%';}
 addEventListener('scroll',onScroll,{passive:true});onScroll();
-
-/* ---------- sentence split ---------- */
-function splitSentences(el){
-  const text=el.textContent.trim();let re=/([.!?…]+)(\s+)/g;
-  if((text.match(/[.!?…](\s|$)/g)||[]).length<2&&text.length>70)re=/([.!?…,:;]+|\s[-–—])(\s+)/g; // one long sentence → split by clauses
-  let i=0;
-  (function walk(node){[...node.childNodes].forEach(n=>{
-    if(n.nodeType===3){const parts=n.textContent.split(re);const frag=document.createDocumentFragment();let buf='';
-      const push=()=>{if(!buf)return;const sp=document.createElement('span');sp.className='sn c'+(i%3);sp.style.setProperty('--i',i);sp.textContent=buf;frag.appendChild(sp);buf='';};
-      for(let k=0;k<parts.length;k+=3){buf+=parts[k]||'';if(k+1<parts.length){buf+=parts[k+1]+parts[k+2];push();i++;}}
-      push();n.replaceWith(frag);}
-    else if(n.nodeType===1)walk(n);});})(el);
-}
-if(!reduce)document.querySelectorAll('.h2,.sub,.bio,.big,.ai-card .txt p').forEach(el=>{if(el.closest('#menu'))return;splitSentences(el);const b=el.closest('.rv');if(b&&!b.classList.contains('ai-card'))b.classList.add('tx');});
 
 /* ---------- reveal ---------- */
 const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{rootMargin:'0px 0px -8% 0px',threshold:.12});
