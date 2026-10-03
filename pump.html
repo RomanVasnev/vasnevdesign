@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pump DAO — Роман Васнёв</title>
+<meta name="description" content="Pump DAO: механика удержания для мем-токена, которая сохранила ~$2 млн капитализации после пресейла. Кейс продуктового дизайнера Романа Васнёва.">
+<meta name="theme-color" content="#060606">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&display=swap">
+<style>
+:root{--bg:#060606;--fg:#fff;--muted:#767676;--dim:#404040;--line:#202020;--blue:#043ae5;--blue2:#3c2cff;--tag:#3565ff;--font:'Geist',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--pad:20px;--max:450px;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{background:var(--bg)}
+body{margin:0;color:var(--fg);font-family:var(--font);letter-spacing:-.05em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+.wrap{max-width:var(--max);margin:0 auto;position:relative}
+.gut{padding-inline:var(--pad)}
+.arr{width:15px;height:15px;flex:none}
+:focus-visible{outline:2px solid var(--tag);outline-offset:3px;border-radius:6px}
+/* header */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px)}
+.hdr .wrap{height:80px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:19px var(--pad) 0}
+.hdr::before{content:"";position:absolute;inset:0;background:rgba(6,6,6,.6);-webkit-backdrop-filter:blur(4px) saturate(1.5) brightness(1.08);backdrop-filter:blur(4px) saturate(1.5) brightness(1.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.08);-webkit-mask:linear-gradient(#000 26%,rgba(0,0,0,.55) 62%,transparent);mask:linear-gradient(#000 26%,rgba(0,0,0,.55) 62%,transparent)}
+.hdr .dom,.hdr .mbtn{position:relative;font-size:16px;font-weight:500;white-space:nowrap}
+.prog{position:relative;flex:1;max-width:130px;height:2px;border-radius:40px;background:#323232;overflow:hidden}
+.prog i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:40px;background:linear-gradient(90deg,#3c2cff,#c4ceff)}
+.mbtn{display:flex;align-items:center;gap:6px}
+.dot18{width:18px;height:18px;border-radius:50%;background:#fff;display:grid;place-items:center}
+
+/* footer */
+.ftr{margin-top:100px;background:#fff;color:#000;border-radius:30px 30px 0 0;padding:39px var(--pad) calc(25px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:center;gap:20px}
+.ftr .links{margin:0;justify-content:center}
+.ftr small{font-size:12px;color:#b4b4b4}
+
+/* menu */
+.menu{position:fixed;inset:0;z-index:80;background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#000;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility 0s .35s}
+.menu.open{opacity:1;visibility:visible;transition:opacity .35s ease}
+.menu .wrap{min-height:100%;display:flex;flex-direction:column}
+.menu .top{height:80px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:19px var(--pad) 0;margin-top:env(safe-area-inset-top,0px)}
+.lang{margin:30px var(--pad) 0;font-size:18px;font-weight:500}
+.lang span{color:var(--muted)}
+.mlist{list-style:none;margin:22px 0 0;padding:0 var(--pad);display:flex;flex-direction:column;gap:22px;flex:1}
+.mlist a{display:block}
+.mlist strong{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:500}
+.mlist .c{width:24px;height:24px;border-radius:50%;background:#000;display:grid;place-items:center}
+.mlist .c path{stroke:#fff}
+.menu .dot18{background:#000}
+.menu .dot18 path{stroke:#fff}
+.mlist p{margin:8px 0 0;font-size:14px;line-height:20px;color:var(--muted)}
+.menu .ftr{margin-top:40px;background:#000;color:#fff}
+.menu .ftr .links a{color:#fff}
+.menu.open .mlist li{animation:mi .5s both cubic-bezier(.2,.7,.2,1)}
+@keyframes mi{from{opacity:0;filter:blur(8px);transform:translateY(12px)}}
+
+/* project page (Figma: Mobile / Project page) */
+main{padding-top:146px}
+.c24{width:24px;height:24px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none}
+.back{display:inline-flex;align-items:center;gap:8px;font-size:20px;font-weight:500;line-height:26px}
+.prj{display:flex;gap:12px;align-items:center;margin-top:34px}
+.logo{width:40px;height:40px;border-radius:14px;border:1px solid #0f0f0f;overflow:hidden;flex:none;background:#dfe8d9}
+.logo img{width:100%;height:100%;display:block}
+.prj b{display:block;font-size:16px;font-weight:500;line-height:21px}
+.prj small{display:block;font-size:14px;color:var(--muted);line-height:18px}
+h1{font-size:24px;font-weight:500;line-height:27px;margin:12px 0 0;text-wrap:balance}
+.flow{display:flex;flex-direction:column;gap:12px;margin-top:36px}
+.shot{margin:0;border-radius:20px;overflow:hidden;background:#141414}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.shot img{display:block;width:100%;height:auto}
+.tx{margin:-2px 0 24px}
+.tx .lbl{display:block;font-size:14px;line-height:18px;color:var(--muted);margin:0 0 6px}
+.tx p{margin:0;font-size:16px;line-height:20px;font-weight:300}
+.tx p b{font-weight:500}
+.tx ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.tx li{position:relative;padding-left:16px;font-size:16px;line-height:20px;font-weight:300}
+.tx li::before{content:"";position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:var(--tag)}
+.ctx{margin:0 0 28px;display:flex;flex-direction:column}
+.ctx div{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line);font-size:14px;line-height:18px}
+.ctx div:last-child{border-bottom:1px solid var(--line)}
+.ctx dt{color:var(--muted)}
+.ctx dd{margin:0}
+.res{margin-top:68px}
+.res h2{font-size:26px;font-weight:500;line-height:28px;margin:0}
+.rp{margin:12px 0 0;font-size:16px;line-height:20px;font-weight:300}
+.mx{display:grid;grid-template-columns:1fr 1fr;gap:28px 16px;margin-top:36px}
+.mx b{display:block;font-size:44px;line-height:44px;font-weight:500;letter-spacing:-.06em;background:linear-gradient(90deg,#fff,#c4ceff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.mx span{display:block;margin-top:10px;font-size:14px;line-height:18px;color:var(--muted)}
+.note{margin:28px 0 0;padding:14px 16px;border-radius:16px;background:#121212;font-size:14px;line-height:18px;color:var(--muted)}
+.credits{margin-top:120px;display:flex;flex-direction:column;gap:12px}
+.credits b{display:block;font-size:22px;font-weight:500;line-height:29px}
+.credits small{display:block;margin-top:8px;font-size:18px;font-weight:500;line-height:20px;color:var(--muted)}
+.sep{border:0;border-top:1px solid var(--line);margin:80px 0 0}
+.next{display:flex;align-items:center;gap:16px;margin-top:60px}
+.next .th{width:96px;height:62px;border-radius:14px;background:#1a1a1a;overflow:hidden;flex:none}
+.next .th img{width:100%;height:100%;object-fit:cover;display:block}
+.next span.t{display:flex;align-items:center;gap:8px;font-size:20px;font-weight:500;line-height:26px}
+.ftr{margin-top:150px}
+@media (prefers-reduced-motion:reduce){.menu{transition:none}.menu.open .mlist li{animation:none}}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <div class="wrap">
+    <a class="dom" href="index.html">vasnevdesign.ru</a>
+    <div class="prog" aria-hidden="true"><i id="prog"></i></div>
+    <button class="mbtn" id="mopen" aria-haspopup="dialog" aria-controls="menu">menu <span class="dot18"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+  </div>
+</header>
+<main class="wrap gut">
+  <a class="back" href="index.html"><span class="c24"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M11 4.5H1M4.5 1 1 4.5 4.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>На главную</a>
+  <div class="prj"><div class="logo"><img src="assets/pump/logo.webp" alt="" width="40" height="40"></div><div><b>Pump DAO</b><small>DeFi-платформа для мем-токена $PEPEMEME</small></div></div>
+  <h1>Механика удержания, которая сохранила ~$2 млн капитализации после пресейла</h1>
+  <div class="flow">
+    <figure class="shot"><img src="assets/pump/01-hero.webp" alt="Pump DAO: кабинет на десктопе и мобильном" width="1200" height="900" fetchpriority="high" decoding="async"></figure>
+  <div class="tx"><p>Pump DAO — личный кабинет для комьюнити мем-токена $PEPEMEME на Solana. Держатели создают контракты с заморозкой токенов, проходят 12 уровней стейкинга и получают награды за вовлечение. Я спроектировал продукт end-to-end: механику удержания, лендинг, кабинет, мобильную версию и все иллюстрации.</p></div>
+  <dl class="ctx">
+  <div><dt>Платформа</dt><dd>Web: desktop и mobile, 8 языков интерфейса</dd></div>
+  <div><dt>Роль</dt><dd>Product Designer: механика удержания, UX/UI, иллюстрации, handoff</dd></div>
+  <div><dt>Команда</dt><dd>PM, фаундер, 2 frontend, 3 backend, DevOps</dd></div>
+  <div><dt>Срок</dt><dd>1 месяц — от идеи механики до продакшена</dd></div>
+  <div><dt>Объём</dt><dd>116 экранов, 43 флоу, 163 состояния в компонентах</dd></div>
+ </dl>
+  <div class="tx"><span class="lbl">Проблема</span><p>Главный риск пресейла — обвал курса сразу после него. Участники покупают дёшево и продают при первой возможности, цена падает, и проект теряет доверие комьюнити. Жёсткая блокировка токенов не выход — она отпугивает.</p></div>
+  <div class="tx"><span class="lbl">Задача</span><p>Превратить удержание токенов из ограничения в понятную прогрессию с наградами — так, чтобы держателю было выгоднее остаться, чем продать.</p></div>
+  <figure class="shot"><img src="assets/pump/02-landing.webp" alt="Новый лендинг pepememe.io" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p><b>Лендинг: из мема в продукт.</b> Старый сайт держался на таймерах и карте «To the moon», но не объяснял, что делать после покупки. Я сохранил персонажа, юмор и зелёную палитру, но перевёл интерфейс в светлый продуктовый вид: 4 шага старта, калькулятор дохода и FAQ.</p></div>
+  <figure class="shot"><img src="assets/pump/05-contracts.webp" alt="Раздел контрактов в кабинете" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p><b>Контракты без тупиков.</b> 14 контрактов идут цепочкой: следующий открывается после предыдущего, закрытые карточки показывают потенциальный доход. Новичок без токенов не упирается в ошибку — swap или оплата встроены прямо в модалку, и все ветки ведут к одному экрану успеха.</p></div>
+  <figure class="shot"><img src="assets/pump/06-staking-cards.webp" alt="Карточки уровней стейкинга в разных состояниях" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><span class="lbl">Ключевое решение</span><p><b>12-уровневая матрица удержания.</b> Каждый уровень открывается завершённым циклом контракта: пул от 10K до 100K PEPEMEME на 7 дней, базовый APY 20% и +5% буста за каждый цикл. Вывод доступен всегда, но restake выгоднее — держатель сам выбирает остаться. У карточки уровня шесть состояний, и всегда видно, что делать дальше.</p></div>
+  <figure class="shot"><img src="assets/pump/07-staking-page.webp" alt="Страница стейкинга и модалка swap и стейк" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p><b>Страница стейкинга.</b> Сверху — личная статистика и глобальный пул наград, ниже — все уровни. Если токенов не хватает, модалка сама предлагает swap из SOL и сразу стейк.</p></div>
+  <figure class="shot"><img src="assets/pump/08-panel.webp" alt="Панель с деньгами держателя" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p><b>Деньги в пяти состояниях.</b> Общий доход, стейкинг, недополученные награды, доступно и заморожено — каждое в токене и в USDT. Готовые награды собираются одной кнопкой, а лента из 7 типов операций читается по цвету и иконке.</p></div>
+  <div class="two"><figure class="shot"><img src="assets/pump/09a-tasks.webp" alt="Задания контракта" width="1000" height="1000" loading="lazy" decoding="async"></figure><figure class="shot"><img src="assets/pump/09b-awards.webp" alt="Получение награды" width="1000" height="1000" loading="lazy" decoding="async"></figure></div>
+  <div class="tx"><p><b>Задания и награды.</b> Контракт закрывается заданиями: подписки на X, Discord и Telegram дают очки. Награду можно забрать в удобной валюте или сразу вложить в новый контракт.</p></div>
+  <figure class="shot"><img src="assets/pump/10-overview.webp" alt="Детальный вид контракта и лидерборд" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p><b>Обзор, партнёры и лидерборд.</b> Контракт подробно — прогресс цикла, участники, заморожено и доступно. В рейтинге видно своё место и как подняться выше.</p></div>
+  <figure class="shot"><img src="assets/pump/11-auth.webp" alt="Подключение кошелька, инвайт-код и выбор языка" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p><b>Вход через кошелёк.</b> Phantom или быстрый аккаунт через соцсети, доступ по реферальному коду, 8 языков интерфейса — от английского до арабского и японского.</p></div>
+  <figure class="shot"><img src="assets/pump/12-mobile.webp" alt="Мобильная версия кабинета" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p><b>56 мобильных экранов.</b> Карточки, лента операций и разделы кабинета работают так же, как на десктопе, а модалки превращаются в нижние листы.</p></div>
+  <figure class="shot"><img src="assets/pump/13-illustrations.webp" alt="Иллюстрации персонажа для интерфейса и соцсетей" width="1000" height="1000" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p><b>Авторские иллюстрации.</b> Персонаж меняет образ под контекст — награды, контракты, стейкинг, пустые состояния — и объясняет механику прямо в интерфейсе. Ещё 21 баннер поддерживал запуск в соцсетях.</p></div>
+  </div>
+  <section class="res" aria-labelledby="resH">
+  <h2 id="resH">Результаты</h2>
+  <p class="rp">Продукт работает на pepememe.io. Механика удержания сработала: держатели остались в продукте, а frontend верстал параллельно с дизайном — по готовым компонентам и состояниям.</p>
+  <div class="mx"><div><b>~$2 млн</b><span>капитализации сохранено — курс не обвалился после пресейла</span></div><div><b>12</b><span>уровней стейкинга в матрице удержания</span></div><div><b>116</b><span>экранов для desktop и mobile</span></div><div><b>1 мес.</b><span>от идеи механики до продакшена</span></div></div>
+</section>
+<section class="res" aria-labelledby="outH">
+  <h2 id="outH">Выводы</h2>
+  <p class="rp">Дизайн решил бизнес-задачу, а не только нарисовал интерфейс: удержание стало не блокировкой, а причиной остаться. Когда каждый следующий шаг выгоднее предыдущего, держателю незачем продавать.</p>
+</section>
+  <div class="credits"><div><b>Product Design</b><small>Васнёв Роман</small></div><div><b>UX/UI</b><small>Васнёв Роман</small></div><div><b>Illustration</b><small>Васнёв Роман</small></div></div>
+  <hr class="sep">
+  <a class="next" href="project.html"><span class="th"><img src="assets/bitflare/cover.webp" alt="" loading="lazy"></span><span class="t">Следующий проект <span class="c24"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5h10M7.5 1 11 4.5 7.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a>
+</main>
+<footer class="ftr">
+    <div class="links">
+      <a href="https://t.me/" target="_blank" rel="noopener">Telegram <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
+      <a href="#">Max <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
+      <a href="#">E-mail <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
+    </div>
+    <small>© 2026 - Васнёв Роман</small>
+  </footer>
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Меню">
+  <div class="wrap">
+    <div class="top"><span style="font-size:16px;font-weight:500">vasnevdesign.ru</span><div class="prog"><i style="width:100%"></i></div><button class="mbtn" id="mclose">закрыть <span class="dot18"><svg width="8" height="8" viewBox="0 0 8 8"><path d="M1 1l6 6M7 1 1 7" stroke="#000" stroke-width="1.4" stroke-linecap="round"/></svg></span></button></div>
+    <div class="lang">RU / <span>EN</span></div>
+    <ul class="mlist" id="mlist"></ul>
+    <footer class="ftr">
+      <div class="links"><a href="https://t.me/" target="_blank" rel="noopener">Telegram ↗</a><a href="#">Max ↗</a><a href="#">E-mail ↗</a></div>
+      <small>© 2026 - Васнёв Роман</small>
+    </footer>
+  </div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s);const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const MENU=[['Обо мне','Кто я, чем занимаюсь и как со мной связаться.','index.html#about'],['От идеи до релиза','Продукты, которые я вёл от исследования до передачи в разработку.','index.html#cases'],['Мой подход к дизайну','Этапы, через которые проходит каждый мой проект.','index.html#approach'],['Работа с AI','Как я с помощью AI быстро собираю MVP и проверяю гипотезы.','index.html#ai'],['Мой стек технологий','Инструменты, в которых я работаю на каждом этапе.','index.html#stack'],['Опыт работы','Компании и проекты, в которых я работал с 2017 года.','index.html#exp']];
+$('#mlist').innerHTML=MENU.map((m,i)=>`<li style="animation-delay:${.08+i*.05}s"><a href="${m[2]}"><strong>${m[0]} <span class="c"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></strong><p>${m[1]}</p></a></li>`).join('');
+
+/* ---------- menu ---------- */
+const menu=$('#menu');
+$('#mopen').addEventListener('click',()=>{menu.classList.add('open');document.body.style.overflow='hidden';$('#mclose').focus();});
+function closeMenu(){menu.classList.remove('open');document.body.style.overflow='';}
+$('#mclose').addEventListener('click',closeMenu);
+menu.addEventListener('click',e=>{if(e.target.closest('a[href^="#"]'))closeMenu();});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
+
+/* ---------- scroll progress ---------- */
+const prog=$('#prog');
+function onScroll(){const h=document.documentElement.scrollHeight-innerHeight;prog.style.width=(h>0?Math.min(100,scrollY/h*100):0)+'%';}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+</script>
+</body>
+</html>

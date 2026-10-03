@@ -308,7 +308,7 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* ---------- content ---------- */
 const CASES=[
  {img:'assets/bitflare/cover.webp',alt:'Bitflare — лаунчпад для инвестиций',tags:['FinTech','SaaS','B2B','B2C'],w:'Спроектировал лаунчпад и бренд,',g:' где стартапы собирают инвестиции, а инвесторы заходят в проект до листинга.'},
- {tags:['FinTech','SaaS','B2B','B2C'],w:'Проект 2- Спроектировал инвестиционную платформу с 12 уровнями доходности -',g:'держатели получают процент за депозит и реинвестирование, а проект сохраняет капитализацию после первичного размещения.'},
+ {img:'assets/pump/cover.webp',alt:'Pump DAO — DeFi-платформа для мем-токена',href:'pump.html',tags:['FinTech','DeFi','B2C'],w:'Спроектировал инвестиционную платформу с 12 уровнями доходности:',g:' держатели получают процент за депозит и реинвестирование, а проект сохраняет капитализацию после первичного размещения.'},
  {tags:['FinTech','SaaS','B2B','B2C'],w:'Проект 3- Спроектировал инвестиционную платформу с 12 уровнями доходности -',g:'держатели получают процент за депозит и реинвестирование, а проект сохраняет капитализацию после первичного размещения.'},
  {tags:['FinTech','SaaS','B2B','B2C'],w:'Проект 4 - Спроектировал инвестиционную платформу с 12 уровнями доходности -',g:'держатели получают процент за депозит и реинвестирование, а проект сохраняет капитализацию после первичного размещения.'}
 ];
@@ -343,7 +343,7 @@ const BADGES=[['PIXEL PERFECT'],['UX/UI DESIGN'],['BRANDING'],['UI DESIGN'],['TO
 const $=s=>document.querySelector(s);const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
 const PH=(tags)=>Array.from({length:4},()=>({tags,w:'Название проекта —',g:' короткое описание: что сделано и какой результат получил продукт.'}));
 const TABS={cases:CASES,features:PH(['FinTech','UX/UI','B2C']),snippets:PH(['UI','Motion']),brand:PH(['Branding','Identity','Print']),web:PH(['Web','Landing'])};
-function cardsHTML(list){return list.map(c=>`<a class="card" href="project.html"><div class="cover">${c.img?`<img src="${c.img}" alt="${esc(c.alt||'')}" loading="lazy" decoding="async">`:''}<div class="tags">${c.tags.map((t,i)=>`<span class="tg${i?'':' on'}">${esc(t)}</span>`).join('')}</div></div><p class="ctext"><b>${esc(c.w)}</b>${esc(c.g)}</p></a>`).join('');}
+function cardsHTML(list){return list.map(c=>`<a class="card" href="${c.href||'project.html'}"><div class="cover">${c.img?`<img src="${c.img}" alt="${esc(c.alt||'')}" loading="lazy" decoding="async">`:''}<div class="tags">${c.tags.map((t,i)=>`<span class="tg${i?'':' on'}">${esc(t)}</span>`).join('')}</div></div><p class="ctext"><b>${esc(c.w)}</b>${esc(c.g)}</p></a>`).join('');}
 $('#caseList').innerHTML=cardsHTML(CASES).replace(/class="card"/g,'class="card rv"');
 $('#steps').innerHTML=STEPS.map(s=>`<div class="step"><h3><span>${s[0]}</span> ${s[1]}</h3><div class="chips">${s[2].map((c,i)=>`<span class="chip${s[3].includes(i)?' k':''}">${esc(c)}</span>`).join('')}</div></div>`).join('');
 $('#aiList').innerHTML=AI.map(a=>`<div class="ai-it"><h3>${esc(a[0])}</h3><p>${esc(a[1])}</p></div>`).join('');
