@@ -65,7 +65,8 @@ main{padding-top:146px}
 .prj small{display:block;font-size:14px;color:var(--muted);line-height:18px}
 h1{font-size:24px;font-weight:500;line-height:27px;margin:12px 0 0;text-wrap:balance}
 .flow{display:flex;flex-direction:column;gap:12px;margin-top:36px}
-.shot{margin:0;border-radius:20px;overflow:hidden;background:#121212}
+.shot{margin:0;border-radius:20px;overflow:hidden;background:#141414}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .shot img{display:block;width:100%;height:auto}
 .tx{margin:-2px 0 24px}
 .tx .lbl{display:block;font-size:14px;line-height:18px;color:var(--muted);margin:0 0 6px}
@@ -111,7 +112,7 @@ h1{font-size:24px;font-weight:500;line-height:27px;margin:12px 0 0;text-wrap:bal
   <div class="prj"><div class="logo"><img src="assets/bitflare/logo.webp" alt="" width="40" height="40"></div><div><b>Bitflare</b><small>Лаунчпад для инвестиций и IPO</small></div></div>
   <h1>Лаунчпад, где инвестор за минуту понимает, можно ли доверять проекту</h1>
   <div class="flow">
-    <figure class="shot"><img src="assets/bitflare/01-hero.webp" alt="Bitflare: страница токена на десктопе и мобильном" width="1400" height="875" fetchpriority="high" decoding="async"></figure>
+    <figure class="shot"><img src="assets/bitflare/01-hero.webp" alt="Bitflare: страница токена на десктопе и мобильном" width="1200" height="900" fetchpriority="high" decoding="async"></figure>
   <div class="tx"><p>Bitflare — лаунчпад, где стартапы проводят первичное размещение токена, а инвесторы покупают аллокацию до листинга. Я спроектировал продукт с нуля: от архитектуры и бренда до 330 экранов и передачи в разработку.</p></div>
   <dl class="ctx">
   <div><dt>Платформа</dt><dd>Веб, desktop и mobile: лаунчпад, кошелёк, безопасность, VIP-программа</dd></div>
@@ -119,34 +120,31 @@ h1{font-size:24px;font-weight:500;line-height:27px;margin:12px 0 0;text-wrap:bal
   <div><dt>Команда</dt><dd>PM, фаундер, 2 frontend, 3 backend, DevOps</dd></div>
   <div><dt>Объём</dt><dd>330 экранов, 10 модулей, 139 флоу, 312 состояний в компонентах</dd></div>
  </dl>
-  <figure class="shot"><img src="assets/bitflare/02-problem.webp" alt="Почему инвесторы не покупают на лаунчпадах" width="1400" height="875" loading="lazy" decoding="async"></figure>
   <div class="tx"><span class="lbl">Проблема</span><p>Инвестор решает за минуту, скам перед ним или нет. На большинстве лаунчпадов команда, токеномика и аудит разбросаны по странице, тиры объяснены таблицей цифр, а любая ошибка при покупке отправляет начинать заново. Люди уходят, не купив.</p></div>
   <div class="tx"><span class="lbl">Задача</span><ul><li>Инвестор за минуту понимает, можно ли доверять проекту</li><li>Механика «3 уровня × 3 тира» читается как простой выбор</li><li>Покупка без тупиков: ни одна ветка не теряет покупателя</li><li>Бренд с характером в нише, где все лаунчпады похожи</li></ul></div>
-  <figure class="shot"><img src="assets/bitflare/03-research.webp" alt="Разбор шести платформ и выводы" width="1400" height="875" loading="lazy" decoding="async"></figure>
   <div class="tx"><span class="lbl">Исследование</span><p>Разобрал PinkSale, DxSale, Polkastarter и TrustPad, а у Binance и Bybit — паттерны кошелька и безопасности. Смотрел не только интерфейс, но и механику: тиры, вестинг, проверку проектов. Ключевые сценарии проверял на команде и в фокус-группах.</p></div>
-  <figure class="shot"><img src="assets/bitflare/04-flow.webp" alt="Схема покупки без тупиков" width="1400" height="875" loading="lazy" decoding="async"></figure>
   <div class="tx"><span class="lbl">Решение</span><p>Свёл покупку к одной точке подтверждения — Review transaction. Любая ветка, будь то вход или нехватка средств, возвращает пользователя туда с сохранённым тиром и суммой.</p></div>
-  <figure class="shot"><img src="assets/bitflare/05-token.webp" alt="Страница токена с бейджами доверия" width="1400" height="875" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="assets/bitflare/05-token.webp" alt="Страница токена с бейджами доверия" width="1200" height="900" loading="lazy" decoding="async"></figure>
   <div class="tx"><p><b>Страница токена — досье для проверки.</b> Бейджи KYC Verified, Audited и VC Backed стоят в hero рядом с названием, ключевые цифры раунда собраны в одну строку. Вкладки идут в одном порядке у всех проектов — страницу учатся читать один раз.</p></div>
-  <figure class="shot"><img src="assets/bitflare/06-tiers.webp" alt="Карточки тиров и виджет покупки" width="1400" height="875" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="assets/bitflare/06-tiers.webp" alt="Карточки тиров и виджет покупки" width="1200" height="900" loading="lazy" decoding="async"></figure>
   <div class="tx"><p><b>Тиры — понятный выбор.</b> 3 уровня × 3 тира разложены карточками: уровень читается по цвету, в каждой карточке бонус, цена и итог в токенах. Виджет покупки закреплён рядом, поэтому выбор и покупка живут на одном экране.</p></div>
-  <figure class="shot"><img src="assets/bitflare/07-review.webp" alt="Review transaction и экран успеха" width="1400" height="875" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="assets/bitflare/08-funds.webp" alt="Ветка «не хватает средств» с переходом в депозит" width="1400" height="875" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="assets/bitflare/09-login.webp" alt="Вход модалкой поверх страницы токена" width="1400" height="875" loading="lazy" decoding="async"></figure>
+  <div class="two"><figure class="shot"><img src="assets/bitflare/07a-review.webp" alt="Review transaction" width="1000" height="1000" loading="lazy" decoding="async"></figure><figure class="shot"><img src="assets/bitflare/07b-success.webp" alt="Экран успешной покупки" width="1000" height="1000" loading="lazy" decoding="async"></figure></div>
+  <figure class="shot"><img src="assets/bitflare/08-funds.webp" alt="Ветка «не хватает средств» с переходом в депозит" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="assets/bitflare/09-login.webp" alt="Вход модалкой поверх страницы токена" width="1000" height="1000" loading="lazy" decoding="async"></figure>
   <div class="tx"><p><b>Покупка без тупиков.</b> Если средств не хватает, продукт называет точную сумму — «Not enough 200 USDT» — и ведёт в депозит, а потом обратно в Review. Вход открывается модалкой поверх страницы токена, контекст покупки не теряется.</p></div>
-  <figure class="shot"><img src="assets/bitflare/10-memo.webp" alt="Депозит по шагам и форма MEMO" width="1400" height="875" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="assets/bitflare/11-statuses.webp" alt="История операций и статусы транзакций" width="1400" height="875" loading="lazy" decoding="async"></figure>
+  <div class="two"><figure class="shot"><img src="assets/bitflare/10a-memo.webp" alt="Депозит с обязательным MEMO" width="1000" height="1000" loading="lazy" decoding="async"></figure><figure class="shot"><img src="assets/bitflare/10b-memo-phone.webp" alt="Important Notice на мобильном" width="1000" height="1000" loading="lazy" decoding="async"></figure></div>
+  <figure class="shot"><img src="assets/bitflare/11-statuses.webp" alt="История операций и статусы транзакций" width="1200" height="900" loading="lazy" decoding="async"></figure>
   <div class="tx"><p><b>Кошелёк без необратимых ошибок.</b> Депозит и вывод идут по шагам: монета → сеть → детали. Для сетей с MEMO — отдельная форма и экран Important Notice. Статусы транзакций одинаковые везде, а TxID ведёт в блокчейн без обращения в поддержку.</p></div>
-  <figure class="shot"><img src="assets/bitflare/12-2fa.webp" alt="Подтверждение 2FA и выбор основного метода" width="1400" height="875" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="assets/bitflare/12b-2fa-phone.webp" alt="Выбор основного метода 2FA" width="1000" height="1000" loading="lazy" decoding="async"></figure>
   <div class="tx"><p><b>Одно правило безопасности.</b> Пользователь выбирает основной метод 2FA, и платформа запрашивает именно его при выводе, смене адресов и пароля. У всех методов одинаковые состояния: неверный код, число попыток, блокировка.</p></div>
-  <figure class="shot"><img src="assets/bitflare/13-vip-brand.webp" alt="VIP Club: hero и шаги вступления" width="1400" height="875" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="assets/bitflare/14-vip-cards.webp" alt="Карточки VIP-программы" width="1400" height="875" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="assets/bitflare/15-vip-tables.webp" alt="Таблицы комиссий VIP и Market Maker" width="1400" height="875" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="assets/bitflare/18-vip-mobile.webp" alt="VIP Club на мобильном" width="1400" height="875" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="assets/bitflare/13-vip-brand.webp" alt="VIP Club: hero и шаги вступления" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="assets/bitflare/14-vip-cards.webp" alt="Карточки VIP-программы" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="assets/bitflare/15-vip-tables.webp" alt="Таблицы комиссий VIP и Market Maker" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="assets/bitflare/18-vip-mobile.webp" alt="VIP Club на мобильном" width="1200" height="900" loading="lazy" decoding="async"></figure>
   <div class="tx"><p><b>VIP Club — суб-бренд для крупных трейдеров.</b> Тёплое золото, шахматные фигуры и фото вместо лайма: бренд узнаётся, а статус считывается с первого экрана. Таблица комиссий 7 × 8 на узких экранах превращается в аккордеон.</p></div>
-  <figure class="shot"><img src="assets/bitflare/16-ido.webp" alt="Форма заявки IDO из 7 шагов" width="1400" height="875" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="assets/bitflare/16-ido.webp" alt="Форма заявки IDO из 7 шагов" width="1200" height="900" loading="lazy" decoding="async"></figure>
   <div class="tx"><p><b>Заявка IDO для фаундеров.</b> 7 шагов, по одному блоку вопросов на экран и прогресс «3/7», чтобы нетехническая команда не утонула в длинной форме.</p></div>
-  <figure class="shot"><img src="assets/bitflare/17-mobile.webp" alt="Мобильная версия Bitflare" width="1400" height="875" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="assets/bitflare/17-mobile.webp" alt="Мобильная версия Bitflare" width="1200" height="900" loading="lazy" decoding="async"></figure>
   <div class="tx"><p><b>198 мобильных экранов</b> — не уменьшенная копия десктопа: у калькулятора и покупки свои компоненты, длинные блоки свёрнуты, таблицы кошелька превращаются в списки.</p></div>
   </div>
   <section class="res" aria-labelledby="resH">
