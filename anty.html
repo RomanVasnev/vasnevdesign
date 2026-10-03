@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Pump DAO — Роман Васнёв</title>
-<meta name="description" content="Pump DAO: механика удержания для мем-токена, которая сохранила ~$2 млн капитализации после пресейла. Кейс продуктового дизайнера Романа Васнёва.">
+<title>Anty Wallet — Роман Васнёв</title>
+<meta name="description" content="Anty Wallet: крипто-кошелёк внутри Telegram, которым новичок пользуется без страха. Кейс продуктового дизайнера Романа Васнёва.">
 <meta name="theme-color" content="#060606">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&display=swap">
@@ -59,7 +59,7 @@ main{padding-top:146px}
 .c24{width:24px;height:24px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none}
 .back{display:inline-flex;align-items:center;gap:8px;font-size:20px;font-weight:500;line-height:26px}
 .prj{display:flex;gap:12px;align-items:center;margin-top:34px}
-.logo{width:40px;height:40px;border-radius:14px;border:1px solid #0f0f0f;overflow:hidden;flex:none;background:#dfe8d9}
+.logo{width:40px;height:40px;border-radius:14px;border:1px solid #0f0f0f;overflow:hidden;flex:none;background:#4a4ff0}
 .logo img{width:100%;height:100%;display:block}
 .prj b{display:block;font-size:16px;font-weight:500;line-height:21px}
 .prj small{display:block;font-size:14px;color:var(--muted);line-height:18px}
@@ -109,53 +109,54 @@ h1{font-size:24px;font-weight:500;line-height:27px;margin:12px 0 0;text-wrap:bal
 </header>
 <main class="wrap gut">
   <a class="back" href="index.html"><span class="c24"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M11 4.5H1M4.5 1 1 4.5 4.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>На главную</a>
-  <div class="prj"><div class="logo"><img src="assets/pump/logo.webp" alt="" width="40" height="40"></div><div><b>Pump DAO</b><small>DeFi-платформа для мем-токена $PEPEMEME</small></div></div>
-  <h1>Механика удержания, которая сохранила ~$2 млн капитализации после пресейла</h1>
+  <div class="prj"><div class="logo"><img src="assets/anty/logo.webp" alt="" width="40" height="40"></div><div><b>Anty Wallet</b><small>Крипто-кошелёк внутри Telegram</small></div></div>
+  <h1>Кошелёк, которым новичок из Telegram пользуется без страха</h1>
   <div class="flow">
-    <figure class="shot"><img src="assets/pump/01-hero.webp" alt="Pump DAO: кабинет на десктопе и мобильном" width="1200" height="900" fetchpriority="high" decoding="async"></figure>
-  <div class="tx"><p>Pump DAO — личный кабинет для комьюнити мем-токена $PEPEMEME на Solana. Держатели создают контракты с заморозкой токенов, проходят 12 уровней стейкинга и получают награды за вовлечение. Я спроектировал продукт end-to-end: механику удержания, лендинг, кабинет, мобильную версию и все иллюстрации.</p></div>
+    <figure class="shot"><img src="assets/anty/01-hero.webp" alt="Anty Wallet: старт, главная и страница токена" width="1200" height="900" fetchpriority="high" decoding="async"></figure>
+  <div class="tx"><p>Anty Wallet — крипто-кошелёк внутри Telegram для тех, кто впервые пришёл в крипту из чата. Я спроектировал продукт целиком: UX-архитектуру, интерфейс в двух темах, логотип, персонажа и стикерпак.</p></div>
   <dl class="ctx">
-  <div><dt>Платформа</dt><dd>Web: desktop и mobile, 8 языков интерфейса</dd></div>
-  <div><dt>Роль</dt><dd>Product Designer: механика удержания, UX/UI, иллюстрации, handoff</dd></div>
-  <div><dt>Команда</dt><dd>PM, фаундер, 2 frontend, 3 backend, DevOps</dd></div>
-  <div><dt>Срок</dt><dd>1 месяц — от идеи механики до продакшена</dd></div>
-  <div><dt>Объём</dt><dd>116 экранов, 43 флоу, 163 состояния в компонентах</dd></div>
+  <div><dt>Платформа</dt><dd>Telegram Mini App — на весь экран и на 2/3 поверх чата, плюс сайт</dd></div>
+  <div><dt>Роль</dt><dd>Product Designer: UX-архитектура, UI, дизайн-система, бренд, персонаж</dd></div>
+  <div><dt>Объём</dt><dd>66 экранов: 58 в приложении и 8 на сайте</dd></div>
  </dl>
-  <div class="tx"><span class="lbl">Проблема</span><p>Главный риск пресейла — обвал курса сразу после него. Участники покупают дёшево и продают при первой возможности, цена падает, и проект теряет доверие комьюнити. Жёсткая блокировка токенов не выход — она отпугивает.</p></div>
-  <div class="tx"><span class="lbl">Задача</span><p>Превратить удержание токенов из ограничения в понятную прогрессию с наградами — так, чтобы держателю было выгоднее остаться, чем продать.</p></div>
-  <figure class="shot"><img src="assets/pump/02-landing.webp" alt="Новый лендинг pepememe.io" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Лендинг: из мема в продукт.</b> Старый сайт держался на таймерах и карте «To the moon», но не объяснял, что делать после покупки. Я сохранил персонажа, юмор и зелёную палитру, но перевёл интерфейс в светлый продуктовый вид: 4 шага старта, калькулятор дохода и FAQ.</p></div>
-  <figure class="shot"><img src="assets/pump/05-contracts.webp" alt="Раздел контрактов в кабинете" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Контракты без тупиков.</b> 14 контрактов идут цепочкой: следующий открывается после предыдущего, закрытые карточки показывают потенциальный доход. Новичок без токенов не упирается в ошибку — swap или оплата встроены прямо в модалку, и все ветки ведут к одному экрану успеха.</p></div>
-  <figure class="shot"><img src="assets/pump/06-staking-cards.webp" alt="Карточки уровней стейкинга в разных состояниях" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><span class="lbl">Ключевое решение</span><p><b>12-уровневая матрица удержания.</b> Каждый уровень открывается завершённым циклом контракта: пул от 10K до 100K PEPEMEME на 7 дней, базовый APY 20% и +5% буста за каждый цикл. Вывод доступен всегда, но restake выгоднее — держатель сам выбирает остаться. У карточки уровня шесть состояний, и всегда видно, что делать дальше.</p></div>
-  <figure class="shot"><img src="assets/pump/07-staking-page.webp" alt="Страница стейкинга и модалка swap и стейк" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Страница стейкинга.</b> Сверху — личная статистика и глобальный пул наград, ниже — все уровни. Если токенов не хватает, модалка сама предлагает swap из SOL и сразу стейк.</p></div>
-  <figure class="shot"><img src="assets/pump/08-panel.webp" alt="Панель с деньгами держателя" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Деньги в пяти состояниях.</b> Общий доход, стейкинг, недополученные награды, доступно и заморожено — каждое в токене и в USDT. Готовые награды собираются одной кнопкой, а лента из 7 типов операций читается по цвету и иконке.</p></div>
-  <div class="two"><figure class="shot"><img src="assets/pump/09a-tasks.webp" alt="Задания контракта" width="1000" height="1000" loading="lazy" decoding="async"></figure><figure class="shot"><img src="assets/pump/09b-awards.webp" alt="Получение награды" width="1000" height="1000" loading="lazy" decoding="async"></figure></div>
-  <div class="tx"><p><b>Задания и награды.</b> Контракт закрывается заданиями: подписки на X, Discord и Telegram дают очки. Награду можно забрать в удобной валюте или сразу вложить в новый контракт.</p></div>
-  <figure class="shot"><img src="assets/pump/10-overview.webp" alt="Детальный вид контракта и лидерборд" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Обзор, партнёры и лидерборд.</b> Контракт подробно — прогресс цикла, участники, заморожено и доступно. В рейтинге видно своё место и как подняться выше.</p></div>
-  <figure class="shot"><img src="assets/pump/11-auth.webp" alt="Подключение кошелька, инвайт-код и выбор языка" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Вход через кошелёк.</b> Phantom или быстрый аккаунт через соцсети, доступ по реферальному коду, 8 языков интерфейса — от английского до арабского и японского.</p></div>
-  <figure class="shot"><img src="assets/pump/12-mobile.webp" alt="Мобильная версия кабинета" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>56 мобильных экранов.</b> Карточки, лента операций и разделы кабинета работают так же, как на десктопе, а модалки превращаются в нижние листы.</p></div>
-  <figure class="shot"><img src="assets/pump/13-illustrations.webp" alt="Иллюстрации персонажа для интерфейса и соцсетей" width="1000" height="1000" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Авторские иллюстрации.</b> Персонаж меняет образ под контекст — награды, контракты, стейкинг, пустые состояния — и объясняет механику прямо в интерфейсе. Ещё 21 баннер поддерживал запуск в соцсетях.</p></div>
+  <div class="tx"><span class="lbl">Проблема</span><p>Новичок приходит в крипту из чата: друг скинул ссылку на мем-токен. Обычный кошелёк сразу требует записать 12 слов, выбрать сеть и разобраться в терминах. Главный страх — потерять доступ к деньгам, поэтому он бросает кошелёк на первом шаге или записывает seed-фразу куда попало.</p></div>
+  <div class="tx"><span class="lbl">Задача</span><ul><li>Новичок доходит до конца создания кошелька и понимает, как защищён его доступ</li><li>Продукт работает в любом размере окна Telegram</li><li>У кошелька есть характер — в мессенджере, где правят мемы</li></ul></div>
+  <div class="tx"><span class="lbl">Исследование</span><p>Разобрал шесть решений внутри Telegram — Wallet, Tonkeeper, MyTonWallet, HOT Wallet, Bitget Wallet и ботов-трейдеров. Seed-фраза везде главный барьер, удобство часто покупается ценой безопасности, сеть спрятана в настройках, а характера нет ни у одного кошелька.</p></div>
+  <figure class="shot"><img src="assets/anty/03-onboarding.webp" alt="Создание кошелька за 4 шага" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p><b>Онбординг за 4 шага.</b> Одно действие на экран: старт, PIN, seed-фраза, способ хранения. Персонаж встречает на первом экране и снимает напряжение до того, как появятся 12 слов.</p></div>
+  <div class="two"><figure class="shot"><img src="assets/anty/02-seed.webp" alt="Экран seed-фразы" width="1000" height="1000" loading="lazy" decoding="async"></figure><figure class="shot"><img src="assets/anty/04-storage.webp" alt="Выбор способа хранения" width="1000" height="1000" loading="lazy" decoding="async"></figure></div>
+  <div class="tx"><span class="lbl">Ключевое решение</span><p><b>Seed-фраза по выбору.</b> Вместо «запишите 12 слов» — два понятных пути. Keep it at Anty: фраза хранится зашифрованной, доступ восстанавливается по PIN и аккаунту Telegram. Keep it at home: полный контроль у пользователя. Синий — рекомендованный путь для новичка, красный подчёркивает ответственность.</p></div>
+  <figure class="shot"><img src="assets/anty/05-confirm.webp" alt="Диалоги подтверждения выбора" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p>Каждый выбор подтверждается коротким диалогом, где последствия сказаны прямо: «Если потеряете фразу, восстановить кошелёк не сможет никто». Решение становится осознанным, а не случайным тапом.</p></div>
+  <figure class="shot"><img src="assets/anty/06-pin.webp" alt="PIN-код на весь экран и поверх чата" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p><b>PIN для любого окна Telegram.</b> Mini App открывается на весь экран или на 2/3 поверх чата — PIN-экран спроектирован для обоих режимов. Своя клавиатура, а при ошибке поля краснеют, срабатывает вибрация и ввод сбрасывается.</p></div>
+  <figure class="shot"><img src="assets/anty/07-import.webp" alt="Импорт кошелька: успех и ошибка" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p><b>Импорт без двусмысленности.</b> Фраза вводится по словам, а результат однозначный: персонаж показывает успех или отказ с кнопками «Try again» и «Back to registration».</p></div>
+  <figure class="shot"><img src="assets/anty/08-cards.webp" alt="Кошельки-карточки в Basic и Premium" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p><b>Кошельки как колода карт.</b> У каждого кошелька своя карточка с градиентом, именем, адресом и балансом. В Basic — один кошелёк и предложение Premium, в Premium — карусель. Горячий кошелёк для мем-токенов выделен оранжевым, чтобы его нельзя было спутать с основным.</p></div>
+  <figure class="shot"><img src="assets/anty/09-manage.webp" alt="Выбор сети и меню кошелька" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p>Сеть выбирается рядом с балансом, а не в настройках. Имя и адрес кошелька меняются из меню карточки в два тапа.</p></div>
+  <figure class="shot"><img src="assets/anty/10-token.webp" alt="Страница токена" width="1000" height="1000" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="assets/anty/11-send.webp" alt="Перевод: сканер QR и форма отправки" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p><b>Перевод без ручного ввода адреса.</b> На странице токена — график, баланс и пометка Safety token. В переводе сеть уже выбрана, «Max» подставляет весь баланс, адрес сканируется QR-кодом, а Send активна только при заполненной форме.</p></div>
+  <figure class="shot"><img src="assets/anty/12-themes.webp" alt="Тёмная и светлая темы" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p><b>Две темы на одних компонентах:</b> 15 наборов с 39 вариантами и ещё 26 отдельных компонентов.</p></div>
+  <figure class="shot"><img src="assets/anty/13-stickers.webp" alt="Стикерпак с муравьём Anty" width="1200" height="675" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p><b>Персонаж и стикеры.</b> Муравей Anty встречает на старте, радуется созданному кошельку, огорчается при ошибке — и живёт в чатах Telegram как стикерпак из 8 стикеров.</p></div>
   </div>
   <section class="res" aria-labelledby="resH">
   <h2 id="resH">Результаты</h2>
-  <p class="rp">Продукт работает на pepememe.io. Механика удержания сработала: держатели остались в продукте, а frontend верстал параллельно с дизайном — по готовым компонентам и состояниям.</p>
-  <div class="mx"><div><b>~$2 млн</b><span>капитализации сохранено — курс не обвалился после пресейла</span></div><div><b>12</b><span>уровней стейкинга в матрице удержания</span></div><div><b>116</b><span>экранов для desktop и mobile</span></div><div><b>1 мес.</b><span>от идеи механики до продакшена</span></div></div>
+  <p class="rp">Продукт спроектирован целиком — от бота и онбординга до сайта и стикеров. Каждое ключевое решение я связал с метрикой и целевым значением.</p>
+  <div class="mx"><div><b>70%+</b><span>новых пользователей доходят от «Create wallet» до готового кошелька</span></div><div><b>35%</b><span>новых кошельков делают первый перевод за 7 дней</span></div><div><b>&lt; 5%</b><span>попыток импорта seed-фразы заканчиваются ошибкой</span></div><div><b>60 / 40</b><span>выбор хранения «у Anty» / «у себя»</span></div></div>
+  <p class="note">Это целевые значения, заложенные в решения. Фактические цифры появятся после замеров в продукте.</p>
 </section>
 <section class="res" aria-labelledby="outH">
   <h2 id="outH">Выводы</h2>
-  <p class="rp">Дизайн решил бизнес-задачу, а не только нарисовал интерфейс: удержание стало не блокировкой, а причиной остаться. Когда каждый следующий шаг выгоднее предыдущего, держателю незачем продавать.</p>
+  <p class="rp">Безопасность — это тоже UX. Новичка пугает не сама крипта, а ощущение, что одна ошибка лишит его денег. Когда риск объяснён простыми словами, а выбор остаётся за пользователем, он доходит до конца. Персонаж помогает говорить о сложном без жаргона и делает кошелёк узнаваемым в чатах.</p>
 </section>
-  <div class="credits"><div><b>Product Design</b><small>Васнёв Роман</small></div><div><b>UX/UI</b><small>Васнёв Роман</small></div><div><b>Illustration</b><small>Васнёв Роман</small></div></div>
+  <div class="credits"><div><b>Product Design</b><small>Васнёв Роман</small></div><div><b>UX/UI</b><small>Васнёв Роман</small></div><div><b>Branding</b><small>Васнёв Роман</small></div><div><b>Illustration</b><small>Васнёв Роман</small></div></div>
   <hr class="sep">
-  <a class="next" href="anty.html"><span class="th"><img src="assets/anty/cover.webp" alt="" loading="lazy"></span><span class="t">Следующий проект <span class="c24"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5h10M7.5 1 11 4.5 7.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a>
+  <a class="next" href="project.html"><span class="th"><img src="assets/bitflare/cover.webp" alt="" loading="lazy"></span><span class="t">Следующий проект <span class="c24"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5h10M7.5 1 11 4.5 7.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a>
 </main>
 <footer class="ftr">
     <div class="links">
