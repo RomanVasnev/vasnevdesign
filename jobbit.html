@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Jobbit — Роман Васнёв</title>
+<meta name="description" content="Jobbit: маркетплейс услуг, где клиент быстро выбирает исполнителя, которому можно доверять. Кейс продуктового дизайнера Романа Васнёва.">
+<meta name="theme-color" content="#060606">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&display=swap">
+<style>
+:root{--bg:#060606;--fg:#fff;--muted:#767676;--dim:#404040;--line:#202020;--blue:#043ae5;--blue2:#3c2cff;--tag:#3565ff;--font:'Geist',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--pad:20px;--max:450px;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{background:var(--bg)}
+body{margin:0;color:var(--fg);font-family:var(--font);letter-spacing:-.05em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+.wrap{max-width:var(--max);margin:0 auto;position:relative}
+.gut{padding-inline:var(--pad)}
+.arr{width:15px;height:15px;flex:none}
+:focus-visible{outline:2px solid var(--tag);outline-offset:3px;border-radius:6px}
+/* header */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px)}
+.hdr .wrap{height:80px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:19px var(--pad) 0}
+.hdr::before{content:"";position:absolute;inset:0;background:rgba(6,6,6,.6);-webkit-backdrop-filter:blur(4px) saturate(1.5) brightness(1.08);backdrop-filter:blur(4px) saturate(1.5) brightness(1.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.08);-webkit-mask:linear-gradient(#000 26%,rgba(0,0,0,.55) 62%,transparent);mask:linear-gradient(#000 26%,rgba(0,0,0,.55) 62%,transparent)}
+.hdr .dom,.hdr .mbtn{position:relative;font-size:16px;font-weight:500;white-space:nowrap}
+.prog{position:relative;flex:1;max-width:130px;height:2px;border-radius:40px;background:#323232;overflow:hidden}
+.prog i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:40px;background:linear-gradient(90deg,#3c2cff,#c4ceff)}
+.mbtn{display:flex;align-items:center;gap:6px}
+.dot18{width:18px;height:18px;border-radius:50%;background:#fff;display:grid;place-items:center}
+
+/* footer */
+.ftr{margin-top:100px;background:#fff;color:#000;border-radius:30px 30px 0 0;padding:39px var(--pad) calc(25px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:center;gap:20px}
+.ftr .links{margin:0;justify-content:center}
+.ftr small{font-size:12px;color:#b4b4b4}
+
+/* menu */
+.menu{position:fixed;inset:0;z-index:80;background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#000;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility 0s .35s}
+.menu.open{opacity:1;visibility:visible;transition:opacity .35s ease}
+.menu .wrap{min-height:100%;display:flex;flex-direction:column}
+.menu .top{height:80px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:19px var(--pad) 0;margin-top:env(safe-area-inset-top,0px)}
+.lang{margin:30px var(--pad) 0;font-size:18px;font-weight:500}
+.lang span{color:var(--muted)}
+.mlist{list-style:none;margin:22px 0 0;padding:0 var(--pad);display:flex;flex-direction:column;gap:22px;flex:1}
+.mlist a{display:block}
+.mlist strong{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:500}
+.mlist .c{width:24px;height:24px;border-radius:50%;background:#000;display:grid;place-items:center}
+.mlist .c path{stroke:#fff}
+.menu .dot18{background:#000}
+.menu .dot18 path{stroke:#fff}
+.mlist p{margin:8px 0 0;font-size:14px;line-height:20px;color:var(--muted)}
+.menu .ftr{margin-top:40px;background:#000;color:#fff}
+.menu .ftr .links a{color:#fff}
+.menu.open .mlist li{animation:mi .5s both cubic-bezier(.2,.7,.2,1)}
+@keyframes mi{from{opacity:0;filter:blur(8px);transform:translateY(12px)}}
+
+/* project page (Figma: Mobile / Project page) */
+main{padding-top:146px}
+.c24{width:24px;height:24px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none}
+.back{display:inline-flex;align-items:center;gap:8px;font-size:20px;font-weight:500;line-height:26px}
+.prj{display:flex;gap:12px;align-items:center;margin-top:34px}
+.logo{width:40px;height:40px;border-radius:14px;border:1px solid #0f0f0f;overflow:hidden;flex:none;background:#fff}
+.logo img{width:100%;height:100%;display:block}
+.prj b{display:block;font-size:16px;font-weight:500;line-height:21px}
+.prj small{display:block;font-size:14px;color:var(--muted);line-height:18px}
+h1{font-size:24px;font-weight:500;line-height:27px;margin:12px 0 0;text-wrap:balance}
+.flow{display:flex;flex-direction:column;gap:12px;margin-top:36px}
+.shot{margin:0;border-radius:20px;overflow:hidden;background:#141414}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.shot img{display:block;width:100%;height:auto}
+.tx{margin:-2px 0 24px}
+.tx .lbl{display:block;font-size:14px;line-height:18px;color:var(--muted);margin:0 0 6px}
+.tx p{margin:0;font-size:16px;line-height:20px;font-weight:300}
+.tx p b{font-weight:500}
+.tx ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.tx li{position:relative;padding-left:16px;font-size:16px;line-height:20px;font-weight:300}
+.tx li::before{content:"";position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:var(--tag)}
+.ctx{margin:0 0 28px;display:flex;flex-direction:column}
+.ctx div{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line);font-size:14px;line-height:18px}
+.ctx div:last-child{border-bottom:1px solid var(--line)}
+.ctx dt{color:var(--muted)}
+.ctx dd{margin:0}
+.res{margin-top:68px}
+.res h2{font-size:26px;font-weight:500;line-height:28px;margin:0}
+.rp{margin:12px 0 0;font-size:16px;line-height:20px;font-weight:300}
+.mx{display:grid;grid-template-columns:1fr 1fr;gap:28px 16px;margin-top:36px}
+.mx b{display:block;font-size:44px;line-height:44px;font-weight:500;letter-spacing:-.06em;background:linear-gradient(90deg,#fff,#c4ceff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.mx span{display:block;margin-top:10px;font-size:14px;line-height:18px;color:var(--muted)}
+.note{margin:28px 0 0;padding:14px 16px;border-radius:16px;background:#121212;font-size:14px;line-height:18px;color:var(--muted)}
+.credits{margin-top:120px;display:flex;flex-direction:column;gap:12px}
+.credits b{display:block;font-size:22px;font-weight:500;line-height:29px}
+.credits small{display:block;margin-top:8px;font-size:18px;font-weight:500;line-height:20px;color:var(--muted)}
+.sep{border:0;border-top:1px solid var(--line);margin:80px 0 0}
+.next{display:flex;align-items:center;gap:16px;margin-top:60px}
+.next .th{width:96px;height:62px;border-radius:14px;background:#1a1a1a;overflow:hidden;flex:none}
+.next .th img{width:100%;height:100%;object-fit:cover;display:block}
+.next span.t{display:flex;align-items:center;gap:8px;font-size:20px;font-weight:500;line-height:26px}
+.ftr{margin-top:150px}
+@media (prefers-reduced-motion:reduce){.menu{transition:none}.menu.open .mlist li{animation:none}}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <div class="wrap">
+    <a class="dom" href="index.html">vasnevdesign.ru</a>
+    <div class="prog" aria-hidden="true"><i id="prog"></i></div>
+    <button class="mbtn" id="mopen" aria-haspopup="dialog" aria-controls="menu">menu <span class="dot18"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+  </div>
+</header>
+<main class="wrap gut">
+  <a class="back" href="index.html"><span class="c24"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M11 4.5H1M4.5 1 1 4.5 4.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>На главную</a>
+  <div class="prj"><div class="logo"><img src="assets/jobbit/logo.webp" alt="" width="40" height="40"></div><div><b>Jobbit</b><small>Маркетплейс услуг в Великобритании</small></div></div>
+  <h1>Маркетплейс, где сделка с незнакомым человеком прозрачна для обеих сторон</h1>
+  <div class="flow">
+    <figure class="shot"><img src="assets/jobbit/01-hero.webp" alt="Jobbit: поиск специалиста и отклики" width="1200" height="900" fetchpriority="high" decoding="async"></figure>
+  <div class="tx"><p>Jobbit — веб-платформа в Великобритании, где обмениваются профессиональными услугами и бытовыми поручениями. Клиент размещает заказ или находит специалиста, специалист откликается, ведёт профиль-витрину и выводит заработанное. Я спроектировал продукт для обеих сторон: user flow, архитектуру, все экраны desktop-версии и UI-kit.</p></div>
+  <dl class="ctx">
+  <div><dt>Платформа</dt><dd>Веб-платформа, desktop</dd></div>
+  <div><dt>Роль</dt><dd>Product Designer: user flow, архитектура, UX/UI, UI-kit</dd></div>
+  <div><dt>Пользователи</dt><dd>Клиенты, которым нужна услуга, и специалисты, которые её выполняют</dd></div>
+  <div><dt>Объём</dt><dd>54 экрана и состояния, 17 наборов компонентов</dd></div>
+ </dl>
+  <div class="tx"><span class="lbl">Проблема</span><p>Сделка с незнакомым человеком держится на трёх вопросах: кто он, сколько это стоит и что будет с деньгами. Если интерфейс не отвечает на них сразу, договорённости уходят в мессенджеры — клиент теряет защиту, а сервис теряет сделку. При этом клиент и специалист решают противоположные задачи в одном продукте.</p></div>
+  <div class="tx"><span class="lbl">Исследование</span><p>Разобрал TaskRabbit, Airtasker, Bark, Checkatrade, MyBuilder и Profi.ru — и отдельно модель монетизации каждого: именно в ней чаще всего теряется доверие. Неожиданные сборы, оплата за лиды и подписки для мастеров подсказали нишу: прозрачная цена, решение в одном месте и деньги под контролем.</p></div>
+  <div class="tx"><span class="lbl">Принципы</span><ul><li>Доверие видно до клика: верификация, рейтинг и отзывы в первой строке</li><li>Цена до разговора: ставка и стоимость выезда в профиле</li><li>Решение — прямо в карточке отклика</li><li>Сделка, чат и оплата остаются в сервисе</li><li>Одна система компонентов на две роли</li></ul></div>
+  <figure class="shot"><img src="assets/jobbit/02-roles.webp" alt="Выбор роли и регистрация" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p><b>Роль выбирается до регистрации.</b> Две колонки выгод — для специалиста и для клиента, регистрация по телефону в одно поле или через Gmail и Facebook.</p></div>
+  <figure class="shot"><img src="assets/jobbit/03-search.webp" alt="Поиск специалиста с фильтрами" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p><b>Клиент выбирает прямо в выдаче.</b> Быстрые теги, фильтры по категории, городу и цене, галочка верификации и рейтинг рядом с именем. «More detailed» раскрывает описание, портфолио и цену без перехода в профиль.</p></div>
+  <figure class="shot"><img src="assets/jobbit/04-board.webp" alt="Доска заказов для специалиста" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p><b>Доска заказов для специалиста.</b> Та же сетка, что у поиска, но карточка перестроена под решение исполнителя: цена крупно справа, задача в двух строках, формат и график иконками, отклик одной кнопкой.</p></div>
+  <figure class="shot"><img src="assets/jobbit/05-responses.webp" alt="Отклики на заказ" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><span class="lbl">Ключевое решение</span><p><b>От отклика до исполнителя — в одной карточке.</b> В каждом отклике три действия с разным весом: Profile — изучить, Discuss — чат по заказу, Choose a performer — главное действие. Оно стоит последним и самое заметное: к нему приходят после проверки, и порядок кнопок защищает от поспешного выбора.</p></div>
+  <figure class="shot"><img src="assets/jobbit/06-create.webp" alt="Создание заказа в два шага" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p><b>Заказ в два шага.</b> Сначала категория — чтобы заказ сразу увидели нужные специалисты, затем название, описание, цена, срок и файлы. Ограничения видны заранее.</p></div>
+  <figure class="shot"><img src="assets/jobbit/07-orders.webp" alt="Мои заказы и управление заказом" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p><b>Жизненный цикл в табах.</b> Сверху — статусы At work, Search service provider и Unpublished, внутри заказа — управление, отклики со счётчиком и исполнители.</p></div>
+  <figure class="shot"><img src="assets/jobbit/08-chat.webp" alt="Сообщения и чат по заказу" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p><b>Переписка привязана к заказу.</b> Чат открывается панелью поверх списка, в шапке — заказ, цена и срок, а для спорных ситуаций есть «report a problem».</p></div>
+  <figure class="shot"><img src="assets/jobbit/09-formats.webp" alt="Форматы работы и карточка цены" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><span class="lbl">Ключевое решение</span><p><b>Цена зависит от того, где работает специалист.</b> В настройках локации три формата — у себя, удалённо или с выездом по районам. Карточка цены собирает ставку, единицу времени и стоимость выезда, так что клиент видит итоговую сумму до переписки.</p></div>
+  <figure class="shot"><img src="assets/jobbit/10-profile.webp" alt="Портфолио и опыт специалиста" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p><b>Профиль — витрина из готовых блоков.</b> Семь вкладок: о себе, локация, цены, опыт, портфолио, безопасность и баланс. Опыт, цены и портфолио — карточки одного типа с ячейкой «Add new».</p></div>
+  <figure class="shot"><img src="assets/jobbit/12-balance.webp" alt="Баланс специалиста" width="1200" height="900" loading="lazy" decoding="async"></figure>
+  <div class="tx"><p><b>Видно, какие деньги уже можно вывести.</b> Каждая строка — заказ, назначение и дата зачисления. Зелёная сумма доступна к выводу, оранжевая значит, что работа не завершена, и кнопка вывода неактивна.</p></div>
+  </div>
+  <section class="res" aria-labelledby="resH">
+  <h2 id="resH">Результаты</h2>
+  <p class="rp">Продукт спроектирован для обеих сторон — от лендинга и регистрации до выплаты специалисту — и подготовлен к разработке вместе с user flow. Петля доверия замкнута: верификация → рейтинг → отклик → чат → выбор исполнителя → выплата → отзыв.</p>
+  <div class="mx"><div><b>54</b><span>экрана и состояния desktop-версии</span></div><div><b>17</b><span>наборов компонентов на две роли</span></div><div><b>2</b><span>роли — клиент и специалист — на одной системе</span></div><div><b>6</b><span>сервисов-аналогов разобрано вместе с монетизацией</span></div></div>
+  <p class="note">Дальше я бы измерял долю заказов с откликом за 24 часа, время до выбора исполнителя и долю сделок, дошедших до выплаты внутри сервиса.</p>
+</section>
+<section class="res" aria-labelledby="outH">
+  <h2 id="outH">Выводы</h2>
+  <p class="rp">Сделку между незнакомыми людьми делает прозрачной интерфейс: доверие видно в каждой карточке, цена — до переписки, а решение принимается там, где клиент сравнивает кандидатов. Две роли с противоположными задачами работают на одном наборе компонентов, поэтому новый сценарий добавляется по тем же правилам.</p>
+</section>
+  <div class="credits"><div><b>Product Design</b><small>Васнёв Роман</small></div><div><b>UX/UI</b><small>Васнёв Роман</small></div><div><b>UI Kit</b><small>Васнёв Роман</small></div></div>
+  <hr class="sep">
+  <a class="next" href="project.html"><span class="th"><img src="assets/bitflare/cover.webp" alt="" loading="lazy"></span><span class="t">Следующий проект <span class="c24"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5h10M7.5 1 11 4.5 7.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a>
+</main>
+<footer class="ftr">
+    <div class="links">
+      <a href="https://t.me/" target="_blank" rel="noopener">Telegram <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
+      <a href="#">Max <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
+      <a href="#">E-mail <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
+    </div>
+    <small>© 2026 - Васнёв Роман</small>
+  </footer>
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Меню">
+  <div class="wrap">
+    <div class="top"><span style="font-size:16px;font-weight:500">vasnevdesign.ru</span><div class="prog"><i style="width:100%"></i></div><button class="mbtn" id="mclose">закрыть <span class="dot18"><svg width="8" height="8" viewBox="0 0 8 8"><path d="M1 1l6 6M7 1 1 7" stroke="#000" stroke-width="1.4" stroke-linecap="round"/></svg></span></button></div>
+    <div class="lang">RU / <span>EN</span></div>
+    <ul class="mlist" id="mlist"></ul>
+    <footer class="ftr">
+      <div class="links"><a href="https://t.me/" target="_blank" rel="noopener">Telegram ↗</a><a href="#">Max ↗</a><a href="#">E-mail ↗</a></div>
+      <small>© 2026 - Васнёв Роман</small>
+    </footer>
+  </div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s);const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const MENU=[['Обо мне','Кто я, чем занимаюсь и как со мной связаться.','index.html#about'],['От идеи до релиза','Продукты, которые я вёл от исследования до передачи в разработку.','index.html#cases'],['Мой подход к дизайну','Этапы, через которые проходит каждый мой проект.','index.html#approach'],['Работа с AI','Как я с помощью AI быстро собираю MVP и проверяю гипотезы.','index.html#ai'],['Мой стек технологий','Инструменты, в которых я работаю на каждом этапе.','index.html#stack'],['Опыт работы','Компании и проекты, в которых я работал с 2017 года.','index.html#exp']];
+$('#mlist').innerHTML=MENU.map((m,i)=>`<li style="animation-delay:${.08+i*.05}s"><a href="${m[2]}"><strong>${m[0]} <span class="c"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></strong><p>${m[1]}</p></a></li>`).join('');
+
+/* ---------- menu ---------- */
+const menu=$('#menu');
+$('#mopen').addEventListener('click',()=>{menu.classList.add('open');document.body.style.overflow='hidden';$('#mclose').focus();});
+function closeMenu(){menu.classList.remove('open');document.body.style.overflow='';}
+$('#mclose').addEventListener('click',closeMenu);
+menu.addEventListener('click',e=>{if(e.target.closest('a[href^="#"]'))closeMenu();});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
+
+/* ---------- scroll progress ---------- */
+const prog=$('#prog');
+function onScroll(){const h=document.documentElement.scrollHeight-innerHeight;prog.style.width=(h>0?Math.min(100,scrollY/h*100):0)+'%';}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+</script>
+</body>
+</html>
