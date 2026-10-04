@@ -1,0 +1,57 @@
+/* case pages: tablet + desktop */
+@media (min-width:768px){
+  :root{--pad:32px;--max:820px}
+  .prog{max-width:320px}
+  main{padding-top:160px}
+  h1{font-size:34px;line-height:38px}
+  .flow{gap:16px}
+  .two{gap:16px}
+  .tx{margin:4px 0 32px}
+  .tx p,.tx li{font-size:18px;line-height:26px}
+  .ctx div{grid-template-columns:160px 1fr;font-size:16px;line-height:22px;padding:16px 0}
+  .mx{grid-template-columns:repeat(4,1fr)}
+  .credits{flex-direction:row;flex-wrap:wrap;gap:24px 56px}
+  .mlist{display:grid;grid-template-columns:1fr 1fr;gap:32px 40px;align-content:start;margin-top:40px}
+  .mlist strong{font-size:22px}
+  .mlist p{font-size:16px;line-height:22px}
+}
+@media (min-width:1100px){
+  :root{--pad:48px;--max:1200px}
+  .hdr .wrap,.menu .top{height:96px}
+  .hdr .dom,.hdr .mbtn{font-size:18px}
+  main{padding-top:180px}
+  main.wrap>:not(.flow),.flow>:not(.shot):not(.two){width:100%;max-width:780px;margin-inline:auto}
+  .back{font-size:22px}
+  .prj{margin-top:48px}
+  .logo{width:52px;height:52px;border-radius:16px}
+  .prj b{font-size:20px;line-height:26px}
+  .prj small{font-size:16px;line-height:22px}
+  h1{font-size:52px;line-height:56px;margin-top:20px}
+  .flow{gap:20px;margin-top:64px}
+  .two{gap:20px}
+  .shot{border-radius:28px}
+  .tx{margin:20px 0 52px}
+  .tx .lbl{font-size:16px;margin-bottom:10px}
+  .tx p,.tx li{font-size:20px;line-height:30px}
+  .tx li::before{top:12px}
+  .ctx{margin:12px 0 56px}
+  .res{margin-top:100px}
+  .res h2{font-size:40px;line-height:44px}
+  .rp{font-size:20px;line-height:30px;margin-top:16px}
+  .mx{gap:40px 24px;margin-top:48px}
+  .mx b{font-size:48px;line-height:52px}
+  .mx span{font-size:16px;line-height:22px}
+  .note{font-size:16px;line-height:22px;padding:18px 22px}
+  .credits{margin-top:140px}
+  .next .th{width:140px;height:90px;border-radius:18px}
+  .next span.t{font-size:24px}
+  .next:hover .th img{transform:scale(1.05)}
+  .next .th img{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  body>.ftr{max-width:calc(var(--max) + 2*var(--pad));margin-inline:auto}
+  .ftr{flex-direction:row;justify-content:space-between;padding:40px var(--pad) calc(40px + env(safe-area-inset-bottom,0px))}
+  .ftr .links a{font-size:18px}
+  .ftr small{font-size:14px}
+  .mlist{grid-template-columns:repeat(3,1fr);gap:48px 56px;margin-top:64px}
+  .mlist strong{font-size:28px}
+  .lang{font-size:22px;margin-top:40px}
+}
