@@ -67,6 +67,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .bio b{color:#fff;font-weight:500}
 .links{display:flex;gap:16px;margin-top:32px;flex-wrap:wrap}
 .links a{display:flex;align-items:center;gap:6px;font-size:16px;line-height:20px}
+.hero .links a{font-size:18px}
 
 /* tabs */
 .tabs{display:flex;gap:8px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scroll-padding-inline:var(--pad);scrollbar-width:none;margin:80px 0 0;padding:0 var(--pad);-webkit-mask:linear-gradient(90deg,#000 85%,transparent);mask:linear-gradient(90deg,#000 85%,transparent);cursor:grab;user-select:none;-webkit-user-select:none}
@@ -219,7 +220,13 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   .cover img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
   .card:hover .cover img{transform:scale(1.04)}
   .tags{left:24px;top:24px}
-  .ctext{font-size:22px;line-height:26px;margin-top:24px;max-width:560px}
+  .ctitle{font-size:32px;line-height:36px}
+  .cdesc{font-size:18px;line-height:26px;max-width:560px}
+  .pet{margin-top:140px}
+  .hscroll{margin-top:48px;margin-inline:0;padding-inline:0}
+  .pcard{width:220px;height:220px;font-size:18px}
+  .ccard{width:400px}
+  .ccard .img{height:226px}
   /* approach: title left, steps right */
   #approach{margin-top:140px!important;display:grid;grid-template-columns:1fr 1.25fr;column-gap:80px;align-items:start}
   .ap::after{display:none}
@@ -253,6 +260,37 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   .menu .ftr{margin-top:80px}
 }
 
+/* tabs (v2) */
+.tabs{gap:10px}
+.tab{height:34px;padding:8px 16px;border-radius:10px;background:#1b1b1b;border:0;color:#4c4c4c;font-size:14px;line-height:18px;font-weight:500;letter-spacing:-.03em}
+.tab[aria-selected="true"]{background:#023ae6;color:#fff}
+/* cards (v2) */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.cases{gap:60px;margin-top:0}
+.cover{height:auto;aspect-ratio:370/230}
+.cbody{display:flex;flex-direction:column;gap:16px;margin-top:20px}
+.ctitle{margin:0;font-size:26px;line-height:29px;font-weight:500;letter-spacing:-.05em;text-wrap:balance}
+.cbadges{display:flex;flex-wrap:wrap;gap:6px}
+.cbadges span{height:24px;padding:2px 10px;border-radius:60px;background:#242424;color:#818181;font-size:14px;line-height:20px}
+.cdesc{margin:0;font-size:16px;line-height:24px;color:#cdcdcd}
+.cmore{display:inline-flex;align-items:center;gap:6px;font-size:16px;font-weight:500;margin-top:-4px}
+/* pet + community */
+.pet{margin-top:80px}
+.hscroll{display:flex;gap:12px;margin-top:36px;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--pad)*-1);padding-inline:var(--pad);scroll-padding-inline:var(--pad);scroll-snap-type:x proximity}
+.hscroll::-webkit-scrollbar{display:none}
+.pcard{flex:none;width:150px;height:150px;border-radius:20px;background:#121212;position:relative;display:grid;place-items:center;text-align:center;padding:0 16px;font-size:16px;line-height:20px;scroll-snap-align:start}
+.pcard .meta{position:absolute;left:16px;top:14px;display:flex;align-items:center;gap:8px}
+.fi{width:22px;height:22px;border-radius:6px;display:block}
+.soon{padding:1px 6px;border-radius:9px;background:#043ae5;font-size:14px;line-height:20px;color:#fff}
+.ccard{flex:none;width:308px;scroll-snap-align:start}
+.ccard .img{position:relative;height:174px;border-radius:20px;overflow:hidden;background:#121212}
+.ccard .img>img{width:100%;height:100%;object-fit:cover;display:block}
+.ccard .meta{position:absolute;left:12px;top:12px;display:flex;align-items:center;gap:8px}
+.ccard p{margin:10px 0 0;font-size:16px;line-height:20px}
+/* falling app icons */
+.bdg.ico{padding:0;width:42px;height:42px;border:0;border-radius:11px;background:none;overflow:hidden}
+.bdg.ico img{width:100%;height:100%;display:block;pointer-events:none;-webkit-user-drag:none}
+
 /* reveal (Butter-style blur-in) */
 .js .rv{opacity:0;filter:blur(14px);transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),filter .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .js .rv.in{opacity:1;filter:none;transform:none}
@@ -263,11 +301,11 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 }
 </style>
 
-<div class="loader" id="loader" aria-hidden="true"><div class="dom">vasnevdesign.ru</div><div class="bar"><i id="lbar"></i></div></div>
+<div class="loader" id="loader" aria-hidden="true"><div class="dom">vasnev.art</div><div class="bar"><i id="lbar"></i></div></div>
 
 <header class="hdr">
   <div class="wrap">
-    <a class="dom" href="#top">vasnevdesign.ru</a>
+    <a class="dom" href="#top">vasnev.art</a>
     <div class="prog" aria-hidden="true"><i id="prog"></i></div>
     <button class="mbtn" id="mopen" aria-haspopup="dialog" aria-controls="menu">menu <span class="dot18"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
   </div>
@@ -281,7 +319,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
         <div class="ava"><img src="assets/avatar.png" alt="Роман Васнёв" width="60" height="80"></div>
         <div>
           <h1 class="name">Роман Васнёв <i title="Открыт к предложениям"></i></h1>
-          <p class="role">Product Designer</p>
+          <p class="role">Product Designer · UX/UI Designer</p>
         </div>
       </div>
       <p class="bio rv" data-hero><b>8+ лет проектирую цифровые продукты - </b>финтех и платёжные сервисы, маркетплейсы, B2B-системы и e-commerce,<b> от первой идеи до релиза.</b></p>
@@ -301,20 +339,9 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
     <button class="tab" role="tab" aria-selected="false" data-k="web">Web дизайн</button>
   </div>
 
-  <section class="gut" id="cases" style="margin-top:36px">
-    <div class="rv">
-      <h2 class="h2">От идеи до релиза</h2>
-      <p class="sub">Продукты, которые я вёл end to end - исследование, архитектура, интерфейсы и передача в разработку.</p>
-    </div>
+  <section class="gut" id="cases" style="margin-top:40px">
+    <h2 class="sr">Продуктовые кейсы</h2>
     <div class="cases" id="caseList"></div>
-  </section>
-
-  <section class="gut ap" id="approach" style="margin-top:80px">
-    <div class="rv">
-      <div class="ap-h"><h2 class="h2">Мой подход к дизайну</h2><button class="caret" id="apBtn" aria-expanded="false" aria-controls="steps" aria-label="Показать все этапы"><svg width="8" height="5" viewBox="0 0 8 5"><path d="M1 1l3 3 3-3" stroke="#000" stroke-width="1.3" fill="none" stroke-linecap="round"/></svg></button></div>
-      <p class="sub">Инструменты меняются, подход остаётся. Сейчас мой подход <b>выглядит так</b></p>
-    </div>
-    <div class="steps rv" id="steps"></div>
   </section>
 
   <section class="ai" id="ai">
@@ -342,6 +369,22 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
     <div class="groups" id="groups"></div>
   </section>
 
+  <section class="gut pet" id="pet">
+    <div class="rv">
+      <h2 class="h2">Пет проекты</h2>
+      <p class="sub">Разрабатываю дизайн фичи, проекты, плагины и инструменты для Figma</p>
+    </div>
+    <div class="hscroll rv" id="petList"></div>
+  </section>
+
+  <section class="gut pet" id="community">
+    <div class="rv">
+      <h2 class="h2">Figma Community проекты</h2>
+      <p class="sub">На досуге делаю обои для рабочего стола и разные визуальные концепции</p>
+    </div>
+    <div class="hscroll rv" id="comList"></div>
+  </section>
+
   <section class="gut exp" id="exp">
     <h2 class="h2 rv">Опыт работы</h2>
     <div class="rows" id="rows"></div>
@@ -366,7 +409,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Меню">
   <div class="wrap">
-    <div class="top"><span style="font-size:16px;font-weight:500">vasnevdesign.ru</span><div class="prog"><i style="width:100%"></i></div><button class="mbtn" id="mclose">закрыть <span class="dot18"><svg width="8" height="8" viewBox="0 0 8 8"><path d="M1 1l6 6M7 1 1 7" stroke="#000" stroke-width="1.4" stroke-linecap="round"/></svg></span></button></div>
+    <div class="top"><span style="font-size:16px;font-weight:500">vasnev.art</span><div class="prog"><i style="width:100%"></i></div><button class="mbtn" id="mclose">закрыть <span class="dot18"><svg width="8" height="8" viewBox="0 0 8 8"><path d="M1 1l6 6M7 1 1 7" stroke="#000" stroke-width="1.4" stroke-linecap="round"/></svg></span></button></div>
     <div class="lang">RU / <span>EN</span></div>
     <ul class="mlist" id="mlist"></ul>
     <footer class="ftr">
@@ -383,12 +426,12 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------- content ---------- */
 const CASES=[
- {img:'assets/bitflare/cover.webp',alt:'Bitflare — лаунчпад для инвестиций',tags:['FinTech','SaaS','B2B','B2C'],w:'Спроектировал лаунчпад и бренд,',g:' где стартапы собирают инвестиции, а инвесторы заходят в проект до листинга.'},
- {img:'assets/pump/cover.webp',alt:'Pump DAO — DeFi-платформа для мем-токена',href:'pump.html',tags:['FinTech','DeFi','B2C'],w:'Спроектировал инвестиционную платформу с 12 уровнями доходности:',g:' держатели получают процент за депозит и реинвестирование, а проект сохраняет капитализацию после первичного размещения.'},
- {img:'assets/anty/cover.webp',alt:'Anty Wallet — крипто-кошелёк внутри Telegram',href:'anty.html',tags:['FinTech','B2C','Telegram'],w:'Спроектировал кошелёк и бренд внутри Telegram,',g:' где новичок за 4 шага создаёт кошелёк и сам выбирает, кто хранит ключ доступа.'},
- {img:'assets/jobbit/cover.webp',alt:'Jobbit — маркетплейс услуг',href:'jobbit.html',tags:['Marketplace','B2C','Web App'],w:'Спроектировал маркетплейс услуг для двух сторон,',g:' где клиент выбирает исполнителя прямо в отклике, а специалист видит цену заказа и гарантированную выплату.'},
- {img:'assets/klubok/cover.webp',alt:'Клубок — маркетплейс авторских туров',href:'klubok.html',tags:['Travel-tech','B2B2C','Marketplace'],w:'Спроектировал маркетплейс авторских туров с нуля,',g:' где путешественник выбирает тур без переписки, а гид сам проходит путь от регистрации до продаж.'},
- {img:'assets/slothereum/cover.webp',alt:'Slothereum OS — торговая платформа',href:'slothereum.html',tags:['FinTech','Trading','B2C'],w:'Спроектировал торговую платформу с лаунчпадом и ботом,',g:' где пользователь покупает токен в любой сети через свою биржу — без настройки криптокошелька.'},
+ {img:'assets/bitflare/cover.webp',alt:'Bitflare — лаунчпад для инвестиций',tags:['Fintech','SaaS','B2B','B2C'],w:'Спроектировал лаунчпад и бренд,',g:' где стартапы собирают инвестиции, а инвесторы заходят в проект до листинга.',t:'Спроектировал лаунчпад и бренд для запуска IPO',d:'Платформа, где стартапы собирают инвестиции, а инвесторы заходят в проект до листинга.'},
+ {img:'assets/pump/cover.webp',alt:'Pump DAO — DeFi-платформа для мем-токена',href:'pump.html',tags:['Fintech','SaaS','B2C'],w:'Спроектировал инвестиционную платформу с 12 уровнями доходности:',g:' держатели получают процент за депозит и реинвестирование, а проект сохраняет капитализацию после первичного размещения.',t:'Как удержать курс с помощью реинвестиционного геймифицированного сервиса',d:'Создал продукт для мем-токена на фоне плохого рынка и неожиданных новостей: в сжатые сроки запустил продукт и сохранил капитализацию $2 млн.'},
+ {img:'assets/anty/cover.webp',alt:'Anty Wallet — крипто-кошелёк внутри Telegram',href:'anty.html',tags:['Fintech','B2C','Telegram'],w:'Спроектировал кошелёк и бренд внутри Telegram,',g:' где новичок за 4 шага создаёт кошелёк и сам выбирает, кто хранит ключ доступа.',t:'Кошелёк внутри Telegram, которым новичок пользуется без страха',d:'Новичок за 4 шага создаёт кошелёк и сам выбирает, кто хранит ключ доступа.'},
+ {img:'assets/jobbit/cover.webp',alt:'Jobbit — маркетплейс услуг',href:'jobbit.html',tags:['Marketplace','B2C','Web App'],w:'Спроектировал маркетплейс услуг для двух сторон,',g:' где клиент выбирает исполнителя прямо в отклике, а специалист видит цену заказа и гарантированную выплату.',t:'Маркетплейс услуг, где сделка прозрачна для обеих сторон',d:'Клиент выбирает исполнителя прямо в отклике, а специалист видит цену заказа и гарантированную выплату.'},
+ {img:'assets/klubok/cover.webp',alt:'Клубок — маркетплейс авторских туров',href:'klubok.html',tags:['Travel-tech','B2B2C','Marketplace'],w:'Спроектировал маркетплейс авторских туров с нуля,',g:' где путешественник выбирает тур без переписки, а гид сам проходит путь от регистрации до продаж.',t:'Маркетплейс авторских туров с нуля до продакшена',d:'Путешественник выбирает тур без переписки, а гид сам проходит путь от регистрации до продаж.'},
+ {img:'assets/slothereum/cover.webp',alt:'Slothereum OS — торговая платформа',href:'slothereum.html',tags:['Fintech','Trading','B2C'],w:'Спроектировал торговую платформу с лаунчпадом и ботом,',g:' где пользователь покупает токен в любой сети через свою биржу — без настройки криптокошелька.',t:'Торговая платформа, где токен покупают в любой сети без криптокошелька',d:'Лаунчпад, торговый терминал и бот в Twitter: пользователь торгует через свою биржу.'},
 ];
 const STEPS=[
  ['01.','Исследование',['Исследование','Бенчмаркинг','Анализ конкурентов','Формирование гипотез','Customer Journey Map','Интервью','Юзабилити-тесты'],[0,3,5]],
@@ -415,15 +458,21 @@ const GROUPS=[
  ['Handoff',['Figma Dev Mode','Zeplin'],['zeplin','figma-dev']]
 ];
 const EXP=[['EvaCodes','full-time','Продуктовый дизайнер','2024-2026'],['Aragon','full-time','Продуктовый дизайнер','2023-2024'],['iCrypto World','full-time','Продуктовый дизайнер','2021-2022'],['KOTELOV','contract','UX/UI Designer','2021-2021'],['MetaLamp','full-time','UX/UI Designer','2020-2021'],['Аутстафф студия','contract','Web-design','2017-2020']];
-const MENU=[['Обо мне','Кто я, чем занимаюсь и как со мной связаться.','#about'],['От идеи до релиза','Продукты, которые я вёл от исследования до передачи в разработку.','#cases'],['Мой подход к дизайну','Этапы, через которые проходит каждый мой проект.','#approach'],['Работа с AI','Как я с помощью AI быстро собираю MVP и проверяю гипотезы.','#ai'],['Мой стек технологий','Инструменты, в которых я работаю на каждом этапе.','#stack'],['Опыт работы','Компании и проекты, в которых я работал с 2017 года.','#exp']];
+const MENU=[['Обо мне','Кто я, чем занимаюсь и как со мной связаться.','#about'],['Продуктовые кейсы','Продукты, которые я вёл от исследования до передачи в разработку.','#cases'],['Работа с AI','Как я с помощью AI быстро собираю MVP и проверяю гипотезы.','#ai'],['Мой стек технологий','Инструменты, в которых я работаю на каждом этапе.','#stack'],['Пет проекты','Плагины, инструменты и проекты для Figma Community.','#pet'],['Опыт работы','Компании и проекты, в которых я работал с 2017 года.','#exp']];
 const BADGES=[['PIXEL PERFECT'],['UX/UI DESIGN'],['BRANDING'],['UI DESIGN'],['TOUCHPOINT'],['IMPROVEMENTS'],['PAIN POINT'],['CTA'],['WEB 3.0','f'],['AI','f'],['MARKETING'],['USER FLOW'],['USABILITY'],['CREATIVE','f'],['CJM'],['DESIGN SYSTEM'],['COMPONENTS'],['ATOMARIC DESIGN'],['TRENDS'],['VASNEV ROMAN','v'],['SENIOR','v'],['STAFF DESIGNER','v'],['PRODUCT DESIGNER','v']];
 
+const PET=['Degen UI','UX/UI Senior Ai agent','Motion scene'];
+const COM=[['Glassmorphism wallpaper (abstract 3d figure)','assets/community-1.webp'],['Abstraction wallpaper (malevich edition)','assets/community-2.webp'],['Minimalism fintech ui icon pack','']];
+const FALL_ICONS=['lottiefiles','zeplin','pixso','figma','higgsfield','photoshop','blender','hotjar'];
 const $=s=>document.querySelector(s);const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
 const PH=(tags)=>Array.from({length:4},()=>({tags,w:'Название проекта —',g:' короткое описание: что сделано и какой результат получил продукт.'}));
 const TABS={cases:CASES,features:PH(['FinTech','UX/UI','B2C']),snippets:PH(['UI','Motion']),brand:PH(['Branding','Identity','Print']),web:PH(['Web','Landing'])};
-function cardsHTML(list){return list.map(c=>`<a class="card" href="${c.href||'project.html'}"><div class="cover">${c.img?`<img src="${c.img}" alt="${esc(c.alt||'')}" loading="lazy" decoding="async">`:''}<div class="tags">${c.tags.map((t,i)=>`<span class="tg${i?'':' on'}">${esc(t)}</span>`).join('')}</div></div><p class="ctext"><b>${esc(c.w)}</b>${esc(c.g)}</p></a>`).join('');}
+const ARW='<span class="dot18"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+function cardsHTML(list){return list.map(c=>`<a class="card" href="${c.href||'project.html'}"><div class="cover">${c.img?`<img src="${c.img}" alt="${esc(c.alt||'')}" loading="lazy" decoding="async">`:''}</div><div class="cbody"><h3 class="ctitle">${esc(c.t||c.w)}</h3><div class="cbadges">${c.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div><p class="cdesc">${esc(c.d||c.g)}</p><span class="cmore">Читать кейс ${ARW}</span></div></a>`).join('');}
 $('#caseList').innerHTML=cardsHTML(CASES).replace(/class="card"/g,'class="card rv"');
-$('#steps').innerHTML=STEPS.map(s=>`<div class="step"><h3><span>${s[0]}</span> ${s[1]}</h3><div class="chips">${s[2].map((c,i)=>`<span class="chip${s[3].includes(i)?' k':''}">${esc(c)}</span>`).join('')}</div></div>`).join('');
+const FI='<img class="fi" src="assets/figma-mini.png" alt="Figma" width="22" height="22">';
+$('#petList').innerHTML=PET.map(t=>`<div class="pcard"><span class="meta">${FI}<span class="soon">soon</span></span>${esc(t)}</div>`).join('');
+$('#comList').innerHTML=COM.map(([t,src])=>`<div class="ccard"><div class="img">${src?`<img src="${src}" alt="${esc(t)}" loading="lazy" decoding="async">`:''}<span class="meta">${FI}${src?'':'<span class="soon">soon</span>'}</span></div><p>${esc(t)}</p></div>`).join('');
 $('#aiList').innerHTML=AI.map(a=>`<div class="ai-it"><h3>${esc(a[0])}</h3><p>${esc(a[1])}</p></div>`).join('');
 (function(){const it=$('#aiList').lastElementChild;const NS='http://www.w3.org/2000/svg';const svg=document.createElementNS(NS,'svg');svg.setAttribute('class','dash');svg.setAttribute('aria-hidden','true');const r=document.createElementNS(NS,'rect');svg.appendChild(r);it.prepend(svg);
  const fit=()=>{const w=it.offsetWidth,h=it.offsetHeight;svg.setAttribute('viewBox',`0 0 ${w} ${h}`);r.setAttribute('x',1.5);r.setAttribute('y',1.5);r.setAttribute('width',Math.max(0,w-3));r.setAttribute('height',Math.max(0,h-3));r.setAttribute('rx',28.5);};
@@ -443,13 +492,6 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{if(
   addEventListener('pointermove',e=>{if(!down)return;const dx=e.clientX-sx;if(Math.abs(dx)>4){moved=true;tabsEl.classList.add('dragging');}tabsEl.scrollLeft=sl-dx;});
   addEventListener('pointerup',()=>{down=false;setTimeout(()=>tabsEl.classList.remove('dragging'),0);});
   const edge=()=>tabsEl.classList.toggle('end',tabsEl.scrollLeft+tabsEl.clientWidth>=tabsEl.scrollWidth-2);tabsEl.addEventListener('scroll',edge,{passive:true});edge();})();
-
-/* ---------- approach collapse ---------- */
-const steps=$('#steps'),ap=$('#approach'),apBtn=$('#apBtn');
-function collapsedH(){return innerWidth>=1100?190:70;}
-function setSteps(open){ap.classList.toggle('open',open);apBtn.setAttribute('aria-expanded',open);apBtn.setAttribute('aria-label',open?'Свернуть этапы':'Показать все этапы');steps.style.height=(open?steps.scrollHeight:collapsedH())+'px';}
-setSteps(false);apBtn.addEventListener('click',()=>setSteps(!ap.classList.contains('open')));
-addEventListener('resize',()=>setSteps(ap.classList.contains('open')));
 
 /* ---------- menu ---------- */
 const menu=$('#menu');
@@ -473,8 +515,8 @@ function startReveal(){document.querySelectorAll('.rv:not([data-hero])').forEach
 const P={gravity:2.1,restitution:.04,friction:.9,frictionStatic:1.4,frictionAir:.012,density:.006,stagger:55};
 let engine,bodies=[],raf=0,running=false,spawned=0,dragC=null,zoneW=0;
 const drop=$('#drop');
-function buildBadges(){drop.innerHTML='';const order=BADGES.slice().sort(()=>Math.random()-.5);
-  return order.map(([t,k])=>{const el=document.createElement('div');el.className='bdg'+(k?' '+k:'');el.textContent=t;drop.appendChild(el);return el;});}
+function buildBadges(){drop.innerHTML='';const items=BADGES.map(b=>({t:b[0],k:b[1]})).concat(FALL_ICONS.map(n=>({i:n})));const order=items.sort(()=>Math.random()-.5);
+  return order.map(it=>{const el=document.createElement('div');if(it.i){el.className='bdg ico';const im=document.createElement('img');im.src='assets/'+it.i+'.png';im.alt='';im.draggable=false;el.appendChild(im);}else{el.className='bdg'+(it.k?' '+it.k:'');el.textContent=it.t;}drop.appendChild(el);return el;});}
 function rnd(a,b){return a+Math.random()*(b-a);}
 function initPhysics(){
   if(!window.Matter){return;}
@@ -485,7 +527,7 @@ function initPhysics(){
   const t=200;
   Composite.add(engine.world,[Bodies.rectangle(W/2,H-3+t/2,W*3,t,{isStatic:true,friction:1,slop:.01}),Bodies.rectangle(-t/2,H/2-600,t,H+1600,{isStatic:true}),Bodies.rectangle(W+t/2,H/2-600,t,H+1600,{isStatic:true}),Bodies.rectangle(W/2,-1400-t/2,W*3,t,{isStatic:true})]);
   const els=buildBadges();
-  bodies=els.map(el=>{const w=el.offsetWidth,h=el.offsetHeight;const b=Bodies.rectangle(rnd(w/2+4,W-w/2-4),0,w,h,{chamfer:{radius:12},restitution:P.restitution,friction:P.friction,frictionStatic:P.frictionStatic,frictionAir:P.frictionAir,density:P.density,sleepThreshold:40,slop:.01});b.el=el;b.w=w;b.h=h;return b;});
+  bodies=els.map(el=>{const w=el.offsetWidth,h=el.offsetHeight;const b=Bodies.rectangle(rnd(w/2+4,W-w/2-4),0,w,h,{chamfer:{radius:el.classList.contains('ico')?11:12},restitution:P.restitution,friction:P.friction,frictionStatic:P.frictionStatic,frictionAir:P.frictionAir,density:P.density,sleepThreshold:40,slop:.01});b.el=el;b.w=w;b.h=h;return b;});
   bodies.forEach((b,i)=>attachDrag(b));
   if(reduce){bodies.forEach((b,i)=>place(b,-60-i*45));for(let i=0;i<1800;i++)Matter.Engine.update(engine,DT);render();bodies.forEach(b=>b.el.style.visibility='visible');return;}
   bodies.forEach((b,i)=>setTimeout(()=>{place(b,-50-rnd(0,120));b.el.style.visibility='visible';spawned++;wake();},i*P.stagger));
