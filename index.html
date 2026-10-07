@@ -114,17 +114,32 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .ai{position:relative;margin-top:80px}
 .ai-icons{position:relative;z-index:0;height:150px;margin:0 auto;max-width:390px}
 .ai-icons img{position:absolute;filter:drop-shadow(0 10px 18px rgba(0,0,0,.5))}
-.ai-card{position:relative;z-index:1;margin-top:-72px;border-radius:40px 40px 0 0;background:linear-gradient(180deg,rgba(29,29,29,0) 0,rgba(0,0,0,.6) 120px,#000 240px);-webkit-backdrop-filter:blur(10px) saturate(1.5) brightness(1.1);backdrop-filter:blur(10px) saturate(1.5) brightness(1.1);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.45),inset 1px 0 0 rgba(255,255,255,.14),inset -1px 0 0 rgba(255,255,255,.14),inset 0 18px 30px -22px rgba(255,255,255,.18),0 -6px 36px rgba(0,0,0,.63);padding-top:20px;overflow:hidden}
+.ai-card{position:relative;z-index:1;margin-top:-72px;border-radius:40px 40px 0 0;background:linear-gradient(180deg,rgba(18,18,18,0) 0,rgba(18,18,18,.6) 120px,#121212 240px);-webkit-backdrop-filter:blur(10px) saturate(1.5) brightness(1.1);backdrop-filter:blur(10px) saturate(1.5) brightness(1.1);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.45),inset 1px 0 0 rgba(255,255,255,.14),inset -1px 0 0 rgba(255,255,255,.14),inset 0 18px 30px -22px rgba(255,255,255,.18),0 -6px 36px rgba(0,0,0,.63);padding-top:20px;overflow:hidden}
 .ai-card::before{content:"";position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);pointer-events:none}
-.ai-card .txt{padding:0 20px 26px}
+.ai-card .txt{padding:0 20px 0}
 .ai-card p{font-size:16px;line-height:20px;margin:8px 0 0}
-.ai-list{display:flex;flex-direction:column}
-.ai-it{background:var(--c);color:var(--t);border-radius:30px 30px 0 0;padding:20px 20px 50px;margin-top:-30px}
-.ai-it:first-child{margin-top:0}
-.ai-it:last-child{border-radius:30px;padding:30px 23px 40px}
-.ai-it h3{margin:0;font-size:18px;font-weight:500;line-height:23px}
-.ai-it p{margin:8px 0 0;font-size:14px;font-weight:400;line-height:18px;opacity:.5}
-.ai-it:last-child p{opacity:.8}
+/* AI pipeline: steps in a zigzag (mobile/tablet) or a staircase (desktop), joined by connectors */
+.flow{position:relative;margin:40px 20px 34px;height:1000px}
+.flow svg.lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.flow .ln{fill:none;stroke:rgba(255,255,255,.55);stroke-width:1.2;stroke-dasharray:1;stroke-dashoffset:0}
+.flow .ln.ac{stroke:#9747ff}
+.flow .dt{fill:#cfcfcf}.flow .dt.ac{fill:#9747ff}
+.fstep{position:absolute;left:0;top:0;width:260px;background:#242424;border-radius:14px;padding:15px 10px 10px;color:#fff}
+.fstep .hd{display:flex;align-items:center;gap:4px;padding-left:6px;font-size:14px;font-weight:500;line-height:18px;letter-spacing:-.05em}
+.fstep .hd svg{width:18px;height:18px;flex:none}
+.fstep .box{margin-top:12px;min-height:66px;padding:8px;border-radius:12px;background:#353535;font-size:12px;line-height:18px;letter-spacing:-.05em}
+.fstep .tl{display:flex;justify-content:flex-end;margin-top:5px}
+.fstep .tl span{display:flex;gap:4px;padding:8px;border-radius:12px;background:#2d2d2d}
+.fstep .tl img{width:21px;height:21px;border-radius:8px;display:block;object-fit:cover;object-position:100% 50%}
+.fstep.last{background:#9747ff}
+.fstep.last .box,.fstep.last .tl span{background:#6826bd}
+.js .flow .fstep{opacity:0;transform:translateY(14px);transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i)*.28s)}
+.js .flow .ln{stroke-dashoffset:1;transition:stroke-dashoffset .5s ease-in-out;transition-delay:calc(var(--i)*.28s + .3s)}
+.js .flow .dt{opacity:0;transition:opacity .3s;transition-delay:calc(var(--i)*.28s + .25s)}
+.js .flow.on .fstep{opacity:1;transform:none}
+.js .flow.on .ln{stroke-dashoffset:0}
+.js .flow.on .dt{opacity:1}
+@media (prefers-reduced-motion:reduce){.js .flow .fstep,.js .flow .ln,.js .flow .dt{transition:none;opacity:1;transform:none;stroke-dashoffset:0}}
 
 /* stack: folders — glass front pocket, icons fanned out of the folder */
 .stack{margin-top:80px}
@@ -211,9 +226,8 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   .fd:nth-child(n+3){margin-top:-14px}
   .ai{margin-inline:var(--pad)}
   .ai-card{border-radius:40px}
-  .ai-card .txt{max-width:640px;padding:12px 32px 32px}
-  .ai-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:0 32px 32px}
-  .ai-it,.ai-it:first-child,.ai-it:last-child{margin-top:0;border-radius:30px;padding:24px 24px 28px}
+  .ai-card .txt{max-width:640px;padding:12px 32px 0}
+  .flow{margin:44px 32px 40px}
   .sub{max-width:560px}
   .mlist{display:grid;grid-template-columns:1fr 1fr;gap:32px 40px;align-content:start;margin-top:40px}
   .mlist strong{font-size:22px}
@@ -259,11 +273,11 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   .chip{font-size:14px;height:28px;padding:3px 12px}
   .ai{margin-top:140px}
   .ai-icons{height:190px;max-width:480px;transform:scale(1.2);transform-origin:50% 100%}
-  .ai-card .txt{padding:20px 48px 40px;max-width:760px}
+  .ai-card .txt{padding:20px 48px 0;max-width:760px}
+  .flow{margin:56px 48px 56px}
+  .fstep .hd{font-size:15px}
+  .fstep .box{font-size:13px;line-height:19px}
   .ai-card p{font-size:18px;line-height:24px}
-  .ai-list{grid-template-columns:repeat(3,1fr);padding:0 48px 48px}
-  .ai-it h3{font-size:20px;line-height:26px}
-  .ai-it p{font-size:15px;line-height:20px}
   .stack{margin-top:140px}
   .stk{margin-top:44px}
   .fd{height:314px;--s:116px;--g:83px;--hg:98px;--a:10px;--r:30px}
@@ -396,7 +410,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
         <h2 class="h2">Работа с AI</h2>
         <p>AI действительно ускоряет работу и забирает много рутины. Но создать продукт с нуля и развивать уже готовый — это разные задачи. Ниже один из моих стеков: на нём я быстро собираю MVP и проверяю гипотезы.</p>
       </div>
-      <div class="ai-list" id="aiList"></div>
+      <div class="flow" id="flow"><svg class="lines" id="flowLines" aria-hidden="true"></svg></div>
     </div>
   </section>
 
@@ -482,15 +496,21 @@ const STEPS=[
  ['05.','Интерфейс',['UX/UI','Дизайн-системы','Адаптив','Состояния и edge cases'],[0]],
  ['06.','Handoff',['Handoff','Аннотации и спецификации','Дизайн-ревью'],[0]]
 ];
-const AI_C=[['#e4b3fb','#000'],['#dff85f','#000'],['#2a40c4','#fff'],['#ea582f','#fff'],['#dcb1ff','#000'],['#cd50ff','#fff']];
-const AI=[
- ['Исследование - LLM','Бенчмаркинг конкурентов, разбор отзывов, 3–5 гипотез для проверки'],
- ['Сценарии - LLM + FigJam','Роли, user flow и краевые случаи на одной карте продукта'],
- ['Дизайн - Figma + Figma AI + UI kit','Работаю руками с кастомными компонентами, сложными интерфейсами и сложными сценариями, при необходимости можно ускорить процесс загрузив компоненты напрямую в LLM либо взять готовый или кастомный UI KIT'],
- ['Прототип - LLM + Figma MCP','Прототип в коде, а не в Figma: с реальной логикой, данными и состояниями. Его можно отдать пользователям по ссылке.'],
- ['Анимации - 21st.dev / React Bits /Higgsfield и аналоги','Прототип в коде, а не в Figma, с реальной логикой, данными и состояниями. Его можно отдать пользователям по ссылке.'],
- ['Handoff','Хэндоф фронтенду со всеми состояниями и логикой. Или сразу код под стек, который задала команда, с код-ревью перед передачей.']
+/* AI pipeline: title, what happens, tools (assets/<name>.png), step icon */
+const AI_STEPS=[
+ ['Исследование','Бенчмаркинг конкурентов, синтез отзывов и интервью, 3–5 гипотез с метриками для проверки',['perplexity','chatgpt','claude','similarweb'],'research'],
+ ['Сценарии','Роли, user flow и краевые случаи на одной карте продукта — ещё до первого экрана',['claude','chatgpt','figma'],'flow'],
+ ['Дизайн','Сложные интерфейсы и кастомные компоненты собираю руками, рутину ускоряю через Figma AI, Figma Make и UI kit',['figma','claude','higgsfield'],'design'],
+ ['Анимации','Микроанимации и motion-прототипы в коде: живые состояния, которые можно потрогать по ссылке',['react-bits','jitter','lottiefiles','higgsfield'],'motion'],
+ ['Handoff','Передаю фронтенду все состояния и логику через Figma Dev Mode и MCP — или сразу код под стек команды с ревью перед передачей',['figma','claude','github','react'],'code']
 ];
+const STEP_IC={
+ research:'<circle cx="8" cy="8" r="4.75"/><path d="m11.5 11.5 4 4"/>',
+ flow:'<rect x="2.25" y="2.25" width="5" height="5" rx="1.5"/><rect x="10.75" y="10.75" width="5" height="5" rx="1.5"/><path d="M4.75 7.25v2.5a2 2 0 0 0 2 2h4"/>',
+ design:'<path d="M3 15l1-3.75L12.25 3a1.6 1.6 0 0 1 2.25 0l.5.5a1.6 1.6 0 0 1 0 2.25L6.75 14 3 15z"/><path d="m10.75 4.5 2.75 2.75"/>',
+ motion:'<path d="M2.5 9c2-4.5 4-4.5 6.5 0s4.5 4.5 6.5 0"/><circle cx="9" cy="9" r="1" fill="#fff" stroke="none"/>',
+ code:'<path d="M6 5 2.5 9 6 13M12 5l3.5 4L12 13M10.25 3.5l-2.5 11"/>'
+};
 const GROUPS=[
  ['Тестирование',['Maze','UXtweak','Hotjar','Яндекс Метрика','Google Forms'],['maze','hotjar','uxtweak','yandex-metrika'],[0,4]],
  ['Анализ и ресерч',['LLM','Perplexity','Similarweb','Mobbin'],['chatgpt','claude','similarweb','perplexity'],[0]],
@@ -513,7 +533,7 @@ function cardsHTML(list){return list.map(c=>{const tag=c.soon?'div':'a';const hr
 $('#caseList').innerHTML=cardsHTML(CASES).replace(/class="card"/g,'class="card rv"');
 $('#petList').innerHTML=PET.map(([t,d,src])=>`<div class="pcard"><div class="img"><img src="${src}" alt="${esc(t)}" loading="lazy" decoding="async" width="308" height="174"></div><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join('');
 $('#comList').innerHTML=COM.map(([t,src])=>`<div class="pcard"><div class="img"><img src="${src}" alt="${esc(t)}" loading="lazy" decoding="async" width="308" height="174"></div><h3>${esc(t)}</h3></div>`).join('');
-$('#aiList').innerHTML=AI.map((a,i)=>`<div class="ai-it" style="--c:${AI_C[i][0]};--t:${AI_C[i][1]}"><h3>${esc(a[0])}</h3><p>${esc(a[1])}</p></div>`).join('');
+$('#flow').insertAdjacentHTML('beforeend',AI_STEPS.map((st,i)=>`<div class="fstep${i===AI_STEPS.length-1?' last':''}" style="--i:${i}"><div class="hd"><svg viewBox="0 0 18 18" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${STEP_IC[st[3]]}</svg>${esc(st[0])}</div><div class="box">${esc(st[1])}</div><div class="tl"><span>${st[2].map(n=>`<img src="assets/${n}.png" alt="${esc(n)}" title="${esc(n)}" width="21" height="21" loading="lazy">`).join('')}</span></div></div>`).join(''));
 $('#stk').innerHTML=GROUPS.map(g=>{const n=g[2].length,rs=n>1?25/(n-1):0;return `<div class="fd" role="button" tabindex="0" aria-expanded="false" aria-label="${esc(g[0])}: ${esc(g[1].join(', '))}"><div class="fd-back"><svg class="fd-edge" aria-hidden="true"><path fill="none" stroke="rgba(255,255,255,.07)" stroke-width="2"/></svg></div><div class="fd-sheets" aria-hidden="true">${g[2].map((ic,i)=>`<div class="fd-sh" style="--i:${i};--t:${i-(n-1)/2};--rs:${rs}deg"><img src="assets/${ic}.png" alt="" loading="lazy" draggable="false"></div>`).join('')}</div><div class="fd-front"><svg class="fd-edge" aria-hidden="true"><path fill="none" stroke="url(#fdg)" stroke-width="2"/></svg><h3>${esc(g[0])}</h3><div class="chips">${g[1].map(c=>`<span class="chip">${esc(c)}</span>`).join('')}</div><span class="fd-pill" aria-hidden="true">${g[2].map(ic=>`<img src="assets/${ic}.png" alt="" loading="lazy">`).join('')}</span></div></div>`;}).join('');
 $('#rows').innerHTML=EXP.map(e=>`<div class="row rv"><div>${e[0]}<small>${e[1]}</small></div><div>${e[2]}<small>${e[3]}</small></div></div>`).join('');
 $('#mlist').innerHTML=MENU.map((m,i)=>`<li style="animation-delay:${.08+i*.05}s"><a href="${m[2]}"><strong>${m[0]} <span class="c"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></strong><p>${m[1]}</p></a></li>`).join('');
@@ -552,6 +572,25 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{if(
   const io=new IntersectionObserver(es=>{let k=0;es.forEach(e=>{if(e.isIntersecting){e.target.style.setProperty('--dl',(reduce?0:k++*.22)+'s');e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.3});
   folds.forEach(f=>{io.observe(f);const t=()=>{f.classList.toggle('open');f.setAttribute('aria-expanded',f.classList.contains('open'));};
     f.addEventListener('click',t);f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t();}});});})();
+
+/* ---------- AI pipeline: zigzag on mobile/tablet, staircase on desktop, connectors drawn on reveal ---------- */
+(function(){const flow=$('#flow'),svg=$('#flowLines'),steps=[...flow.querySelectorAll('.fstep')],n=steps.length,NS='http://www.w3.org/2000/svg';
+  function layout(){const W=flow.clientWidth,desk=innerWidth>=1100,R=14;let rects=[];
+    if(desk){const g=24,sw=(W-g*(n-1))/n;steps.forEach((s,i)=>{s.style.width=sw+'px';});
+      steps.forEach((s,i)=>rects.push({x:i*(sw+g),y:i*120,w:sw,h:s.offsetHeight}));}
+    else{const sw=W>=600?Math.round(W*.6):W-90;let y=0;
+      steps.forEach((s,i)=>{const last=i===n-1,w=last?W:sw;s.style.width=w+'px';const h=s.offsetHeight;rects.push({x:last||i%2===0?0:W-sw,y,w,h});y+=h+(i===n-2?32:40);});}
+    rects.forEach((r,i)=>{steps[i].style.transform='';steps[i].style.left=r.x+'px';steps[i].style.top=r.y+'px';});
+    flow.style.height=Math.max(...rects.map(r=>r.y+r.h))+'px';
+    let out='';
+    for(let i=0;i<n-1;i++){const a=rects[i],b=rects[i+1],ac=i===n-2?' ac':'';
+      const right=desk||i%2===0;
+      const x1=right?a.x+a.w:a.x,y1=a.y+(desk?78:80),X=right?(desk?b.x+30:b.x+b.w-23):b.x+23,y2=b.y,d=right?1:-1;
+      const path=`M${x1} ${y1}H${X-d*R}Q${X} ${y1} ${X} ${y1+R}V${y2}`;
+      out+=`<path class="ln${ac}" pathLength="1" style="--i:${i}" d="${path}"/><circle class="dt${ac}" style="--i:${i}" cx="${x1}" cy="${y1}" r="3"/><circle class="dt${ac}" style="--i:${i+.6}" cx="${X}" cy="${y2}" r="3"/>`;}
+    svg.innerHTML=out;}
+  layout();addEventListener('resize',layout);if(document.fonts)document.fonts.ready.then(layout);
+  const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){flow.classList.add('on');io.disconnect();}},{threshold:.15});io.observe(flow);})();
 
 /* ---------- menu ---------- */
 const menu=$('#menu');
