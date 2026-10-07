@@ -126,25 +126,38 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .ai-it p{margin:8px 0 0;font-size:14px;font-weight:400;line-height:18px;opacity:.5}
 .ai-it:last-child p{opacity:.8}
 
-/* stack: glass cards that unfold */
+/* stack: folders — glass front pocket, icons fanned out of the folder */
 .stack{margin-top:80px}
-.stk{position:relative;margin-top:36px;transition:height .55s cubic-bezier(.2,.7,.2,1)}
-.sc{position:absolute;left:0;right:0;top:0;height:180px;border-radius:20px;overflow:hidden;cursor:pointer;transform-origin:50% 0;will-change:transform;
-  background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.01) 50%),rgba(8,8,8,.28);
-  -webkit-backdrop-filter:blur(17px) saturate(1.6);backdrop-filter:blur(17px) saturate(1.6);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 1px 0 0 rgba(255,255,255,.08),inset -1px 0 0 rgba(255,255,255,.08),0 -10px 30px rgba(0,0,0,.35);
-  transition:top .55s cubic-bezier(.2,.7,.2,1),height .55s cubic-bezier(.2,.7,.2,1)}
-.sc::after{content:"";position:absolute;inset:0;border-radius:inherit;border:1px solid rgba(255,255,255,.1);pointer-events:none}
-.sc.tall{height:212px}
-.sc.open{height:212px}.sc.tall.open{height:244px}
-.sc h3{margin:0;padding:15px 15px 0;font-size:20px;font-weight:500;line-height:26px}
-.sc .chips{margin:15px 15px 0;gap:6px}
-.sc .chip{background:rgba(36,36,36,.7);border-color:#282828;-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px)}
-.sc .chip.k{background:#212121;color:#fff}
-.sc .icons{position:absolute;left:-19px;top:104px;display:flex;gap:8px}
-.sc.tall .icons{top:136px}
-.sc .icons img{width:93px;height:93px;border-radius:24px;display:block;-webkit-user-drag:none}
-.sc:focus-visible{outline-offset:2px}
+.stk{margin-top:36px;display:grid;gap:20px}
+.fd+.fd{margin-top:-32px} /* visual gap 20px: the back plate starts 32px below the card top */
+.fd{--s:81px;--g:56px;--hg:64px;--a:7px;--r:21px;position:relative;height:346px;cursor:pointer;-webkit-tap-highlight-color:transparent;isolation:isolate;
+  transition:translate .5s cubic-bezier(.2,.8,.2,1),scale .5s cubic-bezier(.2,.8,.2,1)}
+.js .fd{opacity:0}
+.js .fd.in{animation:fdpop .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--dl,0s)}
+@keyframes fdpop{0%{opacity:0;transform:translate3d(0,34px,0) scale(.92)}55%{opacity:1;transform:translate3d(0,-8px,0) scale(1.035)}100%{opacity:1;transform:none}}
+.fd:hover,.fd.open{z-index:2;translate:0 -6px;scale:1.02}
+.fd:focus-visible{outline:1px solid rgba(255,255,255,.4);outline-offset:4px;border-radius:24px}
+.fd::before{content:"";position:absolute;left:8%;right:8%;top:40px;height:200px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.10),rgba(255,255,255,0));filter:blur(18px);z-index:-1;opacity:.8}
+.fd-back{position:absolute;left:0;right:0;top:32px;bottom:0;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.008) 60%)}
+.fd-edge{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.fd-sheets{position:absolute;inset:0;pointer-events:none}
+.fd-sh{position:absolute;top:60px;left:50%;width:var(--s);height:var(--s);margin-left:calc(var(--s)/-2);border-radius:var(--r);overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  box-shadow:0 18px 40px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.14);
+  transform:translate3d(calc(var(--t)*var(--g)*.6),80px,0);opacity:0;
+  transition:transform .9s cubic-bezier(.2,.8,.2,1),opacity .5s;transition-delay:calc(var(--dl,0s) + .35s + var(--i)*.08s)}
+.fd-sh img{width:100%;height:100%;display:block;object-fit:cover;object-position:100% 50%;transform:translateZ(0);-webkit-user-drag:none}
+.fd.in .fd-sh{opacity:1;transform:translate3d(calc(var(--t)*var(--g)),calc(var(--t)*var(--t)*var(--a)),0) rotate(calc(var(--t)*var(--rs)))}
+.fd.in:hover .fd-sh,.fd.in.open .fd-sh{transform:translate3d(calc(var(--t)*var(--hg)),calc(var(--t)*var(--t)*var(--a) - 4px),0) rotate(calc(var(--t)*var(--rs)*1.2));transition-delay:calc(var(--i)*.04s);transition-duration:.6s}
+.fd-front{position:absolute;left:0;right:0;bottom:0;height:240px;overflow:hidden;
+  background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.015) 55%),rgba(12,12,12,.78);
+  -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.fd:hover .fd-front,.fd.open .fd-front{transform:translateY(6px)}
+.fd-front h3{margin:0;padding:38px 18px 0;font-size:20px;font-weight:500;line-height:26px}
+.fd-front .chips{margin:14px 18px 0}
+.fd-front .chip{-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px)}
+.fd-pill{position:absolute;right:14px;bottom:14px;display:flex;align-items:center;gap:6px;height:34px;padding:0 6px;border-radius:40px;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.08)}
+.fd-pill img{width:22px;height:22px;border-radius:7px;display:block;object-fit:cover;object-position:100% 50%}
+@media (prefers-reduced-motion:reduce){.js .fd,.js .fd.in{opacity:1;animation:none}.fd,.fd-sh,.fd-front{transition:none!important}}
 
 /* experience */
 .exp{margin-top:80px}
@@ -193,7 +206,9 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   .tabs{-webkit-mask:none;mask:none}
   .cases{display:grid;grid-template-columns:1fr 1fr;gap:56px 24px}
   .cover{height:auto;aspect-ratio:1.75}
-  .stk{max-width:560px}
+  .stk{grid-template-columns:1fr 1fr}
+  .fd+.fd{margin-top:0}
+  .fd:nth-child(n+3){margin-top:-32px}
   .ai{margin-inline:var(--pad)}
   .ai-card{border-radius:40px}
   .ai-card .txt{max-width:640px;padding:12px 32px 32px}
@@ -249,8 +264,16 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   .ai-list{grid-template-columns:repeat(3,1fr);padding:0 48px 48px}
   .ai-it h3{font-size:20px;line-height:26px}
   .ai-it p{font-size:15px;line-height:20px}
-  .stack{margin-top:140px;display:grid;grid-template-columns:1fr 1.25fr;column-gap:80px;align-items:start}
-  .stk{margin-top:6px;max-width:none}
+  .stack{margin-top:140px}
+  .stk{margin-top:44px}
+  .fd{height:376px;--s:93px;--g:66px;--hg:78px;--a:8px;--r:24px}
+  .fd-sh{top:72px}
+  .fd-back{top:38px}
+  .fd:nth-child(n+3){margin-top:-38px}
+  .fd-front{height:250px}
+  .fd-front h3{padding:42px 22px 0}
+  .fd-front .chips{margin:14px 22px 0}
+  .fd-pill{right:16px;bottom:16px}
   /* experience + awards: title left, rows right */
   .exp,.awards{display:grid;grid-template-columns:1fr 1.25fr;column-gap:80px;align-items:start}
   .exp{margin-top:140px}
@@ -382,6 +405,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
       <h2 class="h2">Стек программ, которые я использую в своей работе</h2>
       <p class="sub">Инструменты, в которых я думаю, проектирую и довожу продукт до разработки</p>
     </div>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="fdg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".38"/><stop offset=".35" stop-color="#fff" stop-opacity=".1"/><stop offset="1" stop-color="#fff" stop-opacity=".07"/></linearGradient></defs></svg>
     <div class="stk" id="stk"></div>
   </section>
 
@@ -469,7 +493,7 @@ const AI=[
 ];
 const GROUPS=[
  ['Тестирование',['Maze','UXtweak','Hotjar','Яндекс Метрика','Google Forms'],['maze','hotjar','uxtweak','yandex-metrika'],[0,4]],
- ['Анализ и ресерч.',['LLM','Perplexity','Similarweb','Mobbin'],['chatgpt','claude','similarweb','perplexity'],[0]],
+ ['Анализ и ресерч',['LLM','Perplexity','Similarweb','Mobbin'],['chatgpt','claude','similarweb','perplexity'],[0]],
  ['UX/UI дизайн',['Figma','Pixso','Спектр','Protopie'],['figma','pixso','protopie'],[0]],
  ['Графика',['Photoshop','Illustrator','Blender','Higgsfield'],['photoshop','illustrator','blender','higgsfield'],[0]],
  ['Motion',['After Effects','LottieFiles','React Bits','Jitter'],['after-effects','lottiefiles','jitter','react-bits'],[0]],
@@ -490,7 +514,7 @@ $('#caseList').innerHTML=cardsHTML(CASES).replace(/class="card"/g,'class="card r
 $('#petList').innerHTML=PET.map(([t,d,src])=>`<div class="pcard"><div class="img"><img src="${src}" alt="${esc(t)}" loading="lazy" decoding="async" width="308" height="174"></div><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join('');
 $('#comList').innerHTML=COM.map(([t,src])=>`<div class="pcard"><div class="img"><img src="${src}" alt="${esc(t)}" loading="lazy" decoding="async" width="308" height="174"></div><h3>${esc(t)}</h3></div>`).join('');
 $('#aiList').innerHTML=AI.map((a,i)=>`<div class="ai-it" style="--c:${AI_C[i][0]};--t:${AI_C[i][1]}"><h3>${esc(a[0])}</h3><p>${esc(a[1])}</p></div>`).join('');
-$('#stk').innerHTML=GROUPS.map((g,i)=>`<div class="sc${i?'':' tall'}" role="button" tabindex="0" aria-expanded="false" aria-label="${g[0]}: показать программы"><h3>${g[0]}</h3><div class="chips">${g[1].map((c,j)=>`<span class="chip${g[3].includes(j)?' k':''}">${esc(c)}</span>`).join('')}</div><div class="icons">${g[2].map(n=>`<img src="assets/${n}.png" alt="${n}" width="93" height="93" loading="lazy" draggable="false">`).join('')}</div></div>`).join('');
+$('#stk').innerHTML=GROUPS.map(g=>{const n=g[2].length,rs=n>1?25/(n-1):0;return `<div class="fd" role="button" tabindex="0" aria-expanded="false" aria-label="${esc(g[0])}: ${esc(g[1].join(', '))}"><div class="fd-back"><svg class="fd-edge" aria-hidden="true"><path fill="none" stroke="rgba(255,255,255,.07)" stroke-width="2"/></svg></div><div class="fd-sheets" aria-hidden="true">${g[2].map((ic,i)=>`<div class="fd-sh" style="--i:${i};--t:${i-(n-1)/2};--rs:${rs}deg"><img src="assets/${ic}.png" alt="" loading="lazy" draggable="false"></div>`).join('')}</div><div class="fd-front"><svg class="fd-edge" aria-hidden="true"><path fill="none" stroke="url(#fdg)" stroke-width="2"/></svg><h3>${esc(g[0])}</h3><div class="chips">${g[1].map(c=>`<span class="chip">${esc(c)}</span>`).join('')}</div><span class="fd-pill" aria-hidden="true">${g[2].map(ic=>`<img src="assets/${ic}.png" alt="" loading="lazy">`).join('')}</span></div></div>`;}).join('');
 $('#rows').innerHTML=EXP.map(e=>`<div class="row rv"><div>${e[0]}<small>${e[1]}</small></div><div>${e[2]}<small>${e[3]}</small></div></div>`).join('');
 $('#mlist').innerHTML=MENU.map((m,i)=>`<li style="animation-delay:${.08+i*.05}s"><a href="${m[2]}"><strong>${m[0]} <span class="c"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></strong><p>${m[1]}</p></a></li>`).join('');
 
@@ -517,18 +541,17 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{if(
   addEventListener('pointerup',()=>{down=false;setTimeout(()=>tabsEl.classList.remove('dragging'),0);});
   const edge=()=>tabsEl.classList.toggle('end',tabsEl.scrollLeft+tabsEl.clientWidth>=tabsEl.scrollWidth-2);tabsEl.addEventListener('scroll',edge,{passive:true});edge();})();
 
-/* ---------- stack: cards unfold from a deck on scroll, tap opens a card ---------- */
-(function(){const box=$('#stk'),cards=[...box.children],n=cards.length;
-  const STEP=100,FIRST=132,DECK=12,EXP=112;let open=-1,ticking=false;
-  const fin=i=>i?FIRST+(i-1)*STEP:0;
-  function layout(){let extra=0;cards.forEach((c,i)=>{c.style.top=extra+'px';if(i===open&&i<n-1)extra+=EXP;});box.style.height=(fin(n-1)+(open===n-1?212:180)+extra)+'px';}
-  function frame(){ticking=false;const r=box.getBoundingClientRect(),vh=innerHeight;
-    let p=reduce?1:Math.min(1,Math.max(0,(vh*.95-r.top)/(vh*.6)));const e=p*p*(3-2*p);
-    cards.forEach((c,i)=>{const y=i*DECK+(fin(i)-i*DECK)*e;const s=1-(n-1-i)*.035*(1-e);c.style.transform=`translate3d(0,${y.toFixed(1)}px,0) scale(${s.toFixed(4)})`;});}
-  function req(){if(!ticking){ticking=true;requestAnimationFrame(frame);}}
-  function toggle(i){open=open===i?-1:i;cards.forEach((c,j)=>{c.classList.toggle('open',j===open);c.setAttribute('aria-expanded',j===open);});layout();}
-  cards.forEach((c,i)=>{c.addEventListener('click',()=>toggle(i));c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle(i);}});});
-  addEventListener('scroll',req,{passive:true});addEventListener('resize',()=>{layout();req();});layout();frame();})();
+/* ---------- stack: folder shapes, staggered pop-in, tap/hover fans icons ---------- */
+(function(){const box=$('#stk'),folds=[...box.children];
+  const pathL=(w,h,r,d,tw,s)=>`M0 ${r}A${r} ${r} 0 0 1 ${r} 0L${tw} 0C${tw+s*.55} 0 ${tw+s*.45} ${d} ${tw+s} ${d}L${w-r} ${d}A${r} ${r} 0 0 1 ${w} ${d+r}L${w} ${h-r}A${r} ${r} 0 0 1 ${w-r} ${h}L${r} ${h}A${r} ${r} 0 0 1 0 ${h-r}Z`;
+  const pathR=(w,h,r,d,tw,s)=>{const x=w-tw;return `M0 ${d+r}A${r} ${r} 0 0 1 ${r} ${d}L${x-s} ${d}C${x-s*.45} ${d} ${x-s*.55} 0 ${x} 0L${w-r} 0A${r} ${r} 0 0 1 ${w} ${r}L${w} ${h-r}A${r} ${r} 0 0 1 ${w-r} ${h}L${r} ${h}A${r} ${r} 0 0 1 0 ${h-r}Z`;};
+  function clip(el,p){el.style.clipPath=`path('${p}')`;el.style.webkitClipPath=`path('${p}')`;el.querySelector('path').setAttribute('d',p);}
+  function shape(f){const fr=f.querySelector('.fd-front'),bk=f.querySelector('.fd-back'),w=fr.offsetWidth;if(!w)return;
+    clip(fr,pathL(w,fr.offsetHeight,24,24,Math.round(w*.42),46));clip(bk,pathR(bk.offsetWidth,bk.offsetHeight,24,24,Math.round(bk.offsetWidth*.4),46));}
+  const ro=new ResizeObserver(es=>es.forEach(e=>shape(e.target)));folds.forEach(f=>ro.observe(f));
+  const io=new IntersectionObserver(es=>{let k=0;es.forEach(e=>{if(e.isIntersecting){e.target.style.setProperty('--dl',(reduce?0:k++*.22)+'s');e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.3});
+  folds.forEach(f=>{io.observe(f);const t=()=>{f.classList.toggle('open');f.setAttribute('aria-expanded',f.classList.contains('open'));};
+    f.addEventListener('click',t);f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t();}});});})();
 
 /* ---------- menu ---------- */
 const menu=$('#menu');
