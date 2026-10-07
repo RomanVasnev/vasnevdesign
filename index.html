@@ -111,23 +111,22 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .chip.k{background:var(--chip);color:#fff}
 
 /* AI */
-.ai{position:relative;margin-top:80px}
-.ai-icons{position:relative;z-index:0;height:150px;margin:0 auto;max-width:390px}
-.ai-icons img{position:absolute;filter:drop-shadow(0 10px 18px rgba(0,0,0,.5))}
-.ai-card{position:relative;z-index:1;margin-top:-72px;border-radius:40px 40px 0 0;background:linear-gradient(180deg,rgba(18,18,18,0) 0,rgba(18,18,18,.6) 120px,#121212 240px);-webkit-backdrop-filter:blur(10px) saturate(1.5) brightness(1.1);backdrop-filter:blur(10px) saturate(1.5) brightness(1.1);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.45),inset 1px 0 0 rgba(255,255,255,.14),inset -1px 0 0 rgba(255,255,255,.14),inset 0 18px 30px -22px rgba(255,255,255,.18),0 -6px 36px rgba(0,0,0,.63);padding-top:20px;overflow:hidden}
-.ai-card::before{content:"";position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);pointer-events:none}
+.ai{position:relative;margin:80px var(--pad) 0}
+/* Figma: #121212 card, r40, subtle dot grid 20×13 */
+.ai-card{position:relative;border-radius:40px;padding-top:40px;overflow:hidden;background-color:#121212;
+  background-image:radial-gradient(circle,rgba(255,255,255,.028) 0 1px,transparent 1.4px);background-size:20px 13px;background-position:-6px -1px}
 .ai-card .txt{padding:0 20px 0}
 .ai-card p{font-size:16px;line-height:20px;margin:8px 0 0}
 /* AI pipeline: steps in a zigzag (mobile/tablet) or a staircase (desktop), joined by connectors */
-.flow{position:relative;margin:40px 20px 34px;height:1000px}
+.flow{position:relative;margin:62px 20px 40px;height:1000px}
 .flow svg.lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
 .flow .ln{fill:none;stroke:rgba(255,255,255,.55);stroke-width:1.2;stroke-dasharray:1;stroke-dashoffset:0}
 .flow .ln.ac{stroke:#9747ff}
 .flow .dt{fill:#cfcfcf}.flow .dt.ac{fill:#9747ff}
-.fstep{position:absolute;left:0;top:0;width:260px;background:#242424;border-radius:14px;padding:15px 10px 10px;color:#fff}
+.fstep{position:absolute;left:0;top:0;width:260px;background:#242424;border-radius:14px;padding:15px 10px 7px;color:#fff}
 .fstep .hd{display:flex;align-items:center;gap:4px;padding-left:6px;font-size:14px;font-weight:500;line-height:18px;letter-spacing:-.05em}
 .fstep .hd svg{width:18px;height:18px;flex:none}
-.fstep .box{margin-top:12px;min-height:66px;padding:8px;border-radius:12px;background:#353535;font-size:12px;line-height:18px;letter-spacing:-.05em}
+.fstep .box{margin-top:12px;font-weight:400;min-height:66px;padding:8px;border-radius:12px;background:#353535;font-size:12px;line-height:18px;letter-spacing:-.05em}
 .fstep .tl{display:flex;justify-content:flex-end;margin-top:5px}
 .fstep .tl span{display:flex;gap:4px;padding:8px;border-radius:12px;background:#2d2d2d}
 .fstep .tl img{width:21px;height:21px;border-radius:8px;display:block;object-fit:cover;object-position:100% 50%}
@@ -224,8 +223,6 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   .stk{grid-template-columns:1fr 1fr}
   .fd+.fd{margin-top:0}
   .fd:nth-child(n+3){margin-top:-14px}
-  .ai{margin-inline:var(--pad)}
-  .ai-card{border-radius:40px}
   .ai-card .txt{max-width:640px;padding:12px 32px 0}
   .flow{margin:44px 32px 40px}
   .sub{max-width:560px}
@@ -272,7 +269,6 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   .step h3{font-size:24px;line-height:30px}
   .chip{font-size:14px;height:28px;padding:3px 12px}
   .ai{margin-top:140px}
-  .ai-icons{height:190px;max-width:480px;transform:scale(1.2);transform-origin:50% 100%}
   .ai-card .txt{padding:20px 48px 0;max-width:760px}
   .flow{margin:56px 48px 56px}
   .fstep .hd{font-size:15px}
@@ -398,13 +394,6 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   </section>
 
   <section class="ai" id="ai">
-    <div class="ai-icons rv" aria-hidden="true">
-      <img src="assets/ai-github.png" alt="" style="left:53px;top:69px;width:140px;transform:translate(-50%,-50%)">
-      <img src="assets/ai-claude.png" alt="" style="left:101px;top:96px;width:136px;transform:translate(-50%,-50%)">
-      <img src="assets/ai-figma.png" alt="" style="left:214px;top:62px;width:158px;transform:translate(-50%,-50%);z-index:2">
-      <img src="assets/ai-react.png" alt="" style="left:296px;top:56px;width:140px;transform:translate(-50%,-50%)">
-      <img src="assets/ai-squiggle.png" alt="" style="left:303px;top:96px;width:142px;transform:translate(-50%,-50%)">
-    </div>
     <div class="ai-card rv">
       <div class="txt">
         <h2 class="h2">Работа с AI</h2>
@@ -498,19 +487,13 @@ const STEPS=[
 ];
 /* AI pipeline: title, what happens, tools (assets/<name>.png), step icon */
 const AI_STEPS=[
- ['Исследование','Бенчмаркинг конкурентов, синтез отзывов и интервью, 3–5 гипотез с метриками для проверки',['perplexity','chatgpt','claude','similarweb'],'research'],
- ['Сценарии','Роли, user flow и краевые случаи на одной карте продукта — ещё до первого экрана',['claude','chatgpt','figma'],'flow'],
- ['Дизайн','Сложные интерфейсы и кастомные компоненты собираю руками, рутину ускоряю через Figma AI, Figma Make и UI kit',['figma','claude','higgsfield'],'design'],
- ['Анимации','Микроанимации и motion-прототипы в коде: живые состояния, которые можно потрогать по ссылке',['react-bits','jitter','lottiefiles','higgsfield'],'motion'],
- ['Handoff','Передаю фронтенду все состояния и логику через Figma Dev Mode и MCP — или сразу код под стек команды с ревью перед передачей',['figma','claude','github','react'],'code']
+ ['Исследование','Бенчмаркинг конкурентов, синтез отзывов и 3–5 гипотез для проверки',['perplexity','chatgpt','claude','similarweb'],'research'],
+ ['Сценарии','Роли, user flow и краевые случаи на одной карте продукта',['claude','chatgpt','figma'],'flow'],
+ ['Дизайн','Кастомные компоненты и сложные экраны, рутина — через Figma AI',['figma','claude','higgsfield'],'design'],
+ ['Анимации','Микроанимации и motion-прототипы в коде с живыми состояниями',['react-bits','jitter','lottiefiles','higgsfield'],'motion'],
+ ['Handoff','Все состояния и логика через Dev Mode и MCP — или сразу код под стек команды с ревью',['figma','claude','github','react'],'code']
 ];
-const STEP_IC={
- research:'<circle cx="8" cy="8" r="4.75"/><path d="m11.5 11.5 4 4"/>',
- flow:'<rect x="2.25" y="2.25" width="5" height="5" rx="1.5"/><rect x="10.75" y="10.75" width="5" height="5" rx="1.5"/><path d="M4.75 7.25v2.5a2 2 0 0 0 2 2h4"/>',
- design:'<path d="M3 15l1-3.75L12.25 3a1.6 1.6 0 0 1 2.25 0l.5.5a1.6 1.6 0 0 1 0 2.25L6.75 14 3 15z"/><path d="m10.75 4.5 2.75 2.75"/>',
- motion:'<path d="M2.5 9c2-4.5 4-4.5 6.5 0s4.5 4.5 6.5 0"/><circle cx="9" cy="9" r="1" fill="#fff" stroke="none"/>',
- code:'<path d="M6 5 2.5 9 6 13M12 5l3.5 4L12 13M10.25 3.5l-2.5 11"/>'
-};
+const STEP_IC='<path d="M10.5 15.75H5.25a1.5 1.5 0 0 1-1.5-1.5V3.75a1.5 1.5 0 0 1 1.5-1.5h4.5l4.5 4.5v1.5"/><path d="M9.75 2.25v3a1.5 1.5 0 0 0 1.5 1.5h3"/><circle cx="12" cy="12" r="2.25"/><path d="m13.6 13.6 1.9 1.9"/>';
 const GROUPS=[
  ['Тестирование',['Maze','UXtweak','Hotjar','Яндекс Метрика','Google Forms'],['maze','hotjar','uxtweak','yandex-metrika'],[0,4]],
  ['Анализ и ресерч',['LLM','Perplexity','Similarweb','Mobbin'],['chatgpt','claude','similarweb','perplexity'],[0]],
@@ -533,7 +516,7 @@ function cardsHTML(list){return list.map(c=>{const tag=c.soon?'div':'a';const hr
 $('#caseList').innerHTML=cardsHTML(CASES).replace(/class="card"/g,'class="card rv"');
 $('#petList').innerHTML=PET.map(([t,d,src])=>`<div class="pcard"><div class="img"><img src="${src}" alt="${esc(t)}" loading="lazy" decoding="async" width="308" height="174"></div><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join('');
 $('#comList').innerHTML=COM.map(([t,src])=>`<div class="pcard"><div class="img"><img src="${src}" alt="${esc(t)}" loading="lazy" decoding="async" width="308" height="174"></div><h3>${esc(t)}</h3></div>`).join('');
-$('#flow').insertAdjacentHTML('beforeend',AI_STEPS.map((st,i)=>`<div class="fstep${i===AI_STEPS.length-1?' last':''}" style="--i:${i}"><div class="hd"><svg viewBox="0 0 18 18" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${STEP_IC[st[3]]}</svg>${esc(st[0])}</div><div class="box">${esc(st[1])}</div><div class="tl"><span>${st[2].map(n=>`<img src="assets/${n}.png" alt="${esc(n)}" title="${esc(n)}" width="21" height="21" loading="lazy">`).join('')}</span></div></div>`).join(''));
+$('#flow').insertAdjacentHTML('beforeend',AI_STEPS.map((st,i)=>`<div class="fstep${i===AI_STEPS.length-1?' last':''}" style="--i:${i}"><div class="hd"><svg viewBox="0 0 18 18" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${STEP_IC}</svg>${esc(st[0])}</div><div class="box">${esc(st[1])}</div><div class="tl"><span>${st[2].map(n=>`<img src="assets/${n}.png" alt="${esc(n)}" title="${esc(n)}" width="21" height="21" loading="lazy">`).join('')}</span></div></div>`).join(''));
 $('#stk').innerHTML=GROUPS.map(g=>{const n=g[2].length,rs=n>1?25/(n-1):0;return `<div class="fd" role="button" tabindex="0" aria-expanded="false" aria-label="${esc(g[0])}: ${esc(g[1].join(', '))}"><div class="fd-back"><svg class="fd-edge" aria-hidden="true"><path fill="none" stroke="rgba(255,255,255,.07)" stroke-width="2"/></svg></div><div class="fd-sheets" aria-hidden="true">${g[2].map((ic,i)=>`<div class="fd-sh" style="--i:${i};--t:${i-(n-1)/2};--rs:${rs}deg"><img src="assets/${ic}.png" alt="" loading="lazy" draggable="false"></div>`).join('')}</div><div class="fd-front"><svg class="fd-edge" aria-hidden="true"><path fill="none" stroke="url(#fdg)" stroke-width="2"/></svg><h3>${esc(g[0])}</h3><div class="chips">${g[1].map(c=>`<span class="chip">${esc(c)}</span>`).join('')}</div><span class="fd-pill" aria-hidden="true">${g[2].map(ic=>`<img src="assets/${ic}.png" alt="" loading="lazy">`).join('')}</span></div></div>`;}).join('');
 $('#rows').innerHTML=EXP.map(e=>`<div class="row rv"><div>${e[0]}<small>${e[1]}</small></div><div>${e[2]}<small>${e[3]}</small></div></div>`).join('');
 $('#mlist').innerHTML=MENU.map((m,i)=>`<li style="animation-delay:${.08+i*.05}s"><a href="${m[2]}"><strong>${m[0]} <span class="c"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></strong><p>${m[1]}</p></a></li>`).join('');
