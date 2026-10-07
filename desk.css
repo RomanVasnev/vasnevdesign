@@ -1,3 +1,10 @@
+/* shared footer + menu button (old case pages) */
+.ftr .links{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.ftr .links a{display:flex;align-items:center;gap:6px;font-size:16px;line-height:20px}
+.ftr .apps{display:flex;gap:2px}
+.ftr .apps img{width:32px;height:32px;border-radius:8px;display:block}
+.menu .ftr small{color:#b4b4b4}
+.mbtn:focus,.mbtn:focus-visible{outline:none}
 /* case pages: tablet + desktop */
 @media (min-width:768px){
   :root{--pad:32px;--max:820px}

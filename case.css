@@ -105,6 +105,8 @@ figcaption{margin-top:10px;font-size:14px;line-height:18px;color:var(--muted)}
 .mlist p{margin:8px 0 0;font-size:14px;line-height:20px;color:#767676}
 .menu .ftr{margin-top:40px;background:#000;color:#fff}
 .menu .ftr .links a{color:#fff}
+.menu .ftr small{color:#b4b4b4}
+.mbtn:focus,.mbtn:focus-visible{outline:none}
 .menu.open .mlist li{animation:mi .5s both cubic-bezier(.2,.7,.2,1)}
 @keyframes mi{from{opacity:0;filter:blur(8px);transform:translateY(12px)}}
 /* reveal */

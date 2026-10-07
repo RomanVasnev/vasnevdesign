@@ -60,7 +60,7 @@ def page(c):
 <body>
 <header class="hdr">
   <div class="wrap">
-    <a class="dom" href="index.html">vasnev.art</a>
+    <a class="dom" href="index.html">vasnevdesign.ru</a>
     <div class="prog" aria-hidden="true"><i id="prog"></i></div>
     <button class="mbtn" id="mopen" aria-haspopup="dialog" aria-controls="menu">menu <span class="dot18"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
   </div>
@@ -85,12 +85,13 @@ def page(c):
 </footer>
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Меню">
   <div class="wrap">
-    <div class="top"><span style="font-size:16px;font-weight:500">vasnev.art</span><div class="prog"><i style="width:100%"></i></div><button class="mbtn" id="mclose">закрыть <span class="dot18"><svg width="8" height="8" viewBox="0 0 8 8"><path d="M1 1l6 6M7 1 1 7" stroke="#000" stroke-width="1.4" stroke-linecap="round"/></svg></span></button></div>
+    <div class="top"><span style="font-size:16px;font-weight:500">vasnevdesign.ru</span><div class="prog"><i style="width:100%"></i></div><button class="mbtn" id="mclose">закрыть <span class="dot18"><svg width="8" height="8" viewBox="0 0 8 8"><path d="M1 1l6 6M7 1 1 7" stroke="#000" stroke-width="1.4" stroke-linecap="round"/></svg></span></button></div>
     <div class="lang">RU / <span>EN</span></div>
     <ul class="mlist" id="mlist"></ul>
     <footer class="ftr">
-      <div class="links"><a href="https://t.me/" target="_blank" rel="noopener">Telegram ↗</a><a href="#">Max ↗</a><a href="#">E-mail ↗</a></div>
+      <div class="links"><a href="https://t.me/" target="_blank" rel="noopener">Telegram <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#767676" stroke-width="1.4" fill="none"/></svg></a><a href="#">Max <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#767676" stroke-width="1.4" fill="none"/></svg></a><a href="#">E-mail <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#767676" stroke-width="1.4" fill="none"/></svg></a></div>
       <small>© 2026 - Васнёв Роман</small>
+      <div class="apps" aria-hidden="true"><img src="assets/main/ic-he.webp" alt="" width="32" height="32" loading="lazy"><img src="assets/main/ic-lp.webp" alt="" width="32" height="32" loading="lazy"><img src="assets/main/ic-me.webp" alt="" width="32" height="32" loading="lazy"></div>
     </footer>
   </div>
 </div>
@@ -100,7 +101,7 @@ const $=s=>document.querySelector(s);const reduce=matchMedia('(prefers-reduced-m
 const MENU=[['Обо мне','Кто я, чем занимаюсь и как со мной связаться.','index.html#about'],['Продуктовые кейсы','Продукты, которые я вёл от исследования до передачи в разработку.','index.html#cases'],['Работа с AI','Как я с помощью AI быстро собираю MVP и проверяю гипотезы.','index.html#ai'],['Мой стек технологий','Инструменты, в которых я работаю на каждом этапе.','index.html#stack'],['Пет проекты','Плагины, инструменты и проекты для Figma Community.','index.html#pet'],['Опыт работы','Компании и проекты, в которых я работал с 2017 года.','index.html#exp']];
 $('#mlist').innerHTML=MENU.map((m,i)=>`<li style="animation-delay:${{.08+i*.05}}s"><a href="${{m[2]}}"><strong>${{m[0]}} <span class="c"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></strong><p>${{m[1]}}</p></a></li>`).join('');
 const menu=$('#menu');
-$('#mopen').addEventListener('click',()=>{{menu.classList.add('open');document.body.style.overflow='hidden';$('#mclose').focus();}});
+$('#mopen').addEventListener('click',()=>{{menu.classList.add('open');document.body.style.overflow='hidden';$('#mclose').focus({{focusVisible:false}});}});
 function closeMenu(){{menu.classList.remove('open');document.body.style.overflow='';}}
 $('#mclose').addEventListener('click',closeMenu);
 addEventListener('keydown',e=>{{if(e.key==='Escape')closeMenu();}});
