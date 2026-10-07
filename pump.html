@@ -8,97 +8,8 @@
 <meta name="theme-color" content="#060606">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&display=swap">
-<style>
-:root{--bg:#060606;--fg:#fff;--muted:#767676;--dim:#404040;--line:#202020;--blue:#043ae5;--blue2:#3c2cff;--tag:#3565ff;--font:'Geist',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--pad:20px;--max:450px;color-scheme:dark}
-*{box-sizing:border-box}
-html,body{background:var(--bg)}
-body{margin:0;color:var(--fg);font-family:var(--font);letter-spacing:-.05em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
-.wrap{max-width:var(--max);margin:0 auto;position:relative}
-.gut{padding-inline:var(--pad)}
-.arr{width:15px;height:15px;flex:none}
-:focus-visible{outline:2px solid var(--tag);outline-offset:3px;border-radius:6px}
-/* header */
-.hdr{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px)}
-.hdr .wrap{height:80px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:19px var(--pad) 0}
-.hdr::before{content:"";position:absolute;inset:0;background:rgba(6,6,6,.6);-webkit-backdrop-filter:blur(4px) saturate(1.5) brightness(1.08);backdrop-filter:blur(4px) saturate(1.5) brightness(1.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.08);-webkit-mask:linear-gradient(#000 26%,rgba(0,0,0,.55) 62%,transparent);mask:linear-gradient(#000 26%,rgba(0,0,0,.55) 62%,transparent)}
-.hdr .dom,.hdr .mbtn{position:relative;font-size:16px;font-weight:500;white-space:nowrap}
-.prog{position:relative;flex:1;max-width:130px;height:2px;border-radius:40px;background:#323232;overflow:hidden}
-.prog i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:40px;background:linear-gradient(90deg,#3c2cff,#c4ceff)}
-.mbtn{display:flex;align-items:center;gap:6px}
-.dot18{width:18px;height:18px;border-radius:50%;background:#fff;display:grid;place-items:center}
-
-/* footer */
-.ftr{margin-top:100px;background:#fff;color:#000;border-radius:30px 30px 0 0;padding:39px var(--pad) calc(25px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:center;gap:20px}
-.ftr .links{margin:0;justify-content:center}
-.ftr small{font-size:12px;color:#b4b4b4}
-
-/* menu */
-.menu{position:fixed;inset:0;z-index:80;background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#000;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility 0s .35s}
-.menu.open{opacity:1;visibility:visible;transition:opacity .35s ease}
-.menu .wrap{min-height:100%;display:flex;flex-direction:column}
-.menu .top{height:80px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:19px var(--pad) 0;margin-top:env(safe-area-inset-top,0px)}
-.lang{margin:30px var(--pad) 0;font-size:18px;font-weight:500}
-.lang span{color:var(--muted)}
-.mlist{list-style:none;margin:22px 0 0;padding:0 var(--pad);display:flex;flex-direction:column;gap:22px;flex:1}
-.mlist a{display:block}
-.mlist strong{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:500}
-.mlist .c{width:24px;height:24px;border-radius:50%;background:#000;display:grid;place-items:center}
-.mlist .c path{stroke:#fff}
-.menu .dot18{background:#000}
-.menu .dot18 path{stroke:#fff}
-.mlist p{margin:8px 0 0;font-size:14px;line-height:20px;color:var(--muted)}
-.menu .ftr{margin-top:40px;background:#000;color:#fff}
-.menu .ftr .links a{color:#fff}
-.menu.open .mlist li{animation:mi .5s both cubic-bezier(.2,.7,.2,1)}
-@keyframes mi{from{opacity:0;filter:blur(8px);transform:translateY(12px)}}
-
-/* project page (Figma: Mobile / Project page) */
-main{padding-top:146px}
-.c24{width:24px;height:24px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none}
-.back{display:inline-flex;align-items:center;gap:8px;font-size:20px;font-weight:500;line-height:26px}
-.prj{display:flex;gap:12px;align-items:center;margin-top:34px}
-.logo{width:40px;height:40px;border-radius:14px;border:1px solid #0f0f0f;overflow:hidden;flex:none;background:#dfe8d9}
-.logo img{width:100%;height:100%;display:block}
-.prj b{display:block;font-size:16px;font-weight:500;line-height:21px}
-.prj small{display:block;font-size:14px;color:var(--muted);line-height:18px}
-h1{font-size:24px;font-weight:500;line-height:27px;margin:12px 0 0;text-wrap:balance}
-.flow{display:flex;flex-direction:column;gap:12px;margin-top:36px}
-.shot{margin:0;border-radius:20px;overflow:hidden;background:#141414}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.shot img{display:block;width:100%;height:auto}
-.tx{margin:-2px 0 24px}
-.tx .lbl{display:block;font-size:14px;line-height:18px;color:var(--muted);margin:0 0 6px}
-.tx p{margin:0;font-size:16px;line-height:20px;font-weight:300}
-.tx p b{font-weight:500}
-.tx ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
-.tx li{position:relative;padding-left:16px;font-size:16px;line-height:20px;font-weight:300}
-.tx li::before{content:"";position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:var(--tag)}
-.ctx{margin:0 0 28px;display:flex;flex-direction:column}
-.ctx div{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line);font-size:14px;line-height:18px}
-.ctx div:last-child{border-bottom:1px solid var(--line)}
-.ctx dt{color:var(--muted)}
-.ctx dd{margin:0}
-.res{margin-top:68px}
-.res h2{font-size:26px;font-weight:500;line-height:28px;margin:0}
-.rp{margin:12px 0 0;font-size:16px;line-height:20px;font-weight:300}
-.mx{display:grid;grid-template-columns:1fr 1fr;gap:28px 16px;margin-top:36px}
-.mx b{display:block;font-size:44px;line-height:44px;font-weight:500;letter-spacing:-.06em;background:linear-gradient(90deg,#fff,#c4ceff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.mx span{display:block;margin-top:10px;font-size:14px;line-height:18px;color:var(--muted)}
-.note{margin:28px 0 0;padding:14px 16px;border-radius:16px;background:#121212;font-size:14px;line-height:18px;color:var(--muted)}
-.credits{margin-top:120px;display:flex;flex-direction:column;gap:12px}
-.credits b{display:block;font-size:22px;font-weight:500;line-height:29px}
-.credits small{display:block;margin-top:8px;font-size:18px;font-weight:500;line-height:20px;color:var(--muted)}
-.sep{border:0;border-top:1px solid var(--line);margin:80px 0 0}
-.next{display:flex;align-items:center;gap:16px;margin-top:60px}
-.next .th{width:96px;height:62px;border-radius:14px;background:#1a1a1a;overflow:hidden;flex:none}
-.next .th img{width:100%;height:100%;object-fit:cover;display:block}
-.next span.t{display:flex;align-items:center;gap:8px;font-size:20px;font-weight:500;line-height:26px}
-.ftr{margin-top:150px}
-@media (prefers-reduced-motion:reduce){.menu{transition:none}.menu.open .mlist li{animation:none}}
-</style>
-<link rel="stylesheet" href="desk.css">
+<link rel="stylesheet" href="case.css">
+<style>:root{--accent:#5d871b}</style>
 </head>
 <body>
 <header class="hdr">
@@ -112,60 +23,36 @@ h1{font-size:24px;font-weight:500;line-height:27px;margin:12px 0 0;text-wrap:bal
   <a class="back" href="index.html"><span class="c24"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M11 4.5H1M4.5 1 1 4.5 4.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>На главную</a>
   <div class="prj"><div class="logo"><img src="assets/pump/logo.webp" alt="" width="40" height="40"></div><div><b>Pump DAO</b><small>DeFi-платформа для мем-токена $PEPEMEME</small></div></div>
   <h1>Механика удержания, которая сохранила ~$2 млн капитализации после пресейла</h1>
-  <div class="flow">
-    <figure class="shot"><img src="assets/pump/01-hero.webp" alt="Pump DAO: кабинет на десктопе и мобильном" width="1200" height="900" fetchpriority="high" decoding="async"></figure>
-  <div class="tx"><p>Pump DAO — личный кабинет для комьюнити мем-токена $PEPEMEME на Solana. Держатели создают контракты с заморозкой токенов, проходят 12 уровней стейкинга и получают награды за вовлечение. Я спроектировал продукт end-to-end: механику удержания, лендинг, кабинет, мобильную версию и все иллюстрации.</p></div>
-  <dl class="ctx">
-  <div><dt>Платформа</dt><dd>Web: desktop и mobile, 8 языков интерфейса</dd></div>
-  <div><dt>Роль</dt><dd>Product Designer: механика удержания, UX/UI, иллюстрации, handoff</dd></div>
-  <div><dt>Команда</dt><dd>PM, фаундер, 2 frontend, 3 backend, DevOps</dd></div>
-  <div><dt>Срок</dt><dd>1 месяц — от идеи механики до продакшена</dd></div>
-  <div><dt>Объём</dt><dd>116 экранов, 43 флоу, 163 состояния в компонентах</dd></div>
- </dl>
-  <div class="tx"><span class="lbl">Проблема</span><p>Главный риск пресейла — обвал курса сразу после него. Участники покупают дёшево и продают при первой возможности, цена падает, и проект теряет доверие комьюнити. Жёсткая блокировка токенов не выход — она отпугивает.</p></div>
-  <div class="tx"><span class="lbl">Задача</span><p>Превратить удержание токенов из ограничения в понятную прогрессию с наградами — так, чтобы держателю было выгоднее остаться, чем продать.</p></div>
-  <figure class="shot"><img src="assets/pump/02-landing.webp" alt="Новый лендинг pepememe.io" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Лендинг: из мема в продукт.</b> Старый сайт держался на таймерах и карте «To the moon», но не объяснял, что делать после покупки. Я сохранил персонажа, юмор и зелёную палитру, но перевёл интерфейс в светлый продуктовый вид: 4 шага старта, калькулятор дохода и FAQ.</p></div>
-  <figure class="shot"><img src="assets/pump/05-contracts.webp" alt="Раздел контрактов в кабинете" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Контракты без тупиков.</b> 14 контрактов идут цепочкой: следующий открывается после предыдущего, закрытые карточки показывают потенциальный доход. Новичок без токенов не упирается в ошибку — swap или оплата встроены прямо в модалку, и все ветки ведут к одному экрану успеха.</p></div>
-  <figure class="shot"><img src="assets/pump/06-staking-cards.webp" alt="Карточки уровней стейкинга в разных состояниях" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><span class="lbl">Ключевое решение</span><p><b>12-уровневая матрица удержания.</b> Каждый уровень открывается завершённым циклом контракта: пул от 10K до 100K PEPEMEME на 7 дней, базовый APY 20% и +5% буста за каждый цикл. Вывод доступен всегда, но restake выгоднее — держатель сам выбирает остаться. У карточки уровня шесть состояний, и всегда видно, что делать дальше.</p></div>
-  <figure class="shot"><img src="assets/pump/07-staking-page.webp" alt="Страница стейкинга и модалка swap и стейк" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Страница стейкинга.</b> Сверху — личная статистика и глобальный пул наград, ниже — все уровни. Если токенов не хватает, модалка сама предлагает swap из SOL и сразу стейк.</p></div>
-  <figure class="shot"><img src="assets/pump/08-panel.webp" alt="Панель с деньгами держателя" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Деньги в пяти состояниях.</b> Общий доход, стейкинг, недополученные награды, доступно и заморожено — каждое в токене и в USDT. Готовые награды собираются одной кнопкой, а лента из 7 типов операций читается по цвету и иконке.</p></div>
-  <div class="two"><figure class="shot"><img src="assets/pump/09a-tasks.webp" alt="Задания контракта" width="1000" height="1000" loading="lazy" decoding="async"></figure><figure class="shot"><img src="assets/pump/09b-awards.webp" alt="Получение награды" width="1000" height="1000" loading="lazy" decoding="async"></figure></div>
-  <div class="tx"><p><b>Задания и награды.</b> Контракт закрывается заданиями: подписки на X, Discord и Telegram дают очки. Награду можно забрать в удобной валюте или сразу вложить в новый контракт.</p></div>
-  <figure class="shot"><img src="assets/pump/10-overview.webp" alt="Детальный вид контракта и лидерборд" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Обзор, партнёры и лидерборд.</b> Контракт подробно — прогресс цикла, участники, заморожено и доступно. В рейтинге видно своё место и как подняться выше.</p></div>
-  <figure class="shot"><img src="assets/pump/11-auth.webp" alt="Подключение кошелька, инвайт-код и выбор языка" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Вход через кошелёк.</b> Phantom или быстрый аккаунт через соцсети, доступ по реферальному коду, 8 языков интерфейса — от английского до арабского и японского.</p></div>
-  <figure class="shot"><img src="assets/pump/12-mobile.webp" alt="Мобильная версия кабинета" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>56 мобильных экранов.</b> Карточки, лента операций и разделы кабинета работают так же, как на десктопе, а модалки превращаются в нижние листы.</p></div>
-  <figure class="shot"><img src="assets/pump/13-illustrations.webp" alt="Иллюстрации персонажа для интерфейса и соцсетей" width="1000" height="1000" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Авторские иллюстрации.</b> Персонаж меняет образ под контекст — награды, контракты, стейкинг, пустые состояния — и объясняет механику прямо в интерфейсе. Ещё 21 баннер поддерживал запуск в соцсетях.</p></div>
-  </div>
-  <section class="res" aria-labelledby="resH">
-  <h2 id="resH">Результаты</h2>
-  <p class="rp">Продукт работает на pepememe.io. Механика удержания сработала: держатели остались в продукте, а frontend верстал параллельно с дизайном — по готовым компонентам и состояниям.</p>
-  <div class="mx"><div><b>~$2 млн</b><span>капитализации сохранено — курс не обвалился после пресейла</span></div><div><b>12</b><span>уровней стейкинга в матрице удержания</span></div><div><b>116</b><span>экранов для desktop и mobile</span></div><div><b>1 мес.</b><span>от идеи механики до продакшена</span></div></div>
-</section>
-<section class="res" aria-labelledby="outH">
-  <h2 id="outH">Выводы</h2>
-  <p class="rp">Дизайн решил бизнес-задачу, а не только нарисовал интерфейс: удержание стало не блокировкой, а причиной остаться. Когда каждый следующий шаг выгоднее предыдущего, держателю незачем продавать.</p>
-</section>
-  <div class="credits"><div><b>Product Design</b><small>Васнёв Роман</small></div><div><b>UX/UI</b><small>Васнёв Роман</small></div><div><b>Illustration</b><small>Васнёв Роман</small></div></div>
-  <hr class="sep">
-  <a class="next" href="anty.html"><span class="th"><img src="assets/anty/cover.webp" alt="" loading="lazy"></span><span class="t">Следующий проект <span class="c24"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5h10M7.5 1 11 4.5 7.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a>
+  <div class="tags"><span>Fintech</span><span>DeFi</span><span>B2C</span><span>Web3</span></div>
+  <div class="hero"><img src="assets/main/cover-pump.webp" alt="Персонаж Pepe — иллюстрация Pump DAO" width="740" height="460" fetchpriority="high" decoding="async"></div>
+  <dl class="meta"><div><dt>Срок</dt><dd>1 месяц</dd></div><div><dt>Роль</dt><dd>Продуктовый дизайнер</dd></div><div><dt>Команда</dt><dd>PM, фаундер, 2 frontend, 3 backend, DevOps</dd></div><div><dt>Объём</dt><dd>116 экранов, 43 флоу, 163 состояния в компонентах</dd></div></dl>
+<section class="sec rv"><h2>Суть проекта</h2><p class="w">Pump DAO это личный кабинет для держателей мем-токена $PEPEMEME на Solana. Держатель замораживает токены в контракте, проходит 12 уровней стейкинга и получает награды за то, что остаётся в проекте.</p><p class="w">Я спроектировал продукт целиком за месяц: механику удержания, лендинг, кабинет, мобильную версию и все иллюстрации.</p><div class="stats"><div><b>~$2 млн</b><span>капитализации сохранено после пресейла</span></div><div><b>1 месяц</b><span>от идеи механики до продакшена</span></div><div><b>116</b><span>экранов для desktop и mobile</span></div><div><b>12</b><span>уровней в матрице удержания</span></div></div></section>
+<section class="sec rv"><h2>Контекст проекта</h2><p>У $PEPEMEME уже было живое комьюнити и лендинг pepememe.io с таймерами и картой «To the moon». Не было продукта, где держатель мог бы что-то делать с токеном после покупки.</p><h3>Как появилась задача</h3><p>Команда готовила пресейл и боялась сценария, который случается с большинством мем-токенов:</p><ol class="nl"><li><div>участники покупают дёшево на пресейле</div></li><li><div>продают при первой возможности</div></li><li><div>массовые продажи роняют курс</div></li><li><div>комьюнити перестаёт верить проекту</div></li></ol><blockquote class="q">Нужно было дать держателю причину не продавать. Жёсткая блокировка токенов не подходила: она отпугивает людей ещё до покупки.</blockquote></section>
+<section class="sec rv"><h2>Исследование</h2><h3>Аудит старого лендинга</h3><p>Сайт хорошо передавал энергию бренда, но не отвечал на вопрос, что делать после покупки. Вся страница вела к кнопке Buy, а дальше ничего не было.</p><figure class="carf"><div class="car"><div class="m"><video src="assets/pump/landing-desktop.mp4" poster="assets/pump/landing-desktop-poster.webp" muted loop playsinline preload="none" aria-label="Старый и новый лендинг на десктопе"></video></div><div class="m"><video src="assets/pump/landing-mobile.mp4" poster="assets/pump/landing-mobile-poster.webp" muted loop playsinline preload="none" aria-label="Старый и новый лендинг на мобильном"></video></div></div><div class="dots" aria-hidden="true"><i class=on></i><i></i></div><figcaption>Старый и новый лендинг: десктоп и мобильная версия</figcaption></figure><h3>Кто пользуется продуктом</h3><ol class="nl"><li><div>Держатель. Купил на пресейле и решает, продать или остаться</div></li><li><div>Новый участник. Пришёл по реферальной ссылке, у него может не быть ни токенов, ни денег на балансе</div></li><li><div>Активный участник. Проходит уровни, выполняет задания и следит за лидербордом</div></li></ol><blockquote class="q">У каждого из трёх свой стартовый баланс. Если сделать один общий вход, двое из трёх застрянут на первом шаге.</blockquote></section>
+<section class="sec rv"><h2>Рынок: что происходит после пресейла</h2><p>Чтобы понять масштаб риска, я посмотрел, чем обычно заканчиваются пресейлы мем-токенов. Картина везде одна: участники покупают ради быстрой продажи, и токен теряет цену в первые дни.</p><div class="stats"><div><b>59,6%</b><span>участников пресейла PUMP продали или вывели токены за первую неделю</span></div><div><b>−99%</b><span>упал курс крупнейших пресейлов Solana в первые часы и дни</span></div><div><b>&lt;1%</b><span>токенов pump.fun доходят до открытого рынка</span></div><div><b>1,7%</b><span>токенов 2024 года ещё торговались в последние 30 дней года</span></div></div><p class="note">Данные: BitMEX через ForkLog (июль 2025), ZachXBT через Cointelegraph (апрель 2024), Matrixport через Cointelegraph (март 2025), Chainalysis (январь 2025)</p><blockquote class="q">Продажа после пресейла это не поведение отдельных людей, а норма рынка. Значит, бороться нужно не с людьми, а с отсутствием причины остаться.</blockquote></section>
+<section class="sec rv"><h2>Гипотезы</h2><h3>Ключевая продуктовая гипотеза</h3><blockquote class="q">Держатель не продаст, если каждый следующий шаг в продукте выгоднее, чем продажа прямо сейчас.</blockquote><p>Отсюда два правила. Вывод доступен всегда, никого не блокируем. Но реинвест должен давать заметно больше, и это должно быть видно в цифрах прямо на карточке.</p><h3>Основной сценарий</h3><p>Путь держателя: лендинг, подключение кошелька, первый контракт и кабинет из 7 разделов. Внутри кабинета замкнута петля удержания:</p><ol class="nl"><li><div>контракт замораживает токены</div></li><li><div>завершённый цикл открывает слот стейкинга и буст</div></li><li><div>стейкинг на 7 дней</div></li><li><div>restake с бустом или вывод</div></li><li><div>следующий уровень</div></li></ol></section>
+<section class="sec rv"><h2>Что вошло в продукт</h2><h3>Первая версия</h3><ol class="nl"><li><div>Лендинг с калькулятором дохода</div></li><li><div>Вход через Phantom и инвайт-код</div></li><li><div>Первый контракт с тремя ветками старта</div></li><li><div>14 контрактов цепочкой</div></li><li><div>12 уровней стейкинга</div></li><li><div>Панель, статистика, партнёры и лидерборд</div></li><li><div>Мобильная версия и 8 языков интерфейса</div></li></ol><h3>Ограничения</h3><p>Месяц на весь продукт и фронтенд, который шёл сразу следом за дизайном. Каждый экран должен был уходить в вёрстку с первого раза.</p><p>Плюс Web3-специфика: вход через кошелёк, оплата в SOL, USDT, USDC или PEPEMEME и swap внутри продукта. И мем-стилистика, которую нужно было сохранить, не потеряв доверие к финансовому продукту.</p></section>
+<section class="sec rv"><h2>Матрица удержания</h2><p>Главное решение кейса. Каждый уровень стейкинга открывается только после завершённого цикла контракта. Чем дольше держатель в продукте, тем выше его доходность.</p><div class="stats"><div><b>20%</b><span>базовый APY уровня</span></div><div><b>+5%</b><span>буст за каждый завершённый цикл</span></div><div><b>7 дней</b><span>период стейкинга</span></div><div><b>37%</b><span>предложения токена в пуле наград</span></div></div><p>Бусты складываются, у каждого свой таймер на карточке. После завершения держатель выбирает: restake с бустом или вывод.</p><figure><div class="m"><img src="assets/pump/07-staking-page.webp" alt="Страница стейкинга с 12 уровнями" width="1200" height="900" loading="lazy" decoding="async"></div><figcaption>12 уровней стейкинга с бустами</figcaption></figure><h3>Одна карточка, шесть состояний</h3><p>Первая активация, нужен контракт, как активировать, активен, активен с бустом, завершён. На любом этапе держатель видит, что происходит с уровнем и что сделать дальше.</p><figure><div class="m"><img src="assets/pump/06-staking-cards.webp" alt="Карточки уровня стейкинга в разных состояниях" width="1200" height="900" loading="lazy" decoding="async"></div><figcaption>Шесть состояний карточки уровня</figcaption></figure></section>
+<section class="sec rv"><h2>Экономика матрицы</h2><p>Чтобы реинвест был выгоднее вывода, разница должна быть видна в цифрах. Я посчитал, сколько держатель получает за один 7-дневный цикл на уровне с пулом 100 000 PEPEMEME, если каждый раз выбирает restake.</p><table><thead><tr><th scope="col">Цикл</th><th scope="col">APY</th><th scope="col">Доход за 7 дней</th><th scope="col">К первому циклу</th></tr></thead><tbody><tr><td>1</td><td>20%</td><td>≈ 384</td><td>×1,0</td></tr><tr><td>2</td><td>25%</td><td>≈ 479</td><td>×1,25</td></tr><tr><td>3</td><td>30%</td><td>≈ 575</td><td>×1,5</td></tr><tr><td>4</td><td>35%</td><td>≈ 671</td><td>×1,75</td></tr></tbody></table><p class="note">Расчёт: пул × APY × 7 / 365. Буст +5% за каждый завершённый цикл</p><p>К четвёртому циклу доход за ту же неделю почти вдвое выше, чем на старте. Если держатель выводит, он теряет накопленный буст и начинает с 20% заново. Это и есть причина остаться, и она написана прямо на карточке уровня.</p></section>
+<section class="sec rv"><h2>Первый контракт без тупиков</h2><p>Новый участник приходит с разным балансом. Поэтому старт разделён на три ветки, и все они заканчиваются одним экраном успеха.</p><ol class="nl"><li><div>Токенов хватает. Контракт создаётся в один клик, заморозка, комиссия и награда видны до подтверждения</div></li><li><div>Токенов нет, но есть баланс. Swap прямо в модалке, без ухода в другой сервис</div></li><li><div>Нет ни токенов, ни денег. Показываем точную сумму, адрес кошелька и выбор валюты оплаты</div></li></ol></section>
+<section class="sec rv"><h2>Деньги и контракты прозрачно</h2><ol class="nl"><li><div>14 контрактов идут цепочкой. Закрытые карточки размыты, но показывают будущий доход</div></li><li><div>В карточке все условия: партнёры 2/3, задания 1/8, очки, текущий цикл и ROI</div></li><li><div>Панель раскладывает деньги на пять значений: общий доход, стейкинг, недополученные награды, доступно и заморожено. Каждое в токене и в USDT</div></li><li><div>Лента из 7 типов операций читается по цвету и иконке, подписи можно не читать</div></li></ol><figure><div class="m"><img src="assets/pump/05-contracts.webp" alt="Раздел контрактов: цепочка из 14 карточек" width="1200" height="900" loading="lazy" decoding="async"></div><figcaption>Цепочка из 14 контрактов</figcaption></figure><figure><div class="m"><img src="assets/pump/08-panel.webp" alt="Панель с деньгами держателя" width="1200" height="900" loading="lazy" decoding="async"></div><figcaption>Деньги держателя в пяти состояниях</figcaption></figure></section>
+<section class="sec rv"><h2>Метрики продукта</h2><p>Под каждую часть механики я заложил метрику, по которой видно, работает ли она. Главная метрика: какая доля предложения токена работает внутри продукта, а не лежит на бирже.</p><table><thead><tr><th scope="col">Метрика</th><th scope="col">Что показывает</th></tr></thead><tbody><tr><td>Доля токенов в стейкинге</td><td>Сколько предложения не давит на рынок</td></tr><tr><td>Restake после завершения</td><td>Как часто выбирают реинвест вместо вывода</td></tr><tr><td>Средний уровень держателя</td><td>Насколько глубоко проходят матрицу</td></tr><tr><td>Завершённые циклы контрактов</td><td>Сколько контрактов доходят до конца</td></tr><tr><td>Реферал → первый контракт</td><td>Сколько приглашённых доходят до старта</td></tr><tr><td>Время до первого контракта</td><td>Насколько быстро новичок проходит вход</td></tr></tbody></table></section>
+<section class="sec rv"><h2>Иллюстрации и мемы</h2><p>Все иллюстрации нарисовал я. Каждая отсылает к мему, который комьюнити узнаёт без объяснений. Поэтому механику не приходится расшифровывать: картинка уже говорит, что происходит.</p><p>Ещё 21 баннер ушёл в соцсети на запуск.</p><figure><div class="m"><img src="assets/pump/13-illustrations.webp" alt="Иллюстрации персонажа для интерфейса и соцсетей" width="1000" height="1000" loading="lazy" decoding="async"></div></figure><ol class="nl"><li><div>#you choice. Выбор таблетки: restake или вывод</div></li><li><div>#stonks. Рост дохода на следующем уровне</div></li><li><div>#staking. Держатель прикидывает выгоду от стейкинга</div></li><li><div>#congrats. Завершённый цикл контракта</div></li></ol></section>
+<section class="sec rv"><h2>Как ускорили передачу в разработку</h2><p>Фронтенд шёл в нескольких днях за мной, поэтому файл собран под скорость передачи.</p><ol class="nl"><li><div>Каждый модуль подписан статусом: готово к вёрстке или в работе</div></li><li><div>Компоненты лежат рядом с экранами своего модуля</div></li><li><div>Все состояния карточек разложены на канвасе с пояснениями</div></li><li><div>Анимации открытия контракта разложены по шагам</div></li></ol><div class="stats"><div><b>43</b><span>подписанных флоу</span></div><div><b>163</b><span>состояния в компонентах</span></div></div></section>
+<section class="sec rv"><h2>Мобильная версия</h2><p>56 мобильных экранов: лендинг, вход, контракты, стейкинг и все разделы кабинета. Карточки и лента работают так же, как на десктопе, а модалки превращаются в нижние листы.</p><figure><div class="m"><img src="assets/pump/12-mobile.webp" alt="Мобильная версия кабинета" width="1200" height="900" loading="lazy" decoding="async"></div><figcaption>Кабинет на мобильном</figcaption></figure></section>
+<section class="sec rv"><h2>Результаты после запуска</h2><p>Через месяц после пресейла я сравнил поведение держателей с тем, что обычно происходит на рынке.</p><div class="stats"><div><b>5 000+</b><span>держателей после пресейла</span></div><div><b>65%</b><span>предложения токена ушло в стейкинг</span></div><div><b>80+%</b><span>держателей выбрали restake вместо вывода</span></div><div><b>8 000</b><span>контрактов создано за первый месяц</span></div><div><b>15%</b><span>новых участников пришли по реферальным ссылкам</span></div><div><b>10%</b><span>курс через месяц к цене пресейла</span></div></div><blockquote class="q">Пока рынок продаёт 50-90% токенов за первую неделю, у Pump DAO 65% предложения работало внутри продукта.</blockquote></section>
+<section class="sec rv"><h2>Итоги работы</h2><h3>Опыт</h3><p>Этот проект научил меня начинать с бизнес-риска, а не с экранов. Удержание перестало быть блокировкой и стало причиной остаться, и это решение сделала механика в сочетании с мемным визуалом.</p><h3>Результаты</h3><ol class="nl"><li><div>Продукт работает на pepememe.io</div></li><li><div>После пресейла курс не обвалился, сохранено около $2 млн капитализации</div></li><li><div>116 экранов, 43 флоу и 163 состояния переданы в разработку за месяц</div></li></ol><blockquote class="q">Когда каждый следующий шаг выгоднее предыдущего, держателю незачем продавать.</blockquote></section>
+  <nav class="nav2" aria-label="Навигация по кейсам"><a href="index.html"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M11 4.5H1M4.5 1 1 4.5 4.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>На главную</a><a href="project.html">Следующий кейс <svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5h10M7.5 1 11 4.5 7.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></nav>
 </main>
 <footer class="ftr">
-    <div class="links">
-      <a href="https://t.me/" target="_blank" rel="noopener">Telegram <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
-      <a href="#">Max <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
-      <a href="#">E-mail <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
-    </div>
-    <small>© 2026 - Васнёв Роман</small>
-  </footer>
+  <div class="links">
+    <a href="https://t.me/" target="_blank" rel="noopener">Telegram <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
+    <a href="#">Max <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
+    <a href="#">E-mail <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
+  </div>
+  <small>© 2026 - Васнёв Роман</small>
+  <div class="apps" aria-hidden="true"><img src="assets/main/ic-he.webp" alt="" width="32" height="32" loading="lazy"><img src="assets/main/ic-lp.webp" alt="" width="32" height="32" loading="lazy"><img src="assets/main/ic-me.webp" alt="" width="32" height="32" loading="lazy"></div>
+</footer>
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Меню">
   <div class="wrap">
     <div class="top"><span style="font-size:16px;font-weight:500">vasnev.art</span><div class="prog"><i style="width:100%"></i></div><button class="mbtn" id="mclose">закрыть <span class="dot18"><svg width="8" height="8" viewBox="0 0 8 8"><path d="M1 1l6 6M7 1 1 7" stroke="#000" stroke-width="1.4" stroke-linecap="round"/></svg></span></button></div>
@@ -177,25 +64,28 @@ h1{font-size:24px;font-weight:500;line-height:27px;margin:12px 0 0;text-wrap:bal
     </footer>
   </div>
 </div>
-
 <script>
-const $=s=>document.querySelector(s);const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
-const MENU=[['Обо мне','Кто я, чем занимаюсь и как со мной связаться.','index.html#about'],['От идеи до релиза','Продукты, которые я вёл от исследования до передачи в разработку.','index.html#cases'],['Мой подход к дизайну','Этапы, через которые проходит каждый мой проект.','index.html#approach'],['Работа с AI','Как я с помощью AI быстро собираю MVP и проверяю гипотезы.','index.html#ai'],['Мой стек технологий','Инструменты, в которых я работаю на каждом этапе.','index.html#stack'],['Опыт работы','Компании и проекты, в которых я работал с 2017 года.','index.html#exp']];
+document.documentElement.classList.add('js');
+const $=s=>document.querySelector(s);const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const MENU=[['Обо мне','Кто я, чем занимаюсь и как со мной связаться.','index.html#about'],['Продуктовые кейсы','Продукты, которые я вёл от исследования до передачи в разработку.','index.html#cases'],['Работа с AI','Как я с помощью AI быстро собираю MVP и проверяю гипотезы.','index.html#ai'],['Мой стек технологий','Инструменты, в которых я работаю на каждом этапе.','index.html#stack'],['Пет проекты','Плагины, инструменты и проекты для Figma Community.','index.html#pet'],['Опыт работы','Компании и проекты, в которых я работал с 2017 года.','index.html#exp']];
 $('#mlist').innerHTML=MENU.map((m,i)=>`<li style="animation-delay:${.08+i*.05}s"><a href="${m[2]}"><strong>${m[0]} <span class="c"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></strong><p>${m[1]}</p></a></li>`).join('');
-
-/* ---------- menu ---------- */
 const menu=$('#menu');
 $('#mopen').addEventListener('click',()=>{menu.classList.add('open');document.body.style.overflow='hidden';$('#mclose').focus();});
 function closeMenu(){menu.classList.remove('open');document.body.style.overflow='';}
 $('#mclose').addEventListener('click',closeMenu);
-menu.addEventListener('click',e=>{if(e.target.closest('a[href^="#"]'))closeMenu();});
 addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
-
-/* ---------- scroll progress ---------- */
 const prog=$('#prog');
 function onScroll(){const h=document.documentElement.scrollHeight-innerHeight;prog.style.width=(h>0?Math.min(100,scrollY/h*100):0)+'%';}
 addEventListener('scroll',onScroll,{passive:true});onScroll();
-
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{rootMargin:'0px 0px -6% 0px',threshold:.04});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+/* carousel: dots + play only the visible video */
+document.querySelectorAll('.carf').forEach(f=>{const car=f.querySelector('.car'),vids=[...car.querySelectorAll('video')],dots=[...f.querySelectorAll('.dots i')];
+  const cur=()=>Math.round(car.scrollLeft/(car.firstElementChild.offsetWidth+12));
+  const sync=()=>{const i=cur();dots.forEach((d,j)=>d.classList.toggle('on',j===i));};
+  car.addEventListener('scroll',sync,{passive:true});
+  const vio=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting&&e.intersectionRatio>.5&&!reduce){v.play().catch(()=>{});}else v.pause();}),{threshold:[0,.5,1]});
+  vids.forEach(v=>vio.observe(v));});
 </script>
 </body>
 </html>

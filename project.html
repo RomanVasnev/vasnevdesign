@@ -4,101 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Bitflare — Роман Васнёв</title>
-<meta name="description" content="Bitflare: лаунчпад, где инвестор за минуту понимает, можно ли доверять проекту. Кейс продуктового дизайнера Романа Васнёва.">
+<meta name="description" content="Bitflare: лаунчпад и бренд для запуска IPO. Кейс продуктового дизайнера Романа Васнёва.">
 <meta name="theme-color" content="#060606">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&display=swap">
-<style>
-:root{--bg:#060606;--fg:#fff;--muted:#767676;--dim:#404040;--line:#202020;--blue:#043ae5;--blue2:#3c2cff;--tag:#3565ff;--font:'Geist',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--pad:20px;--max:450px;color-scheme:dark}
-*{box-sizing:border-box}
-html,body{background:var(--bg)}
-body{margin:0;color:var(--fg);font-family:var(--font);letter-spacing:-.05em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
-.wrap{max-width:var(--max);margin:0 auto;position:relative}
-.gut{padding-inline:var(--pad)}
-.arr{width:15px;height:15px;flex:none}
-:focus-visible{outline:2px solid var(--tag);outline-offset:3px;border-radius:6px}
-/* header */
-.hdr{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px)}
-.hdr .wrap{height:80px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:19px var(--pad) 0}
-.hdr::before{content:"";position:absolute;inset:0;background:rgba(6,6,6,.6);-webkit-backdrop-filter:blur(4px) saturate(1.5) brightness(1.08);backdrop-filter:blur(4px) saturate(1.5) brightness(1.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.08);-webkit-mask:linear-gradient(#000 26%,rgba(0,0,0,.55) 62%,transparent);mask:linear-gradient(#000 26%,rgba(0,0,0,.55) 62%,transparent)}
-.hdr .dom,.hdr .mbtn{position:relative;font-size:16px;font-weight:500;white-space:nowrap}
-.prog{position:relative;flex:1;max-width:130px;height:2px;border-radius:40px;background:#323232;overflow:hidden}
-.prog i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:40px;background:linear-gradient(90deg,#3c2cff,#c4ceff)}
-.mbtn{display:flex;align-items:center;gap:6px}
-.dot18{width:18px;height:18px;border-radius:50%;background:#fff;display:grid;place-items:center}
-
-/* footer */
-.ftr{margin-top:100px;background:#fff;color:#000;border-radius:30px 30px 0 0;padding:39px var(--pad) calc(25px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:center;gap:20px}
-.ftr .links{margin:0;justify-content:center}
-.ftr small{font-size:12px;color:#b4b4b4}
-
-/* menu */
-.menu{position:fixed;inset:0;z-index:80;background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#000;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility 0s .35s}
-.menu.open{opacity:1;visibility:visible;transition:opacity .35s ease}
-.menu .wrap{min-height:100%;display:flex;flex-direction:column}
-.menu .top{height:80px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:19px var(--pad) 0;margin-top:env(safe-area-inset-top,0px)}
-.lang{margin:30px var(--pad) 0;font-size:18px;font-weight:500}
-.lang span{color:var(--muted)}
-.mlist{list-style:none;margin:22px 0 0;padding:0 var(--pad);display:flex;flex-direction:column;gap:22px;flex:1}
-.mlist a{display:block}
-.mlist strong{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:500}
-.mlist .c{width:24px;height:24px;border-radius:50%;background:#000;display:grid;place-items:center}
-.mlist .c path{stroke:#fff}
-.menu .dot18{background:#000}
-.menu .dot18 path{stroke:#fff}
-.mlist p{margin:8px 0 0;font-size:14px;line-height:20px;color:var(--muted)}
-.menu .ftr{margin-top:40px;background:#000;color:#fff}
-.menu .ftr .links a{color:#fff}
-.menu.open .mlist li{animation:mi .5s both cubic-bezier(.2,.7,.2,1)}
-@keyframes mi{from{opacity:0;filter:blur(8px);transform:translateY(12px)}}
-
-/* project page (Figma: Mobile / Project page) */
-main{padding-top:146px}
-.c24{width:24px;height:24px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none}
-.back{display:inline-flex;align-items:center;gap:8px;font-size:20px;font-weight:500;line-height:26px}
-.prj{display:flex;gap:12px;align-items:center;margin-top:34px}
-.logo{width:40px;height:40px;border-radius:14px;border:1px solid #0f0f0f;overflow:hidden;flex:none;background:#c3ff38}
-.logo img{width:100%;height:100%;display:block}
-.prj b{display:block;font-size:16px;font-weight:500;line-height:21px}
-.prj small{display:block;font-size:14px;color:var(--muted);line-height:18px}
-h1{font-size:24px;font-weight:500;line-height:27px;margin:12px 0 0;text-wrap:balance}
-.flow{display:flex;flex-direction:column;gap:12px;margin-top:36px}
-.shot{margin:0;border-radius:20px;overflow:hidden;background:#141414}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.shot img{display:block;width:100%;height:auto}
-.tx{margin:-2px 0 24px}
-.tx .lbl{display:block;font-size:14px;line-height:18px;color:var(--muted);margin:0 0 6px}
-.tx p{margin:0;font-size:16px;line-height:20px;font-weight:300}
-.tx p b{font-weight:500}
-.tx ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
-.tx li{position:relative;padding-left:16px;font-size:16px;line-height:20px;font-weight:300}
-.tx li::before{content:"";position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:var(--tag)}
-.ctx{margin:0 0 28px;display:flex;flex-direction:column}
-.ctx div{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line);font-size:14px;line-height:18px}
-.ctx div:last-child{border-bottom:1px solid var(--line)}
-.ctx dt{color:var(--muted)}
-.ctx dd{margin:0}
-.res{margin-top:68px}
-.res h2{font-size:26px;font-weight:500;line-height:28px;margin:0}
-.rp{margin:12px 0 0;font-size:16px;line-height:20px;font-weight:300}
-.mx{display:grid;grid-template-columns:1fr 1fr;gap:28px 16px;margin-top:36px}
-.mx b{display:block;font-size:44px;line-height:44px;font-weight:500;letter-spacing:-.06em;background:linear-gradient(90deg,#fff,#c4ceff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.mx span{display:block;margin-top:10px;font-size:14px;line-height:18px;color:var(--muted)}
-.note{margin:28px 0 0;padding:14px 16px;border-radius:16px;background:#121212;font-size:14px;line-height:18px;color:var(--muted)}
-.credits{margin-top:120px;display:flex;flex-direction:column;gap:12px}
-.credits b{display:block;font-size:22px;font-weight:500;line-height:29px}
-.credits small{display:block;margin-top:8px;font-size:18px;font-weight:500;line-height:20px;color:var(--muted)}
-.sep{border:0;border-top:1px solid var(--line);margin:80px 0 0}
-.next{display:flex;align-items:center;gap:16px;margin-top:60px}
-.next .th{width:96px;height:62px;border-radius:14px;background:#1a1a1a;overflow:hidden;flex:none}
-.next .th img{width:100%;height:100%;object-fit:cover;display:block}
-.next span.t{display:flex;align-items:center;gap:8px;font-size:20px;font-weight:500;line-height:26px}
-.ftr{margin-top:150px}
-@media (prefers-reduced-motion:reduce){.menu{transition:none}.menu.open .mlist li{animation:none}}
-</style>
-<link rel="stylesheet" href="desk.css">
+<link rel="stylesheet" href="case.css">
+<style>:root{--accent:#c6ff00}</style>
 </head>
 <body>
 <header class="hdr">
@@ -110,66 +21,31 @@ h1{font-size:24px;font-weight:500;line-height:27px;margin:12px 0 0;text-wrap:bal
 </header>
 <main class="wrap gut">
   <a class="back" href="index.html"><span class="c24"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M11 4.5H1M4.5 1 1 4.5 4.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>На главную</a>
-  <div class="prj"><div class="logo"><img src="assets/bitflare/logo.webp" alt="" width="40" height="40"></div><div><b>Bitflare</b><small>Лаунчпад для инвестиций и IPO</small></div></div>
-  <h1>Лаунчпад, где инвестор за минуту понимает, можно ли доверять проекту</h1>
-  <div class="flow">
-    <figure class="shot"><img src="assets/bitflare/01-hero.webp" alt="Bitflare: страница токена на десктопе и мобильном" width="1200" height="900" fetchpriority="high" decoding="async"></figure>
-  <div class="tx"><p>Bitflare — лаунчпад, где стартапы проводят первичное размещение токена, а инвесторы покупают аллокацию до листинга. Я спроектировал продукт с нуля: от архитектуры и бренда до 330 экранов и передачи в разработку.</p></div>
-  <dl class="ctx">
-  <div><dt>Платформа</dt><dd>Веб, desktop и mobile: лаунчпад, кошелёк, безопасность, VIP-программа</dd></div>
-  <div><dt>Роль</dt><dd>Product Designer: стратегия, архитектура, UX/UI, айдентика, handoff</dd></div>
-  <div><dt>Команда</dt><dd>PM, фаундер, 2 frontend, 3 backend, DevOps</dd></div>
-  <div><dt>Объём</dt><dd>330 экранов, 10 модулей, 139 флоу, 312 состояний в компонентах</dd></div>
- </dl>
-  <div class="tx"><span class="lbl">Проблема</span><p>Инвестор решает за минуту, скам перед ним или нет. На большинстве лаунчпадов команда, токеномика и аудит разбросаны по странице, тиры объяснены таблицей цифр, а любая ошибка при покупке отправляет начинать заново. Люди уходят, не купив.</p></div>
-  <div class="tx"><span class="lbl">Задача</span><ul><li>Инвестор за минуту понимает, можно ли доверять проекту</li><li>Механика «3 уровня × 3 тира» читается как простой выбор</li><li>Покупка без тупиков: ни одна ветка не теряет покупателя</li><li>Бренд с характером в нише, где все лаунчпады похожи</li></ul></div>
-  <div class="tx"><span class="lbl">Исследование</span><p>Разобрал PinkSale, DxSale, Polkastarter и TrustPad, а у Binance и Bybit — паттерны кошелька и безопасности. Смотрел не только интерфейс, но и механику: тиры, вестинг, проверку проектов. Ключевые сценарии проверял на команде и в фокус-группах.</p></div>
-  <div class="tx"><span class="lbl">Решение</span><p>Свёл покупку к одной точке подтверждения — Review transaction. Любая ветка, будь то вход или нехватка средств, возвращает пользователя туда с сохранённым тиром и суммой.</p></div>
-  <figure class="shot"><img src="assets/bitflare/05-token.webp" alt="Страница токена с бейджами доверия" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Страница токена — досье для проверки.</b> Бейджи KYC Verified, Audited и VC Backed стоят в hero рядом с названием, ключевые цифры раунда собраны в одну строку. Вкладки идут в одном порядке у всех проектов — страницу учатся читать один раз.</p></div>
-  <figure class="shot"><img src="assets/bitflare/06-tiers.webp" alt="Карточки тиров и виджет покупки" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Тиры — понятный выбор.</b> 3 уровня × 3 тира разложены карточками: уровень читается по цвету, в каждой карточке бонус, цена и итог в токенах. Виджет покупки закреплён рядом, поэтому выбор и покупка живут на одном экране.</p></div>
-  <div class="two"><figure class="shot"><img src="assets/bitflare/07a-review.webp" alt="Review transaction" width="1000" height="1000" loading="lazy" decoding="async"></figure><figure class="shot"><img src="assets/bitflare/07b-success.webp" alt="Экран успешной покупки" width="1000" height="1000" loading="lazy" decoding="async"></figure></div>
-  <figure class="shot"><img src="assets/bitflare/08-funds.webp" alt="Ветка «не хватает средств» с переходом в депозит" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="assets/bitflare/09-login.webp" alt="Вход модалкой поверх страницы токена" width="1000" height="1000" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Покупка без тупиков.</b> Если средств не хватает, продукт называет точную сумму — «Not enough 200 USDT» — и ведёт в депозит, а потом обратно в Review. Вход открывается модалкой поверх страницы токена, контекст покупки не теряется.</p></div>
-  <div class="two"><figure class="shot"><img src="assets/bitflare/10a-memo.webp" alt="Депозит с обязательным MEMO" width="1000" height="1000" loading="lazy" decoding="async"></figure><figure class="shot"><img src="assets/bitflare/10b-memo-phone.webp" alt="Important Notice на мобильном" width="1000" height="1000" loading="lazy" decoding="async"></figure></div>
-  <figure class="shot"><img src="assets/bitflare/11-statuses.webp" alt="История операций и статусы транзакций" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Кошелёк без необратимых ошибок.</b> Депозит и вывод идут по шагам: монета → сеть → детали. Для сетей с MEMO — отдельная форма и экран Important Notice. Статусы транзакций одинаковые везде, а TxID ведёт в блокчейн без обращения в поддержку.</p></div>
-  <figure class="shot"><img src="assets/bitflare/12b-2fa-phone.webp" alt="Выбор основного метода 2FA" width="1000" height="1000" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Одно правило безопасности.</b> Пользователь выбирает основной метод 2FA, и платформа запрашивает именно его при выводе, смене адресов и пароля. У всех методов одинаковые состояния: неверный код, число попыток, блокировка.</p></div>
-  <figure class="shot"><img src="assets/bitflare/13-vip-brand.webp" alt="VIP Club: hero и шаги вступления" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="assets/bitflare/14-vip-cards.webp" alt="Карточки VIP-программы" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="assets/bitflare/15-vip-tables.webp" alt="Таблицы комиссий VIP и Market Maker" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="assets/bitflare/18-vip-mobile.webp" alt="VIP Club на мобильном" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>VIP Club — суб-бренд для крупных трейдеров.</b> Тёплое золото, шахматные фигуры и фото вместо лайма: бренд узнаётся, а статус считывается с первого экрана. Таблица комиссий 7 × 8 на узких экранах превращается в аккордеон.</p></div>
-  <figure class="shot"><img src="assets/bitflare/16-ido.webp" alt="Форма заявки IDO из 7 шагов" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Заявка IDO для фаундеров.</b> 7 шагов, по одному блоку вопросов на экран и прогресс «3/7», чтобы нетехническая команда не утонула в длинной форме.</p></div>
-  <figure class="shot"><img src="assets/bitflare/17-mobile.webp" alt="Мобильная версия Bitflare" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>198 мобильных экранов</b> — не уменьшенная копия десктопа: у калькулятора и покупки свои компоненты, длинные блоки свёрнуты, таблицы кошелька превращаются в списки.</p></div>
-  </div>
-  <section class="res" aria-labelledby="resH">
-  <h2 id="resH">Результаты</h2>
-  <p class="rp">Платформа спроектирована целиком — от бренда до 330 экранов, а frontend собрал из моих компонентов дизайн-систему в коде. Каждое ключевое решение я связал с метрикой и целевым значением.</p>
-  <div class="mx"><div><b>4%+</b><span>посетителей страницы токена покупают аллокацию</span></div><div><b>45%</b><span>покупок завершаются после ветки «не хватает средств»</span></div><div><b>&lt; 2 мин</b><span>от открытия страницы токена до покупки</span></div><div><b>60%</b><span>начатых заявок IDO доходят до отправки</span></div></div>
-  <p class="note">Это целевые значения, заложенные в решения. Фактические цифры появятся после замеров в продукте.</p>
-</section>
-<section class="res" aria-labelledby="outH">
-  <h2 id="outH">Выводы</h2>
-  <p class="rp">Сложный продукт продаёт ясность. Инвестор не читает механику — он смотрит, можно ли доверять и сколько он получит. Когда доверие вынесено в первый экран, а любая ошибка ведёт обратно к покупке, сложная механика превращается в выбор за секунды.</p>
-</section>
-  <div class="credits"><div><b>Product Design</b><small>Васнёв Роман</small></div><div><b>UX/UI</b><small>Васнёв Роман</small></div><div><b>Illustration</b><small>Грошева Маргарита</small></div><div><b>Motion</b><small>Васнёв Роман</small></div></div>
-  <hr class="sep">
-  <a class="next" href="pump.html"><span class="th"><img src="assets/pump/cover.webp" alt="" loading="lazy"></span><span class="t">Следующий проект <span class="c24"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5h10M7.5 1 11 4.5 7.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a>
+  <div class="prj"><div class="logo"><img src="assets/bitflare/logo.webp" alt="" width="40" height="40"></div><div><b>Bitflare</b><small>платформа для инвестиций и IPO</small></div></div>
+  <h1>Спроектировал лаунчпад и бренд для запуска IPO</h1>
+  <div class="tags"><span>Fintech</span><span>SaaS</span><span>B2B</span><span>B2C</span></div>
+  <div class="hero"><img src="assets/main/cover-bitflare.webp" alt="Экран покупки аллокации Bitflare на телефоне" width="740" height="460" fetchpriority="high" decoding="async"></div>
+  <dl class="meta"><div><dt>Период</dt><dd>2026</dd></div><div><dt>Роль</dt><dd>Продуктовый дизайнер</dd></div><div><dt>Команда</dt><dd>Кросс-функциональная продуктовая команда</dd></div><div><dt>Объём</dt><dd>330 экранов, 10 модулей, 139 флоу, 312 состояний в компонентах</dd></div></dl>
+<section class="sec rv"><h2>Суть проекта</h2><p class="w">Передо мной стояла задача соединить две стороны IPO. Фаундеры подают заявку, проходят проверку и привлекают деньги. Инвесторы выбирают проект, уровень участия и покупают аллокацию до листинга.</p><p class="w">Вокруг размещения нужен целый финансовый продукт: кошелёк с депозитом и выводом, двухфакторная защита, VIP-программа для крупных клиентов и форма заявки для команд. Всё это я проектировал как одну систему, чтобы пользователь не чувствовал, что переходит между разными сервисами.</p></section>
+<section class="sec rv"><h2>Инвестор должен поверить проекту за минуту</h2><p><b>На первичных размещениях много сомнительных проектов, и инвестор это знает.</b> Решение «доверяю или нет» он принимает за первую минуту на странице.</p><p>На большинстве похожих платформ всё, что для этого нужно, разбросано: команда, токеномика и аудит лежат в разных местах страницы. Уровни участия объяснены таблицей цифр, а любая ошибка при покупке отправляет начинать заново. В итоге человек уходит, так ничего и не купив.</p></section>
+<section class="sec rv"><h2>Моя роль</h2><p>Я отвечал за продукт целиком: от структуры модулей и пользовательских сценариев до визуального языка и передачи в разработку. Работал напрямую с фаундером и PM, согласовывал логику с backend, <b>а frontend собрал из моих компонентов атомарную дизайн-систему для быстрого редактирования и создания новых экранов.</b></p><figure><div class="m"><img src="assets/bitflare/v2/process.webp" alt="Схема процесса: подготовка, создание, проверка, передача" width="740" height="440" loading="lazy" decoding="async"></div><figcaption>Полный цикл работы: от обнаружения проблемы и поиска решения до проверки и запуска.</figcaption></figure></section>
+<section class="sec rv"><h2>Цели вместо абстрактного «сделать удобно»</h2><ol class="nl"><li><div>45% покупок завершаются, даже если на шаге оплаты не хватило средств</div></li><li><div>4%+ посетителей страницы проекта покупают аллокацию</div></li><li><div>меньше 2 минут от открытия страницы до покупки</div></li><li><div>60% начатых заявок от фаундеров доходят до отправки</div></li></ol></section>
+<section class="sec rv"><h2>Исследование и поиск решения</h2><p>Разобрал PinkSale, DxSale, Polkastarter и TrustPad, а у Binance и Bybit — паттерны кошелька и безопасности. Смотрел не только на интерфейс, но и на механику: уровни участия, график разблокировки, проверку проектов.</p><figure><div class="m"><img src="assets/bitflare/v2/benchmark.webp" alt="Таблица бенчмаркинга: PinkSale, DxSale, Polkastarter, TrustPad, Binance и Bybit" width="740" height="404" loading="lazy" decoding="async"></div><figcaption>Бенчмаркинг конкурентов</figcaption></figure><h3>Важнее всего оказались три вопроса:</h3><p>Сначала нужно было разобраться, как инвестор принимает решение. Я начал с того, на что человек смотрит, прежде чем вложить деньги в незнакомый проект.</p><ol class="nl"><li><div>проверен ли проект?</div></li><li><div>как увидеть предполагаемый профит?</div></li><li><div>что будет, если что-то пойдёт не так?</div></li></ol><h3>Прототипирование и проверка</h3><p>На основе исследования собрал гипотезы, а ключевые сценарии — покупку, депозит и заявку — собрал в прототипы и проверил на команде и в фокус-группах.</p><figure><div class="m multi"><img src="assets/bitflare/v2/proto-1.webp" alt="Прототипы сценария депозита в Figma" width="740" loading="lazy" decoding="async"><img src="assets/bitflare/v2/proto-2.webp" alt="Прототипы сценария депозита в Figma" width="740" loading="lazy" decoding="async"><img src="assets/bitflare/v2/proto-3.webp" alt="Прототипы сценария депозита в Figma" width="740" loading="lazy" decoding="async"></div><figcaption>Прототипирование: проверка депозита</figcaption></figure><h3>Одна точка подтверждения вместо десятка тупиков</h3><p>Главное решение — свести покупку к одному экрану подтверждения. Пользователь может зайти без аккаунта, без денег на балансе или с неподтверждённой почтой. Любая из этих веток возвращает его туда же, а выбранный уровень и сумма сохраняются.</p><figure><div class="m"><img src="assets/bitflare/v2/userflow.webp" alt="User flow: регистрация, IDO, главная, покупка" width="740" height="374" loading="lazy" decoding="async"></div><figcaption>User flow - Регистрация - IDO - Main Page - Покупка</figcaption></figure></section>
+<section class="sec rv"><h2>Вокруг этой точки я собрал модули продукта:</h2><ol class="nl" start="1" style="counter-reset:n 0"><li><div><b>Страница проекта как досье. Отметки о проверке личности, аудите и венчурных инвесторах стоят рядом с названием.</b> <span>Ключевые цифры раунда собраны в одну строку, а вкладки идут в одном порядке у всех проектов: страницу достаточно научиться читать один раз.</span></div></li></ol><figure class="tall"><div class="m"><img src="assets/bitflare/v2/dossier.webp" alt="Страница проекта Bitflare на телефоне" width="740" height="828" loading="lazy" decoding="async"></div><figcaption>Страница проекта как досье</figcaption></figure><ol class="nl" start="2" style="counter-reset:n 1"><li><div><b>Заявка для фаундеров. 7 шагов, по одному блоку вопросов на экран, и счётчик прогресса.</b> <span>Так нетехническая команда не тонет в длинной форме.</span></div></li></ol><figure class="tall"><div class="m"><img src="assets/bitflare/v2/ido-form.webp" alt="Форма заявки IDO на телефоне" width="740" height="1072" loading="lazy" decoding="async"></div><figcaption>IDO Форма - из 7 шагов</figcaption></figure><ol class="nl" start="3" style="counter-reset:n 2"><li><div><b>Кошелёк без необратимых ошибок. Депозит и вывод идут по шагам: монета, сеть, детали.</b> <span>Для сетей с дополнительным кодом получателя есть отдельная форма и предупреждение. Статусы операций одинаковые везде, а номер транзакции ведёт прямо в блокчейн, без обращения в поддержку.</span></div></li></ol><figure class="tall"><div class="m"><img src="assets/bitflare/v2/wallet.webp" alt="Экраны кошелька: депозит, вывод, адреса" width="740" height="1610" loading="lazy" decoding="async"></div><figcaption>Сниппеты кошелька - мобильная версия</figcaption></figure><ol class="nl" start="4" style="counter-reset:n 3"><li><div><b>Уровни участия — понятный выбор. Механика «3 уровня × 3 тира» разложена карточками.</b> <span>Уровень читается по цвету, в каждой карточке указаны бонус, цена и итог в токенах. Виджет покупки закреплён рядом.</span></div></li></ol><figure class="tall"><div class="m"><img src="assets/bitflare/v2/tiers.webp" alt="Карточки уровней участия" width="740" height="1274" loading="lazy" decoding="async"></div><figcaption>Уровни участия аллокации</figcaption></figure><ol class="nl" start="5" style="counter-reset:n 4"><li><div><b>Покупка без потери контекста. Если денег не хватает, продукт называет точную сумму «Not enough 200 USDT»,</b> <span>ведёт на пополнение и возвращает обратно. Вход открывается поверх страницы, а не уводит с неё.</span></div></li></ol><figure class="tall"><div class="m"><img src="assets/bitflare/v2/purchase.webp" alt="Калькулятор и экран покупки" width="740" height="1484" loading="lazy" decoding="async"></div><figcaption>Экран калькулятора / покупка</figcaption></figure><ol class="nl" start="6" style="counter-reset:n 5"><li><div><b>Одно правило безопасности. Пользователь выбирает основной метод 2FA,</b> <span>и платформа запрашивает именно его при выводе, смене адресов и пароля.</span></div></li></ol><figure class="tall"><div class="m multi"><img src="assets/bitflare/v2/twofa.webp" alt="Подтверждение через 2FA и flow верификации" width="740" loading="lazy" decoding="async"><img src="assets/bitflare/v2/twofa-2.webp" alt="Подтверждение через 2FA и flow верификации" width="740" loading="lazy" decoding="async"></div><figcaption>Методы 2FA</figcaption></figure><ol class="nl" start="7" style="counter-reset:n 6"><li><div><b>VIP Club собран на тех же компонентах и сценариях, что и основная платформа.</b> <span>Меняется только визуальный стиль, пользователь остаётся в знакомой логике интерфейса, а по визуалу понимает, что он в другом статусе.</span></div></li></ol><figure class="tall"><div class="m"><img src="assets/bitflare/v2/vip.webp" alt="Экраны VIP Club Bitflare" width="740" height="2572" loading="lazy" decoding="async"></div><figcaption>VIP Club Bitflare</figcaption></figure></section>
+<section class="sec rv"><h2>Результат</h2><ol class="nl"><li><div>Платформа спроектирована целиком: от бренда до 330 экранов на desktop и mobile</div></li><li><div>Frontend собрал из моих компонентов атомарную дизайн-систему в коде: 312 состояний. Все ключевые сценарии описаны в 139 флоу, включая ошибки и пограничные случаи</div></li><li><div>Цели по конверсии заложены в решения, фактические цифры появятся после замеров в продукте</div></li></ol></section>
+<section class="sec rv"><h2>Основные выводы</h2><ol class="nl"><li><div>Сложный финансовый продукт продаёт ясность. Инвестор не читает механику, он смотрит, можно ли доверять и сколько он получит.</div></li><li><div>Ошибка не должна обрывать сделку: каждая ветка обязана вести обратно к покупке.</div></li><li><div>Бренд в одинаковой нише — тоже продуктовое решение: он помогает запомнить платформу и вернуться.</div></li></ol></section>
+<section class="sec rv"><h2>Что сейчас я бы сделал иначе</h2><p class="w">Раньше подключил бы аналитику и заложил события для каждой цели ещё на этапе прототипов. Тогда метрики можно было бы показать уже по первой версии, а не только как целевые значения.</p></section>
+  <nav class="nav2" aria-label="Навигация по кейсам"><a href="index.html"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M11 4.5H1M4.5 1 1 4.5 4.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>На главную</a><a href="anty.html">Следующий кейс <svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5h10M7.5 1 11 4.5 7.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></nav>
 </main>
 <footer class="ftr">
-    <div class="links">
-      <a href="https://t.me/" target="_blank" rel="noopener">Telegram <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
-      <a href="#">Max <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
-      <a href="#">E-mail <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
-    </div>
-    <small>© 2026 - Васнёв Роман</small>
-  </footer>
+  <div class="links">
+    <a href="https://t.me/" target="_blank" rel="noopener">Telegram <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
+    <a href="#">Max <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
+    <a href="#">E-mail <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
+  </div>
+  <small>© 2026 - Васнёв Роман</small>
+  <div class="apps" aria-hidden="true"><img src="assets/main/ic-he.webp" alt="" width="32" height="32" loading="lazy"><img src="assets/main/ic-lp.webp" alt="" width="32" height="32" loading="lazy"><img src="assets/main/ic-me.webp" alt="" width="32" height="32" loading="lazy"></div>
+</footer>
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Меню">
   <div class="wrap">
     <div class="top"><span style="font-size:16px;font-weight:500">vasnev.art</span><div class="prog"><i style="width:100%"></i></div><button class="mbtn" id="mclose">закрыть <span class="dot18"><svg width="8" height="8" viewBox="0 0 8 8"><path d="M1 1l6 6M7 1 1 7" stroke="#000" stroke-width="1.4" stroke-linecap="round"/></svg></span></button></div>
@@ -181,25 +57,28 @@ h1{font-size:24px;font-weight:500;line-height:27px;margin:12px 0 0;text-wrap:bal
     </footer>
   </div>
 </div>
-
 <script>
-const $=s=>document.querySelector(s);const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
-const MENU=[['Обо мне','Кто я, чем занимаюсь и как со мной связаться.','index.html#about'],['От идеи до релиза','Продукты, которые я вёл от исследования до передачи в разработку.','index.html#cases'],['Мой подход к дизайну','Этапы, через которые проходит каждый мой проект.','index.html#approach'],['Работа с AI','Как я с помощью AI быстро собираю MVP и проверяю гипотезы.','index.html#ai'],['Мой стек технологий','Инструменты, в которых я работаю на каждом этапе.','index.html#stack'],['Опыт работы','Компании и проекты, в которых я работал с 2017 года.','index.html#exp']];
+document.documentElement.classList.add('js');
+const $=s=>document.querySelector(s);const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const MENU=[['Обо мне','Кто я, чем занимаюсь и как со мной связаться.','index.html#about'],['Продуктовые кейсы','Продукты, которые я вёл от исследования до передачи в разработку.','index.html#cases'],['Работа с AI','Как я с помощью AI быстро собираю MVP и проверяю гипотезы.','index.html#ai'],['Мой стек технологий','Инструменты, в которых я работаю на каждом этапе.','index.html#stack'],['Пет проекты','Плагины, инструменты и проекты для Figma Community.','index.html#pet'],['Опыт работы','Компании и проекты, в которых я работал с 2017 года.','index.html#exp']];
 $('#mlist').innerHTML=MENU.map((m,i)=>`<li style="animation-delay:${.08+i*.05}s"><a href="${m[2]}"><strong>${m[0]} <span class="c"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></strong><p>${m[1]}</p></a></li>`).join('');
-
-/* ---------- menu ---------- */
 const menu=$('#menu');
 $('#mopen').addEventListener('click',()=>{menu.classList.add('open');document.body.style.overflow='hidden';$('#mclose').focus();});
 function closeMenu(){menu.classList.remove('open');document.body.style.overflow='';}
 $('#mclose').addEventListener('click',closeMenu);
-menu.addEventListener('click',e=>{if(e.target.closest('a[href^="#"]'))closeMenu();});
 addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
-
-/* ---------- scroll progress ---------- */
 const prog=$('#prog');
 function onScroll(){const h=document.documentElement.scrollHeight-innerHeight;prog.style.width=(h>0?Math.min(100,scrollY/h*100):0)+'%';}
 addEventListener('scroll',onScroll,{passive:true});onScroll();
-
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{rootMargin:'0px 0px -6% 0px',threshold:.04});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+/* carousel: dots + play only the visible video */
+document.querySelectorAll('.carf').forEach(f=>{const car=f.querySelector('.car'),vids=[...car.querySelectorAll('video')],dots=[...f.querySelectorAll('.dots i')];
+  const cur=()=>Math.round(car.scrollLeft/(car.firstElementChild.offsetWidth+12));
+  const sync=()=>{const i=cur();dots.forEach((d,j)=>d.classList.toggle('on',j===i));};
+  car.addEventListener('scroll',sync,{passive:true});
+  const vio=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting&&e.intersectionRatio>.5&&!reduce){v.play().catch(()=>{});}else v.pause();}),{threshold:[0,.5,1]});
+  vids.forEach(v=>vio.observe(v));});
 </script>
 </body>
 </html>

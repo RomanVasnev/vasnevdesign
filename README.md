@@ -9,3 +9,5 @@
 - `vendor/matter.min.js` — физический движок.
 
 Деплой: Vercel, статический сайт без сборки (Framework Preset: Other).
+
+- `pump.html`, `project.html` (Bitflare) — страницы кейсов v2, собираются скриптом `python3 tools/build_cases.py` (стили в `case.css`).

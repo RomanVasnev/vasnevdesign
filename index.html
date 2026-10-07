@@ -17,7 +17,7 @@
   --chip:#1b1b1b; --chip2:rgba(36,36,36,.7); --chip-st:#282828; --chip-t:#9f9f9f;
   --blue:#043ae5; --blue2:#3c2cff; --tag:#3565ff; --ok:#7cff4f;
   --font:'Geist',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
-  --pad:20px; --max:450px; color-scheme:dark;
+  --pad:10px; --max:450px; color-scheme:dark;
 }
 *{box-sizing:border-box}
 html,body{background:var(--bg)}
@@ -54,8 +54,6 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .glow{position:absolute;left:-120px;top:-160px;width:420px;height:360px;border-radius:50%;background:radial-gradient(closest-side,rgba(60,44,255,.45),rgba(60,44,255,0));pointer-events:none}
 .drop{position:absolute;left:0;right:0;top:0;height:424px;overflow:hidden}
 .bdg{position:absolute;left:0;top:0;height:34px;padding:0 14px;display:flex;align-items:center;border-radius:12px;border:1px solid #414141;background:transparent;font-size:16px;letter-spacing:-.05em;white-space:nowrap;color:#fff;user-select:none;-webkit-user-select:none;touch-action:none;cursor:grab;will-change:transform;visibility:hidden}
-.bdg.f{background:var(--blue);border-color:#fff}
-.bdg.v{background:var(--blue2);border-color:#fff}
 .bdg.drag{cursor:grabbing}
 .who{display:flex;gap:24px;align-items:center}
 .ava{width:60px;height:80px;border-radius:20px;overflow:hidden;flex:none;border:1px solid #0f0f0f}
@@ -119,26 +117,35 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .ai-icons img{position:absolute;filter:drop-shadow(0 10px 18px rgba(0,0,0,.5))}
 .ai-card{position:relative;z-index:1;margin-top:-72px;border-radius:40px 40px 0 0;background:linear-gradient(180deg,rgba(29,29,29,0) 0,rgba(0,0,0,.6) 120px,#000 240px);-webkit-backdrop-filter:blur(10px) saturate(1.5) brightness(1.1);backdrop-filter:blur(10px) saturate(1.5) brightness(1.1);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.45),inset 1px 0 0 rgba(255,255,255,.14),inset -1px 0 0 rgba(255,255,255,.14),inset 0 18px 30px -22px rgba(255,255,255,.18),0 -6px 36px rgba(0,0,0,.63);padding-top:20px;overflow:hidden}
 .ai-card::before{content:"";position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);pointer-events:none}
-.ai-card .txt{padding:0 var(--pad) 26px}
+.ai-card .txt{padding:0 20px 26px}
 .ai-card p{font-size:16px;line-height:20px;margin:8px 0 0}
 .ai-list{display:flex;flex-direction:column}
-.ai-it{background:#fff;color:#000;border:1px solid #808080;border-radius:30px 30px 0 0;padding:20px 20px 40px;margin-top:-30px}
+.ai-it{background:var(--c);color:var(--t);border-radius:30px 30px 0 0;padding:20px 20px 50px;margin-top:-30px}
 .ai-it:first-child{margin-top:0}
-.ai-it:last-child{border-radius:30px;padding:30px 23px 34px;border:0;position:relative}
-.ai-it .dash{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
-.ai-it .dash rect{fill:none;stroke:#cd50ff;stroke-width:3;stroke-dasharray:11 11}
+.ai-it:last-child{border-radius:30px;padding:30px 23px 40px}
 .ai-it h3{margin:0;font-size:18px;font-weight:500;line-height:23px}
-.ai-it p{margin:8px 0 0;font-size:14px;font-weight:300;line-height:18px;color:#6b6b6b}
+.ai-it p{margin:8px 0 0;font-size:14px;font-weight:400;line-height:18px;opacity:.5}
+.ai-it:last-child p{opacity:.8}
 
-/* stack */
+/* stack: glass cards that unfold */
 .stack{margin-top:80px}
-.groups{display:flex;flex-direction:column;gap:16px;margin-top:36px}
-.grp{position:relative;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.015) 45%);border:1px solid rgba(255,255,255,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),inset 0 20px 40px -24px rgba(255,255,255,.08);padding:15px 15px 0}
-.grp h3{margin:0;font-size:20px;font-weight:500;line-height:26px}
-.grp .chips{margin-top:15px}
-.grp .chip.k{background:#212121}
-.icons{display:flex;gap:8px;margin:22px 0 -18px -34px;width:max-content}
-.icons img{width:93px;height:93px;border-radius:24px;display:block}
+.stk{position:relative;margin-top:36px;transition:height .55s cubic-bezier(.2,.7,.2,1)}
+.sc{position:absolute;left:0;right:0;top:0;height:180px;border-radius:20px;overflow:hidden;cursor:pointer;transform-origin:50% 0;will-change:transform;
+  background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.01) 50%),rgba(8,8,8,.28);
+  -webkit-backdrop-filter:blur(17px) saturate(1.6);backdrop-filter:blur(17px) saturate(1.6);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 1px 0 0 rgba(255,255,255,.08),inset -1px 0 0 rgba(255,255,255,.08),0 -10px 30px rgba(0,0,0,.35);
+  transition:top .55s cubic-bezier(.2,.7,.2,1),height .55s cubic-bezier(.2,.7,.2,1)}
+.sc::after{content:"";position:absolute;inset:0;border-radius:inherit;border:1px solid rgba(255,255,255,.1);pointer-events:none}
+.sc.tall{height:212px}
+.sc.open{height:212px}.sc.tall.open{height:244px}
+.sc h3{margin:0;padding:15px 15px 0;font-size:20px;font-weight:500;line-height:26px}
+.sc .chips{margin:15px 15px 0;gap:6px}
+.sc .chip{background:rgba(36,36,36,.7);border-color:#282828;-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px)}
+.sc .chip.k{background:#212121;color:#fff}
+.sc .icons{position:absolute;left:-19px;top:104px;display:flex;gap:8px}
+.sc.tall .icons{top:136px}
+.sc .icons img{width:93px;height:93px;border-radius:24px;display:block;-webkit-user-drag:none}
+.sc:focus-visible{outline-offset:2px}
 
 /* experience */
 .exp{margin-top:80px}
@@ -185,13 +192,12 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   .tabs{-webkit-mask:none;mask:none}
   .cases{display:grid;grid-template-columns:1fr 1fr;gap:56px 24px}
   .cover{height:auto;aspect-ratio:1.75}
-  .groups{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .stk{max-width:560px}
   .ai{margin-inline:var(--pad)}
   .ai-card{border-radius:40px}
   .ai-card .txt{max-width:640px;padding:12px 32px 32px}
   .ai-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:0 32px 32px}
   .ai-it,.ai-it:first-child,.ai-it:last-child{margin-top:0;border-radius:30px;padding:24px 24px 28px}
-  .ai-it:not(:last-child){border:1px solid #d9d9d9}
   .sub{max-width:560px}
   .mlist{display:grid;grid-template-columns:1fr 1fr;gap:32px 40px;align-content:start;margin-top:40px}
   .mlist strong{font-size:22px}
@@ -224,9 +230,9 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   .cdesc{font-size:18px;line-height:26px;max-width:560px}
   .pet{margin-top:140px}
   .hscroll{margin-top:48px;margin-inline:0;padding-inline:0}
-  .pcard{width:220px;height:220px;font-size:18px}
-  .ccard{width:400px}
-  .ccard .img{height:226px}
+  .pcard{width:400px}
+  .pcard .img{height:226px}
+  .pcard h3,.pcard p{font-size:18px;line-height:24px}
   /* approach: title left, steps right */
   #approach{margin-top:140px!important;display:grid;grid-template-columns:1fr 1.25fr;column-gap:80px;align-items:start}
   .ap::after{display:none}
@@ -242,8 +248,8 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   .ai-list{grid-template-columns:repeat(3,1fr);padding:0 48px 48px}
   .ai-it h3{font-size:20px;line-height:26px}
   .ai-it p{font-size:15px;line-height:20px}
-  .stack{margin-top:140px}
-  .groups{grid-template-columns:repeat(3,1fr);margin-top:48px}
+  .stack{margin-top:140px;display:grid;grid-template-columns:1fr 1.25fr;column-gap:80px;align-items:start}
+  .stk{margin-top:6px;max-width:none}
   /* experience + awards: title left, rows right */
   .exp,.awards{display:grid;grid-template-columns:1fr 1.25fr;column-gap:80px;align-items:start}
   .exp{margin-top:140px}
@@ -262,8 +268,18 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 
 /* tabs (v2) */
 .tabs{gap:10px}
-.tab{height:34px;padding:8px 16px;border-radius:10px;background:#1b1b1b;border:0;color:#4c4c4c;font-size:14px;line-height:18px;font-weight:500;letter-spacing:-.03em}
-.tab[aria-selected="true"]{background:#023ae6;color:#fff}
+.tabs{gap:12px}
+.tab{height:37px;padding:8px 16px;border-radius:10px;background:#1b1b1b;border:0;color:#4c4c4c;font-size:16px;line-height:21px;font-weight:500;letter-spacing:-.05em}
+.tab[aria-selected="true"]{background:#fff;color:#000}
+/* empty state with timer */
+.empty{grid-column:1/-1;min-height:400px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center}
+.empty p{margin:0;max-width:286px;font-size:18px;line-height:23px;color:#4c4c4c;text-wrap:balance}
+.empty .row2{display:flex;gap:12px;align-items:center;justify-content:center}
+.timer{height:44px;min-width:62px;padding:12px;border-radius:12px;background:#272727;color:#fff;font-size:14px;line-height:20px;font-weight:500;font-variant-numeric:tabular-nums;letter-spacing:0}
+.eng{height:44px;padding:12px;border-radius:12px;background:#c23fff;color:#fff;font-size:14px;line-height:20px;font-weight:500;white-space:nowrap;animation:pop .6s cubic-bezier(.2,1.4,.3,1) both}
+@keyframes pop{from{opacity:0;transform:scale(.6) translateX(-20px);filter:blur(6px)}}
+.empty p.swapin{animation:tin .5s cubic-bezier(.2,.7,.2,1) both}
+@keyframes tin{from{opacity:0;filter:blur(8px);transform:translateY(8px)}}
 /* cards (v2) */
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .cases{gap:60px;margin-top:0}
@@ -274,19 +290,19 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .cbadges span{height:24px;padding:2px 10px;border-radius:60px;background:#242424;color:#818181;font-size:14px;line-height:20px}
 .cdesc{margin:0;font-size:16px;line-height:24px;color:#cdcdcd}
 .cmore{display:inline-flex;align-items:center;gap:6px;font-size:16px;font-weight:500;margin-top:-4px}
+.card.soon{cursor:default}.card.soon .cmore{color:#4c4c4c}
+.card.soon:active .cover{transform:none}
 /* pet + community */
 .pet{margin-top:80px}
 .hscroll{display:flex;gap:12px;margin-top:36px;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--pad)*-1);padding-inline:var(--pad);scroll-padding-inline:var(--pad);scroll-snap-type:x proximity}
 .hscroll::-webkit-scrollbar{display:none}
-.pcard{flex:none;width:150px;height:150px;border-radius:20px;background:#121212;position:relative;display:grid;place-items:center;text-align:center;padding:0 16px;font-size:16px;line-height:20px;scroll-snap-align:start}
-.pcard .meta{position:absolute;left:16px;top:14px;display:flex;align-items:center;gap:8px}
-.fi{width:22px;height:22px;border-radius:6px;display:block}
-.soon{padding:1px 6px;border-radius:9px;background:#043ae5;font-size:14px;line-height:20px;color:#fff}
-.ccard{flex:none;width:308px;scroll-snap-align:start}
-.ccard .img{position:relative;height:174px;border-radius:20px;overflow:hidden;background:#121212}
-.ccard .img>img{width:100%;height:100%;object-fit:cover;display:block}
-.ccard .meta{position:absolute;left:12px;top:12px;display:flex;align-items:center;gap:8px}
-.ccard p{margin:10px 0 0;font-size:16px;line-height:20px}
+.pcard{flex:none;width:308px;scroll-snap-align:start}
+.pcard .img{height:174px;border-radius:20px;overflow:hidden;background:#121212}
+.pcard .img img{width:100%;height:100%;object-fit:cover;display:block}
+.pcard h3{margin:10px 0 0;font-size:16px;line-height:20px;font-weight:400}
+.pcard p{margin:10px 0 0;font-size:16px;line-height:20px;color:var(--muted)}
+.ftr .apps{display:flex;gap:2px}
+.ftr .apps img{width:32px;height:32px;border-radius:8px;display:block}
 /* falling app icons */
 .bdg.ico{padding:0;width:42px;height:42px;border:0;border-radius:11px;background:none;overflow:hidden}
 .bdg.ico img{width:100%;height:100%;display:block;pointer-events:none;-webkit-user-drag:none}
@@ -333,10 +349,9 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 
   <div class="tabs rv" role="tablist" aria-label="Разделы работ">
     <button class="tab" role="tab" aria-selected="true" data-k="cases">Продуктовые кейсы</button>
-    <button class="tab" role="tab" aria-selected="false" data-k="features">Фичи</button>
-    <button class="tab" role="tab" aria-selected="false" data-k="snippets">Сниппеты</button>
-    <button class="tab" role="tab" aria-selected="false" data-k="brand">Фирменный стиль</button>
-    <button class="tab" role="tab" aria-selected="false" data-k="web">Web дизайн</button>
+    <button class="tab" role="tab" aria-selected="false" data-k="creative">Креативы</button>
+    <button class="tab" role="tab" aria-selected="false" data-k="brand">Айдентика</button>
+    <button class="tab" role="tab" aria-selected="false" data-k="web">Веб дизайн</button>
   </div>
 
   <section class="gut" id="cases" style="margin-top:40px">
@@ -366,7 +381,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
       <h2 class="h2">Стек программ, которые я использую в своей работе</h2>
       <p class="sub">Инструменты, в которых я думаю, проектирую и довожу продукт до разработки</p>
     </div>
-    <div class="groups" id="groups"></div>
+    <div class="stk" id="stk"></div>
   </section>
 
   <section class="gut pet" id="pet">
@@ -380,7 +395,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   <section class="gut pet" id="community">
     <div class="rv">
       <h2 class="h2">Figma Community проекты</h2>
-      <p class="sub">На досуге делаю обои для рабочего стола и разные визуальные концепции</p>
+      <p class="sub">На досуге делаю разные обои для рабочего стола и разные визуальные концепции</p>
     </div>
     <div class="hscroll rv" id="comList"></div>
   </section>
@@ -404,6 +419,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
       <a href="#">E-mail <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
     </div>
     <small>© 2026 - Васнёв Роман</small>
+    <div class="apps" aria-hidden="true"><img src="assets/main/ic-he.webp" alt="" width="32" height="32" loading="lazy"><img src="assets/main/ic-lp.webp" alt="" width="32" height="32" loading="lazy"><img src="assets/main/ic-me.webp" alt="" width="32" height="32" loading="lazy"></div>
   </footer>
 </main>
 
@@ -426,12 +442,11 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------- content ---------- */
 const CASES=[
- {img:'assets/bitflare/cover.webp',alt:'Bitflare — лаунчпад для инвестиций',tags:['Fintech','SaaS','B2B','B2C'],w:'Спроектировал лаунчпад и бренд,',g:' где стартапы собирают инвестиции, а инвесторы заходят в проект до листинга.',t:'Спроектировал лаунчпад и бренд для запуска IPO',d:'Платформа, где стартапы собирают инвестиции, а инвесторы заходят в проект до листинга.'},
- {img:'assets/pump/cover.webp',alt:'Pump DAO — DeFi-платформа для мем-токена',href:'pump.html',tags:['Fintech','SaaS','B2C'],w:'Спроектировал инвестиционную платформу с 12 уровнями доходности:',g:' держатели получают процент за депозит и реинвестирование, а проект сохраняет капитализацию после первичного размещения.',t:'Как удержать курс с помощью реинвестиционного геймифицированного сервиса',d:'Создал продукт для мем-токена на фоне плохого рынка и неожиданных новостей: в сжатые сроки запустил продукт и сохранил капитализацию $2 млн.'},
- {img:'assets/anty/cover.webp',alt:'Anty Wallet — крипто-кошелёк внутри Telegram',href:'anty.html',tags:['Fintech','B2C','Telegram'],w:'Спроектировал кошелёк и бренд внутри Telegram,',g:' где новичок за 4 шага создаёт кошелёк и сам выбирает, кто хранит ключ доступа.',t:'Убрал главный страх новичка в крипте: seed-фразу',d:'Кошелёк в Telegram, которым пользовались 50 000 человек в месяц. Продукт выкупили вместе с моими UX-решениями.'},
- {img:'assets/jobbit/cover.webp',alt:'Jobbit — маркетплейс услуг',href:'jobbit.html',tags:['Marketplace','B2C','Web App'],w:'Спроектировал маркетплейс услуг для двух сторон,',g:' где клиент выбирает исполнителя прямо в отклике, а специалист видит цену заказа и гарантированную выплату.',t:'Маркетплейс услуг, где сделка прозрачна для обеих сторон',d:'Клиент выбирает исполнителя прямо в отклике, а специалист видит цену заказа и гарантированную выплату.'},
- {img:'assets/klubok/cover.webp',alt:'Клубок — маркетплейс авторских туров',href:'klubok.html',tags:['Travel-tech','B2B2C','Marketplace'],w:'Спроектировал маркетплейс авторских туров с нуля,',g:' где путешественник выбирает тур без переписки, а гид сам проходит путь от регистрации до продаж.',t:'Маркетплейс авторских туров с нуля до продакшена',d:'Путешественник выбирает тур без переписки, а гид сам проходит путь от регистрации до продаж.'},
- {img:'assets/slothereum/cover.webp',alt:'Slothereum OS — торговая платформа',href:'slothereum.html',tags:['Fintech','Trading','B2C'],w:'Спроектировал торговую платформу с лаунчпадом и ботом,',g:' где пользователь покупает токен в любой сети через свою биржу — без настройки криптокошелька.',t:'Торговая платформа, где токен покупают в любой сети без криптокошелька',d:'Лаунчпад, торговый терминал и бот в Twitter: пользователь торгует через свою биржу.'},
+ {img:'assets/main/cover-pump.webp',bg:'linear-gradient(180deg,#244215,#122c05)',alt:'Pump DAO — DeFi-платформа для мем-токена',href:'pump.html',tags:['Fintech','SaaS','B2C'],t:'Механика удержания, которая сохранила ~$2 млн капитализации после пресейла',d:'Создал продукт для мем-токена на фоне плохого рынка и неожиданных новостей: в сжатые сроки запустил продукт и сохранил капитализацию $2 млн.'},
+ {img:'assets/main/cover-bitflare.webp',bg:'#c6ff00',alt:'Bitflare — лаунчпад для инвестиций',href:'project.html',tags:['Fintech','SaaS','B2B','B2C'],t:'Спроектировал лаунчпад и бренд для запуска IPO',d:'Платформа, где стартапы собирают инвестиции, а инвесторы заходят в проект до листинга.'},
+ {img:'assets/main/cover-anty.webp',bg:'#7f86ff',alt:'Anty Wallet — крипто-кошелёк внутри Telegram',href:'anty.html',tags:['Fintech','B2C','Telegram'],t:'Убрал главный страх новичка в крипте: seed-фразу',d:'Кошелёк в Telegram, которым пользовались 50 000 человек в месяц. Продукт выкупили вместе с моими UX-решениями.'},
+ {bg:'#50ff47',tags:['Fintech','B2C','Mobile','EdTech'],t:'Как короткие уроки помогли новичкам решиться на первую инвестицию',d:'Robinhood Learn: обучение инвестициям в приложении.',soon:1},
+ {bg:'#0a3068',tags:['Fintech','B2C','Mobile','AI'],t:'Превратил скучный учёт расходов в план с советами',d:'FinHamster: ИИ-помощник для личных финансов.',soon:1},
 ];
 const STEPS=[
  ['01.','Исследование',['Исследование','Бенчмаркинг','Анализ конкурентов','Формирование гипотез','Customer Journey Map','Интервью','Юзабилити-тесты'],[0,3,5]],
@@ -441,6 +456,7 @@ const STEPS=[
  ['05.','Интерфейс',['UX/UI','Дизайн-системы','Адаптив','Состояния и edge cases'],[0]],
  ['06.','Handoff',['Handoff','Аннотации и спецификации','Дизайн-ревью'],[0]]
 ];
+const AI_C=[['#e4b3fb','#000'],['#dff85f','#000'],['#2a40c4','#fff'],['#ea582f','#fff'],['#dcb1ff','#000'],['#cd50ff','#fff']];
 const AI=[
  ['Исследование - LLM','Бенчмаркинг конкурентов, разбор отзывов, 3–5 гипотез для проверки'],
  ['Сценарии - LLM + FigJam','Роли, user flow и краевые случаи на одной карте продукта'],
@@ -450,48 +466,67 @@ const AI=[
  ['Handoff','Хэндоф фронтенду со всеми состояниями и логикой. Или сразу код под стек, который задала команда, с код-ревью перед передачей.']
 ];
 const GROUPS=[
- ['Тестирование',['Maze','UXtweak','Hotjar','Яндекс Метрика','Google Forms'],['maze','hotjar','uxtweak','yandex-metrika'],true],
- ['Анализ и ресерч',['LLM','Perplexity','Similarweb','Mobbin'],['chatgpt','claude','similarweb','perplexity']],
- ['UX/UI дизайн',['Figma','Pixso','Спектр','Protopie'],['figma','pixso','protopie']],
- ['Графика',['Photoshop','Illustrator','Blender','Higgsfield'],['photoshop','illustrator','blender','higgsfield']],
- ['Motion',['After Effects','LottieFiles','React Bits','Jitter'],['after-effects','lottiefiles','jitter','react-bits']],
- ['Handoff',['Figma Dev Mode','Zeplin'],['zeplin','figma-dev']]
+ ['Тестирование',['Maze','UXtweak','Hotjar','Яндекс Метрика','Google Forms'],['maze','hotjar','uxtweak','yandex-metrika'],[0,4]],
+ ['Анализ и ресерч.',['LLM','Perplexity','Similarweb','Mobbin'],['chatgpt','claude','similarweb','perplexity'],[0]],
+ ['UX/UI дизайн',['Figma','Pixso','Спектр','Protopie'],['figma','pixso','protopie'],[0]],
+ ['Графика',['Photoshop','Illustrator','Blender','Higgsfield'],['photoshop','illustrator','blender','higgsfield'],[0]],
+ ['Motion',['After Effects','LottieFiles','React Bits','Jitter'],['after-effects','lottiefiles','jitter','react-bits'],[0]],
+ ['Handoff',['Figma Dev Mode','Zeplin'],['figma','zeplin'],[0,1]]
 ];
 const EXP=[['EvaCodes','full-time','Продуктовый дизайнер','2024-2026'],['Aragon','full-time','Продуктовый дизайнер','2023-2024'],['iCrypto World','full-time','Продуктовый дизайнер','2021-2022'],['KOTELOV','contract','UX/UI Designer','2021-2021'],['MetaLamp','full-time','UX/UI Designer','2020-2021'],['Аутстафф студия','contract','Web-design','2017-2020']];
 const MENU=[['Обо мне','Кто я, чем занимаюсь и как со мной связаться.','#about'],['Продуктовые кейсы','Продукты, которые я вёл от исследования до передачи в разработку.','#cases'],['Работа с AI','Как я с помощью AI быстро собираю MVP и проверяю гипотезы.','#ai'],['Мой стек технологий','Инструменты, в которых я работаю на каждом этапе.','#stack'],['Пет проекты','Плагины, инструменты и проекты для Figma Community.','#pet'],['Опыт работы','Компании и проекты, в которых я работал с 2017 года.','#exp']];
-const BADGES=[['PIXEL PERFECT'],['UX/UI DESIGN'],['BRANDING'],['UI DESIGN'],['TOUCHPOINT'],['IMPROVEMENTS'],['PAIN POINT'],['CTA'],['WEB 3.0','f'],['AI','f'],['MARKETING'],['USER FLOW'],['USABILITY'],['CREATIVE','f'],['CJM'],['DESIGN SYSTEM'],['COMPONENTS'],['ATOMARIC DESIGN'],['TRENDS'],['VASNEV ROMAN','v'],['SENIOR','v'],['STAFF DESIGNER','v'],['PRODUCT DESIGNER','v']];
+/* text, background, border, text colour (Figma: badge for fall in main) */
+const BADGES=[['PIXEL PERFECT'],['UX/UI DESIGN'],['BRANDING'],['UI DESIGN'],['TOUCHPOINT'],['IMPROVEMENTS'],['PAIN POINT','#ea582f','#fff'],['CTA'],['WEB 3.0','#d5ff00','#566700','#374200'],['AI','#043ae5','#fff'],['MARKETING'],['USER FLOW'],['USABILITY'],['CREATIVE','#ff531f','#fff'],['CJM','#6204e5','#fff'],['DESIGN SYSTEM','#63d990','#136231','#073318'],['COMPONENTS','#cd50ff','#fff'],['ATOMARIC DESIGN'],['TRENDS'],['VASNEV ROMAN','#d27ef9','#fff'],['SENIOR','#3c2cff','#fff'],['STAFF DESIGNER','#ea582f','#fff'],['PRODUCT DESIGNER','#cd50ff','#fff']];
 
-const PET=['Degen UI','UX/UI Senior Ai agent','Motion scene'];
-const COM=[['Glassmorphism wallpaper (abstract 3d figure)','assets/community-1.webp'],['Abstraction wallpaper (malevich edition)','assets/community-2.webp'],['Minimalism fintech ui icon pack','']];
+const PET=[['UX/UI Senior Ai agent','Сеньорская экспертиза по запросу: ревью, советы, решения, серьёзные аргументы для вашего лида от сеньора','assets/main/pet-agent.webp'],['Degen UX/UI','Фан-журнал с дегенеративным дизайном, нейрослопом и курсом по нему же, а также наградами за прохождение спринтов','assets/main/pet-degen.webp'],['Motion scene | Mockup','Библиотека моушн-мокапов и скринов: больше 50 движущихся сцен, можно вставить прямо в Figma или экспортировать в WebM','assets/main/pet-motion.webp']];
+const COM=[['Glassmorphism wallpaper (abstract 3d figure)','assets/main/com-1.webp'],['Abstraction wallpaper (malevich edition)','assets/main/com-2.webp'],['Minimalism fintech ui kit & icon’s','assets/main/com-3.webp']];
 const FALL_ICONS=['lottiefiles','zeplin','pixso','figma','higgsfield','photoshop','blender','hotjar'];
 const $=s=>document.querySelector(s);const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
-const PH=(tags)=>Array.from({length:4},()=>({tags,w:'Название проекта —',g:' короткое описание: что сделано и какой результат получил продукт.'}));
-const TABS={cases:CASES,features:PH(['FinTech','UX/UI','B2C']),snippets:PH(['UI','Motion']),brand:PH(['Branding','Identity','Print']),web:PH(['Web','Landing'])};
 const ARW='<span class="dot18"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
-function cardsHTML(list){return list.map(c=>`<a class="card" href="${c.href||'project.html'}"><div class="cover">${c.img?`<img src="${c.img}" alt="${esc(c.alt||'')}" loading="lazy" decoding="async">`:''}</div><div class="cbody"><h3 class="ctitle">${esc(c.t||c.w)}</h3><div class="cbadges">${c.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div><p class="cdesc">${esc(c.d||c.g)}</p><span class="cmore">Читать кейс ${ARW}</span></div></a>`).join('');}
+function cardsHTML(list){return list.map(c=>{const tag=c.soon?'div':'a';const href=c.soon?'':` href="${c.href}"`;return `<${tag} class="card${c.soon?' soon':''}"${href}><div class="cover" style="background:${c.bg}">${c.img?`<img src="${c.img}" alt="${esc(c.alt||'')}" loading="lazy" decoding="async">`:''}</div><div class="cbody"><h3 class="ctitle">${esc(c.t)}</h3><div class="cbadges">${c.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div><p class="cdesc">${esc(c.d)}</p><span class="cmore">${c.soon?'Кейс скоро':'Читать кейс '+ARW}</span></div></${tag}>`}).join('');}
 $('#caseList').innerHTML=cardsHTML(CASES).replace(/class="card"/g,'class="card rv"');
-const FI='<img class="fi" src="assets/figma-mini.png" alt="Figma" width="22" height="22">';
-$('#petList').innerHTML=PET.map(t=>`<div class="pcard"><span class="meta">${FI}<span class="soon">soon</span></span>${esc(t)}</div>`).join('');
-$('#comList').innerHTML=COM.map(([t,src])=>`<div class="ccard"><div class="img">${src?`<img src="${src}" alt="${esc(t)}" loading="lazy" decoding="async">`:''}<span class="meta">${FI}${src?'':'<span class="soon">soon</span>'}</span></div><p>${esc(t)}</p></div>`).join('');
-$('#aiList').innerHTML=AI.map(a=>`<div class="ai-it"><h3>${esc(a[0])}</h3><p>${esc(a[1])}</p></div>`).join('');
-(function(){const it=$('#aiList').lastElementChild;const NS='http://www.w3.org/2000/svg';const svg=document.createElementNS(NS,'svg');svg.setAttribute('class','dash');svg.setAttribute('aria-hidden','true');const r=document.createElementNS(NS,'rect');svg.appendChild(r);it.prepend(svg);
- const fit=()=>{const w=it.offsetWidth,h=it.offsetHeight;svg.setAttribute('viewBox',`0 0 ${w} ${h}`);r.setAttribute('x',1.5);r.setAttribute('y',1.5);r.setAttribute('width',Math.max(0,w-3));r.setAttribute('height',Math.max(0,h-3));r.setAttribute('rx',28.5);};
- fit();if(window.ResizeObserver)new ResizeObserver(fit).observe(it);else addEventListener('resize',fit);})();
-$('#groups').innerHTML=GROUPS.map(g=>`<div class="grp rv${g[3]?' tall':''}"><h3>${g[0]}</h3><div class="chips">${g[1].map((c,i)=>`<span class="chip${i?'':' k'}">${esc(c)}</span>`).join('')}</div><div class="icons">${g[2].map(n=>`<img src="assets/${n}.png" alt="${n}" loading="lazy">`).join('')}</div></div>`).join('');
+$('#petList').innerHTML=PET.map(([t,d,src])=>`<div class="pcard"><div class="img"><img src="${src}" alt="${esc(t)}" loading="lazy" decoding="async" width="308" height="174"></div><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join('');
+$('#comList').innerHTML=COM.map(([t,src])=>`<div class="pcard"><div class="img"><img src="${src}" alt="${esc(t)}" loading="lazy" decoding="async" width="308" height="174"></div><h3>${esc(t)}</h3></div>`).join('');
+$('#aiList').innerHTML=AI.map((a,i)=>`<div class="ai-it" style="--c:${AI_C[i][0]};--t:${AI_C[i][1]}"><h3>${esc(a[0])}</h3><p>${esc(a[1])}</p></div>`).join('');
+$('#stk').innerHTML=GROUPS.map((g,i)=>`<div class="sc${i?'':' tall'}" role="button" tabindex="0" aria-expanded="false" aria-label="${g[0]}: показать программы"><h3>${g[0]}</h3><div class="chips">${g[1].map((c,j)=>`<span class="chip${g[3].includes(j)?' k':''}">${esc(c)}</span>`).join('')}</div><div class="icons">${g[2].map(n=>`<img src="assets/${n}.png" alt="${n}" width="93" height="93" loading="lazy" draggable="false">`).join('')}</div></div>`).join('');
 $('#rows').innerHTML=EXP.map(e=>`<div class="row rv"><div>${e[0]}<small>${e[1]}</small></div><div>${e[2]}<small>${e[3]}</small></div></div>`).join('');
 $('#mlist').innerHTML=MENU.map((m,i)=>`<li style="animation-delay:${.08+i*.05}s"><a href="${m[2]}"><strong>${m[0]} <span class="c"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></strong><p>${m[1]}</p></a></li>`).join('');
 
-/* ---------- tabs ---------- */
+/* ---------- tabs + empty states with timer ---------- */
 const tabsEl=$('.tabs'),caseList=$('#caseList');let curTab='cases';
+const WAIT=15,EMPTY={};let tick1=0;
+const fmt=n=>'00:'+String(Math.max(0,n)).padStart(2,'0');
+function emptyHTML(st){return st.left>0
+  ?`<div class="empty" aria-live="polite"><p>Я ещё готовлю кейсы для этого блока, подождите ${WAIT} секунд, вдруг появятся</p><div class="row2"><span class="timer" id="tmr">${fmt(st.left)}</span></div></div>`
+  :`<div class="empty" aria-live="polite"><p class="swapin">Упс... кейсы я ещё не подготовил, но зато мы с вами на практике увидели, как удерживать внимание пользователя</p><div class="row2"><span class="timer">00:00</span><span class="eng">+15 сек к Engagement time</span></div></div>`;}
+function runTimer(k){clearInterval(tick1);const st=EMPTY[k];if(st.left<=0)return;
+  tick1=setInterval(()=>{if(curTab!==k){clearInterval(tick1);return;}st.left--;const el=$('#tmr');
+    if(st.left>0){if(el)el.textContent=fmt(st.left);}else{clearInterval(tick1);caseList.innerHTML=emptyHTML(st);}},1000);}
+function showTab(k){clearInterval(tick1);
+  if(k==='cases'){caseList.innerHTML=cardsHTML(CASES);return;}
+  const st=EMPTY[k]||(EMPTY[k]={left:WAIT});caseList.innerHTML=emptyHTML(st);runTimer(k);}
 document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{if(t.dataset.k===curTab)return;curTab=t.dataset.k;
   document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected',x===t));
   const l=t.offsetLeft-(tabsEl.clientWidth-t.offsetWidth)/2;tabsEl.scrollTo({left:l,behavior:reduce?'auto':'smooth'});
-  caseList.classList.add('swap');setTimeout(()=>{caseList.innerHTML=cardsHTML(TABS[curTab]);caseList.classList.remove('swap');},reduce?0:350);}));
+  caseList.classList.add('swap');setTimeout(()=>{showTab(curTab);caseList.classList.remove('swap');},reduce?0:350);}));
 (function(){let down=false,sx=0,sl=0,moved=false;
   tabsEl.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;down=true;moved=false;sx=e.clientX;sl=tabsEl.scrollLeft;});
   addEventListener('pointermove',e=>{if(!down)return;const dx=e.clientX-sx;if(Math.abs(dx)>4){moved=true;tabsEl.classList.add('dragging');}tabsEl.scrollLeft=sl-dx;});
   addEventListener('pointerup',()=>{down=false;setTimeout(()=>tabsEl.classList.remove('dragging'),0);});
   const edge=()=>tabsEl.classList.toggle('end',tabsEl.scrollLeft+tabsEl.clientWidth>=tabsEl.scrollWidth-2);tabsEl.addEventListener('scroll',edge,{passive:true});edge();})();
+
+/* ---------- stack: cards unfold from a deck on scroll, tap opens a card ---------- */
+(function(){const box=$('#stk'),cards=[...box.children],n=cards.length;
+  const STEP=100,FIRST=132,DECK=12,EXP=112;let open=-1,ticking=false;
+  const fin=i=>i?FIRST+(i-1)*STEP:0;
+  function layout(){let extra=0;cards.forEach((c,i)=>{c.style.top=extra+'px';if(i===open&&i<n-1)extra+=EXP;});box.style.height=(fin(n-1)+(open===n-1?212:180)+extra)+'px';}
+  function frame(){ticking=false;const r=box.getBoundingClientRect(),vh=innerHeight;
+    let p=reduce?1:Math.min(1,Math.max(0,(vh*.95-r.top)/(vh*.6)));const e=p*p*(3-2*p);
+    cards.forEach((c,i)=>{const y=i*DECK+(fin(i)-i*DECK)*e;const s=1-(n-1-i)*.035*(1-e);c.style.transform=`translate3d(0,${y.toFixed(1)}px,0) scale(${s.toFixed(4)})`;});}
+  function req(){if(!ticking){ticking=true;requestAnimationFrame(frame);}}
+  function toggle(i){open=open===i?-1:i;cards.forEach((c,j)=>{c.classList.toggle('open',j===open);c.setAttribute('aria-expanded',j===open);});layout();}
+  cards.forEach((c,i)=>{c.addEventListener('click',()=>toggle(i));c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle(i);}});});
+  addEventListener('scroll',req,{passive:true});addEventListener('resize',()=>{layout();req();});layout();frame();})();
 
 /* ---------- menu ---------- */
 const menu=$('#menu');
@@ -515,8 +550,8 @@ function startReveal(){document.querySelectorAll('.rv:not([data-hero])').forEach
 const P={gravity:2.1,restitution:.04,friction:.9,frictionStatic:1.4,frictionAir:.012,density:.006,stagger:55};
 let engine,bodies=[],raf=0,running=false,spawned=0,dragC=null,zoneW=0;
 const drop=$('#drop');
-function buildBadges(){drop.innerHTML='';const items=BADGES.map(b=>({t:b[0],k:b[1]})).concat(FALL_ICONS.map(n=>({i:n})));const order=items.sort(()=>Math.random()-.5);
-  return order.map(it=>{const el=document.createElement('div');if(it.i){el.className='bdg ico';const im=document.createElement('img');im.src='assets/'+it.i+'.png';im.alt='';im.draggable=false;el.appendChild(im);}else{el.className='bdg'+(it.k?' '+it.k:'');el.textContent=it.t;}drop.appendChild(el);return el;});}
+function buildBadges(){drop.innerHTML='';const items=BADGES.map(b=>({t:b[0],bg:b[1],bd:b[2],c:b[3]})).concat(FALL_ICONS.map(n=>({i:n})));const order=items.sort(()=>Math.random()-.5);
+  return order.map(it=>{const el=document.createElement('div');if(it.i){el.className='bdg ico';const im=document.createElement('img');im.src='assets/'+it.i+'.png';im.alt='';im.draggable=false;el.appendChild(im);}else{el.className='bdg';el.textContent=it.t;if(it.bg){el.style.background=it.bg;el.style.borderColor=it.bd;el.style.color=it.c||'#fff';}}drop.appendChild(el);return el;});}
 function rnd(a,b){return a+Math.random()*(b-a);}
 function initPhysics(){
   if(!window.Matter){return;}
