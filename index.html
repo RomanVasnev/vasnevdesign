@@ -108,8 +108,8 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   font-size:12px;font-weight:300;line-height:20px;letter-spacing:-.6px;color:#fff;white-space:nowrap}
 .acard .arow.r3 .abd{padding:2px 6px}
 .acard .abd.k{background:#212121;-webkit-backdrop-filter:none;backdrop-filter:none}
-.astage{position:relative;flex:1 1 auto;min-height:300px;margin-top:10px;border-radius:14px;overflow:hidden;background:#ececec url(assets/main/approach/grid.svg) center/cover no-repeat}
-.astk{position:absolute;left:50%;bottom:0;width:384px;aspect-ratio:887.2/554.8;transform:translateX(-50%)}
+.astage{position:relative;flex:1 1 auto;min-height:300px;margin-top:10px;border-radius:40px;overflow:hidden;background-color:#121212;background-image:radial-gradient(circle,rgba(255,255,255,.028) 0 1px,transparent 1.4px);background-size:20px 13px;background-position:-6px -1px}
+.astk{position:absolute;left:50%;bottom:0;width:384px;aspect-ratio:874.7/583.5;transform:translateX(-50%)}
 .aly{position:absolute;inset:0;transition:transform 1s cubic-bezier(.22,.8,.2,1);will-change:transform}
 .aly img{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .7s ease}
 .aly.on .ly,.aly.up .gh,.aly.dn .gh{opacity:1}
@@ -576,7 +576,7 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{if(
     f.addEventListener('click',t);f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t();}});});})();
 
 /* ---------- approach: pinned; layers lie stacked (Medusa logic): layers above the active one lift by a fixed offset and turn into ghost outlines, layers below stay as plain plates ---------- */
-(function(){const sec=$('#approach'),cards=$('#acards'),stg=$('.astage'),stk=$('#astk'),n=STEPS.length,AR=887.2/554.8,GAP=.075,LIFT=2.6;let cur=-1;
+(function(){const sec=$('#approach'),cards=$('#acards'),stg=$('.astage'),stk=$('#astk'),n=STEPS.length,AR=874.7/583.5,GAP=.075,LIFT=2.6;let cur=-1;
   cards.innerHTML=STEPS.map((st,i)=>{let j=0;return `<div class="acard" style="--c:${STEP_C[i]}"><h3>${st[0]} ${esc(st[1])}</h3><div class="arows">${st[2].map(r=>`<div class="arow${r.length>2?' r3':''}">${r.map(c=>`<span class="abd${st[3].includes(j++)?' k':''}">${esc(c)}</span>`).join('')}</div>`).join('')}</div></div>`;}).join('');
   const im=(c,f)=>`<img class="${c}" src="assets/main/approach/${f}.svg" alt="" decoding="async">`;
   stk.innerHTML=STEPS.map((_,i)=>`<div class="aly" style="z-index:${n-i}">${im('gh','ghost')}${im('ly','layer-'+(i+1))}</div>`).join('');
