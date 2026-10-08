@@ -4,101 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Anty Wallet — Роман Васнёв</title>
-<meta name="description" content="Anty Wallet: крипто-кошелёк внутри Telegram, которым новичок пользуется без страха. Кейс продуктового дизайнера Романа Васнёва.">
+<meta name="description" content="Anty Wallet: крипто-кошелёк внутри Telegram, где seed-фраза перестала быть барьером для новичка. Кейс продуктового дизайнера Романа Васнёва.">
 <meta name="theme-color" content="#060606">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&display=swap">
-<style>
-:root{--bg:#060606;--fg:#fff;--muted:#767676;--dim:#404040;--line:#202020;--blue:#043ae5;--blue2:#3c2cff;--tag:#3565ff;--font:'Geist',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--pad:20px;--max:450px;color-scheme:dark}
-*{box-sizing:border-box}
-html,body{background:var(--bg)}
-body{margin:0;color:var(--fg);font-family:var(--font);letter-spacing:-.05em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
-.wrap{max-width:var(--max);margin:0 auto;position:relative}
-.gut{padding-inline:var(--pad)}
-.arr{width:15px;height:15px;flex:none}
-:focus-visible{outline:2px solid var(--tag);outline-offset:3px;border-radius:6px}
-/* header */
-.hdr{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px)}
-.hdr .wrap{height:80px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:19px var(--pad) 0}
-.hdr::before{content:"";position:absolute;inset:0;background:rgba(6,6,6,.6);-webkit-backdrop-filter:blur(4px) saturate(1.5) brightness(1.08);backdrop-filter:blur(4px) saturate(1.5) brightness(1.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.08);-webkit-mask:linear-gradient(#000 26%,rgba(0,0,0,.55) 62%,transparent);mask:linear-gradient(#000 26%,rgba(0,0,0,.55) 62%,transparent)}
-.hdr .dom,.hdr .mbtn{position:relative;font-size:16px;font-weight:500;white-space:nowrap}
-.prog{position:relative;flex:1;max-width:130px;height:2px;border-radius:40px;background:#323232;overflow:hidden}
-.prog i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:40px;background:linear-gradient(90deg,#3c2cff,#c4ceff)}
-.mbtn{display:flex;align-items:center;gap:6px}
-.dot18{width:18px;height:18px;border-radius:50%;background:#fff;display:grid;place-items:center}
-
-/* footer */
-.ftr{margin-top:100px;background:#fff;color:#000;border-radius:30px 30px 0 0;padding:39px var(--pad) calc(25px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:center;gap:20px}
-.ftr .links{margin:0;justify-content:center}
-.ftr small{font-size:12px;color:#b4b4b4}
-
-/* menu */
-.menu{position:fixed;inset:0;z-index:80;background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#000;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility 0s .35s}
-.menu.open{opacity:1;visibility:visible;transition:opacity .35s ease}
-.menu .wrap{min-height:100%;display:flex;flex-direction:column}
-.menu .top{height:80px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:19px var(--pad) 0;margin-top:env(safe-area-inset-top,0px)}
-.lang{margin:30px var(--pad) 0;font-size:18px;font-weight:500}
-.lang span{color:var(--muted)}
-.mlist{list-style:none;margin:22px 0 0;padding:0 var(--pad);display:flex;flex-direction:column;gap:22px;flex:1}
-.mlist a{display:block}
-.mlist strong{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:500}
-.mlist .c{width:24px;height:24px;border-radius:50%;background:#000;display:grid;place-items:center}
-.mlist .c path{stroke:#fff}
-.menu .dot18{background:#000}
-.menu .dot18 path{stroke:#fff}
-.mlist p{margin:8px 0 0;font-size:14px;line-height:20px;color:var(--muted)}
-.menu .ftr{margin-top:40px;background:#000;color:#fff}
-.menu .ftr .links a{color:#fff}
-.menu.open .mlist li{animation:mi .5s both cubic-bezier(.2,.7,.2,1)}
-@keyframes mi{from{opacity:0;filter:blur(8px);transform:translateY(12px)}}
-
-/* project page (Figma: Mobile / Project page) */
-main{padding-top:146px}
-.c24{width:24px;height:24px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none}
-.back{display:inline-flex;align-items:center;gap:8px;font-size:20px;font-weight:500;line-height:26px}
-.prj{display:flex;gap:12px;align-items:center;margin-top:34px}
-.logo{width:40px;height:40px;border-radius:14px;border:1px solid #0f0f0f;overflow:hidden;flex:none;background:#4a4ff0}
-.logo img{width:100%;height:100%;display:block}
-.prj b{display:block;font-size:16px;font-weight:500;line-height:21px}
-.prj small{display:block;font-size:14px;color:var(--muted);line-height:18px}
-h1{font-size:24px;font-weight:500;line-height:27px;margin:12px 0 0;text-wrap:balance}
-.flow{display:flex;flex-direction:column;gap:12px;margin-top:36px}
-.shot{margin:0;border-radius:20px;overflow:hidden;background:#141414}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.shot img{display:block;width:100%;height:auto}
-.tx{margin:-2px 0 24px}
-.tx .lbl{display:block;font-size:14px;line-height:18px;color:var(--muted);margin:0 0 6px}
-.tx p{margin:0;font-size:16px;line-height:20px;font-weight:300}
-.tx p b{font-weight:500}
-.tx ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
-.tx li{position:relative;padding-left:16px;font-size:16px;line-height:20px;font-weight:300}
-.tx li::before{content:"";position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:var(--tag)}
-.ctx{margin:0 0 28px;display:flex;flex-direction:column}
-.ctx div{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line);font-size:14px;line-height:18px}
-.ctx div:last-child{border-bottom:1px solid var(--line)}
-.ctx dt{color:var(--muted)}
-.ctx dd{margin:0}
-.res{margin-top:68px}
-.res h2{font-size:26px;font-weight:500;line-height:28px;margin:0}
-.rp{margin:12px 0 0;font-size:16px;line-height:20px;font-weight:300}
-.mx{display:grid;grid-template-columns:1fr 1fr;gap:28px 16px;margin-top:36px}
-.mx b{display:block;font-size:44px;line-height:44px;font-weight:500;letter-spacing:-.06em;background:linear-gradient(90deg,#fff,#c4ceff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.mx span{display:block;margin-top:10px;font-size:14px;line-height:18px;color:var(--muted)}
-.note{margin:28px 0 0;padding:14px 16px;border-radius:16px;background:#121212;font-size:14px;line-height:18px;color:var(--muted)}
-.credits{margin-top:120px;display:flex;flex-direction:column;gap:12px}
-.credits b{display:block;font-size:22px;font-weight:500;line-height:29px}
-.credits small{display:block;margin-top:8px;font-size:18px;font-weight:500;line-height:20px;color:var(--muted)}
-.sep{border:0;border-top:1px solid var(--line);margin:80px 0 0}
-.next{display:flex;align-items:center;gap:16px;margin-top:60px}
-.next .th{width:96px;height:62px;border-radius:14px;background:#1a1a1a;overflow:hidden;flex:none}
-.next .th img{width:100%;height:100%;object-fit:cover;display:block}
-.next span.t{display:flex;align-items:center;gap:8px;font-size:20px;font-weight:500;line-height:26px}
-.ftr{margin-top:150px}
-@media (prefers-reduced-motion:reduce){.menu{transition:none}.menu.open .mlist li{animation:none}}
-</style>
-<link rel="stylesheet" href="desk.css">
+<link rel="stylesheet" href="case.css">
+<style>:root{--accent:#4a4ff0}</style>
 </head>
 <body>
 <header class="hdr">
@@ -112,70 +23,35 @@ h1{font-size:24px;font-weight:500;line-height:27px;margin:12px 0 0;text-wrap:bal
   <a class="back" href="index.html"><span class="c24"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M11 4.5H1M4.5 1 1 4.5 4.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>На главную</a>
   <div class="prj"><div class="logo"><img src="assets/anty/logo.webp" alt="" width="40" height="40"></div><div><b>Anty Wallet</b><small>Крипто-кошелёк внутри Telegram</small></div></div>
   <h1>Убрал главный страх новичка в крипте: seed-фразу</h1>
-  <div class="flow">
-  <figure class="shot"><img src="assets/anty/hero.webp" alt="Anty Wallet: приветствие, главный экран и успешный импорт" width="1200" height="900" fetchpriority="high" decoding="async"></figure>
-  <div class="tx"><p>Anty Wallet это криптокошелёк внутри Telegram для тех, кто впервые пришёл в крипту из чата. Я спроектировал продукт целиком: UX-архитектуру, интерфейс в двух темах, логотип, персонажа и стикерпак. После запуска кошельком пользовались около 50 000 человек в месяц, а затем продукт выкупила известная команда разработчиков в Web3 вместе с моими UX-решениями.</p></div>
-  <dl class="ctx">
-  <div><dt>Платформа</dt><dd>Telegram Mini App на весь экран и на 2/3 поверх чата, плюс сайт</dd></div>
-  <div><dt>Роль</dt><dd>Product Designer: UX-архитектура, UI, дизайн-система, бренд, персонаж</dd></div>
-  <div><dt>Объём</dt><dd>66 экранов: 58 в приложении и 8 на сайте</dd></div>
-  <div><dt>Итог</dt><dd>Около 50 000 MAU, продукт выкуплен</dd></div>
- </dl>
-  <div class="tx"><span class="lbl">Проблема</span><p>Новичок приходит в крипту из чата: друг скинул ссылку на мем-токен. Обычный кошелёк сразу требует записать 12 слов, выбрать сеть и разобраться в терминах. Главный страх в том, чтобы потерять доступ к деньгам, поэтому он бросает кошелёк на первом шаге или записывает seed-фразу куда попало.</p></div>
-  <div class="tx"><span class="lbl">Задача</span><ul><li>Новичок доходит до конца создания кошелька и понимает, как защищён его доступ</li><li>Продукт работает в любом размере окна Telegram</li><li>У кошелька есть характер, ведь в Telegram правят мемы</li></ul></div>
-  <div class="tx"><span class="lbl">Исследование</span><p>Разобрал шесть решений внутри Telegram: Wallet, Tonkeeper, MyTonWallet, HOT Wallet, Bitget Wallet и ботов-трейдеров. Seed-фраза везде главный барьер, удобство часто покупается ценой безопасности, сеть спрятана в настройках, а характера нет ни у одного кошелька.</p></div>
-  <figure class="shot"><img src="assets/anty/cjm.webp" alt="CJM новичка: от ссылки в чате до первого перевода" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="assets/anty/flow.webp" alt="User flow создания и импорта кошелька" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="assets/anty/ia.webp" alt="Информационная архитектура Anty Wallet" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="assets/anty/onboarding.webp" alt="Создание кошелька за 4 шага" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Онбординг за 4 шага.</b> Одно действие на экран: старт, PIN, seed-фраза, способ хранения. Персонаж встречает на первом экране и снимает напряжение до того, как появятся 12 слов.</p></div>
-  <figure class="shot"><img src="assets/anty/storage.webp" alt="Выбор способа хранения seed-фразы и диалоги подтверждения" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><span class="lbl">Ключевое решение</span><p><b>Seed-фраза по выбору.</b> Вместо «запишите 12 слов» два понятных пути. Keep it at Anty: фраза хранится зашифрованной, доступ восстанавливается по PIN и аккаунту Telegram. Keep it at home: полный контроль у пользователя. Синий цвет у рекомендованного пути для новичка, красный подчёркивает ответственность.</p></div>
-  <div class="tx"><p>Каждый выбор подтверждается коротким диалогом, где последствия сказаны прямо: «Если потеряете фразу, восстановить кошелёк не сможет никто». Решение становится осознанным, а не случайным тапом.</p></div>
-  <figure class="shot"><img src="assets/anty/pin.webp" alt="PIN-код на весь экран и на 2/3 поверх чата" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>PIN для любого окна Telegram.</b> Mini App открывается на весь экран или на 2/3 поверх чата, и PIN-экран спроектирован для обоих режимов. Своя клавиатура, а при ошибке поля краснеют, срабатывает вибрация и ввод сбрасывается.</p></div>
-  <figure class="shot"><img src="assets/anty/import.webp" alt="Импорт кошелька: ввод фразы, успех и отказ" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Импорт без двусмысленности.</b> Фраза вводится по словам, а результат однозначный: персонаж показывает успех или отказ с кнопками «Try again» и «Back to registration».</p></div>
-  <figure class="shot"><img src="assets/anty/cards.webp" alt="Кошельки-карточки Basic, Premium и Hot, выбор сети у баланса" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Кошельки как колода карт.</b> У каждого кошелька своя карточка с градиентом, именем, адресом и балансом. В Basic один кошелёк и предложение Premium, в Premium карусель. Горячий кошелёк для мем-токенов выделен оранжевым, чтобы его нельзя было спутать с основным.</p></div>
-  <div class="tx"><p>Сеть выбирается рядом с балансом, а не в настройках. Имя и адрес кошелька меняются из меню карточки в два тапа.</p></div>
-  <figure class="shot"><img src="assets/anty/token.webp" alt="Страница токена и меню карточки кошелька" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="assets/anty/send.webp" alt="Перевод: неактивная кнопка, сканер QR, заполненная форма" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Перевод без ручного ввода адреса.</b> На странице токена график, баланс и пометка Safety token. В переводе сеть уже выбрана, «Max» подставляет весь баланс, адрес сканируется QR-кодом, а Send активна только при заполненной форме.</p></div>
-  <figure class="shot"><img src="assets/anty/themes.webp" alt="Тёмная и светлая темы" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Две темы на одних компонентах:</b> 15 наборов с 39 вариантами и ещё 26 отдельных компонентов.</p></div>
-  <figure class="shot"><img src="assets/anty/stickers.webp" alt="Персонаж Anty и стикерпак в чате Telegram" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Персонаж и стикеры.</b> Муравей Anty встречает на старте, радуется созданному кошельку, огорчается при ошибке и живёт в чатах Telegram как стикерпак из 8 стикеров.</p></div>
-  </div>
-  <section class="res" aria-labelledby="resH">
-  <h2 id="resH">Результаты</h2>
-  <p class="rp">Кошелёк проработал N месяцев. Пользователи приходили из чатов Telegram и возвращались к кошельку каждый день.</p>
-  <div class="mx"><div><b>3&nbsp;000</b><span>пользователей в день на пике, обычно от 1&nbsp;500</span></div><div><b>50&nbsp;000</b><span>пользователей в месяц</span></div><div><b>N%</b><span>новых пользователей доходят от «Create wallet» до готового кошелька</span></div><div><b>N / N</b><span>выбор хранения «у Anty» / «у себя»</span></div></div>
-</section>
-<section class="res" aria-labelledby="sellH">
-  <h2 id="sellH">Что было дальше</h2>
-  <p class="rp">Продукт рос, но на развитие нужен был бюджет, которого у проекта не было. Продукт мог бы вырасти дальше, но фаундер решил не закрывать его, а продать.</p>
-  <p class="rp">Anty Wallet выкупила известная команда разработчиков в Web3. Название я не раскрываю, это условие NDA. Вместе с продуктом они забрали и UX-решения: создание кошелька с выбором хранения seed-фразы и PIN-экран для разных режимов окна Telegram теперь работают в их продукте.</p>
-  <p class="rp">Для меня это главный результат проекта. Решения, которые я проектировал для новичков, проверили не только 50&nbsp;000 пользователей в месяц, но и команда, которая сама делает кошельки.</p>
-</section>
-<section class="res" aria-labelledby="outH">
-  <h2 id="outH">Выводы</h2>
-  <p class="rp">Безопасность это тоже UX. Новичка пугает не сама крипта, а ощущение, что одна ошибка лишит его денег. Когда риск объяснён простыми словами, а выбор остаётся за пользователем, он доходит до конца. Персонаж помогает говорить о сложном без жаргона и делает кошелёк узнаваемым в чатах.</p>
-  <p class="rp">А ещё хороший UX может пережить сам продукт: проект закрылся по бюджету, а мои решения продолжают работать у новой команды.</p>
-</section>
-  <div class="credits"><div><b>Product Design</b><small>Васнёв Роман</small></div><div><b>UX/UI</b><small>Васнёв Роман</small></div><div><b>Branding</b><small>Васнёв Роман</small></div><div><b>Illustration</b><small>Васнёв Роман</small></div></div>
-  <hr class="sep">
-  <a class="next" href="jobbit.html"><span class="th"><img src="assets/jobbit/cover.webp" alt="" loading="lazy"></span><span class="t">Следующий проект <span class="c24"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5h10M7.5 1 11 4.5 7.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a>
+  <div class="tags"><span>Fintech</span><span>B2C</span><span>Telegram</span><span>Branding</span></div>
+  <div class="hero"><img src="assets/anty/cover-hero.webp" alt="Anty Wallet: приветствие, главный экран и успешный импорт" width="740" height="460" fetchpriority="high" decoding="async"></div>
+  <dl class="meta"><div><dt>Платформа</dt><dd>Telegram Mini App</dd></div><div><dt>Роль</dt><dd>Продуктовый дизайнер</dd></div><div><dt>Зона</dt><dd>UX, UI, бренд, персонаж и стикеры</dd></div><div><dt>Объём</dt><dd>66 экранов: 58 в приложении и 8 на сайте</dd></div></dl>
+<section class="sec rv"><h2>Суть проекта</h2><p class="w">Anty Wallet это крипто-кошелёк внутри Telegram для тех, кто впервые пришёл в крипту из чата. Кошелёк открывается без установки, прямо поверх переписки.</p><p class="w">Я спроектировал продукт целиком: UX-архитектуру, интерфейс в двух темах, логотип, персонажа и стикерпак. После запуска кошельком пользовались около 50 000 человек в месяц, а затем продукт выкупили вместе с моими UX-решениями.</p><div class="stats"><div><b>66</b><span>экранов в приложении и на сайте</span></div><div><b>4</b><span>шага до готового кошелька</span></div><div><b>2</b><span>темы на одних компонентах</span></div><div><b>8</b><span>стикеров с персонажем</span></div></div></section>
+<section class="sec rv"><h2>Контекст проекта</h2><p>Новичок попадает в крипту из чата: друг скинул ссылку на мем-токен, и нужен кошелёк, чтобы купить. Почти все кошельки в Telegram рассчитаны на тех, кто уже разбирается.</p><h3>Как появилась задача</h3><p>Обычный кошелёк с первого экрана требует от новичка сразу всего:</p><ol class="nl"><li><div>записать 12 слов и не потерять их</div></li><li><div>выбрать сеть, о которой он ничего не знает</div></li><li><div>разобраться в терминах</div></li><li><div>понять, кто вообще хранит его деньги</div></li></ol><blockquote class="q">Новичка пугает не крипта, а ощущение, что одна ошибка лишит его денег. Он либо бросает кошелёк на первом шаге, либо записывает seed-фразу куда попало.</blockquote></section>
+<section class="sec rv"><h2>Рынок</h2><p>Крипта переезжает в Telegram. Кошелёк там открывается за секунду, и именно поэтому туда приходят люди без опыта.</p><div class="stats"><div><b>1 млрд+</b><span>пользователей Telegram в месяц</span></div><div><b>500 млн</b><span>MAU у Mini Apps в июле 2024</span></div><div><b>34 млн</b><span>TON-кошельков активировано к ноябрю 2024</span></div><div><b>~20%</b><span>биткоинов считаются потерянными навсегда</span></div></div><p class="note">Данные: Telegram (2024), TON Foundation (2024), Chainalysis (2020)</p><blockquote class="q">Аудитория огромная и новая, а потеря доступа к деньгам остаётся главной проблемой крипты. Значит, безопасность нужно продавать так же, как удобство.</blockquote></section>
+<section class="sec rv"><h2>Исследование</h2><h3>Разбор 6 решений в Telegram</h3><p>Я разобрал кошельки, которыми пользуются внутри мессенджера: Wallet, Tonkeeper, MyTonWallet, HOT Wallet, Bitget Wallet и ботов-трейдеров. Плюс открытые исследования о том, как люди теряют доступ к крипте.</p><figure><div class="m"><img src="assets/anty/research.webp" alt="Сравнение кошельков в Telegram" width="1200" height="900" loading="lazy" decoding="async"></div><figcaption>Разбор кошельков в Telegram</figcaption></figure><h3>Что нашёл</h3><ol class="nl"><li><div>Seed-фраза главный барьер. Каждый кошелёк с самостоятельным хранением начинается с 12 или 24 слов без объяснения, зачем они</div></li><li><div>Удобство за счёт безопасности. Где ключи у бота или платформы, вход проще, но пользователь рискует потерять всё</div></li><li><div>Сеть спрятана в настройках, и перевод в «не ту» сеть частая ошибка</div></li><li><div>Все кошельки одинаковые, характера нет ни у одного</div></li></ol><figure><div class="m"><img src="assets/anty/cjm.webp" alt="CJM новичка: от ссылки в чате до первого перевода" width="1200" height="900" loading="lazy" decoding="async"></div><figcaption>CJM новичка: от ссылки в чате до первого перевода</figcaption></figure></section>
+<section class="sec rv"><h2>Гипотезы</h2><h3>Ключевая продуктовая гипотеза</h3><blockquote class="q">Новичок дойдёт до конца, если сам выберет, кто хранит его seed-фразу, и заранее поймёт, чем это грозит.</blockquote><p>Отсюда правило: не навязывать один способ хранения, а дать два понятных пути и честно сказать, что будет в каждом случае.</p><h3>Основной сценарий</h3><p>Создание кошелька разложено на 4 шага, по одному действию на экран:</p><ol class="nl"><li><div>старт и знакомство с персонажем</div></li><li><div>PIN-код</div></li><li><div>seed-фраза</div></li><li><div>способ хранения</div></li></ol><figure><div class="m"><img src="assets/anty/onboarding.webp" alt="Создание кошелька за 4 шага" width="1200" height="900" loading="lazy" decoding="async"></div><figcaption>Создание кошелька за 4 шага</figcaption></figure><figure><div class="m"><img src="assets/anty/flow.webp" alt="User flow создания и импорта кошелька" width="1200" height="900" loading="lazy" decoding="async"></div><figcaption>User flow: создание и импорт кошелька</figcaption></figure></section>
+<section class="sec rv"><h2>Что вошло в продукт</h2><h3>Первая версия</h3><ol class="nl"><li><div>Онбординг за 4 шага с выбором способа хранения</div></li><li><div>PIN для полноэкранного режима и окна поверх чата</div></li><li><div>Импорт кошелька по словам</div></li><li><div>Кошельки-карточки в Basic и Premium</div></li><li><div>Страница токена и перевод с QR-сканером</div></li><li><div>Тёмная и светлая темы</div></li><li><div>Сайт экосистемы и стикерпак</div></li></ol><figure><div class="m"><img src="assets/anty/ia.webp" alt="Информационная архитектура Anty Wallet" width="1200" height="900" loading="lazy" decoding="async"></div><figcaption>Информационная архитектура</figcaption></figure><h3>Ограничения</h3><p>Mini App открывается на весь экран или на 2/3 поверх чата, и каждый ключевой экран должен работать в обоих размерах.</p><p>Аудитория без опыта: никакого жаргона, каждый рискованный шаг объясняется простыми словами.</p></section>
+<section class="sec rv"><h2>Seed-фраза по выбору</h2><p>Главное решение кейса. Вместо «запишите 12 слов» у пользователя два пути.</p><ol class="nl"><li><div>Keep it at Anty. Фраза хранится зашифрованной, доступ восстанавливается по PIN и аккаунту Telegram. Синий цвет: рекомендованный путь для новичка</div></li><li><div>Keep it at home. Пользователь записывает фразу сам и получает полный контроль. Красный цвет подчёркивает ответственность</div></li></ol><figure><div class="m"><img src="assets/anty/storage.webp" alt="Выбор способа хранения seed-фразы" width="1200" height="900" loading="lazy" decoding="async"></div><figcaption>Выбор способа хранения</figcaption></figure><h3>Подтверждение без случайного тапа</h3><p>Каждый выбор подтверждается коротким диалогом, где последствия сказаны прямо: «Если потеряете фразу, восстановить кошелёк не сможет никто».</p><figure><div class="m"><img src="assets/anty/confirm.webp" alt="Диалоги подтверждения выбора хранения" width="1200" height="900" loading="lazy" decoding="async"></div><figcaption>Диалоги подтверждения выбора</figcaption></figure></section>
+<section class="sec rv"><h2>PIN в любом окне Telegram</h2><p>PIN-экран спроектирован для обоих режимов Mini App. Своя цифровая клавиатура, а при ошибке поля краснеют, срабатывает вибрация и ввод сбрасывается.</p><figure><div class="m"><img src="assets/anty/pin.webp" alt="PIN на весь экран и поверх чата" width="1200" height="900" loading="lazy" decoding="async"></div><figcaption>PIN на весь экран и поверх чата</figcaption></figure><h3>Импорт без двусмысленности</h3><p>Фраза вводится по словам, а результат однозначный: персонаж показывает успех или отказ с кнопками «Try again» и «Back to registration».</p><figure><div class="m"><img src="assets/anty/import.webp" alt="Импорт кошелька: ввод фразы, успех и отказ" width="1200" height="900" loading="lazy" decoding="async"></div><figcaption>Импорт: успех и ошибка</figcaption></figure></section>
+<section class="sec rv"><h2>Кошельки как колода карт</h2><p>У каждого кошелька своя карточка с градиентом, именем, адресом и балансом. В Basic один кошелёк и предложение Premium, в Premium карусель. Горячий кошелёк для мем-токенов выделен оранжевым, чтобы его нельзя было спутать с основным.</p><figure><div class="m"><img src="assets/anty/cards.webp" alt="Кошельки-карточки Basic, Premium и Hot" width="1200" height="900" loading="lazy" decoding="async"></div><figcaption>Кошельки-карточки</figcaption></figure><h3>Сеть рядом с балансом</h3><p>Сеть выбирается рядом с балансом, а не в настройках. Имя и адрес кошелька меняются из меню карточки в два тапа.</p><figure><div class="m"><img src="assets/anty/manage.webp" alt="Выбор сети и меню кошелька" width="1200" height="900" loading="lazy" decoding="async"></div><figcaption>Выбор сети и меню кошелька</figcaption></figure></section>
+<section class="sec rv"><h2>Перевод без ручного ввода адреса</h2><p>На странице токена цена, график, баланс и пометка Safety token, чтобы отличить проверенный токен от случайного.</p><figure><div class="m"><img src="assets/anty/token.webp" alt="Страница токена" width="1200" height="900" loading="lazy" decoding="async"></div><figcaption>Страница токена</figcaption></figure><ol class="nl"><li><div>Сеть уже выбрана</div></li><li><div>«Max» подставляет весь баланс</div></li><li><div>Адрес сканируется QR-кодом или вставляется из буфера</div></li><li><div>Send активна, только когда форма заполнена</div></li></ol><figure><div class="m"><img src="assets/anty/send.webp" alt="Перевод: неактивная кнопка, сканер QR, заполненная форма" width="1200" height="900" loading="lazy" decoding="async"></div><figcaption>Перевод</figcaption></figure></section>
+<section class="sec rv"><h2>Две темы и персонаж</h2><p>Тёмная и светлая темы собраны на одних компонентах: 15 наборов с 39 вариантами и ещё 26 отдельных компонентов.</p><figure><div class="m"><img src="assets/anty/themes.webp" alt="Тёмная и светлая темы" width="1200" height="900" loading="lazy" decoding="async"></div><figcaption>Тёмная и светлая темы</figcaption></figure><p>Муравей Anty встречает на старте, радуется созданному кошельку и огорчается при ошибке. Он говорит о безопасности без жаргона и живёт в чатах как стикерпак.</p><figure><div class="m"><img src="assets/anty/stickers.webp" alt="Персонаж Anty и стикерпак в чате Telegram" width="1200" height="900" loading="lazy" decoding="async"></div><figcaption>Стикерпак из 8 стикеров</figcaption></figure></section>
+<section class="sec rv"><h2>Метрики продукта</h2><p>Каждое ключевое решение я связал с метрикой и целевым значением, чтобы после релиза было видно, сработало ли оно.</p><table><thead><tr><th scope="col">Метрика</th><th scope="col">Как считаем</th><th scope="col">Цель</th></tr></thead><tbody><tr><td>Завершённые онбординги</td><td>От «Create wallet» до «Wallet created»</td><td>70%+</td></tr><tr><td>Первый перевод</td><td>Новые кошельки с переводом за 7 дней</td><td>35%</td></tr><tr><td>Ошибки импорта</td><td>Импорты, закончившиеся экраном Fail</td><td>&lt;5%</td></tr><tr><td>Выбор хранения</td><td>У Anty / у себя</td><td>60 / 40</td></tr><tr><td>Отмены в диалоге</td><td>Отменили выбор хранения</td><td>&lt;20%</td></tr></tbody></table></section>
+<section class="sec rv"><h2>Результаты</h2><p>Кошелёк проработал N месяцев. Пользователи приходили из чатов Telegram и возвращались к кошельку каждый день.</p><div class="stats"><div><b>3 000</b><span>пользователей в день на пике, обычно от 1 500</span></div><div><b>50 000</b><span>пользователей в месяц</span></div><div><b>N%</b><span>дошли от «Create wallet» до готового кошелька</span></div><div><b>N / N</b><span>выбрали хранение у Anty / у себя</span></div><div><b>N%</b><span>сделали первый перевод за 7 дней</span></div><div><b>N</b><span>отправок стикерпака в чатах</span></div></div><blockquote class="q">Новички доходили до конца и возвращались каждый день, потому что seed-фраза перестала быть стеной.</blockquote></section>
+<section class="sec rv"><h2>Что было дальше</h2><p class="w">Продукт рос, но на развитие нужен был бюджет, которого у проекта не было. Поэтому фаундер решил не закрывать кошелёк, а продать его.</p><p class="w">Anty Wallet выкупила известная команда разработчиков в Web3. Название я не раскрываю, это условие NDA. Вместе с продуктом они забрали и UX-решения: создание кошелька с выбором хранения seed-фразы и PIN-экран для разных режимов окна Telegram теперь работают в их продукте.</p><blockquote class="q">Решения, которые я проектировал для новичков, проверили не только 50 000 пользователей в месяц, но и команда, которая сама делает кошельки.</blockquote></section>
+<section class="sec rv"><h2>Итоги работы</h2><h3>Опыт</h3><p>Безопасность это тоже UX. Когда риск объяснён простыми словами, а выбор остаётся за пользователем, он доходит до конца и понимает, что сделал. А хороший UX может пережить сам продукт: проект продали из-за бюджета, а мои решения продолжают работать у новой команды.</p><h3>Результаты</h3><ol class="nl"><li><div>Продукт спроектирован целиком: от бота и онбординга до сайта и стикеров</div></li><li><div>66 экранов в двух темах на одной системе компонентов</div></li><li><div>Продукт выкупили вместе с UX-решениями после N месяцев работы и 50 000 пользователей в месяц</div></li></ol><blockquote class="q">Персонаж помогает говорить о сложном без жаргона и делает кошелёк узнаваемым в чатах.</blockquote></section>
+  <nav class="nav2" aria-label="Навигация по кейсам"><a href="index.html"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M11 4.5H1M4.5 1 1 4.5 4.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>На главную</a><a href="jobbit.html">Следующий кейс <svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5h10M7.5 1 11 4.5 7.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></nav>
 </main>
 <footer class="ftr">
-    <div class="links">
-      <a href="https://t.me/" target="_blank" rel="noopener">Telegram <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
-      <a href="#">Max <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
-      <a href="#">E-mail <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
-    </div>
-    <small>© 2026 - Васнёв Роман</small>
-    <div class="apps" aria-hidden="true"><img src="assets/main/ic-he.webp" alt="" width="32" height="32" loading="lazy"><img src="assets/main/ic-lp.webp" alt="" width="32" height="32" loading="lazy"><img src="assets/main/ic-me.webp" alt="" width="32" height="32" loading="lazy"></div>
-  </footer>
+  <div class="links">
+    <a href="https://t.me/" target="_blank" rel="noopener">Telegram <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
+    <a href="#">Max <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
+    <a href="#">E-mail <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
+  </div>
+  <small>© 2026 - Васнёв Роман</small>
+  <div class="apps" aria-hidden="true"><img src="assets/main/ic-he.webp" alt="" width="32" height="32" loading="lazy"><img src="assets/main/ic-lp.webp" alt="" width="32" height="32" loading="lazy"><img src="assets/main/ic-me.webp" alt="" width="32" height="32" loading="lazy"></div>
+</footer>
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Меню">
   <div class="wrap">
     <div class="top"><span style="font-size:16px;font-weight:500">vasnevdesign.ru</span><div class="prog"><i style="width:100%"></i></div><button class="mbtn" id="mclose">закрыть <span class="dot18"><svg width="8" height="8" viewBox="0 0 8 8"><path d="M1 1l6 6M7 1 1 7" stroke="#000" stroke-width="1.4" stroke-linecap="round"/></svg></span></button></div>
@@ -188,25 +64,28 @@ h1{font-size:24px;font-weight:500;line-height:27px;margin:12px 0 0;text-wrap:bal
     </footer>
   </div>
 </div>
-
 <script>
-const $=s=>document.querySelector(s);const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
-const MENU=[['Обо мне','Кто я, чем занимаюсь и как со мной связаться.','index.html#about'],['От идеи до релиза','Продукты, которые я вёл от исследования до передачи в разработку.','index.html#cases'],['Мой подход к дизайну','Этапы, через которые проходит каждый мой проект.','index.html#approach'],['Работа с AI','Как я с помощью AI быстро собираю MVP и проверяю гипотезы.','index.html#ai'],['Мой стек технологий','Инструменты, в которых я работаю на каждом этапе.','index.html#stack'],['Опыт работы','Компании и проекты, в которых я работал с 2017 года.','index.html#exp']];
+document.documentElement.classList.add('js');
+const $=s=>document.querySelector(s);const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const MENU=[['Обо мне','Кто я, чем занимаюсь и как со мной связаться.','index.html#about'],['Продуктовые кейсы','Продукты, которые я вёл от исследования до передачи в разработку.','index.html#cases'],['Работа с AI','Как я с помощью AI быстро собираю MVP и проверяю гипотезы.','index.html#ai'],['Мой стек технологий','Инструменты, в которых я работаю на каждом этапе.','index.html#stack'],['Пет проекты','Плагины, инструменты и проекты для Figma Community.','index.html#pet'],['Опыт работы','Компании и проекты, в которых я работал с 2017 года.','index.html#exp']];
 $('#mlist').innerHTML=MENU.map((m,i)=>`<li style="animation-delay:${.08+i*.05}s"><a href="${m[2]}"><strong>${m[0]} <span class="c"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></strong><p>${m[1]}</p></a></li>`).join('');
-
-/* ---------- menu ---------- */
 const menu=$('#menu');
 $('#mopen').addEventListener('click',()=>{menu.classList.add('open');document.body.style.overflow='hidden';$('#mclose').focus({focusVisible:false});});
 function closeMenu(){menu.classList.remove('open');document.body.style.overflow='';}
 $('#mclose').addEventListener('click',closeMenu);
-menu.addEventListener('click',e=>{if(e.target.closest('a[href^="#"]'))closeMenu();});
 addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
-
-/* ---------- scroll progress ---------- */
 const prog=$('#prog');
 function onScroll(){const h=document.documentElement.scrollHeight-innerHeight;prog.style.width=(h>0?Math.min(100,scrollY/h*100):0)+'%';}
 addEventListener('scroll',onScroll,{passive:true});onScroll();
-
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{rootMargin:'0px 0px -6% 0px',threshold:.04});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+/* carousel: dots + play only the visible video */
+document.querySelectorAll('.carf').forEach(f=>{const car=f.querySelector('.car'),vids=[...car.querySelectorAll('video')],dots=[...f.querySelectorAll('.dots i')];
+  const cur=()=>Math.round(car.scrollLeft/(car.firstElementChild.offsetWidth+12));
+  const sync=()=>{const i=cur();dots.forEach((d,j)=>d.classList.toggle('on',j===i));};
+  car.addEventListener('scroll',sync,{passive:true});
+  const vio=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting&&e.intersectionRatio>.5&&!reduce){v.play().catch(()=>{});}else v.pause();}),{threshold:[0,.5,1]});
+  vids.forEach(v=>vio.observe(v));});
 </script>
 </body>
 </html>
