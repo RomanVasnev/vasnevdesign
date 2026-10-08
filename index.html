@@ -9,7 +9,7 @@
 <body>
 <title>Роман Васнёв</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&family=Geist+Mono:wght@400;500&display=swap">
 <style>
 /* layout: mobile column up to 767, tablet 768+, desktop 1100+ */
 :root{
@@ -91,37 +91,36 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .ctext{margin:20px 0 0;font-size:18px;line-height:20px;font-weight:500;color:#555}
 .ctext b{color:#fff;font-weight:500}
 
-/* approach: sticky scroll — each scroll step drops the next isometric layer on the stack and swaps the step card */
-.appr{position:relative;margin-top:80px;height:calc(100svh + 6 * 62svh)}
+/* approach: Medusa-style layer stack — pinned, each scroll step moves focus one layer down */
+.appr{position:relative;margin-top:80px;height:calc(100svh + 6 * 60svh)}
 .appr-pin{position:sticky;top:72px;height:calc(100svh - 72px);display:flex;flex-direction:column;overflow:hidden}
 .appr-snap{position:absolute;left:0;width:1px;height:1px;scroll-snap-align:start;pointer-events:none}
-.acards{position:relative;margin-top:20px;height:142px;flex:none}
-.acard{position:absolute;inset:0;border-radius:14px;background:#1a1a1a;padding:10px 12px 12px 37px;overflow:hidden;
-  opacity:0;transform:translateY(14px);filter:blur(6px);transition:opacity .5s ease,transform .6s cubic-bezier(.2,.8,.2,1),filter .5s ease;pointer-events:none}
-.acard.on{opacity:1;transform:none;filter:none;pointer-events:auto}
-.acard::before{content:"";position:absolute;left:10px;top:10px;bottom:15px;width:15px;border-radius:20px 60px 60px 20px;background:var(--c)}
-.acard h3{margin:0;font-size:16px;font-weight:500;line-height:18px;letter-spacing:-.05em}
-.acard .chips{margin-top:9px;gap:6px 6px}
-.acard .chip{height:auto;padding:2px 8px;font-size:12px;line-height:20px;font-weight:300;color:#fff;background:rgba(36,36,36,.7);border:1px solid #282828}
-.acard .chip.k{background:#212121}
-.adots{display:flex;gap:6px;margin-top:12px;flex:none}
-.adots i{height:3px;flex:1;border-radius:3px;background:#222;transition:background .4s}
-.adots i.on{background:var(--c)}
-/* isometric stage (orthographic CSS 3D) */
-.astage{position:relative;flex:1;min-height:0;display:grid;place-items:center}
-.astack{position:relative;width:240px;height:180px;transform-style:preserve-3d;transform:scale(var(--sc,1)) rotateX(58deg) rotateZ(-42deg);margin-top:30px}
-.ly{position:absolute;inset:0;transform-style:preserve-3d;transform:translateZ(calc(var(--i)*20px));transition:transform .75s cubic-bezier(.2,.8,.2,1),opacity .5s ease}
-.ly.up{transform:translateZ(calc(var(--i)*20px + 320px));opacity:0}
-.ly.on{transform:translateZ(calc(var(--i)*20px + 26px))}
-.ly .side{position:absolute;inset:0;border-radius:18px;transform:translateZ(-7px);background:#0c0c0c;border:1px solid rgba(255,255,255,.07)}
-.ly .face{position:absolute;inset:0;border-radius:18px;overflow:hidden;background:#151515;border:1px solid rgba(255,255,255,.08);transition:background .5s,border-color .5s,box-shadow .5s}
-.ly .face svg{position:absolute;inset:0;width:100%;height:100%;color:#3a3a3a;transition:color .5s,opacity .5s;opacity:.55}
-.ly.on .face{background:color-mix(in srgb,var(--c) 16%,#0e0e0e);border-color:var(--c);box-shadow:0 0 40px -6px color-mix(in srgb,var(--c) 55%,transparent),inset 0 0 0 1px color-mix(in srgb,var(--c) 40%,transparent)}
-.ly.on .side{background:color-mix(in srgb,var(--c) 30%,#050505);border-color:color-mix(in srgb,var(--c) 50%,transparent)}
-.ly.on .face svg{color:var(--c);opacity:1}
-.ly.below .face{border-color:color-mix(in srgb,var(--c) 35%,transparent)}
-.ashadow{position:absolute;left:50%;top:calc(50% + 70px);width:260px;height:70px;margin-left:-130px;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--c) 35%,transparent),transparent);filter:blur(10px);transition:background .6s}
-@media (prefers-reduced-motion:reduce){.acard,.ly{transition:none}}
+.mono{font-family:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em;text-transform:uppercase}
+.astage{position:relative;flex:1;min-height:0}
+.alist{position:absolute;left:0;top:50%;transform:translateY(-50%);list-style:none;margin:0;padding:0;display:grid;gap:12px;z-index:3}
+.alist li{font-size:10.5px;line-height:14px;color:#4a4a4a;cursor:pointer;transition:color .35s;white-space:nowrap}
+.alist li.on{color:#fff}
+.aline{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;overflow:visible}
+.aline path{stroke:#8a8a8a;stroke-width:1;fill:none;transition:d .6s cubic-bezier(.2,.8,.2,1)}
+.aline circle{fill:#fff;transition:cx .6s cubic-bezier(.2,.8,.2,1),cy .6s cubic-bezier(.2,.8,.2,1)}
+.awrap{position:absolute;left:66%;top:52%;width:0;height:0}
+.astack{position:absolute;left:-130px;top:-90px;width:260px;height:180px;transform-style:preserve-3d;transform:scale(var(--sc,1)) rotateX(56deg) rotateZ(-38deg)}
+.ly{position:absolute;inset:0;transform-style:preserve-3d;transform:translateZ(var(--z,0px));transition:transform .75s cubic-bezier(.2,.8,.2,1)}
+.ly .side{position:absolute;inset:0;border-radius:16px;transform:translateZ(-9px);background:#141414;border:1px solid #2c2c2c;transition:opacity .5s,background .5s,border-color .5s}
+.ly .face{position:absolute;inset:0;border-radius:16px;background:#1b1b1b;border:1px solid #3a3a3a;transition:background .5s,border-color .5s,box-shadow .5s}
+.ly .face svg{position:absolute;inset:0;width:100%;height:100%;color:#5a5a5a;transition:opacity .5s,color .5s}
+.ly .face::after{content:"";position:absolute;inset:auto 10px 8px auto;width:5px;height:5px;border-radius:50%;background:#3a3a3a;box-shadow:-226px 0 0 #3a3a3a}
+.ly .anc{position:absolute;left:6px;top:58%;width:1px;height:1px}
+.ly.ghost .side{opacity:0}
+.ly.ghost .face{background:rgba(255,255,255,.015);border-color:rgba(255,255,255,.16)}
+.ly.ghost .face svg,.ly.ghost .face::after{opacity:0}
+.ly.on .face{background:#262626;border-color:rgba(255,255,255,.75);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 0 30px rgba(255,255,255,.08)}
+.ly.on .side{background:#1e1e1e;border-color:rgba(255,255,255,.35)}
+.ly.on .face svg{color:#fff}
+.adesc{flex:none;min-height:92px;margin:4px 0 16px;display:grid;gap:6px;justify-items:end;text-align:right}
+.adesc span{font-size:10.5px;line-height:14px;color:#9a9a9a;animation:tin .45s cubic-bezier(.2,.7,.2,1) both}
+.adesc span:nth-child(2){animation-delay:.05s}.adesc span:nth-child(3){animation-delay:.1s}.adesc span:nth-child(4){animation-delay:.15s}
+@media (prefers-reduced-motion:reduce){.ly,.aline path,.aline circle{transition:none}.adesc span{animation:none}}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .chip{height:24px;padding:2px 10px;border-radius:60px;background:var(--chip2);border:1px solid var(--chip-st);font-size:12px;line-height:20px;color:var(--chip-t);white-space:nowrap}
 .chip.k{background:var(--chip);color:#fff}
@@ -276,17 +275,13 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   .pcard{width:400px}
   .pcard .img{height:226px}
   .pcard h3,.pcard p{font-size:18px;line-height:24px}
-  /* approach: card list left, stack right */
+  /* approach: list left, stack centre, description right */
   .appr{margin-top:140px;height:calc(100svh + 6 * 50svh)}
-  .appr-pin{display:grid;grid-template-columns:420px 1fr;grid-template-rows:auto 1fr;column-gap:60px;align-content:center;top:96px;height:calc(100svh - 96px)}
-  .appr-pin .appr-h{grid-column:1;grid-row:1}
-  .appr-pin .acards{grid-column:1;grid-row:2;height:auto;display:grid;gap:10px;align-content:start;margin-top:28px}
-  .acard{position:relative;inset:auto;opacity:.45;transform:none;filter:none;min-height:0;padding-bottom:12px;pointer-events:auto;cursor:pointer;transition:opacity .4s}
-  .acard .chips{display:none}
-  .acard::before{bottom:10px;width:10px}
-  .acard.on{opacity:1}.acard.on .chips{display:flex}
-  .adots{display:none}
-  .astage{grid-column:2;grid-row:1/span 2}
+  .appr-pin{top:96px;height:calc(100svh - 96px)}
+  .alist{gap:16px}.alist li{font-size:13px;line-height:16px}
+  .awrap{left:50%}
+  .adesc{position:absolute;right:0;top:50%;transform:translateY(-50%);margin:0;gap:10px}
+  .adesc span{font-size:12.5px;line-height:16px}
   .ai{margin-top:140px}
   .ai-card .txt{padding:20px 48px 0;max-width:760px}
   .flow{margin:56px 48px 56px}
@@ -418,9 +413,12 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
         <h2 class="h2">Мой подход к дизайну</h2>
         <p class="sub">Инструменты меняются, подход остаётся. Сейчас мой подход <b>выглядит так</b></p>
       </div>
-      <div class="acards" id="acards" aria-live="polite"></div>
-      <div class="adots" id="adots" aria-hidden="true"></div>
-      <div class="astage" aria-hidden="true"><div class="ashadow" id="ashadow"></div><div class="astack" id="astack"></div></div>
+      <div class="astage">
+        <ul class="alist mono" id="alist"></ul>
+        <svg class="aline" id="aline" aria-hidden="true"><path d=""/><circle r="2.5" cx="0" cy="0"/></svg>
+        <div class="awrap" aria-hidden="true"><div class="astack" id="astack"></div></div>
+      </div>
+      <div class="adesc mono" id="adesc" aria-live="polite"></div>
     </div>
   </section>
 
@@ -516,42 +514,34 @@ const STEPS=[
  ['05.','Интерфейс',['UX/UI','Дизайн-системы','Адаптив','Состояния и edge cases'],[0]],
  ['06.','Handoff',['Handoff','Аннотации и спецификации','Дизайн-ревью'],[0]]
 ];
-/* approach: layer colours (from Figma plates) and flat art drawn on each 240×180 plate; CSS 3D makes it isometric */
-const STEP_C=['#ffb7ff','#d3ff36','#99ace7','#4c74fa','#f1f2f7','#9747ff'];
+/* approach: line-art UI drawn on each 260×180 plate; CSS 3D makes it isometric */
+const AL='stroke="currentColor" stroke-width="1.3" fill="none"',AP=(x,y,w,h,r=6,f=0)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" ${f?`fill="currentColor" fill-opacity="${f}" stroke="currentColor" stroke-width="1.3"`:AL}/>`;
+const pill=(x,y,w)=>AP(x,y,w,9,4.5);
 const ART=[
- /* 01 research: user cards, bar chart, magnifier */
- `<rect x="16" y="18" width="70" height="40" rx="8" fill="currentColor" fill-opacity=".14" stroke="currentColor" stroke-width="1.6"/><circle cx="32" cy="38" r="9" fill="currentColor" fill-opacity=".5"/><rect x="46" y="31" width="30" height="5" rx="2.5" fill="currentColor"/><rect x="46" y="41" width="20" height="4" rx="2" fill="currentColor" fill-opacity=".5"/>
-  <rect x="16" y="66" width="70" height="40" rx="8" fill="currentColor" fill-opacity=".14" stroke="currentColor" stroke-width="1.6"/><circle cx="32" cy="86" r="9" fill="currentColor" fill-opacity=".5"/><rect x="46" y="79" width="26" height="5" rx="2.5" fill="currentColor"/><rect x="46" y="89" width="32" height="4" rx="2" fill="currentColor" fill-opacity=".5"/>
-  <rect x="16" y="114" width="70" height="48" rx="8" fill="currentColor" fill-opacity=".9"/><path d="M24 132h40M24 142h30M24 152h36" stroke="#111" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"/>
-  <rect x="100" y="18" width="124" height="144" rx="12" fill="none" stroke="currentColor" stroke-width="1.6"/>
-  ${[[112,96],[132,70],[152,110],[172,52],[192,84]].map(([x,y])=>`<rect x="${x}" y="${y}" width="14" height="${150-y}" rx="3" fill="currentColor" fill-opacity="${y===52?1:.35}"/>`).join('')}
-  <circle cx="190" cy="56" r="22" fill="#000" fill-opacity=".25" stroke="currentColor" stroke-width="5"/><path d="m206 72 14 14" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>`,
- /* 02 brand: logo, type specimen, palette */
- `<circle cx="58" cy="62" r="40" fill="currentColor"/><path d="M40 70c10-26 26-26 36 0" stroke="#111" stroke-width="7" fill="none" stroke-linecap="round"/><circle cx="58" cy="50" r="6" fill="#111"/>
-  <text x="118" y="92" font-family="Geist,Inter,sans-serif" font-size="76" font-weight="600" fill="currentColor" letter-spacing="-4">Aa</text>
-  ${[0,1,2,3,4].map(i=>`<rect x="${18+i*42}" y="122" width="36" height="40" rx="9" fill="currentColor" fill-opacity="${[1,.75,.5,.3,.14][i]}"/>`).join('')}`,
- /* 03 strategy: KPI line, funnel, priority matrix */
- `<rect x="16" y="18" width="208" height="70" rx="12" fill="currentColor" fill-opacity=".1" stroke="currentColor" stroke-width="1.6"/>
-  <path d="M30 74 64 60l28 8 34-28 30 10 30-22 22 6" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="216" cy="32" r="6" fill="currentColor"/>
-  <path d="M18 100h96l-16 22H34Zm20 28h60l-12 16H50Zm16 22h28l-6 10H60Z" fill="currentColor" fill-opacity=".8"/>
-  <rect x="128" y="100" width="44" height="28" rx="6" fill="currentColor"/><rect x="178" y="100" width="44" height="28" rx="6" fill="currentColor" fill-opacity=".45"/><rect x="128" y="134" width="44" height="28" rx="6" fill="currentColor" fill-opacity=".45"/><rect x="178" y="134" width="44" height="28" rx="6" fill="currentColor" fill-opacity=".15"/>`,
+ /* 01 research: interview cards, chart with magnifier */
+ `${AP(14,16,232,148,10)}${[0,1,2].map(i=>`${AP(26,30+i*42,78,32,7)}<circle cx="40" cy="${46+i*42}" r="7" ${AL}/>${pill(52,40+i*42,40)}${pill(52,52+i*42,26)}`).join('')}
+  ${AP(116,30,118,120,8)}${[[128,96],[146,70],[164,104],[182,58],[200,86]].map(([x,y])=>AP(x,y,12,136-y,3,y===58?.35:0)).join('')}<circle cx="206" cy="60" r="16" ${AL}/><path d="m218 72 10 10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>`,
+ /* 02 brand: logo, type, palette */
+ `${AP(14,16,232,148,10)}<circle cx="62" cy="66" r="30" ${AL}/><circle cx="62" cy="66" r="14" fill="currentColor" fill-opacity=".35" stroke="currentColor" stroke-width="1.3"/>
+  <text x="112" y="88" font-family="Geist,Inter,sans-serif" font-size="56" font-weight="500" fill="none" stroke="currentColor" stroke-width="1.1">Aa</text>
+  ${[0,1,2,3,4].map(i=>AP(30+i*42,118,34,30,7,[.4,.28,.18,.1,0][i])).join('')}`,
+ /* 03 strategy: KPI chart, roadmap, matrix */
+ `${AP(14,16,232,148,10)}${AP(26,28,208,56,8)}<path d="M38 72 70 60l26 6 30-24 28 8 30-18 20 4" ${AL} stroke-linejoin="round"/><circle cx="222" cy="38" r="3.5" fill="currentColor"/>
+  ${[0,1,2].map(i=>`${pill(26,96+i*20,[70,92,56][i])}<circle cx="${[104,126,90][i]}" cy="${100.5+i*20}" r="3" fill="currentColor"/>`).join('')}
+  ${AP(150,94,38,26,5,.3)}${AP(194,94,38,26,5)}${AP(150,126,38,26,5)}${AP(194,126,38,26,5)}`,
  /* 04 UX: wireframe flow */
- `${[[18,22],[94,22],[170,22],[56,108],[132,108]].map(([x,y],i)=>`<rect x="${x}" y="${y}" width="52" height="${i===4?52:60}" rx="8" fill="currentColor" fill-opacity="${i===4?.9:.12}" stroke="currentColor" stroke-width="1.6"/><rect x="${x+8}" y="${y+10}" width="36" height="6" rx="3" fill="${i===4?'#111':'currentColor'}" fill-opacity=".7"/><rect x="${x+8}" y="${y+22}" width="24" height="5" rx="2.5" fill="${i===4?'#111':'currentColor'}" fill-opacity=".45"/>`).join('')}
-  <path d="M70 52h24m52 0h24M196 82v14H82v12m76-12v12" stroke="currentColor" stroke-width="2.4" fill="none" stroke-dasharray="5 4"/>
-  <path d="m90 48 6 4-6 4m76-8 6 4-6 4" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round"/>`,
+ `${AP(14,16,232,148,10)}${[[28,30],[100,30],[172,30],[64,104],[136,104]].map(([x,y],i)=>`${AP(x,y,56,48,7,i===4?.3:0)}${pill(x+8,y+9,30)}${pill(x+8,y+22,40)}`).join('')}
+  <path d="M84 54h16m56 0h16M200 78v14H92v12m72-12v12" ${AL} stroke-dasharray="4 3"/>`,
  /* 05 UI: interface screen */
- `<rect x="16" y="16" width="208" height="148" rx="14" fill="currentColor" fill-opacity=".1" stroke="currentColor" stroke-width="1.6"/>
-  <circle cx="32" cy="32" r="5" fill="currentColor"/><circle cx="46" cy="32" r="5" fill="currentColor" fill-opacity=".5"/><rect x="150" y="27" width="60" height="10" rx="5" fill="currentColor" fill-opacity=".4"/>
-  <rect x="28" y="50" width="104" height="58" rx="10" fill="currentColor"/><rect x="38" y="62" width="50" height="7" rx="3.5" fill="#111" fill-opacity=".6"/><text x="38" y="96" font-family="Geist,Inter,sans-serif" font-size="22" font-weight="700" fill="#111">42 ETH</text>
-  <rect x="142" y="50" width="70" height="26" rx="8" fill="currentColor" fill-opacity=".35"/><rect x="142" y="82" width="70" height="26" rx="8" fill="currentColor" fill-opacity=".2"/>
-  <rect x="28" y="118" width="184" height="16" rx="6" fill="currentColor" fill-opacity=".2"/><rect x="28" y="140" width="120" height="14" rx="7" fill="currentColor" fill-opacity=".85"/>`,
+ `${AP(14,16,232,148,10)}<circle cx="30" cy="30" r="3" fill="currentColor"/><circle cx="40" cy="30" r="3" ${AL}/><circle cx="50" cy="30" r="3" ${AL}/>${pill(176,25,56)}
+  ${AP(28,44,112,64,9,.25)}${pill(38,56,50)}<text x="38" y="94" font-family="Geist,Inter,sans-serif" font-size="20" font-weight="500" fill="currentColor">$170.99</text>
+  ${AP(150,44,82,30,7)}${AP(150,78,82,30,7)}${pill(28,120,90)}${AP(28,136,58,16,8,.35)}${AP(92,136,58,16,8)}`,
  /* 06 handoff: code, specs, checklist */
- `<rect x="16" y="16" width="120" height="148" rx="12" fill="#000" fill-opacity=".3" stroke="currentColor" stroke-width="1.6"/>
-  <path d="m34 42-10 10 10 10M66 42l10 10-10 10" stroke="currentColor" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  ${[[30,80,80],[30,94,56],[44,108,70],[44,122,48],[30,136,64]].map(([x,y,w],i)=>`<rect x="${x}" y="${y}" width="${w}" height="6" rx="3" fill="currentColor" fill-opacity="${[.9,.5,.7,.4,.6][i]}"/>`).join('')}
-  <rect x="148" y="16" width="76" height="70" rx="10" fill="currentColor" fill-opacity=".9"/><path d="M156 96h60M156 92v8M216 92v8M234 24v54" stroke="currentColor" stroke-width="2"/><text x="173" y="112" font-family="Geist,Inter,sans-serif" font-size="11" fill="currentColor">320</text>
-  ${[0,1,2].map(i=>`<rect x="148" y="${122+i*14}" width="10" height="10" rx="3" fill="currentColor"/><path d="m150.5 ${127+i*14} 2 2 4-4" stroke="#111" stroke-width="1.6" fill="none"/><rect x="164" y="${124+i*14}" width="${[52,40,46][i]}" height="6" rx="3" fill="currentColor" fill-opacity=".5"/>`).join('')}`
+ `${AP(14,16,232,148,10)}${AP(26,28,112,124,8)}<path d="m42 48-8 8 8 8m24-16 8 8-8 8" ${AL} stroke-linecap="round" stroke-linejoin="round"/>
+  ${[[36,82,80],[36,96,56],[48,110,70],[48,124,48],[36,138,64]].map(([x,y,w])=>pill(x,y,w)).join('')}
+  ${AP(150,28,82,58,8,.25)}<path d="M150 96h82M150 92v8M232 92v8" ${AL}/>${[0,1,2].map(i=>`${AP(150,110+i*15,10,10,3)}<path d="m152.5 ${115+i*15} 2 2 3.5-4" ${AL}/>${pill(166,110.5+i*15,[56,42,50][i])}`).join('')}`
 ];
+const DESC=STEPS.map(s=>s[2]);
 /* AI pipeline: title, what happens, tools (assets/<name>.png), step icon */
 const AI_STEPS=[
  ['Исследование','Бенчмаркинг конкурентов, синтез отзывов и 3–5 гипотез для проверки',['perplexity','chatgpt','claude','similarweb'],'research'],
@@ -623,23 +613,27 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{if(
   folds.forEach(f=>{io.observe(f);const t=()=>{f.classList.toggle('open');f.setAttribute('aria-expanded',f.classList.contains('open'));};
     f.addEventListener('click',t);f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t();}});});})();
 
-/* ---------- approach: pinned while scrolling; every scroll step drops the next layer and swaps the card ---------- */
-(function(){const sec=$('#approach'),cards=$('#acards'),stack=$('#astack'),dots=$('#adots'),sh=$('#ashadow'),n=STEPS.length;let cur=-1;
-  cards.innerHTML=STEPS.map((st,i)=>`<div class="acard" data-i="${i}" style="--c:${STEP_C[i]}"><h3>${st[0]} ${esc(st[1])}</h3><div class="chips">${st[2].map((c,j)=>`<span class="chip${st[3].includes(j)?' k':''}">${esc(c)}</span>`).join('')}</div></div>`).join('');
-  stack.innerHTML=STEPS.map((st,i)=>`<div class="ly" style="--i:${i};--c:${STEP_C[i]}"><div class="side"></div><div class="face"><svg viewBox="0 0 240 180" fill="none">${ART[i]}</svg></div></div>`).join('');
-  dots.innerHTML=STEPS.map(()=>'<i></i>').join('');
+/* ---------- approach: pinned; each scroll step moves focus one layer down (layers above become outlines) ---------- */
+(function(){const sec=$('#approach'),list=$('#alist'),stack=$('#astack'),desc=$('#adesc'),line=$('#aline'),stage=sec.querySelector('.astage'),n=STEPS.length;let cur=-1;
+  list.innerHTML=STEPS.map((st,i)=>`<li data-i="${i}">${esc(st[1])}</li>`).join('');
+  stack.innerHTML=STEPS.map((st,i)=>`<div class="ly" style="z-index:${n-i}"><div class="side"></div><div class="face"><i class="anc"></i><svg viewBox="0 0 260 180" fill="none">${ART[i]}</svg></div></div>`).join('');
   sec.insertAdjacentHTML('beforeend',STEPS.map((_,i)=>`<span class="appr-snap" style="top:calc(${i} * var(--stp))"></span>`).join(''));
-  const cs=[...cards.children],ls=[...stack.children],ds=[...dots.children];
-  function set(k){if(k===cur)return;cur=k;const c=STEP_C[k];
-    cs.forEach((e,i)=>e.classList.toggle('on',i===k));ds.forEach((e,i)=>{e.classList.toggle('on',i<=k);e.style.setProperty('--c',STEP_C[i]);});
-    ls.forEach((e,i)=>{e.classList.toggle('on',i===k);e.classList.toggle('up',i>k);e.classList.toggle('below',i<k);});sh.style.setProperty('--c',c);}
-  function fit(){const st=sec.querySelector('.astage'),h=st.clientHeight,w=st.clientWidth;const need=Math.max(h/360,0);
-    stack.style.setProperty('--sc',Math.max(.6,Math.min(1.45,Math.min(w/330,h/330))));
-    const stp=(sec.offsetHeight-innerHeight)/n;sec.style.setProperty('--stp',stp+'px');}
+  const lis=[...list.children],ls=[...stack.children],path=line.querySelector('path'),dot=line.querySelector('circle');
+  function place(k){/* layer i sits at z; below the active one they stack tight, above they float as outlines */
+    ls.forEach((e,i)=>{const d=i-k;let z;if(d<0){z=-d*34+30}else if(d===0){z=0}else{z=-d*16}
+      e.style.setProperty('--z',z+'px');e.classList.toggle('on',d===0);e.classList.toggle('ghost',d<0);});}
+  function lead(){const k=cur,li=lis[k],face=ls[k].querySelector('.face'),sr=stage.getBoundingClientRect(),lr=li.getBoundingClientRect(),fr=face.getBoundingClientRect();
+    const ar=ls[k].querySelector('.anc').getBoundingClientRect(),y=lr.top+lr.height/2-sr.top,x1=lr.right-sr.left+10,mx=ar.left-sr.left,my=ar.top-sr.top,bx=Math.max(x1+8,mx-Math.abs(my-y)*.9);
+    path.setAttribute('d',`M${x1} ${y}H${bx}L${mx} ${my}`);dot.setAttribute('cx',mx);dot.setAttribute('cy',my);}
+  function set(k){if(k===cur)return;cur=k;lis.forEach((e,i)=>e.classList.toggle('on',i===k));place(k);
+    desc.innerHTML=DESC[k].slice(0,4).map(t=>`<span>${esc(t)}</span>`).join('');setTimeout(lead,780);requestAnimationFrame(lead);}
+  function fit(){const w=stage.clientWidth,h=stage.clientHeight,desk=innerWidth>=1100;
+    stack.style.setProperty('--sc',desk?Math.max(.8,Math.min(1.35,Math.min(w*.42/300,h/380))):Math.max(.5,Math.min(.82,Math.min((w-120)/330,h/380))));
+    sec.style.setProperty('--stp',(sec.offsetHeight-innerHeight)/n+'px');}
   function onS(){const r=sec.getBoundingClientRect(),span=sec.offsetHeight-innerHeight,p=Math.min(Math.max(-r.top/span,0),.9999);set(Math.floor(p*n));}
-  cards.addEventListener('click',e=>{const c=e.target.closest('.acard');if(!c)return;const i=+c.dataset.i,span=sec.offsetHeight-innerHeight;
-    scrollTo({top:sec.offsetTop+span*(i+.5)/n,behavior:reduce?'auto':'smooth'});});
-  fit();set(0);onS();addEventListener('scroll',onS,{passive:true});addEventListener('resize',()=>{fit();onS();});})();
+  list.addEventListener('click',e=>{const li=e.target.closest('li');if(!li)return;const span=sec.offsetHeight-innerHeight;
+    scrollTo({top:sec.offsetTop+span*(+li.dataset.i+.5)/n,behavior:reduce?'auto':'smooth'});});
+  fit();set(0);onS();addEventListener('scroll',onS,{passive:true});addEventListener('resize',()=>{fit();lead();});if(document.fonts)document.fonts.ready.then(lead);})();
 /* ---------- AI pipeline: zigzag on mobile/tablet, staircase on desktop, connectors drawn on reveal ---------- */
 (function(){const flow=$('#flow'),svg=$('#flowLines'),steps=[...flow.querySelectorAll('.fstep')],n=steps.length,NS='http://www.w3.org/2000/svg';
   function layout(){const W=flow.clientWidth,desk=innerWidth>=1100,R=14;let rects=[];
