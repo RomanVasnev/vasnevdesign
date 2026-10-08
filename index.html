@@ -91,14 +91,14 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .ctext{margin:20px 0 0;font-size:18px;line-height:20px;font-weight:500;color:#555}
 .ctext b{color:#fff;font-weight:500}
 
-/* approach (Figma «test design block»): pinned; layers lie stacked, each scroll step lifts the active layer up as a ghost outline and reveals the next one */
+/* approach (Figma «test design block»): pinned; isometric layers stacked like the Medusa reference —
+   layers above the active one hover as glass outlines, layers below rest as plain grey plates */
 .appr{position:relative;margin-top:80px;height:calc(100svh + 6 * 55svh)}
 .appr-pin{position:sticky;top:0;height:100svh;padding-top:73px;padding-bottom:24px;display:flex;flex-direction:column;overflow:hidden}
 .appr-snap{position:absolute;left:0;width:1px;height:1px;scroll-snap-align:start;pointer-events:none}
-/* plate — Figma 372:7187, hug height */
-.acards{position:relative;z-index:3;margin-top:37px;flex:none;display:grid;transition:height .5s cubic-bezier(.22,.8,.2,1)}
+.acards{position:relative;z-index:3;margin-top:37px;flex:none;display:grid}
 .acard{grid-area:1/1;align-self:start;position:relative;box-sizing:border-box;width:100%;max-width:370px;background:#1a1a1a;border-radius:14px;overflow:hidden;padding:12px 12px 14px;
-  opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .6s cubic-bezier(.22,.8,.2,1);pointer-events:none}
+  opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .7s cubic-bezier(.2,.8,.2,1);pointer-events:none}
 .acard.on{opacity:1;transform:none;pointer-events:auto}
 .acard h3{margin:0;font-size:16px;font-weight:500;line-height:18px;letter-spacing:-.8px;color:#fff;white-space:nowrap}
 .acard .arows{display:flex;flex-direction:column;gap:6px;margin-top:9px}
@@ -107,15 +107,18 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   font-size:12px;font-weight:300;line-height:20px;letter-spacing:-.6px;color:#fff;white-space:nowrap}
 .acard .arow.r3 .abd{padding:2px 6px}
 .acard .abd.k{background:#212121;-webkit-backdrop-filter:none;backdrop-filter:none}
-.astage{position:relative;flex:1 1 auto;min-height:300px;margin-top:10px;border-radius:40px;overflow:hidden;background:#121212}
-.astk .fl{position:absolute;left:-100%;top:-100%;width:300%;height:300%;max-width:none;pointer-events:none}
-.astk{position:absolute;left:50%;bottom:0;width:384px;aspect-ratio:874.7/583.5;transform:translateX(-50%)}
-.aly{position:absolute;inset:0;transition:transform 1s cubic-bezier(.22,.8,.2,1);will-change:transform}
-.aly img{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .7s ease}
-.aly.on .ly,.aly.dn .rs,.aly.up .gh{opacity:1}
-.aly.on .ly{animation:abob 3.4s ease-in-out infinite}
-@keyframes abob{0%,100%{translate:0 0}50%{translate:0 -2.2%}}
-@media (prefers-reduced-motion:reduce){.acard,.aly,.aly img{transition:none;animation:none!important}}
+.astage{position:relative;flex:1 1 auto;min-height:300px;margin-top:10px;border-radius:40px;overflow:hidden;background:#121212;isolation:isolate}
+.astk{position:absolute;left:50%;bottom:0;width:320px;aspect-ratio:870.67/592.61;transform:translateX(-50%)}
+.astk .fl{position:absolute;left:-100%;top:-100%;width:300%;height:300%;max-width:none;pointer-events:none;
+  -webkit-mask-image:radial-gradient(44% 40% at 50% 54%,#000 30%,transparent 100%);mask-image:radial-gradient(44% 40% at 50% 54%,#000 30%,transparent 100%)}
+.aly{position:absolute;inset:0;will-change:transform;backface-visibility:hidden}
+.aly img{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;user-select:none;-webkit-user-drag:none}
+/* rest/ghost show instantly underneath and hide only after the top image has finished fading — no half-transparent mixes */
+.aly .rs,.aly .gh{transition:opacity 0s linear .6s}
+.aly.dn .rs,.aly.up .gh{opacity:1;transition-delay:0s}
+.aly .ly{transition:opacity .3s cubic-bezier(.4,0,.2,1)}
+.aly.on .ly{opacity:1;transition-duration:.55s}
+@media (prefers-reduced-motion:reduce){.acard,.aly img{transition:none!important}}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .chip{height:24px;padding:2px 10px;border-radius:60px;background:var(--chip2);border:1px solid var(--chip-st);font-size:12px;line-height:20px;color:var(--chip-t);white-space:nowrap}
 .chip.k{background:var(--chip);color:#fff}
@@ -504,8 +507,6 @@ const STEPS=[
  ['05.','Интерфейс',[['UX/UI','Дизайн-системы','Адаптив'],['Состояния и edge cases']],[0]],
  ['06.','Handoff',[['Handoff','Аннотации и спецификации'],['Дизайн-ревью']],[0]]
 ];
-/* approach: layer colours from the Figma plates */
-const STEP_C=['#ffb7ff','#d3ff36','#99ace7','#4c74fa','#f1f2f7','#9747ff'];
 /* AI pipeline: title, what happens, tools (assets/<name>.png), step icon */
 const AI_STEPS=[
  ['Исследование','Бенчмаркинг конкурентов, синтез отзывов и 3–5 гипотез для проверки',['perplexity','chatgpt','claude','similarweb'],'research'],
@@ -577,25 +578,37 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{if(
   folds.forEach(f=>{io.observe(f);const t=()=>{f.classList.toggle('open');f.setAttribute('aria-expanded',f.classList.contains('open'));};
     f.addEventListener('click',t);f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t();}});});})();
 
-/* ---------- approach: pinned; layers lie stacked (Medusa logic): layers above the active one lift by a fixed offset and turn into ghost outlines, layers below stay as plain plates ---------- */
-(function(){const sec=$('#approach'),cards=$('#acards'),stg=$('.astage'),stk=$('#astk'),n=STEPS.length,AR=874.7/583.5,GAP=.075,LIFT=2.6;let cur=-1;
-  cards.innerHTML=STEPS.map((st,i)=>{let j=0;return `<div class="acard" style="--c:${STEP_C[i]}"><h3>${st[0]} ${esc(st[1])}</h3><div class="arows">${st[2].map(r=>`<div class="arow${r.length>2?' r3':''}">${r.map(c=>`<span class="abd${st[3].includes(j++)?' k':''}">${esc(c)}</span>`).join('')}</div>`).join('')}</div></div>`;}).join('');
-  const im=(c,f)=>`<img class="${c}" src="assets/main/approach/${f}.svg" alt="" decoding="async">`;
-  stk.innerHTML='<img class="fl" src="assets/main/approach/floor.svg" alt="">'+STEPS.map((_,i)=>`<div class="aly" style="z-index:${n-i}">${im('rs','layer-'+(i+1)+'-rest')}${im('gh','ghost')}${im('ly','layer-'+(i+1))}</div>`).join('');
-  sec.insertAdjacentHTML('beforeend',STEPS.map((_,i)=>`<span class="appr-snap" style="top:calc(${i} * var(--stp))"></span>`).join(''));
-  const cs=[...cards.children],ls=[...stk.querySelectorAll('.aly')];
-  function size(){/* fit: layer height + 5 gaps + lift must fit the stage */
-    const H=stg.clientHeight-32,Wa=stg.clientWidth-24,k=1/AR+GAP*(n-1+LIFT);
-    const w=Math.min(Wa,720,H/k);stk.style.width=w+'px';stk.style.bottom=16+Math.max(0,(H-w*k)/2)+'px';}
-  function set(k,force){if(k===cur&&!force)return;cur=k;
+/* ---------- approach: pinned stack. Positions run on a critically-damped spring (no CSS transform transitions),
+   the active layer floats gently; amplitude eases in/out so nothing ever jumps ---------- */
+(function(){const sec=$('#approach'),cards=$('#acards'),stg=$('.astage'),stk=$('#astk'),n=STEPS.length,
+  AR=870.67/592.61,GAP=.075,LIFT=2.6,BOB=.012,W0=8.5,RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let cur=-1,W=0,vis=false,raf=0,last=0,vw=innerWidth,vh=innerHeight;
+  cards.innerHTML=STEPS.map(st=>{let j=0;return `<div class="acard"><h3>${st[0]} ${esc(st[1])}</h3><div class="arows">${st[2].map(r=>`<div class="arow${r.length>2?' r3':''}">${r.map(c=>`<span class="abd${st[3].includes(j++)?' k':''}">${esc(c)}</span>`).join('')}</div>`).join('')}</div></div>`;}).join('');
+  const im=(c,f)=>`<img class="${c}" src="assets/main/approach/${f}.svg" alt="" decoding="async" draggable="false">`;
+  stk.innerHTML=im('fl','floor')+STEPS.map((_,i)=>`<div class="aly" style="z-index:${n-i}">${im('rs','layer-'+(i+1)+'-rest')}${im('gh','ghost')}${im('ly','layer-'+(i+1))}</div>`).join('');
+  sec.insertAdjacentHTML('beforeend',STEPS.map((_,i)=>`<span class="appr-snap" style="top:calc(${i+.5} * var(--stp))"></span>`).join(''));
+  const cs=[...cards.children],ls=[...stk.querySelectorAll('.aly')],S=ls.map(()=>({y:0,v:0,t:0,a:0}));
+  function targets(){const g=W*GAP,L=g*LIFT;S.forEach((s,i)=>{s.t=-(n-1-i)*g-(i<cur?L:0);});}
+  function size(){const H=stg.clientHeight-48,Wa=stg.clientWidth-32,k=1/AR+GAP*(n-1+LIFT)+BOB;
+    W=Math.floor(Math.min(Wa*.86,640,H/k));stk.style.width=W+'px';stk.style.bottom=Math.round(24+Math.max(0,(H-W*k)*.62))+'px';targets();}
+  function paint(now){const ph=.5-.5*Math.cos(now/3600*2*Math.PI);
+    ls.forEach((e,i)=>{const s=S[i];e.style.transform=`translate3d(0,${(s.y-s.a*BOB*W*ph).toFixed(2)}px,0)`;});}
+  function frame(now){const dt=Math.min(.034,(now-(last||now))/1000);last=now;
+    for(let k=0;k<2;k++){const h=dt/2;S.forEach((s,i)=>{s.v+=(W0*W0*(s.t-s.y)-2*W0*s.v)*h;s.y+=s.v*h;
+      const at=(i===cur&&!RM)?1:0;s.a+=(at-s.a)*(1-Math.exp(-h/.5));});}
+    paint(now);raf=vis?requestAnimationFrame(frame):0;}
+  function kick(){if(!raf&&vis){last=0;raf=requestAnimationFrame(frame);}}
+  function set(k){if(k===cur)return;cur=k;
     cs.forEach((e,i)=>e.classList.toggle('on',i===k));
-    const W=stk.clientWidth,g=W*GAP,L=g*LIFT;
-    ls.forEach((e,i)=>{const y=-(n-1-i)*g-(i<k?L:0);e.style.transform=`translateY(${y}px)`;
-      e.classList.toggle('up',i<k);e.classList.toggle('on',i===k);e.classList.toggle('dn',i>k);});}
+    ls.forEach((e,i)=>{e.classList.toggle('up',i<k);e.classList.toggle('on',i===k);e.classList.toggle('dn',i>k);});
+    targets();if(RM){S.forEach(s=>{s.y=s.t;s.v=0;});paint(0);}kick();}
   function fit(){sec.style.setProperty('--stp',(sec.offsetHeight-innerHeight)/n+'px');size();}
   function onS(){const r=sec.getBoundingClientRect(),span=sec.offsetHeight-innerHeight,p=Math.min(Math.max(-r.top/span,0),.9999);set(Math.floor(p*n));}
-  fit();set(0);onS();addEventListener('scroll',onS,{passive:true});addEventListener('resize',()=>{fit();set(cur,true);});
-  document.fonts&&document.fonts.ready.then(()=>set(cur,true));})();
+  fit();onS();S.forEach(s=>{s.y=s.t;});paint(0);
+  new IntersectionObserver(([en])=>{vis=en.isIntersecting;kick();}).observe(sec);
+  addEventListener('scroll',onS,{passive:true});
+  /* mobile URL-bar show/hide only changes height a little — don't relayout the stack for that */
+  addEventListener('resize',()=>{if(innerWidth===vw&&Math.abs(innerHeight-vh)<140)return;vw=innerWidth;vh=innerHeight;fit();S.forEach(s=>{s.y=s.t;s.v=0;});paint(0);});})();
 /* ---------- AI pipeline: zigzag on mobile/tablet, staircase on desktop, connectors drawn on reveal ---------- */
 (function(){const flow=$('#flow'),svg=$('#flowLines'),steps=[...flow.querySelectorAll('.fstep')],n=steps.length,NS='http://www.w3.org/2000/svg';
   function layout(){const W=flow.clientWidth,desk=innerWidth>=1100,R=14;let rects=[];
