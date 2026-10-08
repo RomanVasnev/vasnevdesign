@@ -97,10 +97,9 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .appr-snap{position:absolute;left:0;width:1px;height:1px;scroll-snap-align:start;pointer-events:none}
 /* plate — Figma 372:7187, hug height */
 .acards{position:relative;z-index:3;margin-top:37px;flex:none;display:grid;transition:height .5s cubic-bezier(.22,.8,.2,1)}
-.acard{grid-area:1/1;align-self:start;position:relative;box-sizing:border-box;width:100%;max-width:370px;background:#1a1a1a;border-radius:14px;overflow:hidden;padding:10px 10px 15px 37px;
+.acard{grid-area:1/1;align-self:start;position:relative;box-sizing:border-box;width:100%;max-width:370px;background:#1a1a1a;border-radius:14px;overflow:hidden;padding:12px 12px 14px;
   opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .6s cubic-bezier(.22,.8,.2,1);pointer-events:none}
 .acard.on{opacity:1;transform:none;pointer-events:auto}
-.acard::before{content:"";position:absolute;left:10px;top:10px;bottom:15px;width:15px;border-radius:20px 60px 60px 20px;background:var(--c)}
 .acard h3{margin:0;font-size:16px;font-weight:500;line-height:18px;letter-spacing:-.8px;color:#fff;white-space:nowrap}
 .acard .arows{display:flex;flex-direction:column;gap:6px;margin-top:9px}
 .acard .arow{display:flex;gap:6px;align-items:center}
@@ -108,12 +107,14 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   font-size:12px;font-weight:300;line-height:20px;letter-spacing:-.6px;color:#fff;white-space:nowrap}
 .acard .arow.r3 .abd{padding:2px 6px}
 .acard .abd.k{background:#212121;-webkit-backdrop-filter:none;backdrop-filter:none}
-.astage{position:relative;flex:1 1 auto;min-height:300px;margin-top:10px;border-radius:40px;overflow:hidden;background-color:#121212;background-image:radial-gradient(circle,rgba(255,255,255,.028) 0 1px,transparent 1.4px);background-size:20px 13px;background-position:-6px -1px}
+.astage{position:relative;flex:1 1 auto;min-height:300px;margin-top:10px;border-radius:40px;overflow:hidden;background-color:#121212;background-image:repeating-linear-gradient(60deg,rgba(255,255,255,.028) 0 1px,transparent 1px 22px),repeating-linear-gradient(-60deg,rgba(255,255,255,.028) 0 1px,transparent 1px 22px);background-position:center}
 .astk{position:absolute;left:50%;bottom:0;width:384px;aspect-ratio:874.7/583.5;transform:translateX(-50%)}
 .aly{position:absolute;inset:0;transition:transform 1s cubic-bezier(.22,.8,.2,1);will-change:transform}
 .aly img{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .7s ease}
-.aly.on .ly,.aly.up .gh,.aly.dn .gh{opacity:1}
-@media (prefers-reduced-motion:reduce){.acard,.aly,.aly img{transition:none}}
+.aly.on .ly,.aly.dn .rs,.aly.up .gh{opacity:1}
+.aly.on .ly{animation:abob 3.4s ease-in-out infinite}
+@keyframes abob{0%,100%{translate:0 0}50%{translate:0 -2.2%}}
+@media (prefers-reduced-motion:reduce){.acard,.aly,.aly img{transition:none;animation:none!important}}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .chip{height:24px;padding:2px 10px;border-radius:60px;background:var(--chip2);border:1px solid var(--chip-st);font-size:12px;line-height:20px;color:var(--chip-t);white-space:nowrap}
 .chip.k{background:var(--chip);color:#fff}
@@ -579,7 +580,7 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{if(
 (function(){const sec=$('#approach'),cards=$('#acards'),stg=$('.astage'),stk=$('#astk'),n=STEPS.length,AR=874.7/583.5,GAP=.075,LIFT=2.6;let cur=-1;
   cards.innerHTML=STEPS.map((st,i)=>{let j=0;return `<div class="acard" style="--c:${STEP_C[i]}"><h3>${st[0]} ${esc(st[1])}</h3><div class="arows">${st[2].map(r=>`<div class="arow${r.length>2?' r3':''}">${r.map(c=>`<span class="abd${st[3].includes(j++)?' k':''}">${esc(c)}</span>`).join('')}</div>`).join('')}</div></div>`;}).join('');
   const im=(c,f)=>`<img class="${c}" src="assets/main/approach/${f}.svg" alt="" decoding="async">`;
-  stk.innerHTML=STEPS.map((_,i)=>`<div class="aly" style="z-index:${n-i}">${im('gh','ghost')}${im('ly','layer-'+(i+1))}</div>`).join('');
+  stk.innerHTML=STEPS.map((_,i)=>`<div class="aly" style="z-index:${n-i}">${im('rs',i===n-1?'layer-6-rest':'layer-'+(i+1))}${im('gh','ghost')}${im('ly','layer-'+(i+1))}</div>`).join('');
   sec.insertAdjacentHTML('beforeend',STEPS.map((_,i)=>`<span class="appr-snap" style="top:calc(${i} * var(--stp))"></span>`).join(''));
   const cs=[...cards.children],ls=[...stk.children];
   function size(){/* fit: layer height + 5 gaps + lift must fit the stage */
