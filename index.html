@@ -92,7 +92,8 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .ctext b{color:#fff;font-weight:500}
 
 /* approach: pinned «my process» platform (isometric line art, component purple) */
-.appr{position:relative;margin-top:80px;height:calc(100svh + 6 * 60svh)}
+/* visible gaps match the site rhythm (80 / 140): the pin's own top padding is pulled back by a negative margin, the empty space under the panel at the end of the pin by JS */
+.appr{position:relative;margin-top:-32px;height:calc(100svh + 6 * 60svh)}
 .appr-pin{position:sticky;top:0;height:100svh;padding-top:112px;padding-bottom:24px;display:flex;flex-direction:column;justify-content:flex-start}
 .appr-snap{position:absolute;left:0;width:1px;height:1px;scroll-snap-align:start;pointer-events:none}
 .appr-h{padding-bottom:24px}
@@ -266,7 +267,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   .pcard .img{height:226px}
   .pcard h3,.pcard p{font-size:18px;line-height:24px}
   /* approach: heading left, platform right */
-  .appr{margin-top:140px;height:calc(100svh + 6 * 50svh)}
+  .appr{margin-top:-24px;height:calc(100svh + 6 * 50svh)}
   .appr-pin{padding-top:140px;padding-bottom:40px;display:grid;grid-template-columns:380px 1fr;column-gap:56px;align-items:start}
   .apl{height:min(680px,calc(100svh - 180px))}
   .appr-h{padding-top:24px}
@@ -676,6 +677,8 @@ function fit(){const r=svg.getBoundingClientRect(),mob=r.width<600;
     r.height=pl.clientHeight;}
   else sc=Math.min((r.width-16)/w,(r.height-padT-padB)/h,2.4);
   const RH=svg.parentElement.clientHeight;
+  {const pin=document.querySelector('.appr-pin'),pl=svg.parentElement,gap=innerWidth>=1100?140:80,ai=document.getElementById('ai'),aim=parseFloat(getComputedStyle(ai).marginTop)||0;
+   const left=pin.clientHeight-(pl.offsetTop+pl.offsetHeight);document.getElementById('approach').style.marginBottom=(gap-left-aim)+'px';}
   const vbW=r.width/sc,vbH=RH/sc,cxv=(xs[0]+xs[1])/2,cyv=(ys[0]+ys[1])/2;
   svg.setAttribute('viewBox',`${cxv-vbW/2} ${cyv-vbH/2-(padT-padB)/2/sc} ${vbW} ${vbH}`);}
 
