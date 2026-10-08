@@ -97,7 +97,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .appr-pin{position:sticky;top:0;height:100svh;padding-top:73px;padding-bottom:24px;display:flex;flex-direction:column;overflow:hidden}
 .appr-snap{position:absolute;left:0;width:1px;height:1px;scroll-snap-align:start;pointer-events:none}
 .acards{position:relative;z-index:3;margin-top:37px;flex:none;display:grid}
-.acard{grid-area:1/1;align-self:start;position:relative;box-sizing:border-box;width:100%;max-width:370px;background:#1a1a1a;border-radius:14px;overflow:hidden;padding:12px 12px 14px;
+.acard{grid-area:1/1;align-self:stretch;position:relative;box-sizing:border-box;width:100%;max-width:370px;background:#1a1a1a;border-radius:14px;overflow:hidden;padding:12px 12px 14px;
   opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .7s cubic-bezier(.2,.8,.2,1);pointer-events:none}
 .acard.on{opacity:1;transform:none;pointer-events:auto}
 .acard h3{margin:0;font-size:16px;font-weight:500;line-height:18px;letter-spacing:-.8px;color:#fff;white-space:nowrap}
@@ -107,7 +107,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   font-size:12px;font-weight:300;line-height:20px;letter-spacing:-.6px;color:#fff;white-space:nowrap}
 .acard .arow.r3 .abd{padding:2px 6px}
 .acard .abd.k{background:#212121;-webkit-backdrop-filter:none;backdrop-filter:none}
-.astage{position:relative;flex:1 1 auto;min-height:300px;margin-top:10px;border-radius:40px;overflow:hidden;background:#121212;isolation:isolate}
+.astage{position:relative;flex:1 1 auto;min-height:300px;margin-top:10px;border-radius:14px;overflow:hidden;background:#121212;isolation:isolate}
 .astk{position:absolute;left:50%;bottom:0;width:320px;aspect-ratio:870.67/592.61;transform:translateX(-50%)}
 .astk .fl{position:absolute;left:-100%;top:-100%;width:300%;height:300%;max-width:none;pointer-events:none;
   -webkit-mask-image:radial-gradient(44% 40% at 50% 54%,#000 30%,transparent 100%);mask-image:radial-gradient(44% 40% at 50% 54%,#000 30%,transparent 100%)}
@@ -278,7 +278,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   .appr-pin{padding-top:96px;display:grid;grid-template-columns:420px 1fr;grid-template-rows:auto auto 1fr;column-gap:60px;align-content:center}
   .appr-pin .appr-h{grid-column:1;grid-row:1}
   .appr-pin .acards{grid-column:1;grid-row:2}
-  .appr-pin .astage{grid-column:2;grid-row:1/span 3;height:min(640px,calc(100svh - 140px));margin:0;align-self:center}
+  .appr-pin .astage{grid-column:2;grid-row:1/span 3;height:min(780px,calc(100svh - 120px));margin:0;align-self:center}
   .ai{margin-top:140px}
   .ai-card .txt{padding:20px 48px 0;max-width:760px}
   .flow{margin:56px 48px 56px}
@@ -590,7 +590,8 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{if(
   const cs=[...cards.children],ls=[...stk.querySelectorAll('.aly')],S=ls.map(()=>({y:0,v:0,t:0,a:0}));
   function targets(){const g=W*GAP,L=g*LIFT;S.forEach((s,i)=>{s.t=-(n-1-i)*g-(i<cur?L:0);});}
   function size(){const H=stg.clientHeight-48,Wa=stg.clientWidth-32,k=1/AR+GAP*(n-1+LIFT)+BOB;
-    W=Math.floor(Math.min(Wa*.86,640,H/k));stk.style.width=W+'px';stk.style.bottom=Math.round(24+Math.max(0,(H-W*k)*.62))+'px';targets();}
+    const old=Math.min(Wa*.86,640,H/k),H2=stg.clientHeight-12;/* layers +25% vs the previous size, limited by the stage */
+    W=Math.floor(Math.min(old*1.25,stg.clientWidth-8,H2/k));stk.style.width=W+'px';stk.style.bottom=Math.round(6+Math.max(0,(H2-W*k)*.62))+'px';targets();}
   function paint(now){const ph=.5-.5*Math.cos(now/3600*2*Math.PI);
     ls.forEach((e,i)=>{const s=S[i];e.style.transform=`translate3d(0,${(s.y-s.a*BOB*W*ph).toFixed(2)}px,0)`;});}
   function frame(now){const dt=Math.min(.034,(now-(last||now))/1000);last=now;
