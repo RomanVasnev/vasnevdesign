@@ -93,23 +93,26 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 
 /* approach (Figma «test design block»): pinned; layers lie stacked, each scroll step lifts the active layer up as a ghost outline and reveals the next one */
 .appr{position:relative;margin-top:80px;height:calc(100svh + 6 * 55svh)}
-.appr-pin{position:sticky;top:0;height:100svh;padding-top:73px;display:flex;flex-direction:column;overflow:hidden}
+.appr-pin{position:sticky;top:0;height:100svh;padding-top:73px;padding-bottom:24px;display:flex;flex-direction:column;overflow:hidden}
 .appr-snap{position:absolute;left:0;width:1px;height:1px;scroll-snap-align:start;pointer-events:none}
-.acards{position:relative;z-index:3;margin-top:37px;height:142px;flex:none}
-.acard{position:absolute;inset:0;border-radius:14px;background:#1a1a1a;overflow:hidden;padding:10px 12px 0 37px;
+/* plate — Figma 372:7187, hug height */
+.acards{position:relative;z-index:3;margin-top:37px;flex:none;display:grid;transition:height .5s cubic-bezier(.22,.8,.2,1)}
+.acard{grid-area:1/1;align-self:start;position:relative;box-sizing:border-box;width:100%;max-width:370px;background:#1a1a1a;border-radius:14px;overflow:hidden;padding:10px 10px 15px 37px;
   opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .6s cubic-bezier(.22,.8,.2,1);pointer-events:none}
 .acard.on{opacity:1;transform:none;pointer-events:auto}
-.acard::before{content:"";position:absolute;left:10px;top:10px;width:15px;height:117px;border-radius:20px 60px 60px 20px;background:var(--c)}
-.acard h3{margin:0;font-size:16px;font-weight:500;line-height:18px;letter-spacing:-.05em}
-.acard .chips{margin-top:9px;gap:12px 6px}
-.acard .chip{height:auto;padding:2px 6px;font-size:12px;line-height:20px;font-weight:300;color:#fff;background:rgba(36,36,36,.7);border:1px solid #282828}
-.acard .chip.k{background:#212121;padding:2px 10px}
-.astage{position:relative;flex:none;height:348px;margin-top:10px}
-.astk{position:absolute;left:50%;top:auto;bottom:0;width:384px;max-width:calc(100% + 16px);aspect-ratio:887/530;transform:translateX(-50%)}
-.aly{position:absolute;inset:0;transition:transform .9s cubic-bezier(.22,.8,.2,1);will-change:transform}
-.aly img{position:absolute;inset:0;width:100%;height:100%;display:block;transition:opacity .6s ease}
-.aly .gh{opacity:0}
-.aly.lift .ly{opacity:0}.aly.lift .gh{opacity:1}
+.acard::before{content:"";position:absolute;left:10px;top:10px;bottom:15px;width:15px;border-radius:20px 60px 60px 20px;background:var(--c)}
+.acard h3{margin:0;font-size:16px;font-weight:500;line-height:18px;letter-spacing:-.8px;color:#fff;white-space:nowrap}
+.acard .arows{display:flex;flex-direction:column;gap:6px;margin-top:9px}
+.acard .arow{display:flex;gap:6px;align-items:center}
+.acard .abd{display:flex;align-items:center;justify-content:center;padding:2px 10px;border:1px solid #282828;border-radius:60px;background:rgba(36,36,36,.7);-webkit-backdrop-filter:blur(3.5px);backdrop-filter:blur(3.5px);
+  font-size:12px;font-weight:300;line-height:20px;letter-spacing:-.6px;color:#fff;white-space:nowrap}
+.acard .arow.r3 .abd{padding:2px 6px}
+.acard .abd.k{background:#212121;-webkit-backdrop-filter:none;backdrop-filter:none}
+.astage{position:relative;flex:1 1 auto;min-height:300px;margin-top:10px}
+.astk{position:absolute;left:50%;bottom:0;width:384px;aspect-ratio:887.2/554.8;transform:translateX(-50%)}
+.aly{position:absolute;inset:0;transition:transform 1s cubic-bezier(.22,.8,.2,1);will-change:transform}
+.aly img{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .7s ease}
+.aly.on .ly,.aly.up .gh,.aly.dn .rs{opacity:1}
 @media (prefers-reduced-motion:reduce){.acard,.aly,.aly img{transition:none}}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .chip{height:24px;padding:2px 10px;border-radius:60px;background:var(--chip2);border:1px solid var(--chip-st);font-size:12px;line-height:20px;color:var(--chip-t);white-space:nowrap}
@@ -270,8 +273,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   .appr-pin{padding-top:96px;display:grid;grid-template-columns:420px 1fr;grid-template-rows:auto auto 1fr;column-gap:60px;align-content:center}
   .appr-pin .appr-h{grid-column:1;grid-row:1}
   .appr-pin .acards{grid-column:1;grid-row:2}
-  .appr-pin .astage{grid-column:2;grid-row:1/span 3;height:600px;margin:0;align-self:center}
-  .astk{width:min(100%,720px);bottom:40px}
+  .appr-pin .astage{grid-column:2;grid-row:1/span 3;height:min(640px,calc(100svh - 140px));margin:0;align-self:center}
   .ai{margin-top:140px}
   .ai-card .txt{padding:20px 48px 0;max-width:760px}
   .flow{margin:56px 48px 56px}
@@ -493,12 +495,12 @@ const CASES=[
  {bg:'#0a3068',tags:['Fintech','B2C','Mobile','AI'],t:'Превратил скучный учёт расходов в план с советами',d:'FinHamster: ИИ-помощник для личных финансов.',soon:1},
 ];
 const STEPS=[
- ['01.','Исследование',['Исследование','Бенчмаркинг','Анализ конкурентов','Формирование гипотез','Customer Journey Map','Интервью','Юзабилити-тесты'],[0,3,5]],
- ['02.','Бренд и визуал',['Брендинг','Айдентика','Иллюстрация','3D','Motion'],[0]],
- ['03.','Стратегия',['Продуктовый дизайн','Метрики и KPI','Приоритизация'],[0]],
- ['04.','Проектирование',['UX-проектирование','Информационная архитектура','User Flow','Прототипирование'],[0,2]],
- ['05.','Интерфейс',['UX/UI','Дизайн-системы','Адаптив','Состояния и edge cases'],[0]],
- ['06.','Handoff',['Handoff','Аннотации и спецификации','Дизайн-ревью'],[0]]
+ ['01.','Исследование',[['Исследование','Бенчмаркинг','Анализ конкурентов'],['Формирование гипотез','Customer Journey Map'],['Интервью','Юзабилити-тесты']],[0,3,5]],
+ ['02.','Бренд и визуал',[['Брендинг','Айдентика','Иллюстрация'],['3D','Motion']],[0]],
+ ['03.','Стратегия',[['Продуктовый дизайн','Метрики и KPI'],['Приоритизация']],[0]],
+ ['04.','Проектирование',[['UX-проектирование','Информационная архитектура'],['User Flow','Прототипирование']],[0,2]],
+ ['05.','Интерфейс',[['UX/UI','Дизайн-системы','Адаптив'],['Состояния и edge cases']],[0]],
+ ['06.','Handoff',[['Handoff','Аннотации и спецификации'],['Дизайн-ревью']],[0]]
 ];
 /* approach: layer colours from the Figma plates */
 const STEP_C=['#ffb7ff','#d3ff36','#99ace7','#4c74fa','#f1f2f7','#9747ff'];
@@ -573,21 +575,25 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{if(
   folds.forEach(f=>{io.observe(f);const t=()=>{f.classList.toggle('open');f.setAttribute('aria-expanded',f.classList.contains('open'));};
     f.addEventListener('click',t);f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t();}});});})();
 
-/* ---------- approach: pinned; layers stacked; scrolling lifts the layers above the active one as ghost outlines ---------- */
-(function(){const sec=$('#approach'),cards=$('#acards'),stk=$('#astk'),n=STEPS.length;let cur=-1;
-  cards.innerHTML=STEPS.map((st,i)=>`<div class="acard" style="--c:${STEP_C[i]}"><h3>${st[0]} ${esc(st[1])}</h3><div class="chips">${st[2].map((c,j)=>`<span class="chip${st[3].includes(j)?' k':''}">${esc(c)}</span>`).join('')}</div></div>`).join('');
-  stk.innerHTML=STEPS.map((_,i)=>`<div class="aly" style="z-index:${n-i}"><img class="ly" src="assets/main/approach/layer-${i+1}.svg" alt="" decoding="async"><img class="gh" src="assets/main/approach/ghost.svg" alt=""></div>`).join('');
+/* ---------- approach: pinned; layers lie stacked (Medusa logic): layers above the active one lift by a fixed offset and turn into ghost outlines, layers below stay as plain plates ---------- */
+(function(){const sec=$('#approach'),cards=$('#acards'),stg=$('.astage'),stk=$('#astk'),n=STEPS.length,AR=887.2/554.8,GAP=.075,LIFT=2.6;let cur=-1;
+  cards.innerHTML=STEPS.map((st,i)=>{let j=0;return `<div class="acard" style="--c:${STEP_C[i]}"><h3>${st[0]} ${esc(st[1])}</h3><div class="arows">${st[2].map(r=>`<div class="arow${r.length>2?' r3':''}">${r.map(c=>`<span class="abd${st[3].includes(j++)?' k':''}">${esc(c)}</span>`).join('')}</div>`).join('')}</div></div>`;}).join('');
+  const im=(c,f)=>`<img class="${c}" src="assets/main/approach/${f}.svg" alt="" decoding="async">`;
+  stk.innerHTML=STEPS.map((_,i)=>`<div class="aly" style="z-index:${n-i}">${im('rs','rest')}${im('gh','ghost')}${im('ly','layer-'+(i+1))}</div>`).join('');
   sec.insertAdjacentHTML('beforeend',STEPS.map((_,i)=>`<span class="appr-snap" style="top:calc(${i} * var(--stp))"></span>`).join(''));
   const cs=[...cards.children],ls=[...stk.children];
-  function set(k){if(k===cur)return;cur=k;cs.forEach((e,i)=>e.classList.toggle('on',i===k));
-    const h=stk.clientHeight,g=h*.035,lift=h*.34,gap=h*.075;
-    ls.forEach((e,i)=>{let y;
-      if(i<k){y=-(lift+(k-1-i)*gap)+(k)*g*0;e.classList.add('lift');}
-      else{y=(i-k)*g;e.classList.remove('lift');}
-      e.style.transform=`translateY(${y}px)`;});}
-  function fit(){sec.style.setProperty('--stp',(sec.offsetHeight-innerHeight)/n+'px');}
+  function size(){/* fit: layer height + 5 gaps + lift must fit the stage */
+    const H=stg.clientHeight,Wa=stg.clientWidth+(innerWidth<1100?16:0),k=1/AR+GAP*(n-1+LIFT);
+    const w=Math.min(Wa,720,H/k);stk.style.width=w+'px';stk.style.bottom=Math.max(0,(H-w*k)/2)+'px';}
+  function set(k,force){if(k===cur&&!force)return;cur=k;
+    cs.forEach((e,i)=>e.classList.toggle('on',i===k));cards.style.height=cs[k].offsetHeight+'px';
+    const W=stk.clientWidth,g=W*GAP,L=g*LIFT;
+    ls.forEach((e,i)=>{const y=-(n-1-i)*g-(i<k?L:0);e.style.transform=`translateY(${y}px)`;
+      e.classList.toggle('up',i<k);e.classList.toggle('on',i===k);e.classList.toggle('dn',i>k);});}
+  function fit(){sec.style.setProperty('--stp',(sec.offsetHeight-innerHeight)/n+'px');size();}
   function onS(){const r=sec.getBoundingClientRect(),span=sec.offsetHeight-innerHeight,p=Math.min(Math.max(-r.top/span,0),.9999);set(Math.floor(p*n));}
-  fit();set(0);onS();addEventListener('scroll',onS,{passive:true});addEventListener('resize',()=>{fit();const k=cur;cur=-1;set(k);});})();
+  fit();set(0);onS();addEventListener('scroll',onS,{passive:true});addEventListener('resize',()=>{fit();set(cur,true);});
+  document.fonts&&document.fonts.ready.then(()=>set(cur,true));})();
 /* ---------- AI pipeline: zigzag on mobile/tablet, staircase on desktop, connectors drawn on reveal ---------- */
 (function(){const flow=$('#flow'),svg=$('#flowLines'),steps=[...flow.querySelectorAll('.fstep')],n=steps.length,NS='http://www.w3.org/2000/svg';
   function layout(){const W=flow.clientWidth,desk=innerWidth>=1100,R=14;let rects=[];
