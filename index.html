@@ -96,7 +96,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .appr-pin{position:sticky;top:0;height:100svh;padding-top:112px;padding-bottom:24px;display:flex;flex-direction:column;justify-content:flex-start}
 .appr-snap{position:absolute;left:0;width:1px;height:1px;scroll-snap-align:start;pointer-events:none}
 .appr-h{padding-bottom:24px}
-.apl{--acc:#9747ff;position:relative;flex:none;height:min(540px,calc(100svh - 280px));min-height:380px;border-radius:14px;background:#111;overflow:hidden}
+.apl{--acc:#9747ff;position:relative;flex:none;height:min(540px,calc(100svh - 280px));border-radius:14px;background:#111;overflow:hidden}
 .apl svg{position:absolute;inset:0;width:100%;height:100%;display:block}
 .ap-info{position:absolute;left:20px;top:18px;right:20px;z-index:2;pointer-events:none}
 .ap-row{display:flex;align-items:baseline;gap:10px}
@@ -661,11 +661,22 @@ function drawProd(cur){prodG.innerHTML='';const full=cur===n-1;
   for(let k=0;k<n;k++){const g=mk('g',{transform:M(14.2)});g.appendChild(mk('rect',{x:prodX+14+k*12,y:prodY+PRH-24,width:8,height:8,rx:2,fill:k<=cur?(full?'#fff':'var(--acc)'):'none',stroke:k<=cur?'none':'rgba(255,255,255,.35)','stroke-width':1,...VE}));prodG.appendChild(g);}
   prodG.appendChild(planeText(prodX+14,prodY+22,14.2,'.product',9,full?'#fff':'#bdbdbd','start'));}
 
+/* tallest text block across all steps (chips wrap differently) — the scene is sized once, not per step */
+let _im=0,_imW=0;function infoMax(){const info=document.querySelector('.ap-info'),f=document.getElementById('apFoot'),o=document.getElementById('apOut');
+  if(_imW===info.offsetWidth&&_im)return _im;const keepF=f.innerHTML,keepO=o.textContent;let m=0;
+  APS.forEach(st=>{o.textContent='На выходе: '+st[2];f.innerHTML=st[3].map(c=>`<span class="apchip">${c}</span>`).join('');m=Math.max(m,info.offsetHeight);});
+  f.innerHTML=keepF;o.textContent=keepO;_imW=info.offsetWidth;_im=m;return m;}
 /* ---------- fit */
 function fit(){const r=svg.getBoundingClientRect(),mob=r.width<600;
   const xs=[P(-212,tilesPos[5][1]+TH,0)[0]-6,Math.max(P(PX+PW,PY,0)[0],P(prodX+PRW,prodY,0)[0])+6],ys=[Math.min(P(-212,-136,20)[1],P(PX,PY,PZ+20)[1])-14,P(prodX+PRW,prodY+PRH,0)[1]+10];
-  const w=xs[1]-xs[0],h=ys[1]-ys[0],padT=document.querySelector('.ap-info').offsetHeight+(mob?30:40),padB=mob?20:40,sc=Math.min((r.width-16)/w,(r.height-padT-padB)/h,2.4);
-  const vbW=r.width/sc,vbH=r.height/sc,cxv=(xs[0]+xs[1])/2,cyv=(ys[0]+ys[1])/2;
+  const w=xs[1]-xs[0],h=ys[1]-ys[0],padT=infoMax()+(mob?24:40),padB=mob?16:40;let sc;
+  if(mob){/* scene keeps its full width-based size on every step; the panel is sized to fit it */
+    sc=Math.min((r.width-16)/w,2.4);const pl=svg.parentElement,need=Math.ceil(padT+h*sc+padB),cap=innerHeight-220;
+    if(need<=cap){pl.style.height=need+'px';}else{pl.style.height=cap+'px';sc=Math.min(sc,(cap-padT-padB)/h);}
+    r.height=pl.clientHeight;}
+  else sc=Math.min((r.width-16)/w,(r.height-padT-padB)/h,2.4);
+  const RH=svg.parentElement.clientHeight;
+  const vbW=r.width/sc,vbH=RH/sc,cxv=(xs[0]+xs[1])/2,cyv=(ys[0]+ys[1])/2;
   svg.setAttribute('viewBox',`${cxv-vbW/2} ${cyv-vbH/2-(padT-padB)/2/sc} ${vbW} ${vbH}`);}
 
 /* ---------- state + animation (tile and slot rise on a short ease) */
@@ -677,7 +688,7 @@ const num=document.getElementById('apNum'),ttl=document.getElementById('apTtl'),
 function swap(box,txt,dir){const all=[...box.children];all.slice(0,-1).forEach(e=>e.remove());const old=all[all.length-1]||null,s=document.createElement('span');s.textContent=txt;s.style.transform=`translateY(${dir*100}%)`;s.style.opacity=0;box.appendChild(s);
   requestAnimationFrame(()=>requestAnimationFrame(()=>{s.style.transform='none';s.style.opacity=1;if(old){old.style.transform=`translateY(${-dir*100}%)`;old.style.opacity=0;setTimeout(()=>old.remove(),650);}}));}
 function setText(i){const dir=i>prevI?1:-1;swap(num,String(i+1).padStart(2,'0')+'/06',dir);swap(ttl,APS[i][0],dir);
-  out.style.opacity=0;foot.style.opacity=0;setTimeout(()=>{out.textContent='На выходе: '+APS[i][2];foot.innerHTML=APS[i][3].map(c=>`<span class="apchip">${c}</span>`).join('');out.style.opacity=1;foot.style.opacity=1;fit();},180);prevI=i;}
+  out.style.opacity=0;foot.style.opacity=0;setTimeout(()=>{out.textContent='На выходе: '+APS[i][2];foot.innerHTML=APS[i][3].map(c=>`<span class="apchip">${c}</span>`).join('');out.style.opacity=1;foot.style.opacity=1;},180);prevI=i;}
 const sec=document.getElementById('approach');sec.insertAdjacentHTML('beforeend',APS.map((_,i)=>`<span class="appr-snap" style="top:calc(${i+.5} * var(--stp))"></span>`).join(''));const stp=()=>sec.style.setProperty('--stp',(sec.offsetHeight-innerHeight)/n+'px');stp();
 function set(i){if(i===cur&&prevI!==-1)return;cur=i;setText(i);cancelAnimationFrame(raf);t0=0;lift=0;raf=requestAnimationFrame(anim);}
 function onS(){const r=sec.getBoundingClientRect(),span=sec.offsetHeight-innerHeight,p=Math.min(Math.max(-r.top/span,0),.9999);set(Math.floor(p*n));}
