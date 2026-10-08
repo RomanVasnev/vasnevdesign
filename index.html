@@ -91,34 +91,27 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .ctext{margin:20px 0 0;font-size:18px;line-height:20px;font-weight:500;color:#555}
 .ctext b{color:#fff;font-weight:500}
 
-/* approach (Figma «test design block»): pinned; isometric layers stacked like the Medusa reference —
-   layers above the active one hover as glass outlines, layers below rest as plain grey plates */
-.appr{position:relative;margin-top:80px;height:calc(100svh + 6 * 55svh)}
-.appr-pin{position:sticky;top:0;height:100svh;padding-top:73px;padding-bottom:24px;display:flex;flex-direction:column;overflow:hidden}
+/* approach: pinned «my process» platform (isometric line art, component purple) */
+.appr{position:relative;margin-top:80px;height:calc(100svh + 6 * 60svh)}
+.appr-pin{position:sticky;top:0;height:100svh;padding-top:73px;padding-bottom:16px;display:flex;flex-direction:column}
 .appr-snap{position:absolute;left:0;width:1px;height:1px;scroll-snap-align:start;pointer-events:none}
-.acards{position:relative;z-index:3;margin-top:37px;flex:none;display:grid}
-.acard{grid-area:1/1;align-self:stretch;position:relative;box-sizing:border-box;width:100%;max-width:370px;background:#1a1a1a;border-radius:14px;overflow:hidden;padding:12px 12px 14px;
-  opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .7s cubic-bezier(.2,.8,.2,1);pointer-events:none}
-.acard.on{opacity:1;transform:none;pointer-events:auto}
-.acard h3{margin:0;font-size:16px;font-weight:500;line-height:18px;letter-spacing:-.8px;color:#fff;white-space:nowrap}
-.acard .arows{display:flex;flex-direction:column;gap:6px;margin-top:9px}
-.acard .arow{display:flex;gap:6px;align-items:center}
-.acard .abd{display:flex;align-items:center;justify-content:center;padding:2px 10px;border:1px solid #282828;border-radius:60px;background:rgba(36,36,36,.7);-webkit-backdrop-filter:blur(3.5px);backdrop-filter:blur(3.5px);
-  font-size:12px;font-weight:300;line-height:20px;letter-spacing:-.6px;color:#fff;white-space:nowrap}
-.acard .arow.r3 .abd{padding:2px 6px}
-.acard .abd.k{background:#212121;-webkit-backdrop-filter:none;backdrop-filter:none}
-.astage{position:relative;flex:1 1 auto;min-height:300px;margin-top:10px;border-radius:14px;overflow:hidden;background:#121212;isolation:isolate}
-.astk{position:absolute;left:50%;bottom:0;width:320px;aspect-ratio:870.67/592.61;transform:translateX(-50%)}
-.astk .fl{position:absolute;left:-100%;top:-100%;width:300%;height:300%;max-width:none;pointer-events:none;
-  -webkit-mask-image:radial-gradient(44% 40% at 50% 54%,#000 30%,transparent 100%);mask-image:radial-gradient(44% 40% at 50% 54%,#000 30%,transparent 100%)}
-.aly{position:absolute;inset:0;will-change:transform;backface-visibility:hidden}
-.aly img{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;user-select:none;-webkit-user-drag:none}
-/* rest/ghost show instantly underneath and hide only after the top image has finished fading — no half-transparent mixes */
-.aly .rs,.aly .gh{transition:opacity 0s linear .6s}
-.aly.dn .rs,.aly.up .gh{opacity:1;transition-delay:0s}
-.aly .ly{transition:opacity .3s cubic-bezier(.4,0,.2,1)}
-.aly.on .ly{opacity:1;transition-duration:.55s}
-@media (prefers-reduced-motion:reduce){.acard,.aly img{transition:none!important}}
+.appr-h{padding-bottom:16px}
+.apl{--acc:#9747ff;position:relative;flex:1;min-height:0;border-radius:14px;background:#111;overflow:hidden}
+.apl svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.ap-info{position:absolute;left:20px;top:18px;right:20px;z-index:2;pointer-events:none}
+.ap-lbl{font:400 11px/1 'Geist Mono',ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.ap-row{display:flex;align-items:baseline;gap:10px;margin-top:8px}
+.ap-num,.ap-ttl{position:relative;overflow:hidden}
+.ap-num{width:44px;height:30px}.ap-ttl{flex:1;height:30px}
+.ap-num span,.ap-ttl span{position:absolute;left:0;top:0;white-space:nowrap;transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .4s ease}
+.ap-num span{font:400 15px/30px 'Geist Mono',ui-monospace,monospace;color:var(--muted)}
+.ap-ttl span{font-size:26px;line-height:30px;font-weight:500;letter-spacing:-.05em}
+.ap-out{margin-top:6px;color:var(--muted);font-size:13px;line-height:17px;letter-spacing:-.02em;transition:opacity .3s}
+.ap-foot{position:absolute;left:20px;right:20px;bottom:18px;z-index:2;display:flex;flex-wrap:wrap;gap:6px;transition:opacity .3s}
+.apchip{padding:2px 10px;border-radius:60px;border:1px solid #2a2a2a;background:rgba(20,20,20,.85);font-size:12px;line-height:20px;letter-spacing:-.03em;color:#cfcfcf;white-space:nowrap}
+.apflow{animation:apflow 1.1s linear infinite}
+@keyframes apflow{to{stroke-dashoffset:-14}}
+@media (prefers-reduced-motion:reduce){.apflow{animation:none}.ap-num span,.ap-ttl span{transition:none}}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .chip{height:24px;padding:2px 10px;border-radius:60px;background:var(--chip2);border:1px solid var(--chip-st);font-size:12px;line-height:20px;color:var(--chip-t);white-space:nowrap}
 .chip.k{background:var(--chip);color:#fff}
@@ -273,12 +266,10 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   .pcard{width:400px}
   .pcard .img{height:226px}
   .pcard h3,.pcard p{font-size:18px;line-height:24px}
-  /* approach: heading + card left, stack right */
+  /* approach: heading left, platform right */
   .appr{margin-top:140px;height:calc(100svh + 6 * 50svh)}
-  .appr-pin{padding-top:96px;display:grid;grid-template-columns:420px 1fr;grid-template-rows:auto auto 1fr;column-gap:60px;align-content:center}
-  .appr-pin .appr-h{grid-column:1;grid-row:1}
-  .appr-pin .acards{grid-column:1;grid-row:2}
-  .appr-pin .astage{grid-column:2;grid-row:1/span 3;height:min(780px,calc(100svh - 120px));margin:0;align-self:center}
+  .appr-pin{padding-top:96px;padding-bottom:40px;display:grid;grid-template-columns:380px 1fr;column-gap:56px;align-items:stretch}
+  .appr-h{padding-top:24px}
   .ai{margin-top:140px}
   .ai-card .txt{padding:20px 48px 0;max-width:760px}
   .flow{margin:56px 48px 56px}
@@ -408,10 +399,17 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
     <div class="appr-pin">
       <div class="appr-h">
         <h2 class="h2">Мой подход к дизайну</h2>
-        <p class="sub">Инструменты меняются, подход остаётся. Сейчас мой подход <b>выглядит так</b></p>
+        <p class="sub">Шесть этапов собираются в одну систему — продукт, который <b>можно отдать в разработку</b></p>
       </div>
-      <div class="acards" id="acards" aria-live="polite"></div>
-      <div class="astage" aria-hidden="true"><div class="astk" id="astk"></div></div>
+      <div class="apl">
+        <div class="ap-info" aria-live="polite">
+          <div class="ap-lbl">Этап</div>
+          <div class="ap-row"><div class="ap-num" id="apNum"></div><div class="ap-ttl" id="apTtl"></div></div>
+          <div class="ap-out" id="apOut"></div>
+        </div>
+        <svg id="apSvg" aria-hidden="true"></svg>
+        <div class="ap-foot" id="apFoot"></div>
+      </div>
     </div>
   </section>
 
@@ -499,14 +497,6 @@ const CASES=[
  {bg:'#50ff47',tags:['Fintech','B2C','Mobile','EdTech'],t:'Как короткие уроки помогли новичкам решиться на первую инвестицию',d:'Robinhood Learn: обучение инвестициям в приложении.',soon:1},
  {bg:'#0a3068',tags:['Fintech','B2C','Mobile','AI'],t:'Превратил скучный учёт расходов в план с советами',d:'FinHamster: ИИ-помощник для личных финансов.',soon:1},
 ];
-const STEPS=[
- ['01.','Исследование',[['Исследование','Бенчмаркинг','Анализ конкурентов'],['Формирование гипотез','Customer Journey Map'],['Интервью','Юзабилити-тесты']],[0,3,5]],
- ['02.','Бренд и визуал',[['Брендинг','Айдентика','Иллюстрация'],['3D','Motion']],[0]],
- ['03.','Стратегия',[['Продуктовый дизайн','Метрики и KPI'],['Приоритизация']],[0]],
- ['04.','Проектирование',[['UX-проектирование','Информационная архитектура'],['User Flow','Прототипирование']],[0,2]],
- ['05.','Интерфейс',[['UX/UI','Дизайн-системы','Адаптив'],['Состояния и edge cases']],[0]],
- ['06.','Handoff',[['Handoff','Аннотации и спецификации'],['Дизайн-ревью']],[0]]
-];
 /* AI pipeline: title, what happens, tools (assets/<name>.png), step icon */
 const AI_STEPS=[
  ['Исследование','Бенчмаркинг конкурентов, синтез отзывов и 3–5 гипотез для проверки',['perplexity','chatgpt','claude','similarweb'],'research'],
@@ -578,38 +568,120 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{if(
   folds.forEach(f=>{io.observe(f);const t=()=>{f.classList.toggle('open');f.setAttribute('aria-expanded',f.classList.contains('open'));};
     f.addEventListener('click',t);f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t();}});});})();
 
-/* ---------- approach: pinned stack. Positions run on a critically-damped spring (no CSS transform transitions),
-   the active layer floats gently; amplitude eases in/out so nothing ever jumps ---------- */
-(function(){const sec=$('#approach'),cards=$('#acards'),stg=$('.astage'),stk=$('#astk'),n=STEPS.length,
-  AR=870.67/592.61,GAP=.075,LIFT=2.6,BOB=.012,W0=8.5,RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let cur=-1,W=0,vis=false,raf=0,last=0,vw=innerWidth,vh=innerHeight;
-  cards.innerHTML=STEPS.map(st=>{let j=0;return `<div class="acard"><h3>${st[0]} ${esc(st[1])}</h3><div class="arows">${st[2].map(r=>`<div class="arow${r.length>2?' r3':''}">${r.map(c=>`<span class="abd${st[3].includes(j++)?' k':''}">${esc(c)}</span>`).join('')}</div>`).join('')}</div></div>`;}).join('');
-  const im=(c,f)=>`<img class="${c}" src="assets/main/approach/${f}.svg" alt="" decoding="async" draggable="false">`;
-  stk.innerHTML=im('fl','floor')+STEPS.map((_,i)=>`<div class="aly" style="z-index:${n-i}">${im('rs','layer-'+(i+1)+'-rest')}${im('gh','ghost')}${im('ly','layer-'+(i+1))}</div>`).join('');
-  sec.insertAdjacentHTML('beforeend',STEPS.map((_,i)=>`<span class="appr-snap" style="top:calc(${i+.5} * var(--stp))"></span>`).join(''));
-  const cs=[...cards.children],ls=[...stk.querySelectorAll('.aly')],S=ls.map(()=>({y:0,v:0,t:0,a:0}));
-  function targets(){const g=W*GAP,L=g*LIFT;S.forEach((s,i)=>{s.t=-(n-1-i)*g-(i<cur?L:0);});}
-  function size(){const H=stg.clientHeight-48,Wa=stg.clientWidth-32,k=1/AR+GAP*(n-1+LIFT)+BOB;
-    const old=Math.min(Wa*.86,640,H/k),H2=stg.clientHeight-12;/* layers +25% vs the previous size, limited by the stage */
-    W=Math.floor(Math.min(old*1.25,stg.clientWidth-8,H2/k));stk.style.width=W+'px';stk.style.bottom=Math.round(6+Math.max(0,(H2-W*k)*.62))+'px';targets();}
-  function paint(now){const ph=.5-.5*Math.cos(now/3600*2*Math.PI);
-    ls.forEach((e,i)=>{const s=S[i];e.style.transform=`translate3d(0,${(s.y-s.a*BOB*W*ph).toFixed(2)}px,0)`;});}
-  function frame(now){const dt=Math.min(.034,(now-(last||now))/1000);last=now;
-    for(let k=0;k<2;k++){const h=dt/2;S.forEach((s,i)=>{s.v+=(W0*W0*(s.t-s.y)-2*W0*s.v)*h;s.y+=s.v*h;
-      const at=(i===cur&&!RM)?1:0;s.a+=(at-s.a)*(1-Math.exp(-h/.5));});}
-    paint(now);raf=vis?requestAnimationFrame(frame):0;}
-  function kick(){if(!raf&&vis){last=0;raf=requestAnimationFrame(frame);}}
-  function set(k){if(k===cur)return;cur=k;
-    cs.forEach((e,i)=>e.classList.toggle('on',i===k));
-    ls.forEach((e,i)=>{e.classList.toggle('up',i<k);e.classList.toggle('on',i===k);e.classList.toggle('dn',i>k);});
-    targets();if(RM){S.forEach(s=>{s.y=s.t;s.v=0;});paint(0);}kick();}
-  function fit(){sec.style.setProperty('--stp',(sec.offsetHeight-innerHeight)/n+'px');size();}
-  function onS(){const r=sec.getBoundingClientRect(),span=sec.offsetHeight-innerHeight,p=Math.min(Math.max(-r.top/span,0),.9999);set(Math.floor(p*n));}
-  fit();onS();S.forEach(s=>{s.y=s.t;});paint(0);
-  new IntersectionObserver(([en])=>{vis=en.isIntersecting;kick();}).observe(sec);
-  addEventListener('scroll',onS,{passive:true});
-  /* mobile URL-bar show/hide only changes height a little — don't relayout the stack for that */
-  addEventListener('resize',()=>{if(innerWidth===vw&&Math.abs(innerHeight-vh)<140)return;vw=innerWidth;vh=innerHeight;fit();S.forEach(s=>{s.y=s.t;s.v=0;});paint(0);});})();
+/* ---------- approach: «my process» platform — six stage tiles feed slots on one platform, the product tile lights up at the end ---------- */
+(function(){const APS=[
+ ['Исследование','research','CJM, инсайты и гипотезы',['Интервью','Юзабилити-тесты','Анализ конкурентов','CJM']],
+ ['Бренд и визуал','brand','айдентика и визуальный язык',['Брендинг','Айдентика','Иллюстрация','3D','Motion']],
+ ['Стратегия','strategy','приоритеты, метрики и roadmap',['Продуктовый дизайн','Метрики и KPI','Приоритизация']],
+ ['Проектирование','ux','user flow и прототипы',['UX-проектирование','IA','User Flow','Прототипы']],
+ ['Интерфейс','ui','макеты и дизайн-система',['UX/UI','Дизайн-системы','Адаптив','Edge cases']],
+ ['Handoff','handoff','спецификации для разработки',['Handoff','Спецификации','Дизайн-ревью']]
+];
+const n=APS.length,NS='http://www.w3.org/2000/svg',svg=document.getElementById('apSvg');
+const C=Math.cos(Math.PI/6),Sn=.5;
+const P=(x,y,z)=>[(x-y)*C,(x+y)*Sn-z];
+const M=z=>`matrix(${C},${Sn},${-C},${Sn},0,${-z})`;          // plane (x,y) at height z -> screen
+const mk=(t,a={})=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;};
+const VE={'vector-effect':'non-scaling-stroke'};
+/* exact extruded rounded rect: bottom face, side band between silhouette tangents, top face */
+function slab(x,y,w,h,r,z0,z1,fs,ft,st,sw=1){
+  const g=mk('g'),k=Math.SQRT1_2;
+  const cs=[[x+r,y+r],[x+w-r,y+r],[x+w-r,y+h-r],[x+r,y+h-r]],sxf=p=>(p[0]-p[1]);
+  const L=cs.reduce((a,b)=>sxf(b)<sxf(a)?b:a),R=cs.reduce((a,b)=>sxf(b)>sxf(a)?b:a);
+  const dl=[L[0]-r*k,L[1]+r*k],dr=[R[0]+r*k,R[1]-r*k];
+  const t=[P(dl[0],dl[1],z1),P(dr[0],dr[1],z1),P(dr[0],dr[1],z0),P(dl[0],dl[1],z0)];
+  const b=mk('g',{transform:M(z0)});b.appendChild(mk('rect',{x,y,width:w,height:h,rx:r,fill:fs,stroke:st,'stroke-width':sw,...VE}));
+  const band=mk('path',{d:`M${t[0]}L${t[1]}L${t[2]}L${t[3]}Z`,fill:fs});
+  const tg=mk('path',{d:`M${t[0]}L${t[3]}M${t[1]}L${t[2]}`,stroke:st,'stroke-width':sw,fill:'none',...VE});
+  const tp=mk('g',{transform:M(z1)});const top=mk('rect',{x,y,width:w,height:h,rx:r,fill:ft,stroke:st,'stroke-width':sw,...VE});tp.appendChild(top);
+  g.append(b,band,tg,tp);g._top=top;g._tp=tp;return g;}
+function planeText(x,y,z,txt,size,fill,anchor='start',rot=0){const g=mk('g',{transform:M(z)});
+  const t=mk('text',{x,y,'font-family':'Geist Mono, monospace','font-size':size,fill,'text-anchor':anchor,'dominant-baseline':'middle','letter-spacing':'.04em',transform:rot?`rotate(${rot} ${x} ${y})`:''});t.textContent=txt;g.appendChild(t);return g;}
+
+/* ---------- scene */
+const root=mk('g');svg.appendChild(root);
+const defs=mk('defs');svg.appendChild(defs);
+/* ground grid, faded */
+(function(){const rg=mk('radialGradient',{id:'gf',gradientUnits:'userSpaceOnUse',cx:0,cy:30,r:340});
+  rg.append(mk('stop',{offset:'0','stop-color':'#fff'}),mk('stop',{offset:'.5','stop-color':'#fff','stop-opacity':.6}),mk('stop',{offset:'1','stop-color':'#fff','stop-opacity':0}));
+  const ms=mk('mask',{id:'gm',maskUnits:'userSpaceOnUse',x:-1200,y:-1200,width:2400,height:2400});ms.appendChild(mk('rect',{x:-1200,y:-1200,width:2400,height:2400,fill:'url(#gf)'}));defs.append(rg,ms);
+  let d='';for(let v=-600;v<=600;v+=24){d+=`M${P(v,-600,0)}L${P(v,600,0)}M${P(-600,v,0)}L${P(600,v,0)}`;}
+  root.appendChild(mk('path',{d,fill:'none',stroke:'rgba(255,255,255,.05)','stroke-width':1,...VE,mask:'url(#gm)'}));})();
+
+/* layout (plane units): platform in the middle, three stage tiles on the left (inputs 1–3) and three on the right (4–6),
+   product tile in front. Routes run along the plane axes, like the reference. */
+const PW=210,PH=210,PX=-PW/2,PY=-PH/2,PZ=18;
+const TW=66,TH=30;
+const tilesPos=[0,1,2,3,4,5].map(i=>[-212,-136+i*46]);   // one column of stage tiles feeding the platform
+const slotPos=[];const SW=52,SG=14,sx0=PX+(PW-(3*SW+2*SG))/2,sy0=PY+(PH-(2*SW+SG))/2-6;
+for(let r=0;r<2;r++)for(let c=0;c<3;c++)slotPos.push([sx0+c*(SW+SG),sy0+r*(SW+SG)]);
+const order=[0,3,1,4,2,5].map(q=>q);           // stage i -> slot index (reads left→right, top→bottom)
+const slotOf=i=>slotPos[[0,1,2,3,4,5][i]];
+
+/* routes (drawn first, on the ground) */
+const routes=[],routeG=mk('g');root.appendChild(routeG);
+tilesPos.forEach(([tx,ty],i)=>{
+  const y=ty+TH/2,yy=Math.max(PY+34,Math.min(PY+PH-34,y)),xm=PX-22-(y!==yy?(i===0?10:0):0);
+  const pts=y===yy?[[tx+TW,y],[PX,y]]:[[tx+TW,y],[xm,y],[xm,yy],[PX,yy]];
+  const d='M'+pts.map(p=>P(p[0],p[1],0).map(v=>v.toFixed(2)).join(',')).join('L');
+  const base=mk('path',{d,fill:'none',stroke:'rgba(255,255,255,.22)','stroke-width':1,...VE});
+  const hot=mk('path',{d,fill:'none',stroke:'var(--acc)','stroke-width':1.6,'stroke-dasharray':'6 8',class:'apflow',...VE,opacity:0});
+  hot.style.transition='opacity .5s';routeG.append(base,hot);routes.push({base,hot});});
+/* product route: platform front corner -> product tile */
+const prodX=150,prodY=150,PRW=96,PRH=96;
+(function(){const d=`M${P(PX+PW,PY+PH-60,0)}L${P(prodX+PRW/2,PY+PH-60,0)}L${P(prodX+PRW/2,prodY,0)}`;
+  routeG.appendChild(mk('path',{d,fill:'none',stroke:'rgba(255,255,255,.22)','stroke-width':1,...VE}));})();
+
+/* stage tiles */
+const tiles=[];
+tilesPos.forEach(([tx,ty],i)=>{const g=mk('g');g.style.cursor='pointer';root.appendChild(g);
+  g.addEventListener('click',()=>go(i));tiles.push({g,tx,ty,z:0});});
+function drawTile(i,lift,act,done){const t=tiles[i];t.g.innerHTML='';
+  const st=act?'var(--acc)':(done?'rgba(255,255,255,.85)':'rgba(255,255,255,.5)');
+  const s=slab(t.tx,t.ty,TW,TH,8,lift,lift+6,act?'#1f0f38':'#0d0d0d',act?'#2a1450':'#141414',st);t.g.appendChild(s);
+  const lab=planeText(t.tx+TW/2,t.ty+TH/2,lift+6.2,'.'+APS[i][1],9.5,act?'#fff':(done?'#ddd':'#8a8a8a'),'middle');
+  t.g.appendChild(lab);}
+/* platform */
+const plat=slab(PX,PY,PW,PH,22,0,PZ,'var(--acc)','#131313','rgba(255,255,255,.9)');root.appendChild(plat);
+root.appendChild(planeText(PX+16,PY+PH-16,PZ+.2,'MY PROCESS',8,'rgba(255,255,255,.45)','start'));
+const slotsG=mk('g');root.appendChild(slotsG);
+function drawSlots(cur,lift){slotsG.innerHTML='';
+  APS.forEach((_,i)=>{const [x,y]=slotOf(i),act=i===cur,done=i<cur;
+    if(done||act){const zl=act?PZ+lift:PZ;const s=slab(x,y,SW,SW,10,PZ,zl+8,act?'#6a2fc0':'#1c1c1c',act?'var(--acc)':'#232323',act?'#d2b6ff':'rgba(255,255,255,.75)');slotsG.appendChild(s);
+      slotsG.appendChild(planeText(x+SW/2,y+SW/2,zl+8.2,String(i+1).padStart(2,'0'),11,act?'#fff':'#cfcfcf','middle'));}
+    else{const g=mk('g',{transform:M(PZ+.2)});g.appendChild(mk('rect',{x,y,width:SW,height:SW,rx:10,fill:'none',stroke:'rgba(255,255,255,.35)','stroke-width':1,'stroke-dasharray':'3 3',...VE}));slotsG.appendChild(g);
+      slotsG.appendChild(planeText(x+SW/2,y+SW/2,PZ+.2,String(i+1).padStart(2,'0'),10,'rgba(255,255,255,.3)','middle'));}});}
+/* product tile (fills when everything is in place) */
+const prodG=mk('g');root.appendChild(prodG);
+function drawProd(cur){prodG.innerHTML='';const full=cur===n-1;
+  const s=slab(prodX,prodY,PRW,PRH,14,0,14,full?'#6a2fc0':'#0d0d0d',full?'var(--acc)':'#141414',full?'#d2b6ff':'rgba(255,255,255,.6)');prodG.appendChild(s);
+  /* progress ticks on the product tile */
+  for(let k=0;k<n;k++){const g=mk('g',{transform:M(14.2)});g.appendChild(mk('rect',{x:prodX+14+k*12,y:prodY+PRH-24,width:8,height:8,rx:2,fill:k<=cur?(full?'#fff':'var(--acc)'):'none',stroke:k<=cur?'none':'rgba(255,255,255,.35)','stroke-width':1,...VE}));prodG.appendChild(g);}
+  prodG.appendChild(planeText(prodX+14,prodY+22,14.2,'.product',9,full?'#fff':'#bdbdbd','start'));}
+
+/* ---------- fit */
+function fit(){const r=svg.getBoundingClientRect(),mob=r.width<600;
+  const xs=[P(-212,tilesPos[5][1]+TH,0)[0]-6,Math.max(P(PX+PW,PY,0)[0],P(prodX+PRW,prodY,0)[0])+6],ys=[Math.min(P(-212,-136,20)[1],P(PX,PY,PZ+20)[1])-14,P(prodX+PRW,prodY+PRH,0)[1]+10];
+  const w=xs[1]-xs[0],h=ys[1]-ys[0],padT=mob?120:100,padB=mob?64:60,sc=Math.min((r.width-16)/w,(r.height-padT-padB)/h,2.4);
+  const vbW=r.width/sc,vbH=r.height/sc,cxv=(xs[0]+xs[1])/2,cyv=(ys[0]+ys[1])/2;
+  svg.setAttribute('viewBox',`${cxv-vbW/2} ${cyv-vbH/2-(padT-padB)/2/sc} ${vbW} ${vbH}`);}
+
+/* ---------- state + animation (tile and slot rise on a short ease) */
+let cur=0,lift=0,raf=0,t0=0;
+function render(){tilesPos.forEach((_,i)=>drawTile(i,i===cur?lift*.6:0,i===cur,i<cur));drawSlots(cur,lift);drawProd(cur);
+  routes.forEach((r,i)=>{r.hot.setAttribute('opacity',i===cur?1:0);r.base.setAttribute('stroke',i<cur?'rgba(255,255,255,.55)':'rgba(255,255,255,.22)');});}
+function anim(t){if(!t0)t0=t;const p=Math.min(1,(t-t0)/520),e=1-Math.pow(1-p,3);lift=10*e;render();raf=p<1?requestAnimationFrame(anim):0;}
+const num=document.getElementById('apNum'),ttl=document.getElementById('apTtl'),out=document.getElementById('apOut'),foot=document.getElementById('apFoot');let prevI=-1;
+function swap(box,txt,dir){const old=box.firstElementChild,s=document.createElement('span');s.textContent=txt;s.style.transform=`translateY(${dir*100}%)`;s.style.opacity=0;box.appendChild(s);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{s.style.transform='none';s.style.opacity=1;if(old){old.style.transform=`translateY(${-dir*100}%)`;old.style.opacity=0;setTimeout(()=>old.remove(),650);}}));}
+function setText(i){const dir=i>prevI?1:-1;swap(num,String(i+1).padStart(2,'0')+'/06',dir);swap(ttl,APS[i][0],dir);
+  out.style.opacity=0;foot.style.opacity=0;setTimeout(()=>{out.textContent='На выходе: '+APS[i][2];foot.innerHTML=APS[i][3].map(c=>`<span class="apchip">${c}</span>`).join('');out.style.opacity=1;foot.style.opacity=1;},180);prevI=i;}
+const sec=document.getElementById('approach');sec.insertAdjacentHTML('beforeend',APS.map((_,i)=>`<span class="appr-snap" style="top:calc(${i+.5} * var(--stp))"></span>`).join(''));const stp=()=>sec.style.setProperty('--stp',(sec.offsetHeight-innerHeight)/n+'px');stp();
+function set(i){if(i===cur&&prevI!==-1)return;cur=i;setText(i);cancelAnimationFrame(raf);t0=0;lift=0;raf=requestAnimationFrame(anim);}
+function onS(){const r=sec.getBoundingClientRect(),span=sec.offsetHeight-innerHeight,p=Math.min(Math.max(-r.top/span,0),.9999);set(Math.floor(p*n));}
+function go(i){const span=sec.offsetHeight-innerHeight;scrollTo({top:sec.offsetTop+span*(i+.5)/n,behavior:'smooth'});}
+fit();lift=10;render();setText(0);
+addEventListener('scroll',onS,{passive:true});let vw=innerWidth,vh=innerHeight;addEventListener('resize',()=>{if(innerWidth===vw&&Math.abs(innerHeight-vh)<140)return;vw=innerWidth;vh=innerHeight;fit();stp();});})();
 /* ---------- AI pipeline: zigzag on mobile/tablet, staircase on desktop, connectors drawn on reveal ---------- */
 (function(){const flow=$('#flow'),svg=$('#flowLines'),steps=[...flow.querySelectorAll('.fstep')],n=steps.length,NS='http://www.w3.org/2000/svg';
   function layout(){const W=flow.clientWidth,desk=innerWidth>=1100,R=14;let rects=[];
