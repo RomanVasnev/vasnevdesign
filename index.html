@@ -91,25 +91,26 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .ctext{margin:20px 0 0;font-size:18px;line-height:20px;font-weight:500;color:#555}
 .ctext b{color:#fff;font-weight:500}
 
-/* approach (Figma «test design block»): pinned; each scroll step drops the next isometric layer and swaps the step card */
+/* approach (Figma «test design block»): pinned; layers lie stacked, each scroll step lifts the active layer up as a ghost outline and reveals the next one */
 .appr{position:relative;margin-top:80px;height:calc(100svh + 6 * 55svh)}
-.appr-pin{position:sticky;top:72px;height:calc(100svh - 72px);display:flex;flex-direction:column;overflow:hidden}
+.appr-pin{position:sticky;top:0;height:100svh;padding-top:73px;display:flex;flex-direction:column;overflow:hidden}
 .appr-snap{position:absolute;left:0;width:1px;height:1px;scroll-snap-align:start;pointer-events:none}
-.acards{position:relative;margin-top:24px;height:142px;flex:none}
+.acards{position:relative;z-index:3;margin-top:37px;height:142px;flex:none}
 .acard{position:absolute;inset:0;border-radius:14px;background:#1a1a1a;overflow:hidden;padding:10px 12px 0 37px;
-  opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .55s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+  opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .6s cubic-bezier(.22,.8,.2,1);pointer-events:none}
 .acard.on{opacity:1;transform:none;pointer-events:auto}
 .acard::before{content:"";position:absolute;left:10px;top:10px;width:15px;height:117px;border-radius:20px 60px 60px 20px;background:var(--c)}
 .acard h3{margin:0;font-size:16px;font-weight:500;line-height:18px;letter-spacing:-.05em}
 .acard .chips{margin-top:9px;gap:12px 6px}
 .acard .chip{height:auto;padding:2px 6px;font-size:12px;line-height:20px;font-weight:300;color:#fff;background:rgba(36,36,36,.7);border:1px solid #282828}
 .acard .chip.k{background:#212121;padding:2px 10px}
-.astage{position:relative;flex:1;min-height:0;margin-top:12px}
-.astk{position:absolute;left:50%;top:44%;width:min(calc(100% + 20px),620px);aspect-ratio:1400/766;transform:translate(-50%,-50%)}
-.astk img{position:absolute;inset:0;width:100%;height:100%;display:block;transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .5s ease,filter .5s ease;will-change:transform}
-.astk img.up{opacity:0;transform:translateY(-38%)}
-.astk img.dn{filter:brightness(.55)}
-@media (prefers-reduced-motion:reduce){.acard,.astk img{transition:none}}
+.astage{position:relative;flex:none;height:348px;margin-top:10px}
+.astk{position:absolute;left:50%;top:auto;bottom:0;width:384px;max-width:calc(100% + 16px);aspect-ratio:887/530;transform:translateX(-50%)}
+.aly{position:absolute;inset:0;transition:transform .9s cubic-bezier(.22,.8,.2,1);will-change:transform}
+.aly img{position:absolute;inset:0;width:100%;height:100%;display:block;transition:opacity .6s ease}
+.aly .gh{opacity:0}
+.aly.lift .ly{opacity:0}.aly.lift .gh{opacity:1}
+@media (prefers-reduced-motion:reduce){.acard,.aly,.aly img{transition:none}}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .chip{height:24px;padding:2px 10px;border-radius:60px;background:var(--chip2);border:1px solid var(--chip-st);font-size:12px;line-height:20px;color:var(--chip-t);white-space:nowrap}
 .chip.k{background:var(--chip);color:#fff}
@@ -266,11 +267,11 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   .pcard h3,.pcard p{font-size:18px;line-height:24px}
   /* approach: heading + card left, stack right */
   .appr{margin-top:140px;height:calc(100svh + 6 * 50svh)}
-  .appr-pin{top:96px;height:calc(100svh - 96px);display:grid;grid-template-columns:420px 1fr;grid-template-rows:auto auto 1fr;column-gap:60px;align-content:center}
+  .appr-pin{padding-top:96px;display:grid;grid-template-columns:420px 1fr;grid-template-rows:auto auto 1fr;column-gap:60px;align-content:center}
   .appr-pin .appr-h{grid-column:1;grid-row:1}
   .appr-pin .acards{grid-column:1;grid-row:2}
-  .appr-pin .astage{grid-column:2;grid-row:1/span 3;min-height:520px;margin:0}
-  .astk{width:min(100%,760px);top:50%}
+  .appr-pin .astage{grid-column:2;grid-row:1/span 3;height:600px;margin:0;align-self:center}
+  .astk{width:min(100%,720px);bottom:40px}
   .ai{margin-top:140px}
   .ai-card .txt{padding:20px 48px 0;max-width:760px}
   .flow{margin:56px 48px 56px}
@@ -572,15 +573,18 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{if(
   folds.forEach(f=>{io.observe(f);const t=()=>{f.classList.toggle('open');f.setAttribute('aria-expanded',f.classList.contains('open'));};
     f.addEventListener('click',t);f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t();}});});})();
 
-/* ---------- approach: pinned; each scroll step drops the next layer on the stack and swaps the card ---------- */
+/* ---------- approach: pinned; layers stacked; scrolling lifts the layers above the active one as ghost outlines ---------- */
 (function(){const sec=$('#approach'),cards=$('#acards'),stk=$('#astk'),n=STEPS.length;let cur=-1;
   cards.innerHTML=STEPS.map((st,i)=>`<div class="acard" style="--c:${STEP_C[i]}"><h3>${st[0]} ${esc(st[1])}</h3><div class="chips">${st[2].map((c,j)=>`<span class="chip${st[3].includes(j)?' k':''}">${esc(c)}</span>`).join('')}</div></div>`).join('');
-  stk.innerHTML=STEPS.map((_,i)=>`<img src="assets/main/approach/layer-${i+1}.webp" alt="" width="1400" height="766" decoding="async" style="z-index:${i+1}">`).join('');
+  stk.innerHTML=STEPS.map((_,i)=>`<div class="aly" style="z-index:${n-i}"><img class="ly" src="assets/main/approach/layer-${i+1}.svg" alt="" decoding="async"><img class="gh" src="assets/main/approach/ghost.svg" alt=""></div>`).join('');
   sec.insertAdjacentHTML('beforeend',STEPS.map((_,i)=>`<span class="appr-snap" style="top:calc(${i} * var(--stp))"></span>`).join(''));
-  const cs=[...cards.children],ims=[...stk.children];
+  const cs=[...cards.children],ls=[...stk.children];
   function set(k){if(k===cur)return;cur=k;cs.forEach((e,i)=>e.classList.toggle('on',i===k));
-    const off=stk.clientHeight*.06;
-    ims.forEach((e,i)=>{e.classList.toggle('up',i>k);e.classList.toggle('dn',i<k);if(i<=k)e.style.transform=`translateY(${(k-i)*off}px)`;else e.style.transform='';});}
+    const h=stk.clientHeight,g=h*.035,lift=h*.34,gap=h*.075;
+    ls.forEach((e,i)=>{let y;
+      if(i<k){y=-(lift+(k-1-i)*gap)+(k)*g*0;e.classList.add('lift');}
+      else{y=(i-k)*g;e.classList.remove('lift');}
+      e.style.transform=`translateY(${y}px)`;});}
   function fit(){sec.style.setProperty('--stp',(sec.offsetHeight-innerHeight)/n+'px');}
   function onS(){const r=sec.getBoundingClientRect(),span=sec.offsetHeight-innerHeight,p=Math.min(Math.max(-r.top/span,0),.9999);set(Math.floor(p*n));}
   fit();set(0);onS();addEventListener('scroll',onS,{passive:true});addEventListener('resize',()=>{fit();const k=cur;cur=-1;set(k);});})();
