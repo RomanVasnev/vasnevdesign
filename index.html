@@ -108,11 +108,11 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   font-size:12px;font-weight:300;line-height:20px;letter-spacing:-.6px;color:#fff;white-space:nowrap}
 .acard .arow.r3 .abd{padding:2px 6px}
 .acard .abd.k{background:#212121;-webkit-backdrop-filter:none;backdrop-filter:none}
-.astage{position:relative;flex:1 1 auto;min-height:300px;margin-top:10px}
+.astage{position:relative;flex:1 1 auto;min-height:300px;margin-top:10px;border-radius:14px;overflow:hidden;background:#ececec url(assets/main/approach/grid.svg) center/cover no-repeat}
 .astk{position:absolute;left:50%;bottom:0;width:384px;aspect-ratio:887.2/554.8;transform:translateX(-50%)}
 .aly{position:absolute;inset:0;transition:transform 1s cubic-bezier(.22,.8,.2,1);will-change:transform}
 .aly img{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .7s ease}
-.aly.on .ly,.aly.up .gh,.aly.dn .rs{opacity:1}
+.aly.on .ly,.aly.up .gh,.aly.dn .gh{opacity:1}
 @media (prefers-reduced-motion:reduce){.acard,.aly,.aly img{transition:none}}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .chip{height:24px;padding:2px 10px;border-radius:60px;background:var(--chip2);border:1px solid var(--chip-st);font-size:12px;line-height:20px;color:var(--chip-t);white-space:nowrap}
@@ -579,14 +579,14 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{if(
 (function(){const sec=$('#approach'),cards=$('#acards'),stg=$('.astage'),stk=$('#astk'),n=STEPS.length,AR=887.2/554.8,GAP=.075,LIFT=2.6;let cur=-1;
   cards.innerHTML=STEPS.map((st,i)=>{let j=0;return `<div class="acard" style="--c:${STEP_C[i]}"><h3>${st[0]} ${esc(st[1])}</h3><div class="arows">${st[2].map(r=>`<div class="arow${r.length>2?' r3':''}">${r.map(c=>`<span class="abd${st[3].includes(j++)?' k':''}">${esc(c)}</span>`).join('')}</div>`).join('')}</div></div>`;}).join('');
   const im=(c,f)=>`<img class="${c}" src="assets/main/approach/${f}.svg" alt="" decoding="async">`;
-  stk.innerHTML=STEPS.map((_,i)=>`<div class="aly" style="z-index:${n-i}">${im('rs','rest')}${im('gh','ghost')}${im('ly','layer-'+(i+1))}</div>`).join('');
+  stk.innerHTML=STEPS.map((_,i)=>`<div class="aly" style="z-index:${n-i}">${im('gh','ghost')}${im('ly','layer-'+(i+1))}</div>`).join('');
   sec.insertAdjacentHTML('beforeend',STEPS.map((_,i)=>`<span class="appr-snap" style="top:calc(${i} * var(--stp))"></span>`).join(''));
   const cs=[...cards.children],ls=[...stk.children];
   function size(){/* fit: layer height + 5 gaps + lift must fit the stage */
-    const H=stg.clientHeight,Wa=stg.clientWidth+(innerWidth<1100?16:0),k=1/AR+GAP*(n-1+LIFT);
-    const w=Math.min(Wa,720,H/k);stk.style.width=w+'px';stk.style.bottom=Math.max(0,(H-w*k)/2)+'px';}
+    const H=stg.clientHeight-32,Wa=stg.clientWidth-24,k=1/AR+GAP*(n-1+LIFT);
+    const w=Math.min(Wa,720,H/k);stk.style.width=w+'px';stk.style.bottom=16+Math.max(0,(H-w*k)/2)+'px';}
   function set(k,force){if(k===cur&&!force)return;cur=k;
-    cs.forEach((e,i)=>e.classList.toggle('on',i===k));cards.style.height=cs[k].offsetHeight+'px';
+    cs.forEach((e,i)=>e.classList.toggle('on',i===k));
     const W=stk.clientWidth,g=W*GAP,L=g*LIFT;
     ls.forEach((e,i)=>{const y=-(n-1-i)*g-(i<k?L:0);e.style.transform=`translateY(${y}px)`;
       e.classList.toggle('up',i<k);e.classList.toggle('on',i===k);e.classList.toggle('dn',i>k);});}
