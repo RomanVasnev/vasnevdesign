@@ -100,8 +100,16 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .acard{grid-area:1/1;align-self:stretch;position:relative;box-sizing:border-box;width:100%;max-width:370px;background:#1a1a1a;border-radius:14px;overflow:hidden;padding:12px 12px 14px;
   opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .7s cubic-bezier(.2,.8,.2,1);pointer-events:none}
 .acard.on{opacity:1;transform:none;pointer-events:auto}
+.acard{display:flex;flex-direction:column}
+.acard .ahd{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.acard .anum{font-size:12px;line-height:18px;letter-spacing:-.2px;color:#6b6b6b;font-variant-numeric:tabular-nums}
+.acard .aout{margin:4px 0 0;font-size:13px;line-height:17px;letter-spacing:-.3px;color:#8a8a8a}
+.acard .aprog{display:flex;gap:4px;margin-top:auto;padding-top:12px}
+.acard .aprog i{flex:1;height:3px;border-radius:2px;background:#2a2a2a}
+.acard .aprog i.d{background:var(--c);opacity:.35}
+.acard .aprog i.a{background:var(--c)}
 .acard h3{margin:0;font-size:16px;font-weight:500;line-height:18px;letter-spacing:-.8px;color:#fff;white-space:nowrap}
-.acard .arows{display:flex;flex-direction:column;gap:6px;margin-top:9px}
+.acard .arows{display:flex;flex-direction:column;gap:6px;margin-top:10px}
 .acard .arow{display:flex;gap:6px;align-items:center}
 .acard .abd{display:flex;align-items:center;justify-content:center;padding:2px 10px;border:1px solid #282828;border-radius:60px;background:rgba(36,36,36,.7);-webkit-backdrop-filter:blur(3.5px);backdrop-filter:blur(3.5px);
   font-size:12px;font-weight:300;line-height:20px;letter-spacing:-.6px;color:#fff;white-space:nowrap}
@@ -507,6 +515,8 @@ const STEPS=[
  ['05.','Интерфейс',[['UX/UI','Дизайн-системы','Адаптив'],['Состояния и edge cases']],[0]],
  ['06.','Handoff',[['Handoff','Аннотации и спецификации'],['Дизайн-ревью']],[0]]
 ];
+const STEP_OUT=["CJM, инсайты и гипотезы", "айдентика и визуальный язык", "приоритеты, метрики и roadmap", "user flow и прототипы", "макеты и дизайн-система", "спецификации для разработки"];
+const STEP_C=['#ffb7ff','#d3ff36','#99ace7','#4c74fa','#f1f2f7','#9747ff'];
 /* AI pipeline: title, what happens, tools (assets/<name>.png), step icon */
 const AI_STEPS=[
  ['Исследование','Бенчмаркинг конкурентов, синтез отзывов и 3–5 гипотез для проверки',['perplexity','chatgpt','claude','similarweb'],'research'],
@@ -583,7 +593,7 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{if(
 (function(){const sec=$('#approach'),cards=$('#acards'),stg=$('.astage'),stk=$('#astk'),n=STEPS.length,
   AR=870.67/592.61,GAP=.075,LIFT=2.6,BOB=.012,W0=8.5,RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
   let cur=-1,W=0,vis=false,raf=0,last=0,vw=innerWidth,vh=innerHeight;
-  cards.innerHTML=STEPS.map(st=>{let j=0;return `<div class="acard"><h3>${st[0]} ${esc(st[1])}</h3><div class="arows">${st[2].map(r=>`<div class="arow${r.length>2?' r3':''}">${r.map(c=>`<span class="abd${st[3].includes(j++)?' k':''}">${esc(c)}</span>`).join('')}</div>`).join('')}</div></div>`;}).join('');
+  cards.innerHTML=STEPS.map((st,si)=>{let j=0;return `<div class="acard" style="--c:${STEP_C[si]}"><div class="ahd"><h3>${st[0]} ${esc(st[1])}</h3><span class="anum">${String(si+1).padStart(2,'0')} / ${String(n).padStart(2,'0')}</span></div><p class="aout">На выходе: ${esc(STEP_OUT[si])}</p><div class="arows">${st[2].map(r=>`<div class="arow${r.length>2?' r3':''}">${r.map(c=>`<span class="abd${st[3].includes(j++)?' k':''}">${esc(c)}</span>`).join('')}</div>`).join('')}</div><div class="aprog">${STEPS.map((_,q)=>`<i style="--c:${STEP_C[q]}" class="${q<si?'d':q===si?'a':''}"></i>`).join('')}</div></div>`;}).join('');
   const im=(c,f)=>`<img class="${c}" src="assets/main/approach/${f}.svg" alt="" decoding="async" draggable="false">`;
   stk.innerHTML=im('fl','floor')+STEPS.map((_,i)=>`<div class="aly" style="z-index:${n-i}">${im('rs','layer-'+(i+1)+'-rest')}${im('gh','ghost')}${im('ly','layer-'+(i+1))}</div>`).join('');
   sec.insertAdjacentHTML('beforeend',STEPS.map((_,i)=>`<span class="appr-snap" style="top:calc(${i+.5} * var(--stp))"></span>`).join(''));
