@@ -90,22 +90,54 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .ctext{margin:20px 0 0;font-size:18px;line-height:20px;font-weight:500;color:#555}
 .ctext b{color:#fff;font-weight:500}
 
-/* approach */
-.ap{position:relative}
-.ap::after{content:"";position:absolute;left:-4px;right:-4px;top:34px;height:134px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);-webkit-mask:linear-gradient(transparent,#000 85%);mask:linear-gradient(transparent,#000 85%);pointer-events:none;transition:opacity .4s}
-.ap.open::after{opacity:0}
-.ap-h{display:flex;align-items:center;gap:12px}
-.caret{width:22px;height:22px;border-radius:40px;background:#fff;display:grid;place-items:center;transition:transform .4s ease;flex:none}
-.ap.open .caret{transform:rotate(180deg)}
-.steps{position:relative;margin-top:16px;overflow:hidden;transition:height .6s cubic-bezier(.2,.7,.2,1)}
-.steps::after{content:"";position:absolute;left:0;right:0;top:0;height:100%;max-height:120px;background:linear-gradient(rgba(6,6,6,.35),rgba(6,6,6,.7) 45%,var(--bg) 92%);pointer-events:none;transition:opacity .4s}
-.ap.open .steps::after{opacity:0}
-.step{position:relative;padding-left:15px;padding-bottom:40px}
-.step::before{content:"";position:absolute;left:1px;top:14px;bottom:-14px;border-left:1px dashed #323232}
-.step:last-child::before{display:none}
-.step::after{content:"";position:absolute;left:-2px;top:11px;width:7px;height:7px;border-radius:50%;background:#767676}
-.step h3{margin:0;font-size:20px;font-weight:500;line-height:26px}
-.step h3 span{color:var(--muted)}
+/* approach: glass layers that stack up on scroll (01 = foundation at the bottom) */
+.appr{margin-top:80px}
+.layers{position:relative;margin-top:28px;height:360px;overflow-x:clip;-webkit-tap-highlight-color:transparent}
+.layers::before{content:"";position:absolute;left:var(--cx,40%);bottom:6px;width:var(--gw,260px);height:90px;margin-left:calc(var(--gw,260px)/-2);border-radius:50%;
+  background:radial-gradient(closest-side,rgba(150,160,255,.16),rgba(150,160,255,0));filter:blur(14px);pointer-events:none;opacity:0;transition:opacity 1.2s .6s}
+.layers.on::before{opacity:1}
+.pl{position:absolute;left:0;top:0;cursor:pointer;transition:top .75s cubic-bezier(.2,.8,.2,1),translate .9s cubic-bezier(.25,1.25,.45,1),opacity .6s ease,filter .7s ease}
+.pl .fc,.pl .sd{position:absolute;left:var(--ox);top:var(--oy);width:var(--s);height:var(--s);border-radius:22%;transform-origin:50% 50%}
+.pl .sd{transform:translateY(var(--t)) scaleY(var(--k)) rotate(45deg);background:linear-gradient(135deg,rgba(40,40,46,.55),rgba(8,8,10,.6) 70%);border:1px solid rgba(255,255,255,.1)}
+.pl .fc{transform:scaleY(var(--k)) rotate(45deg);overflow:hidden;
+  background:linear-gradient(135deg,rgba(255,255,255,.17),rgba(255,255,255,.03) 46%,rgba(255,255,255,.08)),rgba(34,34,38,.32);
+  border:1px solid rgba(255,255,255,.15);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),inset 0 0 24px rgba(255,255,255,.03);
+  -webkit-backdrop-filter:blur(8px) saturate(1.3);backdrop-filter:blur(8px) saturate(1.3);transition:background .5s,border-color .5s,box-shadow .5s}
+.pl .fc::after{content:"";position:absolute;inset:0;background:linear-gradient(315deg,rgba(255,255,255,.12),transparent 30%);opacity:.6}
+.pl .ic{position:absolute;right:13%;bottom:13%;width:26%;height:26%;display:grid;place-items:center;border-radius:28%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);opacity:.55;transition:opacity .5s,background .5s}
+.pl .ic svg{width:62%;height:62%}
+.pl.sel .fc{background:linear-gradient(135deg,rgba(255,255,255,.3),rgba(255,255,255,.07) 46%,rgba(255,255,255,.12)),rgba(48,48,54,.55);border-color:rgba(255,255,255,.42);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 0 34px rgba(170,180,255,.22)}
+.pl.sel .ic{opacity:1;background:rgba(255,255,255,.16)}
+.lb{position:absolute;left:0;top:0;height:22px;display:flex;align-items:center;gap:8px;font-size:14px;line-height:18px;color:#5e5e5e;white-space:nowrap;
+  transition:top .75s cubic-bezier(.2,.8,.2,1),color .4s,opacity .5s,translate .5s;text-align:left}
+.lb i{flex:none;width:var(--ll,18px);height:0;border-top:1px dashed #3a3a3a;transition:border-color .4s}
+.lb b{font-weight:400;color:#3e3e3e;transition:color .4s}
+.lb[aria-pressed="true"]{color:#fff}.lb[aria-pressed="true"] b{color:#8a8a8a}.lb[aria-pressed="true"] i{border-top:1px solid rgba(255,255,255,.7)}
+.js .layers .pl{opacity:0;translate:0 -90px;filter:blur(6px)}
+.js .layers .lb{opacity:0;translate:-8px 0}
+.js .layers.on .pl{opacity:1;translate:0 0;filter:none;transition-delay:0s,calc(var(--i)*.16s),calc(var(--i)*.16s),calc(var(--i)*.16s)}
+.js .layers.on .lb{opacity:1;translate:0 0;transition-delay:0s,0s,calc(var(--i)*.16s + .35s),calc(var(--i)*.16s + .35s)}
+.lhint{margin:6px 0 0;font-size:12px;line-height:16px;color:#4c4c4c;text-align:center;transition:opacity .4s}
+.lhint.gone{opacity:0}
+.lpanel{position:relative;margin-top:20px;min-height:150px;padding:20px 18px 18px;border-radius:24px;overflow:hidden;
+  background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.015) 55%),rgba(20,20,22,.7);border:1px solid rgba(255,255,255,.07);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08);-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4)}
+.js .lpanel{opacity:0;transform:translateY(16px);filter:blur(8px);transition:opacity .8s,transform .8s cubic-bezier(.2,.7,.2,1),filter .8s}
+.js .lpanel.on{opacity:1;transform:none;filter:none}
+.lp-h{display:flex;align-items:center;gap:10px}
+.lp-ic{width:34px;height:34px;flex:none;border-radius:11px;display:grid;place-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1)}
+.lp-ic svg{width:18px;height:18px}
+.lp-h h3{margin:0;flex:1;font-size:20px;font-weight:500;line-height:26px}
+.lp-h h3 span{color:var(--muted)}
+.lp-nav{display:flex;gap:6px}
+.lp-nav button{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);transition:background .25s}
+.lp-nav button:active{background:rgba(255,255,255,.14)}
+.lp-body{animation:tin .5s cubic-bezier(.2,.7,.2,1) both}
+.lp-body .chips{margin-top:16px}
+.lp-body .chip{-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px)}
+@media (max-width:400px){.lp-h h3{font-size:18px;line-height:24px;white-space:nowrap}.lb{font-size:13px;gap:6px}}
+@media (prefers-reduced-motion:reduce){.js .layers .pl,.js .layers .lb,.js .lpanel{opacity:1;translate:none;transform:none;filter:none;transition:none}.pl,.lb{transition:none}.lp-body{animation:none}}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .chip{height:24px;padding:2px 10px;border-radius:60px;background:var(--chip2);border:1px solid var(--chip-st);font-size:12px;line-height:20px;color:var(--chip-t);white-space:nowrap}
 .chip.k{background:var(--chip);color:#fff}
@@ -226,6 +258,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   .ai-card .txt{max-width:640px;padding:12px 32px 0}
   .flow{margin:44px 32px 40px}
   .sub{max-width:560px}
+  .appr .lwrap,.appr .lpanel{max-width:600px}
   .mlist{display:grid;grid-template-columns:1fr 1fr;gap:32px 40px;align-content:start;margin-top:40px}
   .mlist strong{font-size:22px}
   .mlist p{font-size:16px;line-height:22px}
@@ -260,13 +293,13 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   .pcard{width:400px}
   .pcard .img{height:226px}
   .pcard h3,.pcard p{font-size:18px;line-height:24px}
-  /* approach: title left, steps right */
-  #approach{margin-top:140px!important;display:grid;grid-template-columns:1fr 1.25fr;column-gap:80px;align-items:start}
-  .ap::after{display:none}
-  .ap-h{justify-content:flex-start}
-  .ap-h .h2{max-width:420px}
-  .ap .steps{margin-top:6px}
-  .step h3{font-size:24px;line-height:30px}
+  /* approach: title + panel left, layers right */
+  .appr{margin-top:140px;display:grid;grid-template-columns:1fr 1.15fr;grid-template-rows:auto 1fr;column-gap:80px;align-items:start}
+  .appr .appr-h{grid-column:1;grid-row:1}
+  .appr .lwrap{grid-column:2;grid-row:1/span 2}
+  .appr .lpanel{grid-column:1;grid-row:2;margin-top:40px;padding:26px 24px 24px}
+  .lb{font-size:16px}
+  .lp-h h3{font-size:24px;line-height:30px}
   .chip{font-size:14px;height:28px;padding:3px 12px}
   .ai{margin-top:140px}
   .ai-card .txt{padding:20px 48px 0;max-width:760px}
@@ -346,7 +379,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .js .rv.in{opacity:1;filter:none;transform:none}
 @media (prefers-reduced-motion:reduce){
   .js .rv{opacity:1;filter:none;transform:none;transition:none}
-  .loader,.menu,.steps,.caret{transition:none}
+  .loader,.menu{transition:none}
   .menu.open .mlist li{animation:none}
 }
 </style>
@@ -391,6 +424,18 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   <section class="gut" id="cases" style="margin-top:40px">
     <h2 class="sr">Продуктовые кейсы</h2>
     <div class="cases" id="caseList"></div>
+  </section>
+
+  <section class="gut appr" id="approach">
+    <div class="appr-h rv">
+      <h2 class="h2">Мой подход к дизайну</h2>
+      <p class="sub">Инструменты меняются, подход остаётся. Сейчас мой подход <b>выглядит так</b></p>
+    </div>
+    <div class="lwrap">
+      <div class="layers" id="layers" role="group" aria-label="Этапы работы: нажмите на слой"></div>
+      <p class="lhint" id="lhint">Нажмите на слой, чтобы раскрыть этап</p>
+    </div>
+    <div class="lpanel" id="lpanel" aria-live="polite"></div>
   </section>
 
   <section class="ai" id="ai">
@@ -485,6 +530,16 @@ const STEPS=[
  ['05.','Интерфейс',['UX/UI','Дизайн-системы','Адаптив','Состояния и edge cases'],[0]],
  ['06.','Handoff',['Handoff','Аннотации и спецификации','Дизайн-ревью'],[0]]
 ];
+/* approach step icons (18×18, stroke) */
+const STEP_ICONS=[
+ '<circle cx="8" cy="8" r="4.75"/><path d="m11.5 11.5 4 4"/>',
+ '<path d="M9 2.5 10.6 7.4 15.5 9l-4.9 1.6L9 15.5 7.4 10.6 2.5 9l4.9-1.6Z"/>',
+ '<circle cx="9" cy="9" r="6.25"/><circle cx="9" cy="9" r="3.25"/><circle cx="9" cy="9" r=".6" fill="#fff"/>',
+ '<rect x="2.25" y="2.75" width="5" height="4" rx="1.2"/><rect x="10.75" y="11.25" width="5" height="4" rx="1.2"/><path d="M4.75 6.75v3.5a1.5 1.5 0 0 0 1.5 1.5h4.5"/>',
+ '<rect x="2.25" y="2.75" width="13.5" height="12.5" rx="2.5"/><path d="M2.25 6.75h13.5M7 6.75v8.5"/>',
+ '<path d="m6 5.25-3.75 3.75L6 12.75M12 5.25l3.75 3.75L12 12.75M10.25 3.75l-2.5 10.5"/>'
+];
+const svgI=(i,w)=>`<svg viewBox="0 0 18 18" fill="none" stroke="#fff" stroke-width="${w||1.4}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${STEP_ICONS[i]}</svg>`;
 /* AI pipeline: title, what happens, tools (assets/<name>.png), step icon */
 const AI_STEPS=[
  ['Исследование','Бенчмаркинг конкурентов, синтез отзывов и 3–5 гипотез для проверки',['perplexity','chatgpt','claude','similarweb'],'research'],
@@ -503,7 +558,7 @@ const GROUPS=[
  ['Handoff',['Figma Dev Mode','Zeplin'],['figma','zeplin'],[0,1]]
 ];
 const EXP=[['EvaCodes','full-time','Продуктовый дизайнер','2024-2026'],['Aragon','full-time','Продуктовый дизайнер','2023-2024'],['iCrypto World','full-time','Продуктовый дизайнер','2021-2022'],['KOTELOV','contract','UX/UI Designer','2021-2021'],['MetaLamp','full-time','UX/UI Designer','2020-2021'],['Аутстафф студия','contract','Web-design','2017-2020']];
-const MENU=[['Обо мне','Кто я, чем занимаюсь и как со мной связаться.','#about'],['Продуктовые кейсы','Продукты, которые я вёл от исследования до передачи в разработку.','#cases'],['Работа с AI','Как я с помощью AI быстро собираю MVP и проверяю гипотезы.','#ai'],['Мой стек технологий','Инструменты, в которых я работаю на каждом этапе.','#stack'],['Пет проекты','Плагины, инструменты и проекты для Figma Community.','#pet'],['Опыт работы','Компании и проекты, в которых я работал с 2017 года.','#exp']];
+const MENU=[['Обо мне','Кто я, чем занимаюсь и как со мной связаться.','#about'],['Продуктовые кейсы','Продукты, которые я вёл от исследования до передачи в разработку.','#cases'],['Мой подход к дизайну','Этапы, через которые я провожу продукт: от исследования до handoff.','#approach'],['Работа с AI','Как я с помощью AI быстро собираю MVP и проверяю гипотезы.','#ai'],['Мой стек технологий','Инструменты, в которых я работаю на каждом этапе.','#stack'],['Пет проекты','Плагины, инструменты и проекты для Figma Community.','#pet'],['Опыт работы','Компании и проекты, в которых я работал с 2017 года.','#exp']];
 /* text, background, border, text colour (Figma: badge for fall in main) */
 const BADGES=[['PIXEL PERFECT'],['UX/UI DESIGN'],['BRANDING'],['UI DESIGN'],['TOUCHPOINT'],['IMPROVEMENTS'],['PAIN POINT','#ea582f','#fff'],['CTA'],['WEB 3.0','#d5ff00','#566700','#374200'],['AI','#043ae5','#fff'],['MARKETING'],['USER FLOW'],['USABILITY'],['CREATIVE','#ff531f','#fff'],['CJM','#6204e5','#fff'],['DESIGN SYSTEM','#63d990','#136231','#073318'],['COMPONENTS','#cd50ff','#fff'],['ATOMARIC DESIGN'],['TRENDS'],['VASNEV ROMAN','#d27ef9','#fff'],['SENIOR','#3c2cff','#fff'],['STAFF DESIGNER','#ea582f','#fff'],['PRODUCT DESIGNER','#cd50ff','#fff']];
 
@@ -555,6 +610,31 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{if(
   const io=new IntersectionObserver(es=>{let k=0;es.forEach(e=>{if(e.isIntersecting){e.target.style.setProperty('--dl',(reduce?0:k++*.22)+'s');e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.3});
   folds.forEach(f=>{io.observe(f);const t=()=>{f.classList.toggle('open');f.setAttribute('aria-expanded',f.classList.contains('open'));};
     f.addEventListener('click',t);f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t();}});});})();
+
+/* ---------- approach: glass layers stack up on scroll; tap a layer or label to open its step ---------- */
+(function(){const box=$('#layers'),panel=$('#lpanel'),hint=$('#lhint'),n=STEPS.length;let sel=-1,touched=false;
+  box.innerHTML=STEPS.map((st,i)=>`<div class="pl" style="--i:${i};z-index:${i+1}" data-i="${i}" aria-hidden="true"><div class="sd"></div><div class="fc"><span class="ic">${svgI(i,1.6)}</span></div></div>`).join('')
+    +STEPS.map((st,i)=>`<button class="lb" style="--i:${i}" data-i="${i}" aria-pressed="false"><i></i><span><b>${st[0]}</b> ${esc(st[1])}</span></button>`).join('');
+  const pls=[...box.querySelectorAll('.pl')],lbs=[...box.querySelectorAll('.lb')];let G={};
+  function layout(){const W=box.clientWidth,desk=innerWidth>=1100,K=.56,ll=W<600?12:24;lbs.forEach(l=>l.style.setProperty('--ll',ll+'px'));const lw=Math.max(...lbs.map(l=>l.scrollWidth))+8;
+    const d=Math.max(150,Math.min(desk?340:280,W-lw-(W<600?14:40))),S=d/Math.SQRT2,dh=d*K,t=Math.round(d*.03)+3,
+      g=Math.round(d*(desk?.12:.115)),O=Math.round(d*.15),x0=Math.max(0,Math.round((W-lw-d-14)/2));
+    G={d,dh,g,O,x0,t};box.style.setProperty('--cx',(x0+d/2)+'px');box.style.setProperty('--gw',(d*1.1)+'px');
+    pls.forEach(p=>{p.style.width=d+'px';p.style.height=(dh+t)+'px';p.style.left=x0+'px';
+      p.style.setProperty('--s',S+'px');p.style.setProperty('--ox',(d-S)/2+'px');p.style.setProperty('--oy',(dh-S)/2+'px');p.style.setProperty('--k',K);p.style.setProperty('--t',t+'px');});
+    lbs.forEach(l=>{l.style.left=(x0+d+4)+'px';});
+    box.style.height=Math.ceil(O+(n-1)*g+dh+t+16)+'px';place();}
+  function place(){const {dh,g,O}=G;pls.forEach((p,i)=>{const y=O+(n-1-i)*g-(sel>=0&&i>sel?O:0);p.style.top=y+'px';lbs[i].style.top=(y+dh/2-11)+'px';});}
+  function render(){const st=STEPS[sel];panel.innerHTML=`<div class="lp-h"><span class="lp-ic">${svgI(sel)}</span><h3><span>${st[0]}</span> ${esc(st[1])}</h3><div class="lp-nav"><button data-d="-1" aria-label="Предыдущий этап"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M11 4.5H1M4.5 1 1 4.5 4.5 8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button data-d="1" aria-label="Следующий этап"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5h10M7.5 1 11 4.5 7.5 8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div><div class="lp-body"><div class="chips">${st[2].map((c,j)=>`<span class="chip${st[3].includes(j)?' k':''}">${esc(c)}</span>`).join('')}</div></div>`;}
+  function pick(i,user){i=(i+n)%n;if(i===sel)return;sel=i;pls.forEach((p,j)=>p.classList.toggle('sel',j===i));lbs.forEach((l,j)=>l.setAttribute('aria-pressed',j===i));place();render();
+    if(user&&!touched){touched=true;hint.classList.add('gone');}}
+  box.addEventListener('click',e=>{const el=e.target.closest('[data-i]');if(el)pick(+el.dataset.i,true);});
+  panel.addEventListener('click',e=>{const b=e.target.closest('[data-d]');if(b)pick(sel+ +b.dataset.d,true);});
+  let sx=null;panel.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;},{passive:true});
+  panel.addEventListener('touchend',e=>{if(sx==null)return;const dx=e.changedTouches[0].clientX-sx;sx=null;if(Math.abs(dx)>40)pick(sel+(dx<0?1:-1),true);});
+  layout();if(document.fonts)document.fonts.ready.then(layout);let rl;addEventListener('resize',()=>{clearTimeout(rl);rl=setTimeout(layout,120);});
+  const io=new IntersectionObserver(es=>{if(!es.some(e=>e.isIntersecting))return;io.disconnect();box.classList.add('on');
+    setTimeout(()=>{pick(0);panel.classList.add('on');},reduce?0:(n*160+700));},{threshold:.35});io.observe(box);})();
 
 /* ---------- AI pipeline: zigzag on mobile/tablet, staircase on desktop, connectors drawn on reveal ---------- */
 (function(){const flow=$('#flow'),svg=$('#flowLines'),steps=[...flow.querySelectorAll('.fstep')],n=steps.length,NS='http://www.w3.org/2000/svg';
