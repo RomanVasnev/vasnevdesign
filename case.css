@@ -66,6 +66,8 @@ tr:last-child td{border-bottom:1px solid var(--line)}
 figure{margin:0 0 24px}
 figure .m{border-radius:20px;overflow:hidden;background:#121212}
 figure img,figure video{display:block;width:100%;height:auto}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid2 .m{border-radius:16px}
 figcaption{margin-top:10px;font-size:14px;line-height:18px;color:var(--muted)}
 .stackm{display:flex;flex-direction:column;gap:0}
 .stackm img{border-radius:0}

@@ -84,7 +84,9 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .card{display:block}
 .cover{position:relative;height:200px;border-radius:20px;background:#50ff47;overflow:hidden;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 .card:active .cover{transform:scale(.98)}
-.cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.cover img,.cover video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ndab{position:absolute;left:10px;top:12px;z-index:1;display:flex;gap:2px;align-items:center;height:22px;padding:2px 6px;border-radius:6px;background:#141414;border:1px solid #282828;font-size:12px;line-height:20px;letter-spacing:-.6px;color:#fff}
+.card.nda{cursor:default}.card.nda:active .cover{transform:none}
 .tags{position:absolute;left:20px;top:20px;display:flex;gap:6px;flex-wrap:wrap}
 .tg{height:24px;padding:2px 10px;border-radius:60px;font-size:14px;line-height:20px;background:var(--chip2);border:1px solid #000;color:#fff;-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px)}
 .tg.on{background:var(--tag);border-color:var(--tag)}
@@ -255,9 +257,9 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   #cases{margin-top:48px!important}
   .cases{gap:72px 32px;margin-top:48px}
   .card .cover{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
-  .card:hover .cover{transform:scale(.985)}
+  .card:not(.nda):hover .cover{transform:scale(.985)}
   .cover img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
-  .card:hover .cover img{transform:scale(1.04)}
+  .card:not(.nda):hover .cover img{transform:scale(1.04)}
   .tags{left:24px;top:24px}
   .ctitle{font-size:32px;line-height:36px}
   .cdesc{font-size:18px;line-height:26px;max-width:560px}
@@ -491,11 +493,11 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------- content ---------- */
 const CASES=[
- {img:'assets/main/cover-pump.webp',bg:'linear-gradient(180deg,#244215,#122c05)',alt:'Pump DAO — DeFi-платформа для мем-токена',href:'pump.html',tags:['Fintech','SaaS','B2C'],t:'Механика удержания, которая сохранила ~$2 млн капитализации после пресейла',d:'Создал продукт для мем-токена на фоне плохого рынка и неожиданных новостей: в сжатые сроки запустил продукт и сохранил капитализацию $2 млн.'},
  {img:'assets/main/cover-bitflare.webp',bg:'#c6ff00',alt:'Bitflare — лаунчпад для инвестиций',href:'project.html',tags:['Fintech','SaaS','B2B','B2C'],t:'Спроектировал лаунчпад и бренд для запуска IPO',d:'Платформа, где стартапы собирают инвестиции, а инвесторы заходят в проект до листинга.'},
- {img:'assets/main/cover-anty.webp',bg:'#7f86ff',alt:'Anty Wallet — крипто-кошелёк внутри Telegram',href:'anty.html',tags:['Fintech','B2C','Telegram'],t:'Убрал главный страх новичка в крипте: seed-фразу',d:'Кошелёк в Telegram, которым пользовались 50 000 человек в месяц. Продукт выкупили вместе с моими UX-решениями.'},
- {bg:'#50ff47',tags:['Fintech','B2C','Mobile','EdTech'],t:'Как короткие уроки помогли новичкам решиться на первую инвестицию',d:'Robinhood Learn: обучение инвестициям в приложении.',soon:1},
- {bg:'#0a3068',tags:['Fintech','B2C','Mobile','AI'],t:'Превратил скучный учёт расходов в план с советами',d:'FinHamster: ИИ-помощник для личных финансов.',soon:1},
+ {img:'assets/main/cover-robinhood.webp',vid:'',bg:'#c6f63e',alt:'Robinhood Learn — уроки по инвестициям в приложении Robinhood',nda:1,tags:['Fintech','B2C','Mobile','EdTech'],t:'Как короткие уроки помогли новичкам решиться на первую инвестицию в Robinhood',d:'Совместно с командой сделали онбординг для Robinhood, который повысил первые инвестиции от новичков на 92%.'},
+ {img:'assets/main/cover-pump.webp',bg:'linear-gradient(180deg,#244215,#122c05)',alt:'Pump DAO — DeFi-платформа для мем-токена',href:'pump.html',tags:['Fintech','SaaS','B2C'],t:'Механика удержания, которая сохранила ~$2 млн капитализации после пресейла',d:'Создал продукт для мем-токена на фоне плохого рынка и неожиданных новостей: в сжатые сроки запустил продукт и сохранил капитализацию $2 млн.'},
+ {img:'assets/main/cover-anty.webp',bg:'#7f86ff',alt:'Anty Wallet — крипто-кошелёк внутри Telegram',href:'anty.html',tags:['Fintech','B2C','Telegram'],t:'Собрал MVP с UX-решением, которое выкупил крупный Web3-проект',d:'Кошелёк в Telegram для массовой аудитории: 50 000 пользователей в месяц. Продукт выкупили вместе с моими UX-решениями.'},
+ {bg:'#0a3068',href:'finhamster.html',tags:['Fintech','B2C','Mobile','AI'],t:'Превратил скучный учёт расходов в план с советами',d:'FinHamster: ИИ-помощник для личных финансов, где учёт сразу подсказывает следующий шаг.'},
 ];
 /* AI pipeline: title, what happens, tools (assets/<name>.png), step icon */
 const AI_STEPS=[
@@ -524,7 +526,7 @@ const COM=[['Glassmorphism wallpaper (abstract 3d figure)','assets/main/com-1.we
 const FALL_ICONS=['lottiefiles','zeplin','pixso','figma','higgsfield','photoshop','blender','hotjar'];
 const $=s=>document.querySelector(s);const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
 const ARW='<span class="dot18"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
-function cardsHTML(list){return list.map(c=>{const tag=c.soon?'div':'a';const href=c.soon?'':` href="${c.href}"`;return `<${tag} class="card${c.soon?' soon':''}"${href}><div class="cover" style="background:${c.bg}">${c.img?`<img src="${c.img}" alt="${esc(c.alt||'')}" loading="lazy" decoding="async">`:''}</div><div class="cbody"><h3 class="ctitle">${esc(c.t)}</h3><div class="cbadges">${c.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div><p class="cdesc">${esc(c.d)}</p><span class="cmore">${c.soon?'Кейс скоро':'Читать кейс '+ARW}</span></div></${tag}>`}).join('');}
+function cardsHTML(list){return list.map(c=>{const off=c.soon||c.nda,tag=off?'div':'a';const href=off?'':` href="${c.href}"`;return `<${tag} class="card${c.soon?' soon':''}${c.nda?' nda':''}"${href}><div class="cover" style="background:${c.bg}">${c.vid?`<video src="${c.vid}" poster="${c.img}" muted loop playsinline autoplay preload="metadata" aria-label="${esc(c.alt||'')}"></video>`:c.img?`<img src="${c.img}" alt="${esc(c.alt||'')}" loading="lazy" decoding="async">`:''}${c.nda?'<span class="ndab">NDA 🛠️</span>':''}</div><div class="cbody"><h3 class="ctitle">${esc(c.t)}</h3><div class="cbadges">${c.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div><p class="cdesc">${esc(c.d)}</p><span class="cmore">${c.soon?'Кейс скоро':c.nda?'NDA (по запросу) '+ARW:'Читать кейс '+ARW}</span></div></${tag}>`}).join('');}
 $('#caseList').innerHTML=cardsHTML(CASES).replace(/class="card"/g,'class="card rv"');
 $('#petList').innerHTML=PET.map(([t,d,src])=>`<div class="pcard"><div class="img"><img src="${src}" alt="${esc(t)}" loading="lazy" decoding="async" width="308" height="174"></div><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join('');
 $('#comList').innerHTML=COM.map(([t,src])=>`<div class="pcard"><div class="img"><img src="${src}" alt="${esc(t)}" loading="lazy" decoding="async" width="308" height="174"></div><h3>${esc(t)}</h3></div>`).join('');

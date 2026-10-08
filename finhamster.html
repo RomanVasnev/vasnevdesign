@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>FinHamster — Роман Васнёв</title>
+<meta name="description" content="FinHamster: учёт финансов, который сразу подсказывает следующий шаг. Кейс продуктового дизайнера Романа Васнёва.">
+<meta name="theme-color" content="#060606">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="case.css">
+<style>:root{--accent:#ff8a3d}</style>
+</head>
+<body>
+<header class="hdr">
+  <div class="wrap">
+    <a class="dom" href="index.html">vasnevdesign.ru</a>
+    <div class="prog" aria-hidden="true"><i id="prog"></i></div>
+    <button class="mbtn" id="mopen" aria-haspopup="dialog" aria-controls="menu">menu <span class="dot18"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+  </div>
+</header>
+<main class="wrap gut">
+  <a class="back" href="index.html"><span class="c24"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M11 4.5H1M4.5 1 1 4.5 4.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>На главную</a>
+  <div class="prj"><div><b>FinHamster</b><small>ИИ-помощник для личных финансов</small></div></div>
+  <h1>Учёт финансов, который сразу подсказывает следующий шаг</h1>
+  <div class="tags"><span>Fintech</span><span>B2C</span><span>Mobile</span><span>AI</span></div>
+
+  <dl class="meta"><div><dt>Платформа</dt><dd>Мобильное приложение и веб</dd></div><div><dt>Роль</dt><dd>Продуктовый дизайнер</dd></div><div><dt>Зона</dt><dd>UX, UI, дизайн-система, лендинг и питч-дек</dd></div><div><dt>Объём</dt><dd>200+ мобильных экранов и 29 экранов веба</dd></div></dl>
+<section class="sec rv"><h2>Суть проекта</h2><p class="w">FinHamster это сервис учёта и планирования личных финансов. В приложении пользователь делит деньги на корзины с месячными лимитами, записывает траты, смотрит аналитику и получает советы, которые подстраиваются под его данные.</p><p class="w">Я спроектировал продукт целиком: архитектуру, мобильное приложение, веб-кабинет финансового плана, лендинг, питч-дек для инвесторов и дизайн-систему.</p><div class="stats"><div><b>200+</b><span>мобильных экранов</span></div><div><b>29</b><span>экранов веб-финплана</span></div><div><b>168</b><span>валют с поиском</span></div><div><b>52</b><span>набора компонентов в системе</span></div></div></section>
+<section class="sec rv"><h2>Контекст проекта</h2><p>Деньги у людей разбросаны по нескольким банкам, а банковская аналитика видит только свой банк и ничего не планирует. Учёт превращается в список покупок, который никто не открывает.</p><h3>Для кого продукт</h3><ol class="nl"><li><div>Новичок в финансах. Живёт от зарплаты до зарплаты, ему нужен простой учёт и понятные лимиты</div></li><li><div>Осторожный накопитель. Боится потерять накопления, ему нужен план и подушка безопасности</div></li><li><div>Будущий инвестор. Не понимает, как работают инвестиции, ему нужны объяснения и первые шаги</div></li></ol><blockquote class="q">Цифры сами по себе не говорят, что делать. Хорошо ли, что на кафе ушло 10 000 ₽, и сколько можно тратить, чтобы накопить на отпуск?</blockquote></section>
+<section class="sec rv"><h2>Рынок</h2><p>Почти все ведут бюджет, но почти никто не делает это системно. А те, кто скачал приложение, быстро его бросают.</p><div class="stats"><div><b>70%</b><span>россиян так или иначе ведут семейный бюджет</span></div><div><b>32%</b><span>из них считают деньги в уме</span></div><div><b>7%</b><span>пользуются приложениями или таблицами</span></div><div><b>4,2%</b><span>пользователей финприложений остаются к 30-му дню</span></div></div><p class="note">Данные: НАФИ (2025), Business of Apps (2026)</p><blockquote class="q">Проблема не в том, что людям не нужен учёт. Учёт скучный и не даёт ответа, поэтому его бросают в первый же месяц.</blockquote></section>
+<section class="sec rv"><h2>Исследование</h2><h3>Конкуренты</h3><p>Я сравнил пять типов решений, которыми пользуются для личного бюджета.</p><table><thead><tr><th scope="col">Продукт</th><th scope="col">Сильная сторона</th><th scope="col">Ограничение</th></tr></thead><tbody><tr><td>CoinKeeper</td><td>Категории с лимитами, около 350 тыс. MAU</td><td>Семейный бюджет только в старшем тарифе</td></tr><tr><td>Дзен-мани</td><td>Импорт из 3 300+ банков</td><td>Сложный старт, автоматизация платная</td></tr><tr><td>Monefy</td><td>Очень быстрый ручной ввод</td><td>Нет планирования и целей</td></tr><tr><td>Т-Банк, Сбер</td><td>Автоматические категории</td><td>Видят только свой банк</td></tr><tr><td>YNAB</td><td>Метод конвертов</td><td>Около 30 минут работы в неделю</td></tr></tbody></table><p class="note">Данные: сайты продуктов, AppBrain, RB.ru, Penny Hoarder</p><h3>Где ниша FinHamster</h3><ol class="nl"><li><div>Между банком и трекером. Банки автоматизируют, но не планируют. Трекеры планируют, но требуют ручной работы или платного тарифа</div></li><li><div>Конверты без бухгалтерии. Метод YNAB, но в простом и дружелюбном интерфейсе</div></li><li><div>Совет, а не отчёт. Учёт сразу подсказывает, что делать дальше</div></li></ol></section>
+<section class="sec rv"><h2>Гипотезы</h2><h3>Ключевая продуктовая гипотеза</h3><blockquote class="q">Человек продолжит вести учёт, если запись траты занимает секунды, а в ответ он сразу получает понятный совет.</blockquote><p>Отсюда пять принципов, которые легли в продукт:</p><ol class="nl"><li><div>Корзины вместо сотни категорий. Лимит ставится на цель, а не на каждую строчку</div></li><li><div>Трата на одном экране</div></li><li><div>График отвечает на вопрос, а не просто показывает цифры</div></li><li><div>Совет зависит от уровня и данных пользователя</div></li><li><div>Мотивация через марафоны вместо сухих отчётов</div></li></ol><h3>Архитектура</h3><p>В таб-баре пять разделов: Учёт, Капитал, кнопка новой транзакции, Аналитика и Профиль. Финансовый план с денежным потоком, имуществом и обязательствами живёт в вебе.</p></section>
+<section class="sec rv"><h2>Что вошло в продукт</h2><h3>Первая версия</h3><ol class="nl"><li><div>Онбординг, который объясняет пользу до регистрации</div></li><li><div>Корзины с месячными лимитами</div></li><li><div>Запись траты на одном экране</div></li><li><div>Аналитика в трёх срезах</div></li><li><div>Рекомендации по уровню и марафоны</div></li><li><div>Подписка, валюты и настройки уведомлений</div></li><li><div>Веб-финплан, лендинг и питч-дек</div></li></ol><h3>Бизнес-модель</h3><p>Freemium: базовый учёт бесплатно, подписка на 3 месяца, 12 месяцев или навсегда. Платное должно ощущаться как следующий шаг, а не как стена посреди сценария.</p></section>
+<section class="sec rv"><h2>Корзины вместо категорий</h2><p>Главное решение кейса. Классический учёт это десятки категорий, в которых легко утонуть. Лимит на каждую никто не ставит, а без лимита учёт превращается в список покупок.</p><ol class="nl"><li><div>Пользователь делит деньги на корзины-цели: «Путешествия», «Моё обучение», «Еда, продукты, кафе»</div></li><li><div>У корзины и у каждой категории внутри свой месячный лимит</div></li><li><div>На главном экране сразу видно сумму и прогресс: «45 000 ₽ из 50 000 ₽»</div></li><li><div>Категории добавляются и удаляются на одном экране</div></li></ol><blockquote class="q">Корзина отвечает на вопрос «на что я коплю и сколько могу потратить», а не «куда ушли деньги». Так люди и думают о бюджете.</blockquote></section>
+<section class="sec rv"><h2>Трата на одном экране</h2><ol class="nl"><li><div>Корзина и категория подставляются из контекста, откуда открыта форма</div></li><li><div>Сумма набирается вручную или кнопками 100, 200, 500 и 1000 ₽</div></li><li><div>Дата: «Сейчас», «Сегодня», «Вчера» или барабан вместо календаря</div></li><li><div>Метки и комментарии, регулярные операции</div></li><li><div>Перед удалением подсказка о последствиях</div></li></ol></section>
+<section class="sec rv"><h2>Аналитика в трёх срезах</h2><p>Переключатель «Корзины / Категории / Транзакции» показывает одни и те же деньги с разных сторон. Цвет категории повторяет цвет её корзины, а период выбирается в два тапа.</p></section>
+<section class="sec rv"><h2>Советы, которые растут вместе с пользователем</h2><p>Общие советы вроде «тратьте меньше» не работают, а точные невозможны без данных. Поэтому советы привязаны к уровню.</p><ol class="nl"><li><div>Шкала показывает, насколько точны советы сейчас и что сделать, чтобы они стали точнее</div></li><li><div>На продвинутом уровне совет опирается на корзины пользователя, например метод 50 / 30 / 20</div></li><li><div>С полными данными появляются персональные советы и первые шаги в инвестициях</div></li><li><div>Марафоны превращают совет в задачу на месяц: цель, срок и кнопка «Принять участие»</div></li></ol></section>
+<section class="sec rv"><h2>Подписка без давления</h2><ol class="nl"><li><div>Выгодный тариф выделен цветом, но выбор остаётся за пользователем</div></li><li><div>Основная валюта выбирается из 168 с поиском</div></li><li><div>Перед удалением аккаунта сервис спрашивает причину</div></li><li><div>Разделы в работе не прячутся: заглушка объясняет, что там будет, и предлагает уведомление о запуске</div></li></ol></section>
+<section class="sec rv"><h2>Финплан, лендинг и питч-дек</h2><p>Длинные сценарии вынесены в веб: доходы по категориям, график будущего капитала, денежный поток, имущество и обязательства.</p><p>Лендинг ведёт в приложение и веб-финплан. Питч-дек рассказывает инвестору о проблеме, рынке, продукте и бизнес-модели в тех же цветах и с тем же хомяком.</p></section>
+<section class="sec rv"><h2>Дизайн-система</h2><p>Приложение, веб и маркетинговые материалы собраны на одной системе. Тёмная сине-оранжевая палитра повторяет цвета хомяка.</p><div class="stats"><div><b>52</b><span>набора компонентов</span></div><div><b>153</b><span>варианта</span></div><div><b>121</b><span>отдельный компонент</span></div><div><b>3</b><span>продукта на одной системе</span></div></div></section>
+<section class="sec rv"><h2>Метрики продукта</h2><p>Под каждое ключевое решение я заложил метрику, по которой видно, работает ли оно.</p><table><thead><tr><th scope="col">Метрика</th><th scope="col">Что показывает</th><th scope="col">Цель</th></tr></thead><tbody><tr><td>D7 / D30 retention</td><td>Записывают ли траты через неделю и месяц</td><td>N% / N%</td></tr><tr><td>Время на трату</td><td>Сколько секунд уходит на одну запись</td><td>&lt; N сек</td></tr><tr><td>Корзины с лимитом</td><td>Доля пользователей с хотя бы одной корзиной</td><td>N%</td></tr><tr><td>Конверсия в подписку</td><td>Кто платит и после какого действия</td><td>N%</td></tr></tbody></table></section>
+<section class="sec rv"><h2>Результаты после запуска</h2><p>Через месяц после релиза я сравнил фактические цифры с целями и с рынком.</p><div class="stats"><div><b>N%</b><span>остались к 7-му дню</span></div><div><b>N%</b><span>остались к 30-му дню при 4,2% по рынку</span></div><div><b>N сек</b><span>уходит на запись одной траты</span></div><div><b>N%</b><span>завели корзину с лимитом</span></div><div><b>N%</b><span>перешли на подписку</span></div><div><b>N</b><span>пользователей за первый месяц</span></div></div><blockquote class="q">Рынок удерживает к 30-му дню 4,2% пользователей, FinHamster удержал N%.</blockquote></section>
+<section class="sec rv"><h2>Итоги работы</h2><h3>Опыт</h3><p>Учёт финансов полезен, только когда подсказывает следующий шаг. Корзины перевели бюджет на язык целей, а советы и марафоны превратили цифры в действия.</p><h3>Результаты</h3><ol class="nl"><li><div>Продукт спроектирован целиком: от онбординга и учёта до веб-финплана и питч-дека</div></li><li><div>200+ мобильных экранов и 29 экранов веба на одной системе компонентов</div></li><li><div>Приложение, лендинг и питч-дек говорят на одном визуальном языке</div></li></ol><blockquote class="q">Продукт одинаково понятен и пользователю, и инвестору, потому что у них один язык.</blockquote></section>
+  <nav class="nav2" aria-label="Навигация по кейсам"><a href="index.html"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M11 4.5H1M4.5 1 1 4.5 4.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>На главную</a><a href="project.html">Следующий кейс <svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5h10M7.5 1 11 4.5 7.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></nav>
+</main>
+<footer class="ftr">
+  <div class="links">
+    <a href="https://t.me/" target="_blank" rel="noopener">Telegram <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
+    <a href="#">Max <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
+    <a href="#">E-mail <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
+  </div>
+  <small>© 2026 - Васнёв Роман</small>
+  <div class="apps" aria-hidden="true"><img src="assets/main/ic-he.webp" alt="" width="32" height="32" loading="lazy"><img src="assets/main/ic-lp.webp" alt="" width="32" height="32" loading="lazy"><img src="assets/main/ic-me.webp" alt="" width="32" height="32" loading="lazy"></div>
+</footer>
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Меню">
+  <div class="wrap">
+    <div class="top"><span style="font-size:16px;font-weight:500">vasnevdesign.ru</span><div class="prog"><i style="width:100%"></i></div><button class="mbtn" id="mclose">закрыть <span class="dot18"><svg width="8" height="8" viewBox="0 0 8 8"><path d="M1 1l6 6M7 1 1 7" stroke="#000" stroke-width="1.4" stroke-linecap="round"/></svg></span></button></div>
+    <div class="lang">RU / <span>EN</span></div>
+    <ul class="mlist" id="mlist"></ul>
+    <footer class="ftr">
+      <div class="links"><a href="https://t.me/" target="_blank" rel="noopener">Telegram <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#767676" stroke-width="1.4" fill="none"/></svg></a><a href="#">Max <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#767676" stroke-width="1.4" fill="none"/></svg></a><a href="#">E-mail <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#767676" stroke-width="1.4" fill="none"/></svg></a></div>
+      <small>© 2026 - Васнёв Роман</small>
+      <div class="apps" aria-hidden="true"><img src="assets/main/ic-he.webp" alt="" width="32" height="32" loading="lazy"><img src="assets/main/ic-lp.webp" alt="" width="32" height="32" loading="lazy"><img src="assets/main/ic-me.webp" alt="" width="32" height="32" loading="lazy"></div>
+    </footer>
+  </div>
+</div>
+<script>
+document.documentElement.classList.add('js');
+const $=s=>document.querySelector(s);const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const MENU=[['Обо мне','Кто я, чем занимаюсь и как со мной связаться.','index.html#about'],['Продуктовые кейсы','Продукты, которые я вёл от исследования до передачи в разработку.','index.html#cases'],['Мой подход к дизайну','Этапы, через которые я провожу продукт: от исследования до handoff.','index.html#approach'],['Работа с AI','Как я с помощью AI быстро собираю MVP и проверяю гипотезы.','index.html#ai'],['Мой стек технологий','Инструменты, в которых я работаю на каждом этапе.','index.html#stack'],['Пет проекты','Плагины, инструменты и проекты для Figma Community.','index.html#pet'],['Опыт работы','Компании и проекты, в которых я работал с 2017 года.','index.html#exp']];
+$('#mlist').innerHTML=MENU.map((m,i)=>`<li style="animation-delay:${.08+i*.05}s"><a href="${m[2]}"><strong>${m[0]} <span class="c"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></strong><p>${m[1]}</p></a></li>`).join('');
+const menu=$('#menu');
+$('#mopen').addEventListener('click',()=>{menu.classList.add('open');document.body.style.overflow='hidden';$('#mclose').focus({focusVisible:false});});
+function closeMenu(){menu.classList.remove('open');document.body.style.overflow='';}
+$('#mclose').addEventListener('click',closeMenu);
+addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
+const prog=$('#prog');
+function onScroll(){const h=document.documentElement.scrollHeight-innerHeight;prog.style.width=(h>0?Math.min(100,scrollY/h*100):0)+'%';}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{rootMargin:'0px 0px -6% 0px',threshold:.04});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+/* carousel: dots + play only the visible video */
+document.querySelectorAll('.carf').forEach(f=>{const car=f.querySelector('.car'),vids=[...car.querySelectorAll('video')],dots=[...f.querySelectorAll('.dots i')];
+  const cur=()=>Math.round(car.scrollLeft/(car.firstElementChild.offsetWidth+12));
+  const sync=()=>{const i=cur();dots.forEach((d,j)=>d.classList.toggle('on',j===i));};
+  car.addEventListener('scroll',sync,{passive:true});
+  const vio=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting&&e.intersectionRatio>.5&&!reduce){v.play().catch(()=>{});}else v.pause();}),{threshold:[0,.5,1]});
+  vids.forEach(v=>vio.observe(v));});
+</script>
+</body>
+</html>
