@@ -34,3 +34,27 @@
   const br=document.querySelector('.pd-br');
   if(br&&!RM)addEventListener('scroll',()=>{const y=Math.min(scrollY,700);br.style.transform=`translate3d(0,${(y*-.08).toFixed(1)}px,0) rotate(${(-2+y*.004).toFixed(2)}deg)`;},{passive:true});
 })();
+/* ===== v3.1 motion ===== */
+(function(){
+  const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const once=(el,fn,th=.35)=>{if(!el)return;new IntersectionObserver(([e],o)=>{if(e.isIntersecting){o.disconnect();fn(el);}},{threshold:th}).observe(el);};
+  once(document.getElementById('vs'),el=>el.classList.add('in'),.35);
+  document.querySelectorAll('.mp').forEach(m=>once(m,el=>el.classList.add('in'),.4));
+  /* ladder: levels light up with scroll progress through the section */
+  const sec=document.getElementById('ladderS'),bars=[...document.querySelectorAll('#ladder i')],N=document.getElementById('lvlN'),B=document.getElementById('lvlB');
+  let last=-1;function lad(){if(!sec)return;const r=sec.getBoundingClientRect(),vh=innerHeight;let p=(vh*.85-r.top)/(r.height*.9+vh*.15);p=Math.max(0,Math.min(1,p));
+    const n=RM?12:Math.max(1,Math.round(p*12));if(n===last)return;last=n;bars.forEach((b,i)=>{b.classList.toggle('on',i<n);b.classList.toggle('cur',i===n-1);});
+    N.textContent=String(n).padStart(2,'0');B.textContent='буст +'+((n-1)*5)+'%';}
+  addEventListener('scroll',lad,{passive:true});lad();
+  /* deck: top card flies to the back */
+  const deck=document.getElementById('deck'),cards=deck?[...deck.querySelectorAll('img')]:[],lis=[...document.querySelectorAll('#states li')];let top=0,dt=0,dvis=false;
+  function lay(){cards.forEach((c,i)=>{const k=(i-top+cards.length)%cards.length;c.style.zIndex=cards.length-k;
+    c.style.transform=k===0?'translate3d(0,0,0)':`translate3d(${k*14}px,${k*-10}px,0) scale(${1-k*.04}) rotate(${k*2}deg)`;c.style.opacity=k>3?0:1;});
+    lis.forEach((l,i)=>l.classList.toggle('on',i===top));}
+  function next(){const c=cards[top];c.style.transform='translate3d(-120%,20px,0) rotate(-12deg)';c.style.opacity=0;
+    setTimeout(()=>{top=(top+1)%cards.length;lay();},380);}
+  function auto(){clearTimeout(dt);if(!dvis||RM)return;dt=setTimeout(()=>{next();auto();},2600);}
+  if(deck){lay();deck.addEventListener('click',()=>{next();auto();});deck.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();next();auto();}});
+    lis.forEach((l,i)=>l.addEventListener('click',()=>{top=i;lay();auto();}));
+    new IntersectionObserver(([e])=>{dvis=e.isIntersecting;auto();},{threshold:.4}).observe(deck);}
+})();

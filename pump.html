@@ -76,52 +76,77 @@
     <p class="note3 rv3">Данные: BitMEX через ForkLog (2025), ZachXBT через Cointelegraph (2024), Chainalysis (2025)</p>
   </section>
 
-  <section class="story c">
-    <div class="story-tx">
-      <h2 class="h2x rv3">Каждый следующий шаг выгоднее продажи</h2>
-      <div class="step3" data-scr="card1">
-        <h3>Стейкинг открывается контрактом</h3>
-        <p>Уровень стейкинга активируется только после завершённого цикла контракта. Так первый же шаг держателя — участие в продукте, а не ожидание листинга.</p>
-        <div class="cardf cf-inline"><img src="assets/pump/v3/card1.webp" alt="Неактивный уровень" width="524" height="1055" loading="lazy"></div>
-      </div>
-      <div class="step3" data-scr="card-active">
-        <h3>+5% к доходности за каждый цикл</h3>
-        <p>Базовые 20% APY и буст за каждый завершённый цикл. Чем дольше держатель в продукте, тем выше его ставка — и это видно прямо на карточке.</p>
-        <div class="cardf cf-inline"><img src="assets/pump/v3/card-active.webp" alt="Активный стейкинг" width="524" height="1055" loading="lazy"></div>
-      </div>
-      <div class="step3" data-scr="card-boost">
-        <h3>Бусты складываются</h3>
-        <p>У каждого буста свой таймер. Держатель видит, сколько уже накопил и что потеряет, если уйдёт сейчас.</p>
-        <div class="cardf cf-inline"><img src="assets/pump/v3/card-boost.webp" alt="Накопленные бусты" width="600" height="1207" loading="lazy"></div>
-      </div>
-      <div class="step3" data-scr="card-ready">
-        <h3>Выбор остаётся за человеком</h3>
-        <p>После 7 дней — restake с бустом или вывод. Никого не блокируем, но restake даёт заметно больше. 80% держателей выбрали его.</p>
-        <div class="cardf cf-inline"><img src="assets/pump/v3/card-ready.webp" alt="Restake или вывод" width="524" height="1055" loading="lazy"></div>
-      </div>
+  <section class="c loop">
+    <h2 class="h2x rv3">Каждый следующий шаг выгоднее продажи</h2>
+    <p class="body3 rv3">Главное решение кейса — петля удержания. Держатель никогда не заперт: вывести можно в любой момент. Но каждый круг петли делает следующий выгоднее, и это видно в цифрах прямо на карточке.</p>
+    <div class="loop-wrap rv3" id="loopw">
+      <svg class="loop-svg" viewBox="0 0 760 420" aria-hidden="true">
+        <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#5f8f4e"/></marker></defs>
+        <path id="lp" class="ring" d="M380 48 C 590 48 660 120 660 210 C 660 300 590 372 380 372 C 170 372 100 300 100 210 C 100 120 170 48 380 48 Z"/>
+        <path class="exit" d="M660 250 C 690 290 720 300 748 300" marker-end="url(#ah)"/>
+        <circle class="dot" r="7"><animateMotion dur="7s" repeatCount="indefinite" rotate="auto"><mpath href="#lp"/></animateMotion></circle>
+      </svg>
+      <div class="node n1"><b>Контракт</b><span>замораживает токены</span></div>
+      <div class="node n2"><b>Цикл завершён</b><span>открыт слот и буст +5%</span></div>
+      <div class="node n3 hi"><b>Стейкинг 7 дней</b><span>20% APY + все бусты</span></div>
+      <div class="node n4"><b>Restake</b><span>уровень +1, буст сохраняется</span></div>
+      <div class="exitl">Вывод в любой момент<br><em>накопленный буст сгорает</em></div>
+      <img class="loop-frog" src="assets/pump/v3/frog-think.webp" alt="" width="700" height="700" loading="lazy">
     </div>
-    <div class="story-vis" aria-hidden="true">
-      <div class="story-pin">
-        <div class="cardf" id="storyScr">
-          <img class="on" data-k="card1" src="assets/pump/v3/card1.webp" alt="" width="524" height="1055">
-          <img data-k="card-active" src="assets/pump/v3/card-active.webp" alt="" width="524" height="1055">
-          <img data-k="card-boost" src="assets/pump/v3/card-boost.webp" alt="" width="600" height="1207">
-          <img data-k="card-ready" src="assets/pump/v3/card-ready.webp" alt="" width="524" height="1055">
-        </div>
-      </div>
+    <ol class="loop-m rv3" aria-label="Петля удержания">
+      <li><b>Контракт</b><span>замораживает токены</span></li>
+      <li><b>Цикл завершён</b><span>открыт слот стейкинга и буст +5%</span></li>
+      <li class="hi"><b>Стейкинг 7 дней</b><span>20% APY + все накопленные бусты</span></li>
+      <li><b>Restake</b><span>уровень +1, буст сохраняется — и снова к контракту</span></li>
+      <li class="ex"><b>Или вывод в любой момент</b><span>накопленный буст сгорает</span></li>
+    </ol>
+  </section>
+
+  <section class="c ladder-s" id="ladderS">
+    <div class="ladder-tx">
+      <h2 class="h2x rv3">12 уровней — 12 причин остаться</h2>
+      <p class="body3 rv3">Каждый restake поднимает держателя на уровень выше и добавляет +5% к доходности. Если вывести токены, лестница начинается заново. К четвёртому циклу та же неделя приносит почти вдвое больше: ≈384 → ≈671 PEPEMEME.</p>
+      <div class="lvl rv3"><span>Уровень</span><b id="lvlN">01</b><span>/ 12</span><i id="lvlB">буст +0%</i></div>
+    </div>
+    <div class="ladder rv3" id="ladder" aria-hidden="true">
+      <i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><i style="--i:10"></i><i style="--i:11"></i><i style="--i:12"></i>
     </div>
   </section>
 
-  <section class="c econ">
-    <div class="econ-tx">
-      <h2 class="h2x rv3">К четвёртому циклу та же неделя приносит почти вдвое больше</h2>
-      <p class="body3 rv3">Пул 100 000 PEPEMEME, 7 дней, restake каждый раз. Если держатель выводит, накопленный буст сгорает и доходность снова 20%.</p>
+  <section class="c deck-s">
+    <div class="deck-tx">
+      <h2 class="h2x rv3">Одна карточка — семь состояний</h2>
+      <p class="body3 rv3">Уровень стейкинга живёт в одной карточке. На любом этапе держатель видит, что происходит и что сделать дальше — без отдельных страниц и инструкций.</p>
+      <ol class="states rv3" id="states">
+        <li class="on">Неактивен — сначала нужен контракт</li>
+        <li>Подсказка: как активировать стейкинг</li>
+        <li>Цикл контракта ещё не завершён</li>
+        <li>Активен</li>
+        <li>Активен с бустом</li>
+        <li>Бусты складываются, у каждого свой таймер</li>
+        <li>Завершён: restake или вывод</li>
+      </ol>
     </div>
-    <div class="bars rv3" id="bars" aria-label="Доход за 7 дней по циклам">
-      <div class="bar" style="--h:.40"><b>≈ 384</b><i></i><span>1 цикл · 20%</span></div>
-      <div class="bar" style="--h:.50"><b>≈ 479</b><i></i><span>2 цикл · 25%</span></div>
-      <div class="bar" style="--h:.60"><b>≈ 575</b><i></i><span>3 цикл · 30%</span></div>
-      <div class="bar hi" style="--h:.70"><b>≈ 671</b><i></i><span>4 цикл · 35%</span></div>
+    <div class="deck" id="deck" role="button" tabindex="0" aria-label="Следующее состояние карточки">
+      <img src="assets/pump/v3/card1.webp" alt="Неактивен" width="524" height="1055" loading="lazy">
+      <img src="assets/pump/v3/card-how.webp" alt="Как активировать" width="524" height="1055" loading="lazy">
+      <img src="assets/pump/v3/card-nocycle.webp" alt="Цикл не завершён" width="524" height="1055" loading="lazy">
+      <img src="assets/pump/v3/card-nobonus.webp" alt="Активен" width="524" height="1055" loading="lazy">
+      <img src="assets/pump/v3/card-active.webp" alt="Активен с бустом" width="524" height="1055" loading="lazy">
+      <img src="assets/pump/v3/card-boost.webp" alt="Бусты" width="600" height="1207" loading="lazy">
+      <img src="assets/pump/v3/card-ready.webp" alt="Завершён" width="524" height="1055" loading="lazy">
+    </div>
+  </section>
+
+  <section class="c mob-s">
+    <div class="mob-vis rv3">
+      <div class="glow3"></div>
+      <div class="ph mob-ph"><div class="ph-scr lt"><img src="assets/pump/v3/m-staking.webp" alt="Стейкинг на телефоне" width="541" height="1081" loading="lazy"></div></div>
+      <span class="chip3 c1">+5% APY за цикл</span><span class="chip3 c2">до 1% в день</span><span class="chip3 c3">37% предложения в пуле</span>
+    </div>
+    <div class="mob-tx">
+      <h2 class="h2x rv3">Стейкинг в кармане</h2>
+      <p class="body3 rv3">56 мобильных экранов: матрица, бусты и restake работают так же, как на десктопе, а модалки превращаются в нижние листы — без потери ни одного состояния.</p>
     </div>
   </section>
 
@@ -161,24 +186,39 @@
 
   <section class="c memes">
     <h2 class="h2x rv3">Мемы вместо инструкций</h2>
-    <p class="body3 rv3">Все иллюстрации нарисовал я. Каждая отсылает к мему, который комьюнити узнаёт без объяснений — поэтому механику не приходится расшифровывать.</p>
-    <div class="meme-grid">
-      <img class="rv3" src="assets/pump/meme-choice.webp" alt="#you choice — restake или вывод" width="540" height="540" loading="lazy">
-      <img class="rv3" src="assets/pump/meme-stonks.webp" alt="#stonks — рост дохода" width="540" height="540" loading="lazy">
-      <img class="rv3" src="assets/pump/meme-staking.webp" alt="#staking — прикидывает выгоду" width="540" height="540" loading="lazy">
-      <img class="rv3" src="assets/pump/meme-congrats.webp" alt="#congrats — завершённый цикл" width="540" height="540" loading="lazy">
-    </div>
+    <p class="body3 rv3">Комьюнити мем-токена не читает правила — оно узнаёт мемы. Я взял четыре мема, которые все знают, и перерисовал их под механику: картинка сама объясняет, что происходит на экране.</p>
+    <div class="mpairs"><div class="mp rv3"><figure class="mo" data-orig="choice"><span class="mo-ph">«Матрица»: красная или синяя таблетка</span><figcaption>Оригинал</figcaption></figure><svg class="marr" viewBox="0 0 60 24" aria-hidden="true"><path d="M2 12h52M44 3l10 9-10 9"/></svg><figure class="mm"><img src="assets/pump/meme-choice.webp" alt="#you choice" width="540" height="540" loading="lazy"><figcaption>#you choice — Restake или вывод — выбор за держателем</figcaption></figure></div><div class="mp rv3"><figure class="mo" data-orig="stonks"><span class="mo-ph">Stonks</span><figcaption>Оригинал</figcaption></figure><svg class="marr" viewBox="0 0 60 24" aria-hidden="true"><path d="M2 12h52M44 3l10 9-10 9"/></svg><figure class="mm"><img src="assets/pump/meme-stonks.webp" alt="#stonks" width="540" height="540" loading="lazy"><figcaption>#stonks — Доход растёт на каждом уровне</figcaption></figure></div><div class="mp rv3"><figure class="mo" data-orig="staking"><span class="mo-ph">Roll Safe «Think about it»</span><figcaption>Оригинал</figcaption></figure><svg class="marr" viewBox="0 0 60 24" aria-hidden="true"><path d="M2 12h52M44 3l10 9-10 9"/></svg><figure class="mm"><img src="assets/pump/meme-staking.webp" alt="#staking" width="540" height="540" loading="lazy"><figcaption>#staking — Держатель прикидывает выгоду стейкинга</figcaption></figure></div><div class="mp rv3"><figure class="mo" data-orig="congrats"><span class="mo-ph">Тост Ди Каприо</span><figcaption>Оригинал</figcaption></figure><svg class="marr" viewBox="0 0 60 24" aria-hidden="true"><path d="M2 12h52M44 3l10 9-10 9"/></svg><figure class="mm"><img src="assets/pump/meme-congrats.webp" alt="#congrats" width="540" height="540" loading="lazy"><figcaption>#congrats — Цикл контракта завершён</figcaption></figure></div></div>
   </section>
 
   <section class="c outro">
-    <h2 class="h2x big rv3">Результат</h2>
-    <div class="res rv3">
-      <div class="rc"><b>65%</b><span>предложения токена работало внутри продукта, пока рынок продаёт 50–90% за неделю</span></div>
-      <div class="rc"><b>8 000</b><span>контрактов за первый месяц, 5 000+ держателей</span></div>
-      <div class="rc wide"><b>116 экранов</b><span>43 флоу и 163 состояния переданы в разработку за месяц</span></div>
+    <h2 class="h2x big rv3">Результат: капитализация не обвалилась</h2>
+    <p class="body3 rv3 narrow">Через месяц после пресейла я сравнил поведение держателей с тем, что обычно происходит на рынке.</p>
+    <div class="vs rv3" id="vs">
+      <div class="vs-big"><b>~$2 млн</b><span>капитализации сохранено после пресейла</span></div>
+      <div class="vs-chart">
+        <svg viewBox="0 0 600 260" preserveAspectRatio="none" aria-hidden="true">
+          <path class="g0" d="M0 130H600"/>
+          <path class="mk" d="M0 120 C 60 110 90 150 130 190 S 230 236 330 244 S 520 250 600 252"/>
+          <path class="pd" d="M0 120 C 60 112 100 140 150 132 S 260 108 330 112 S 480 104 600 106"/>
+        </svg>
+        <span class="vl l0">пресейл</span><span class="vl l1">Pump DAO <b>+10%</b> к цене пресейла через месяц</span><span class="vl l2">обычный пресейл Solana <b>до −99%</b></span>
+        <div class="vs-x"><span>старт</span><span>неделя 1</span><span>месяц 1</span></div>
+      </div>
+    </div>
+    <div class="res res6 rv3">
+      <div class="rc"><b>65%</b><span>предложения токена работало в стейкинге, пока рынок продаёт 50–90% за неделю</span></div>
+      <div class="rc"><b>80+%</b><span>держателей выбрали restake вместо вывода</span></div>
+      <div class="rc"><b>5 000+</b><span>держателей после пресейла</span></div>
+      <div class="rc"><b>8 000</b><span>контрактов за первый месяц</span></div>
+      <div class="rc"><b>15%</b><span>новых участников пришли по реферальным ссылкам</span></div>
+      <div class="rc"><b>1 месяц</b><span>от идеи механики до продакшена</span></div>
+    </div>
+    <div class="scope rv3">
+      <p>За этот месяц один дизайнер передал в разработку</p>
+      <div><span><b>116</b> экранов</span><span><b>43</b> флоу</span><span><b>163</b> состояния</span><span><b>21</b> баннер</span><span><b>8</b> языков</span><span><b>11</b> стикеров</span></div>
     </div>
     <div class="learn rv3">
-      <div><h3>Чему научил проект</h3><p>Начинать с бизнес-риска, а не с экранов. Удержание перестало быть блокировкой и стало причиной остаться.</p></div>
+      <div><h3>Чему научил проект</h3><p>Начинать с бизнес-риска, а не с экранов. Удержание перестало быть блокировкой и стало причиной остаться — и это решение сделала механика в паре с мемным визуалом.</p></div>
       <div><h3>Что сделал бы иначе</h3><p>Заложил бы события аналитики на каждый шаг матрицы с первого дня, чтобы видеть, на каком уровне держатели уходят.</p></div>
     </div>
   </section>
