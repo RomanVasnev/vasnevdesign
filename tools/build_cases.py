@@ -445,7 +445,8 @@ FINHAM = dict(
     ])
 
 if __name__ == '__main__':
-    for fn, c in (('pump.html', PUMP), ('project.html', BITFLARE), ('anty.html', ANTY), ('finhamster.html', FINHAM)):
+    # anty.html is the hand-built v3 page (anty-v3.css/js) — not generated
+    for fn, c in (('pump.html', PUMP), ('project.html', BITFLARE), ('finhamster.html', FINHAM)):
         with open(os.path.join(ROOT, fn), 'w') as f:
             f.write(page(c))
         print('wrote', fn)
