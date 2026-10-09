@@ -8,7 +8,10 @@
 <meta name="theme-color" content="#060606">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&display=swap">
+<link rel="icon" href="assets/pump/logo.webp">
 <link rel="stylesheet" href="case.css">
+<link rel="stylesheet" href="anty-v3.css">
+<link rel="stylesheet" href="pump-v3.css">
 <style>:root{--accent:#5d871b}</style>
 </head>
 <body>
@@ -19,30 +22,168 @@
     <button class="mbtn" id="mopen" aria-haspopup="dialog" aria-controls="menu">menu <span class="dot18"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
   </div>
 </header>
-<main class="wrap gut">
-  <a class="back" href="index.html"><span class="c24"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M11 4.5H1M4.5 1 1 4.5 4.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>На главную</a>
-  <div class="prj"><div class="logo"><img src="assets/pump/logo.webp" alt="" width="40" height="40"></div><div><b>Pump DAO</b><small>DeFi-платформа для мем-токена $PEPEMEME</small></div></div>
-  <h1>Механика удержания, которая сохранила ~$2 млн капитализации после пресейла</h1>
-  <div class="tags"><span>Fintech</span><span>DeFi</span><span>B2C</span><span>Web3</span></div>
-  <div class="hero"><img src="assets/main/cover-pump.webp" alt="Персонаж Pepe — иллюстрация Pump DAO" width="740" height="460" fetchpriority="high" decoding="async"></div>
-  <dl class="meta"><div><dt>Срок</dt><dd>1 месяц</dd></div><div><dt>Роль</dt><dd>Продуктовый дизайнер</dd></div><div><dt>Команда</dt><dd>PM, фаундер, 2 frontend, 3 backend, DevOps</dd></div><div><dt>Объём</dt><dd>116 экранов, 43 флоу, 163 состояния в компонентах</dd></div></dl>
-<section class="sec rv"><h2>Суть проекта</h2><p class="w">Pump DAO это личный кабинет для держателей мем-токена $PEPEMEME на Solana. Держатель замораживает токены в контракте, проходит 12 уровней стейкинга и получает награды за то, что остаётся в проекте.</p><p class="w">Я спроектировал продукт целиком за месяц: механику удержания, лендинг, кабинет, мобильную версию и все иллюстрации.</p><div class="stats"><div><b>~$2 млн</b><span>капитализации сохранено после пресейла</span></div><div><b>1 месяц</b><span>от идеи механики до продакшена</span></div><div><b>116</b><span>экранов для desktop и mobile</span></div><div><b>12</b><span>уровней в матрице удержания</span></div></div></section>
-<section class="sec rv"><h2>Контекст проекта</h2><p>У $PEPEMEME уже было живое комьюнити и лендинг pepememe.io с таймерами и картой «To the moon». Не было продукта, где держатель мог бы что-то делать с токеном после покупки.</p><h3>Как появилась задача</h3><p>Команда готовила пресейл и боялась сценария, который случается с большинством мем-токенов:</p><ol class="nl"><li><div>участники покупают дёшево на пресейле</div></li><li><div>продают при первой возможности</div></li><li><div>массовые продажи роняют курс</div></li><li><div>комьюнити перестаёт верить проекту</div></li></ol><blockquote class="q">Нужно было дать держателю причину не продавать. Жёсткая блокировка токенов не подходила: она отпугивает людей ещё до покупки.</blockquote></section>
-<section class="sec rv"><h2>Исследование</h2><h3>Аудит старого лендинга</h3><p>Сайт хорошо передавал энергию бренда, но не отвечал на вопрос, что делать после покупки. Вся страница вела к кнопке Buy, а дальше ничего не было.</p><figure class="carf"><div class="car"><div class="m"><video src="assets/pump/landing-desktop.mp4" poster="assets/pump/landing-desktop-poster.webp" muted loop playsinline preload="none" aria-label="Старый и новый лендинг на десктопе"></video></div><div class="m"><video src="assets/pump/landing-mobile.mp4" poster="assets/pump/landing-mobile-poster.webp" muted loop playsinline preload="none" aria-label="Старый и новый лендинг на мобильном"></video></div></div><div class="dots" aria-hidden="true"><i class=on></i><i></i></div><figcaption>Старый и новый лендинг: десктоп и мобильная версия</figcaption></figure><h3>Кто пользуется продуктом</h3><ol class="nl"><li><div>Держатель. Купил на пресейле и решает, продать или остаться</div></li><li><div>Новый участник. Пришёл по реферальной ссылке, у него может не быть ни токенов, ни денег на балансе</div></li><li><div>Активный участник. Проходит уровни, выполняет задания и следит за лидербордом</div></li></ol><blockquote class="q">У каждого из трёх свой стартовый баланс. Если сделать один общий вход, двое из трёх застрянут на первом шаге.</blockquote></section>
-<section class="sec rv"><h2>Рынок: что происходит после пресейла</h2><p>Чтобы понять масштаб риска, я посмотрел, чем обычно заканчиваются пресейлы мем-токенов. Картина везде одна: участники покупают ради быстрой продажи, и токен теряет цену в первые дни.</p><div class="stats"><div><b>59,6%</b><span>участников пресейла PUMP продали или вывели токены за первую неделю</span></div><div><b>−99%</b><span>упал курс крупнейших пресейлов Solana в первые часы и дни</span></div><div><b>&lt;1%</b><span>токенов pump.fun доходят до открытого рынка</span></div><div><b>1,7%</b><span>токенов 2024 года ещё торговались в последние 30 дней года</span></div></div><p class="note">Данные: BitMEX через ForkLog (июль 2025), ZachXBT через Cointelegraph (апрель 2024), Matrixport через Cointelegraph (март 2025), Chainalysis (январь 2025)</p><blockquote class="q">Продажа после пресейла это не поведение отдельных людей, а норма рынка. Значит, бороться нужно не с людьми, а с отсутствием причины остаться.</blockquote></section>
-<section class="sec rv"><h2>Гипотезы</h2><h3>Ключевая продуктовая гипотеза</h3><blockquote class="q">Держатель не продаст, если каждый следующий шаг в продукте выгоднее, чем продажа прямо сейчас.</blockquote><p>Отсюда два правила. Вывод доступен всегда, никого не блокируем. Но реинвест должен давать заметно больше, и это должно быть видно в цифрах прямо на карточке.</p><h3>Основной сценарий</h3><p>Путь держателя: лендинг, подключение кошелька, первый контракт и кабинет из 7 разделов. Внутри кабинета замкнута петля удержания:</p><ol class="nl"><li><div>контракт замораживает токены</div></li><li><div>завершённый цикл открывает слот стейкинга и буст</div></li><li><div>стейкинг на 7 дней</div></li><li><div>restake с бустом или вывод</div></li><li><div>следующий уровень</div></li></ol><figure class="tall"><div class="m"><img src="assets/pump/v2-architecture.webp" alt="Путь держателя от лендинга до кабинета и петля удержания" width="1110" height="2730" loading="lazy" decoding="async"></div><figcaption>Путь держателя и петля удержания</figcaption></figure></section>
-<section class="sec rv"><h2>Что вошло в продукт</h2><h3>Первая версия</h3><ol class="nl"><li><div>Лендинг с калькулятором дохода</div></li><li><div>Вход через Phantom и инвайт-код</div></li><li><div>Первый контракт с тремя ветками старта</div></li><li><div>14 контрактов цепочкой</div></li><li><div>12 уровней стейкинга</div></li><li><div>Панель, статистика, партнёры и лидерборд</div></li><li><div>Мобильная версия и 8 языков интерфейса</div></li></ol><h3>Ограничения</h3><p>Месяц на весь продукт и фронтенд, который шёл сразу следом за дизайном. Каждый экран должен был уходить в вёрстку с первого раза.</p><p>Плюс Web3-специфика: вход через кошелёк, оплата в SOL, USDT, USDC или PEPEMEME и swap внутри продукта. И мем-стилистика, которую нужно было сохранить, не потеряв доверие к финансовому продукту.</p></section>
-<section class="sec rv"><h2>Матрица удержания</h2><p>Главное решение кейса. Каждый уровень стейкинга открывается только после завершённого цикла контракта. Чем дольше держатель в продукте, тем выше его доходность.</p><div class="stats"><div><b>20%</b><span>базовый APY уровня</span></div><div><b>+5%</b><span>буст за каждый завершённый цикл</span></div><div><b>7 дней</b><span>период стейкинга</span></div><div><b>37%</b><span>предложения токена в пуле наград</span></div></div><p>Бусты складываются, у каждого свой таймер на карточке. После завершения держатель выбирает: restake с бустом или вывод.</p><figure class="tall"><div class="m"><img src="assets/pump/v2-matrix.webp" alt="Карточка уровня и рост доходности по 12 уровням" width="1110" height="1770" loading="lazy" decoding="async"></div><figcaption>12 уровней стейкинга с бустами</figcaption></figure><h3>Одна карточка, шесть состояний</h3><p>Первая активация, нужен контракт, как активировать, активен, активен с бустом, завершён. На любом этапе держатель видит, что происходит с уровнем и что сделать дальше.</p><figure class="tall"><div class="m"><img src="assets/pump/v2-card-states.webp" alt="Шесть состояний карточки уровня стейкинга" width="740" height="2216" loading="lazy" decoding="async"></div><figcaption>Шесть состояний карточки уровня</figcaption></figure></section>
-<section class="sec rv"><h2>Экономика матрицы</h2><p>Чтобы реинвест был выгоднее вывода, разница должна быть видна в цифрах. Я посчитал, сколько держатель получает за один 7-дневный цикл на уровне с пулом 100 000 PEPEMEME, если каждый раз выбирает restake.</p><table><thead><tr><th scope="col">Цикл</th><th scope="col">APY</th><th scope="col">Доход за 7 дней</th><th scope="col">К первому циклу</th></tr></thead><tbody><tr><td>1</td><td>20%</td><td>≈ 384</td><td>×1,0</td></tr><tr><td>2</td><td>25%</td><td>≈ 479</td><td>×1,25</td></tr><tr><td>3</td><td>30%</td><td>≈ 575</td><td>×1,5</td></tr><tr><td>4</td><td>35%</td><td>≈ 671</td><td>×1,75</td></tr></tbody></table><p class="note">Расчёт: пул × APY × 7 / 365. Буст +5% за каждый завершённый цикл</p><p>К четвёртому циклу доход за ту же неделю почти вдвое выше, чем на старте. Если держатель выводит, он теряет накопленный буст и начинает с 20% заново. Это и есть причина остаться, и она написана прямо на карточке уровня.</p></section>
-<section class="sec rv"><h2>Первый контракт без тупиков</h2><p>Новый участник приходит с разным балансом. Поэтому старт разделён на три ветки, и все они заканчиваются одним экраном успеха.</p><ol class="nl"><li><div>Токенов хватает. Контракт создаётся в один клик, заморозка, комиссия и награда видны до подтверждения</div></li><li><div>Токенов нет, но есть баланс. Swap прямо в модалке, без ухода в другой сервис</div></li><li><div>Нет ни токенов, ни денег. Показываем точную сумму, адрес кошелька и выбор валюты оплаты</div></li></ol><figure class="tall"><div class="m"><img src="assets/pump/v2-first-contract.webp" alt="Три ветки старта первого контракта" width="740" height="1505" loading="lazy" decoding="async"></div><figcaption>Три ветки старта ведут к одному экрану успеха</figcaption></figure></section>
-<section class="sec rv"><h2>Деньги и контракты прозрачно</h2><ol class="nl"><li><div>14 контрактов идут цепочкой. Закрытые карточки размыты, но показывают будущий доход</div></li><li><div>В карточке все условия: партнёры 2/3, задания 1/8, очки, текущий цикл и ROI</div></li><li><div>Панель раскладывает деньги на пять значений: общий доход, стейкинг, недополученные награды, доступно и заморожено. Каждое в токене и в USDT</div></li><li><div>Лента из 7 типов операций читается по цвету и иконке, подписи можно не читать</div></li></ol><figure class="tall"><div class="m"><img src="assets/pump/v2-contracts.webp" alt="Раздел контрактов и карточки контракта" width="925" height="1853" loading="lazy" decoding="async"></div><figcaption>Цепочка из 14 контрактов</figcaption></figure><figure class="tall"><div class="m"><img src="assets/pump/v2-panel.webp" alt="Панель с деньгами держателя и типы операций" width="1110" height="1512" loading="lazy" decoding="async"></div><figcaption>Деньги держателя в пяти состояниях</figcaption></figure></section>
-<section class="sec rv"><h2>Метрики продукта</h2><p>Под каждую часть механики я заложил метрику, по которой видно, работает ли она. Главная метрика: какая доля предложения токена работает внутри продукта, а не лежит на бирже.</p><table><thead><tr><th scope="col">Метрика</th><th scope="col">Что показывает</th></tr></thead><tbody><tr><td>Доля токенов в стейкинге</td><td>Сколько предложения не давит на рынок</td></tr><tr><td>Restake после завершения</td><td>Как часто выбирают реинвест вместо вывода</td></tr><tr><td>Средний уровень держателя</td><td>Насколько глубоко проходят матрицу</td></tr><tr><td>Завершённые циклы контрактов</td><td>Сколько контрактов доходят до конца</td></tr><tr><td>Реферал → первый контракт</td><td>Сколько приглашённых доходят до старта</td></tr><tr><td>Время до первого контракта</td><td>Насколько быстро новичок проходит вход</td></tr></tbody></table></section>
-<section class="sec rv"><h2>Иллюстрации и мемы</h2><p>Все иллюстрации нарисовал я. Каждая отсылает к мему, который комьюнити узнаёт без объяснений. Поэтому механику не приходится расшифровывать: картинка уже говорит, что происходит.</p><p>Ещё 21 баннер ушёл в соцсети на запуск.</p><figure><div class="grid2"><div class="m"><img src="assets/pump/meme-choice.webp" alt="#you choice" width="540" height="540" loading="lazy" decoding="async"></div><div class="m"><img src="assets/pump/meme-stonks.webp" alt="#stonks" width="540" height="540" loading="lazy" decoding="async"></div><div class="m"><img src="assets/pump/meme-staking.webp" alt="#staking" width="540" height="540" loading="lazy" decoding="async"></div><div class="m"><img src="assets/pump/meme-congrats.webp" alt="#congrats" width="540" height="540" loading="lazy" decoding="async"></div></div></figure><ol class="nl"><li><div>#you choice. Выбор таблетки: restake или вывод</div></li><li><div>#stonks. Рост дохода на следующем уровне</div></li><li><div>#staking. Держатель прикидывает выгоду от стейкинга</div></li><li><div>#congrats. Завершённый цикл контракта</div></li></ol></section>
-<section class="sec rv"><h2>Как ускорили передачу в разработку</h2><p>Фронтенд шёл в нескольких днях за мной, поэтому файл собран под скорость передачи.</p><ol class="nl"><li><div>Каждый модуль подписан статусом: готово к вёрстке или в работе</div></li><li><div>Компоненты лежат рядом с экранами своего модуля</div></li><li><div>Все состояния карточек разложены на канвасе с пояснениями</div></li><li><div>Анимации открытия контракта разложены по шагам</div></li></ol><div class="stats"><div><b>43</b><span>подписанных флоу</span></div><div><b>163</b><span>состояния в компонентах</span></div></div><figure class="tall"><div class="m"><img src="assets/pump/v2-uikit.webp" alt="UI Kit Pump DAO: компоненты и состояния" width="740" height="1240" loading="lazy" decoding="async"></div><figcaption>Компоненты и состояния для разработки</figcaption></figure></section>
-<section class="sec rv"><h2>Мобильная версия</h2><p>56 мобильных экранов: лендинг, вход, контракты, стейкинг и все разделы кабинета. Карточки и лента работают так же, как на десктопе, а модалки превращаются в нижние листы.</p><figure class="tall"><div class="m"><img src="assets/pump/v2-mobile.webp" alt="Мобильная версия кабинета" width="555" height="1568" loading="lazy" decoding="async"></div><figcaption>Кабинет на мобильном</figcaption></figure></section>
-<section class="sec rv"><h2>Результаты после запуска</h2><p>Через месяц после пресейла я сравнил поведение держателей с тем, что обычно происходит на рынке.</p><div class="stats"><div><b>5 000+</b><span>держателей после пресейла</span></div><div><b>65%</b><span>предложения токена ушло в стейкинг</span></div><div><b>80+%</b><span>держателей выбрали restake вместо вывода</span></div><div><b>8 000</b><span>контрактов создано за первый месяц</span></div><div><b>15%</b><span>новых участников пришли по реферальным ссылкам</span></div><div><b>10%</b><span>курс через месяц к цене пресейла</span></div></div><blockquote class="q">Пока рынок продаёт 50-90% токенов за первую неделю, у Pump DAO 65% предложения работало внутри продукта.</blockquote></section>
-<section class="sec rv"><h2>Итоги работы</h2><h3>Опыт</h3><p>Этот проект научил меня начинать с бизнес-риска, а не с экранов. Удержание перестало быть блокировкой и стало причиной остаться, и это решение сделала механика в сочетании с мемным визуалом.</p><h3>Результаты</h3><ol class="nl"><li><div>Продукт работает на pepememe.io</div></li><li><div>После пресейла курс не обвалился, сохранено около $2 млн капитализации</div></li><li><div>116 экранов, 43 флоу и 163 состояния переданы в разработку за месяц</div></li></ol><blockquote class="q">Когда каждый следующий шаг выгоднее предыдущего, держателю незачем продавать.</blockquote></section>
-  <nav class="nav2" aria-label="Навигация по кейсам"><a href="index.html"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M11 4.5H1M4.5 1 1 4.5 4.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>На главную</a><a href="anty.html">Следующий кейс <svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5h10M7.5 1 11 4.5 7.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></nav>
+<main class="av3 pd">
+  <section class="hero3">
+    <div class="c hero3-in">
+      <div class="hero3-tx">
+        <a class="back3" href="index.html"><span class="c24">←</span>На главную</a>
+        <div class="eyebrow"><img src="assets/pump/logo.webp" alt="" width="28" height="28">Pump DAO · кабинет держателя мем-токена на Solana</div>
+        <h1 class="h1x">Сделал так, чтобы держателю было выгоднее остаться, чем продать</h1>
+        <p class="lead">После пресейла мем-токены обычно сливают в первую неделю. За месяц я спроектировал механику удержания и весь продукт вокруг неё: лендинг, кабинет, мобильную версию и иллюстрации. Курс не обвалился, проект сохранил около $2&nbsp;млн капитализации.</p>
+        <dl class="facts">
+          <div><dt>Роль</dt><dd>Продуктовый дизайнер</dd></div>
+          <div><dt>Срок</dt><dd>1 месяц до продакшена</dd></div>
+          <div><dt>Команда</dt><dd>PM, фаундер, 5 разработчиков, DevOps</dd></div>
+        </dl>
+      </div>
+      <div class="hero3-vis pd-hero" aria-label="Кабинет Pump DAO на десктопе и телефоне">
+        <div class="glow3"></div>
+        <div class="br pd-br"><div class="br-top"><i></i><i></i><i></i><span>pepememe.io/panel</span></div><img src="assets/pump/v3/panel.webp" alt="Панель держателя" width="990" height="886" fetchpriority="high"></div>
+        <div class="ph ph-main pd-ph">
+          <div class="ph-scr lt reel" id="reel">
+            <img class="on" src="assets/pump/v3/m-panel.webp" alt="Панель на телефоне" width="541" height="1081">
+            <img src="assets/pump/v3/m-contracts.webp" alt="Контракты" width="541" height="1081" decoding="async">
+            <img src="assets/pump/v3/m-staking.webp" alt="Стейкинг" width="541" height="1081" decoding="async">
+            <img src="assets/pump/v3/m-leader.webp" alt="Лидерборд" width="541" height="1081" decoding="async">
+          </div>
+        </div>
+        <div class="reelbar" id="reelbar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="c nums">
+    <div class="num3 rv3"><b data-count="65" data-suf="%">65%</b><span>предложения токена ушло в стейкинг</span></div>
+    <div class="num3 rv3"><b data-count="80" data-suf="+%">80+%</b><span>держателей выбрали restake вместо вывода</span></div>
+    <div class="num3 rv3"><b>~$2 млн</b><span>капитализации сохранено после пресейла</span></div>
+    <div class="num3 rv3"><b>1 месяц</b><span>от идеи механики до продакшена</span></div>
+  </section>
+
+  <section class="c prob">
+    <h2 class="h2x rv3">Пресейл — это момент, когда все покупают дёшево, чтобы продать при первой возможности</h2>
+    <div class="crash rv3" id="crash" aria-hidden="true">
+      <svg viewBox="0 0 600 220" preserveAspectRatio="none">
+        <defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff5c5c" stop-opacity=".35"/><stop offset="1" stop-color="#ff5c5c" stop-opacity="0"/></linearGradient></defs>
+        <path class="area" d="M0 40 C 40 36 70 30 100 34 S 150 60 170 90 S 210 150 260 168 S 380 196 600 204 L600 220 L0 220 Z" fill="url(#cg)"/>
+        <path class="ln" d="M0 40 C 40 36 70 30 100 34 S 150 60 170 90 S 210 150 260 168 S 380 196 600 204" fill="none" stroke="#ff5c5c" stroke-width="2.2"/>
+      </svg>
+      <span class="tag t1">пресейл</span><span class="tag t2">−99%</span>
+    </div>
+    <div class="prob-cols">
+      <p class="rv3"><b>59,6% участников пресейла PUMP</b> продали или вывели токены за первую неделю. У крупнейших пресейлов Solana курс падал на 99% в первые часы.</p>
+      <p class="rv3"><b>Жёсткая блокировка не помогает:</b> она отпугивает людей ещё до покупки. Нужно было не запрещать продажу, а сделать её невыгодной.</p>
+    </div>
+    <p class="note3 rv3">Данные: BitMEX через ForkLog (2025), ZachXBT через Cointelegraph (2024), Chainalysis (2025)</p>
+  </section>
+
+  <section class="story c">
+    <div class="story-tx">
+      <h2 class="h2x rv3">Каждый следующий шаг выгоднее продажи</h2>
+      <div class="step3" data-scr="card1">
+        <h3>Стейкинг открывается контрактом</h3>
+        <p>Уровень стейкинга активируется только после завершённого цикла контракта. Так первый же шаг держателя — участие в продукте, а не ожидание листинга.</p>
+        <div class="cardf cf-inline"><img src="assets/pump/v3/card1.webp" alt="Неактивный уровень" width="524" height="1055" loading="lazy"></div>
+      </div>
+      <div class="step3" data-scr="card-active">
+        <h3>+5% к доходности за каждый цикл</h3>
+        <p>Базовые 20% APY и буст за каждый завершённый цикл. Чем дольше держатель в продукте, тем выше его ставка — и это видно прямо на карточке.</p>
+        <div class="cardf cf-inline"><img src="assets/pump/v3/card-active.webp" alt="Активный стейкинг" width="524" height="1055" loading="lazy"></div>
+      </div>
+      <div class="step3" data-scr="card-boost">
+        <h3>Бусты складываются</h3>
+        <p>У каждого буста свой таймер. Держатель видит, сколько уже накопил и что потеряет, если уйдёт сейчас.</p>
+        <div class="cardf cf-inline"><img src="assets/pump/v3/card-boost.webp" alt="Накопленные бусты" width="600" height="1207" loading="lazy"></div>
+      </div>
+      <div class="step3" data-scr="card-ready">
+        <h3>Выбор остаётся за человеком</h3>
+        <p>После 7 дней — restake с бустом или вывод. Никого не блокируем, но restake даёт заметно больше. 80% держателей выбрали его.</p>
+        <div class="cardf cf-inline"><img src="assets/pump/v3/card-ready.webp" alt="Restake или вывод" width="524" height="1055" loading="lazy"></div>
+      </div>
+    </div>
+    <div class="story-vis" aria-hidden="true">
+      <div class="story-pin">
+        <div class="cardf" id="storyScr">
+          <img class="on" data-k="card1" src="assets/pump/v3/card1.webp" alt="" width="524" height="1055">
+          <img data-k="card-active" src="assets/pump/v3/card-active.webp" alt="" width="524" height="1055">
+          <img data-k="card-boost" src="assets/pump/v3/card-boost.webp" alt="" width="600" height="1207">
+          <img data-k="card-ready" src="assets/pump/v3/card-ready.webp" alt="" width="524" height="1055">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="c econ">
+    <div class="econ-tx">
+      <h2 class="h2x rv3">К четвёртому циклу та же неделя приносит почти вдвое больше</h2>
+      <p class="body3 rv3">Пул 100 000 PEPEMEME, 7 дней, restake каждый раз. Если держатель выводит, накопленный буст сгорает и доходность снова 20%.</p>
+    </div>
+    <div class="bars rv3" id="bars" aria-label="Доход за 7 дней по циклам">
+      <div class="bar" style="--h:.40"><b>≈ 384</b><i></i><span>1 цикл · 20%</span></div>
+      <div class="bar" style="--h:.50"><b>≈ 479</b><i></i><span>2 цикл · 25%</span></div>
+      <div class="bar" style="--h:.60"><b>≈ 575</b><i></i><span>3 цикл · 30%</span></div>
+      <div class="bar hi" style="--h:.70"><b>≈ 671</b><i></i><span>4 цикл · 35%</span></div>
+    </div>
+  </section>
+
+  <section class="c fc">
+    <h2 class="h2x rv3">Первый контракт без тупиков</h2>
+    <p class="body3 rv3">Новичок приходит с разным балансом. Старт разделён на три ветки, и все они заканчиваются одним экраном успеха.</p>
+    <div class="fc-grid" id="fcg">
+      <figure class="br sm rv3"><div class="br-top"><i></i><i></i><i></i></div><img src="assets/pump/v3/fc-enough.webp" alt="" width="600" height="450" loading="lazy"><figcaption>Токенов хватает — контракт в один клик</figcaption></figure>
+      <figure class="br sm rv3"><div class="br-top"><i></i><i></i><i></i></div><img src="assets/pump/v3/fc-swapneed.webp" alt="" width="600" height="450" loading="lazy"><figcaption>Токенов нет — swap прямо в окне</figcaption></figure>
+      <figure class="br sm rv3"><div class="br-top"><i></i><i></i><i></i></div><img src="assets/pump/v3/fc-none.webp" alt="" width="600" height="450" loading="lazy"><figcaption>Нет ни токенов, ни денег — точная сумма и адрес</figcaption></figure>
+      <svg class="fc-lines" viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true"><path d="M50 0 C50 30 150 30 150 60M150 0V60M250 0 C250 30 150 30 150 60"/></svg>
+      <figure class="br sm wide rv3"><div class="br-top"><i></i><i></i><i></i></div><img src="assets/pump/v3/fc-success.webp" alt="" width="800" height="600" loading="lazy"><figcaption>Один экран успеха для всех трёх веток</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="c bento-wrap">
+    <h2 class="h2x rv3">Деньги и контракты — прозрачно</h2>
+    <div class="bento">
+      <article class="cell wide rv3">
+        <div class="cell-tx"><h3>14 контрактов цепочкой</h3><p>Закрытые карточки размыты, но уже показывают будущий доход. Условия, партнёры, задания и ROI — внутри карточки.</p></div>
+        <div class="crop-br"><div class="br"><div class="br-top"><i></i><i></i><i></i><span>pepememe.io/contracts</span></div><img src="assets/pump/v3/contracts.webp" alt="Раздел контрактов" width="990" height="1088" loading="lazy"></div></div>
+      </article>
+      <article class="cell rv3">
+        <div class="cell-tx"><h3>Лендинг: было и стало</h3><p>Старый сайт вёл только к кнопке Buy. Новый объясняет, что делать с токеном после покупки.</p></div>
+        <div class="vid"><video src="assets/pump/landing-desktop.mp4" poster="assets/pump/landing-desktop-poster.webp" muted loop playsinline preload="none" aria-label="Старый и новый лендинг"></video></div>
+      </article>
+      <article class="cell rv3">
+        <div class="cell-tx"><h3>56 мобильных экранов</h3><p>Всё, что есть на десктопе. Модалки превращаются в нижние листы.</p></div>
+        <div class="fan" id="fan">
+          <div class="ph f1"><div class="ph-scr lt"><img src="assets/pump/v3/m-contracts.webp" alt="" width="541" height="1081" loading="lazy"></div></div>
+          <div class="ph f2"><div class="ph-scr lt"><img src="assets/pump/v3/m-panel.webp" alt="" width="541" height="1081" loading="lazy"></div></div>
+          <div class="ph f3"><div class="ph-scr lt"><img src="assets/pump/v3/m-leader.webp" alt="" width="541" height="1081" loading="lazy"></div></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="c memes">
+    <h2 class="h2x rv3">Мемы вместо инструкций</h2>
+    <p class="body3 rv3">Все иллюстрации нарисовал я. Каждая отсылает к мему, который комьюнити узнаёт без объяснений — поэтому механику не приходится расшифровывать.</p>
+    <div class="meme-grid">
+      <img class="rv3" src="assets/pump/meme-choice.webp" alt="#you choice — restake или вывод" width="540" height="540" loading="lazy">
+      <img class="rv3" src="assets/pump/meme-stonks.webp" alt="#stonks — рост дохода" width="540" height="540" loading="lazy">
+      <img class="rv3" src="assets/pump/meme-staking.webp" alt="#staking — прикидывает выгоду" width="540" height="540" loading="lazy">
+      <img class="rv3" src="assets/pump/meme-congrats.webp" alt="#congrats — завершённый цикл" width="540" height="540" loading="lazy">
+    </div>
+  </section>
+
+  <section class="c outro">
+    <h2 class="h2x big rv3">Результат</h2>
+    <div class="res rv3">
+      <div class="rc"><b>65%</b><span>предложения токена работало внутри продукта, пока рынок продаёт 50–90% за неделю</span></div>
+      <div class="rc"><b>8 000</b><span>контрактов за первый месяц, 5 000+ держателей</span></div>
+      <div class="rc wide"><b>116 экранов</b><span>43 флоу и 163 состояния переданы в разработку за месяц</span></div>
+    </div>
+    <div class="learn rv3">
+      <div><h3>Чему научил проект</h3><p>Начинать с бизнес-риска, а не с экранов. Удержание перестало быть блокировкой и стало причиной остаться.</p></div>
+      <div><h3>Что сделал бы иначе</h3><p>Заложил бы события аналитики на каждый шаг матрицы с первого дня, чтобы видеть, на каком уровне держатели уходят.</p></div>
+    </div>
+  </section>
+
+  <div class="c nav3wrap"><nav class="nav2 navx" aria-label="Навигация по кейсам"><a href="index.html"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>На главную</a><a href="anty.html">Следующий кейс<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></nav></div>
 </main>
 <footer class="ftr">
   <div class="links">
@@ -88,5 +229,6 @@ document.querySelectorAll('.carf').forEach(f=>{const car=f.querySelector('.car')
   const vio=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting&&e.intersectionRatio>.5&&!reduce){v.play().catch(()=>{});}else v.pause();}),{threshold:[0,.5,1]});
   vids.forEach(v=>vio.observe(v));});
 </script>
+<script src="pump-v3.js" defer></script>
 </body>
 </html>
