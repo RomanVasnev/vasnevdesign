@@ -45,5 +45,5 @@
 
   /* hero parallax for the back phone */
   const back=document.querySelector('.ph-back');
-  if(back&&!RM)addEventListener('scroll',()=>{const y=Math.min(scrollY,700);back.style.transform=`rotate(${9+y*.008}deg) translateY(${y*-.12}px)`;},{passive:true});
+  if(back&&!RM)addEventListener('scroll',()=>{const y=Math.min(scrollY,700);back.style.transform=`translate3d(0,${(y*-.12).toFixed(1)}px,0) rotate(${(9+y*.008).toFixed(2)}deg)`;},{passive:true});
 })();
