@@ -39,6 +39,7 @@
   const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const once=(el,fn,th=.35)=>{if(!el)return;new IntersectionObserver(([e],o)=>{if(e.isIntersecting){o.disconnect();fn(el);}},{threshold:th}).observe(el);};
   once(document.getElementById('vs'),el=>el.classList.add('in'),.35);
+  once(document.getElementById('flow'),el=>el.classList.add('in'),.25);
   document.querySelectorAll('.mp').forEach(m=>once(m,el=>el.classList.add('in'),.4));
   /* ladder: levels light up with scroll progress through the section */
   const sec=document.getElementById('ladderS'),bars=[...document.querySelectorAll('#ladder i')],N=document.getElementById('lvlN'),B=document.getElementById('lvlB');
@@ -57,4 +58,27 @@
   if(deck){lay();deck.addEventListener('click',()=>{next();auto();});deck.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();next();auto();}});
     lis.forEach((l,i)=>l.addEventListener('click',()=>{top=i;lay();auto();}));
     new IntersectionObserver(([e])=>{dvis=e.isIntersecting;auto();},{threshold:.4}).observe(deck);}
+})();
+/* ===== v3.2 cabinet: screens scroll like a recording ===== */
+(function(){
+  const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const vp=document.getElementById('cabVp');if(!vp)return;
+  const im=[...vp.querySelectorAll('img')],tb=[...document.querySelectorAll('#cabTabs button')],url=document.getElementById('cabUrl'),cap=document.getElementById('cabCap');
+  const CAP=['Доход, стейкинг, пропущенные награды и доступный баланс сразу под шапкой. Ниже — прогресс по 14 контрактам, награда к выводу и история операций.',
+    'Цепочка из 14 контрактов: условия и доходность на каждой карточке, следующий контракт уже показывает, сколько он принесёт.',
+    'Детальный вид контракта: дерево партнёров, замороженные и доступные токены, правила выплат за каждого приглашённого.',
+    'Личная статистика, глобальный пул наград и карточки уровней — неактивная, активная и завершённая с выбором restake или вывода.',
+    'Партнёры и лидерборд: топ-3, рейтинг всех участников и подсказка, как подняться выше.'];
+  let i=0,t=0,vis=false;
+  function go(k){clearTimeout(t);i=k;
+    im.forEach((m,n)=>{m.classList.toggle('on',n===k);if(n!==k){m.style.transition='opacity .5s ease';m.style.transform='translate3d(0,0,0)';}});
+    tb.forEach((b,n)=>b.classList.toggle('on',n===k));
+    const m=im[k];url.textContent=m.dataset.url;cap.textContent=CAP[k];
+    const dist=Math.max(0,m.offsetHeight-vp.clientHeight),dur=RM?0:Math.round(1200+dist/vp.clientHeight*2600),total=RM?8000:dur+2600;
+    tb[k].style.setProperty('--d',total+'ms');
+    m.style.transition='none';m.style.transform='translate3d(0,0,0)';void m.offsetWidth;
+    if(!RM){m.style.transition=`opacity .5s ease,transform ${dur}ms cubic-bezier(.45,0,.55,1) 1000ms`;m.style.transform=`translate3d(0,${-dist}px,0)`;}
+    if(vis)t=setTimeout(()=>go((i+1)%im.length),total);}
+  tb.forEach((b,n)=>b.addEventListener('click',()=>{go(n);b.scrollIntoView({block:'nearest',inline:'nearest',behavior:'smooth'});}));
+  new IntersectionObserver(([e])=>{const was=vis;vis=e.isIntersecting;if(vis&&!was)go(i);if(!vis)clearTimeout(t);},{threshold:.35}).observe(vp);
 })();
