@@ -4,11 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Bitflare — Роман Васнёв</title>
-<meta name="description" content="Bitflare: лаунчпад и бренд для запуска IPO. Кейс продуктового дизайнера Романа Васнёва.">
+<meta name="description" content="Bitflare: лаунчпад для первичных размещений, кошелёк, VIP Club и форма заявки для фаундеров. 330 экранов на одной системе. Кейс продуктового дизайнера Романа Васнёва.">
 <meta name="theme-color" content="#060606">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&display=swap">
+<link rel="icon" href="assets/bitflare/logo.webp">
 <link rel="stylesheet" href="case.css">
+<link rel="stylesheet" href="anty-v3.css">
+<link rel="stylesheet" href="pump-v3.css">
+<link rel="stylesheet" href="bf-v3.css">
 <style>:root{--accent:#c6ff00}</style>
 </head>
 <body>
@@ -19,23 +23,213 @@
     <button class="mbtn" id="mopen" aria-haspopup="dialog" aria-controls="menu">menu <span class="dot18"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
   </div>
 </header>
-<main class="wrap gut">
-  <a class="back" href="index.html"><span class="c24"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M11 4.5H1M4.5 1 1 4.5 4.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>На главную</a>
-  <div class="prj"><div class="logo"><img src="assets/bitflare/logo.webp" alt="" width="40" height="40"></div><div><b>Bitflare</b><small>платформа для инвестиций и IPO</small></div></div>
-  <h1>Спроектировал лаунчпад и бренд для запуска IPO</h1>
-  <div class="tags"><span>Fintech</span><span>SaaS</span><span>B2B</span><span>B2C</span></div>
-  <div class="hero"><img src="assets/main/cover-bitflare.webp" alt="Экран покупки аллокации Bitflare на телефоне" width="740" height="460" fetchpriority="high" decoding="async"></div>
-  <dl class="meta"><div><dt>Период</dt><dd>2026</dd></div><div><dt>Роль</dt><dd>Продуктовый дизайнер</dd></div><div><dt>Команда</dt><dd>Кросс-функциональная продуктовая команда</dd></div><div><dt>Объём</dt><dd>330 экранов, 10 модулей, 139 флоу, 312 состояний в компонентах</dd></div></dl>
-<section class="sec rv"><h2>Суть проекта</h2><p class="w">Передо мной стояла задача соединить две стороны IPO. Фаундеры подают заявку, проходят проверку и привлекают деньги. Инвесторы выбирают проект, уровень участия и покупают аллокацию до листинга.</p><p class="w">Вокруг размещения нужен целый финансовый продукт: кошелёк с депозитом и выводом, двухфакторная защита, VIP-программа для крупных клиентов и форма заявки для команд. Всё это я проектировал как одну систему, чтобы пользователь не чувствовал, что переходит между разными сервисами.</p></section>
-<section class="sec rv"><h2>Инвестор должен поверить проекту за минуту</h2><p><b>На первичных размещениях много сомнительных проектов, и инвестор это знает.</b> Решение «доверяю или нет» он принимает за первую минуту на странице.</p><p>На большинстве похожих платформ всё, что для этого нужно, разбросано: команда, токеномика и аудит лежат в разных местах страницы. Уровни участия объяснены таблицей цифр, а любая ошибка при покупке отправляет начинать заново. В итоге человек уходит, так ничего и не купив.</p></section>
-<section class="sec rv"><h2>Моя роль</h2><p>Я отвечал за продукт целиком: от структуры модулей и пользовательских сценариев до визуального языка и передачи в разработку. Работал напрямую с фаундером и PM, согласовывал логику с backend, <b>а frontend собрал из моих компонентов атомарную дизайн-систему для быстрого редактирования и создания новых экранов.</b></p><figure><div class="m"><img src="assets/bitflare/v2/process.webp" alt="Схема процесса: подготовка, создание, проверка, передача" width="740" height="440" loading="lazy" decoding="async"></div><figcaption>Полный цикл работы: от обнаружения проблемы и поиска решения до проверки и запуска.</figcaption></figure></section>
-<section class="sec rv"><h2>Цели вместо абстрактного «сделать удобно»</h2><ol class="nl"><li><div>45% покупок завершаются, даже если на шаге оплаты не хватило средств</div></li><li><div>4%+ посетителей страницы проекта покупают аллокацию</div></li><li><div>меньше 2 минут от открытия страницы до покупки</div></li><li><div>60% начатых заявок от фаундеров доходят до отправки</div></li></ol></section>
-<section class="sec rv"><h2>Исследование и поиск решения</h2><p>Разобрал PinkSale, DxSale, Polkastarter и TrustPad, а у Binance и Bybit — паттерны кошелька и безопасности. Смотрел не только на интерфейс, но и на механику: уровни участия, график разблокировки, проверку проектов.</p><figure><div class="m"><img src="assets/bitflare/v2/benchmark.webp" alt="Таблица бенчмаркинга: PinkSale, DxSale, Polkastarter, TrustPad, Binance и Bybit" width="740" height="404" loading="lazy" decoding="async"></div><figcaption>Бенчмаркинг конкурентов</figcaption></figure><h3>Важнее всего оказались три вопроса:</h3><p>Сначала нужно было разобраться, как инвестор принимает решение. Я начал с того, на что человек смотрит, прежде чем вложить деньги в незнакомый проект.</p><ol class="nl"><li><div>проверен ли проект?</div></li><li><div>как увидеть предполагаемый профит?</div></li><li><div>что будет, если что-то пойдёт не так?</div></li></ol><h3>Прототипирование и проверка</h3><p>На основе исследования собрал гипотезы, а ключевые сценарии — покупку, депозит и заявку — собрал в прототипы и проверил на команде и в фокус-группах.</p><figure><div class="m multi"><img src="assets/bitflare/v2/proto-1.webp" alt="Прототипы сценария депозита в Figma" width="740" loading="lazy" decoding="async"><img src="assets/bitflare/v2/proto-2.webp" alt="Прототипы сценария депозита в Figma" width="740" loading="lazy" decoding="async"><img src="assets/bitflare/v2/proto-3.webp" alt="Прототипы сценария депозита в Figma" width="740" loading="lazy" decoding="async"></div><figcaption>Прототипирование: проверка депозита</figcaption></figure><h3>Одна точка подтверждения вместо десятка тупиков</h3><p>Главное решение — свести покупку к одному экрану подтверждения. Пользователь может зайти без аккаунта, без денег на балансе или с неподтверждённой почтой. Любая из этих веток возвращает его туда же, а выбранный уровень и сумма сохраняются.</p><figure><div class="m"><img src="assets/bitflare/v2/userflow.webp" alt="User flow: регистрация, IDO, главная, покупка" width="740" height="374" loading="lazy" decoding="async"></div><figcaption>User flow - Регистрация - IDO - Main Page - Покупка</figcaption></figure></section>
-<section class="sec rv"><h2>Вокруг этой точки я собрал модули продукта:</h2><ol class="nl" start="1" style="counter-reset:n 0"><li><div><b>Страница проекта как досье. Отметки о проверке личности, аудите и венчурных инвесторах стоят рядом с названием.</b> <span>Ключевые цифры раунда собраны в одну строку, а вкладки идут в одном порядке у всех проектов: страницу достаточно научиться читать один раз.</span></div></li></ol><figure class="tall"><div class="m"><img src="assets/bitflare/v2/dossier.webp" alt="Страница проекта Bitflare на телефоне" width="740" height="828" loading="lazy" decoding="async"></div><figcaption>Страница проекта как досье</figcaption></figure><ol class="nl" start="2" style="counter-reset:n 1"><li><div><b>Заявка для фаундеров. 7 шагов, по одному блоку вопросов на экран, и счётчик прогресса.</b> <span>Так нетехническая команда не тонет в длинной форме.</span></div></li></ol><figure class="tall"><div class="m"><img src="assets/bitflare/v2/ido-form.webp" alt="Форма заявки IDO на телефоне" width="740" height="1072" loading="lazy" decoding="async"></div><figcaption>IDO Форма - из 7 шагов</figcaption></figure><ol class="nl" start="3" style="counter-reset:n 2"><li><div><b>Кошелёк без необратимых ошибок. Депозит и вывод идут по шагам: монета, сеть, детали.</b> <span>Для сетей с дополнительным кодом получателя есть отдельная форма и предупреждение. Статусы операций одинаковые везде, а номер транзакции ведёт прямо в блокчейн, без обращения в поддержку.</span></div></li></ol><figure class="tall"><div class="m"><img src="assets/bitflare/v2/wallet.webp" alt="Экраны кошелька: депозит, вывод, адреса" width="740" height="1610" loading="lazy" decoding="async"></div><figcaption>Сниппеты кошелька - мобильная версия</figcaption></figure><ol class="nl" start="4" style="counter-reset:n 3"><li><div><b>Уровни участия — понятный выбор. Механика «3 уровня × 3 тира» разложена карточками.</b> <span>Уровень читается по цвету, в каждой карточке указаны бонус, цена и итог в токенах. Виджет покупки закреплён рядом.</span></div></li></ol><figure class="tall"><div class="m"><img src="assets/bitflare/v2/tiers.webp" alt="Карточки уровней участия" width="740" height="1274" loading="lazy" decoding="async"></div><figcaption>Уровни участия аллокации</figcaption></figure><ol class="nl" start="5" style="counter-reset:n 4"><li><div><b>Покупка без потери контекста. Если денег не хватает, продукт называет точную сумму «Not enough 200 USDT»,</b> <span>ведёт на пополнение и возвращает обратно. Вход открывается поверх страницы, а не уводит с неё.</span></div></li></ol><figure class="tall"><div class="m"><img src="assets/bitflare/v2/purchase.webp" alt="Калькулятор и экран покупки" width="740" height="1484" loading="lazy" decoding="async"></div><figcaption>Экран калькулятора / покупка</figcaption></figure><ol class="nl" start="6" style="counter-reset:n 5"><li><div><b>Одно правило безопасности. Пользователь выбирает основной метод 2FA,</b> <span>и платформа запрашивает именно его при выводе, смене адресов и пароля.</span></div></li></ol><figure class="tall"><div class="m multi"><img src="assets/bitflare/v2/twofa.webp" alt="Подтверждение через 2FA и flow верификации" width="740" loading="lazy" decoding="async"><img src="assets/bitflare/v2/twofa-2.webp" alt="Подтверждение через 2FA и flow верификации" width="740" loading="lazy" decoding="async"></div><figcaption>Методы 2FA</figcaption></figure><ol class="nl" start="7" style="counter-reset:n 6"><li><div><b>VIP Club собран на тех же компонентах и сценариях, что и основная платформа.</b> <span>Меняется только визуальный стиль, пользователь остаётся в знакомой логике интерфейса, а по визуалу понимает, что он в другом статусе.</span></div></li></ol><figure class="tall"><div class="m"><img src="assets/bitflare/v2/vip.webp" alt="Экраны VIP Club Bitflare" width="740" height="2572" loading="lazy" decoding="async"></div><figcaption>VIP Club Bitflare</figcaption></figure></section>
-<section class="sec rv"><h2>Результат</h2><ol class="nl"><li><div>Платформа спроектирована целиком: от бренда до 330 экранов на desktop и mobile</div></li><li><div>Frontend собрал из моих компонентов атомарную дизайн-систему в коде: 312 состояний. Все ключевые сценарии описаны в 139 флоу, включая ошибки и пограничные случаи</div></li><li><div>Цели по конверсии заложены в решения, фактические цифры появятся после замеров в продукте</div></li></ol></section>
-<section class="sec rv"><h2>Основные выводы</h2><ol class="nl"><li><div>Сложный финансовый продукт продаёт ясность. Инвестор не читает механику, он смотрит, можно ли доверять и сколько он получит.</div></li><li><div>Ошибка не должна обрывать сделку: каждая ветка обязана вести обратно к покупке.</div></li><li><div>Бренд в одинаковой нише — тоже продуктовое решение: он помогает запомнить платформу и вернуться.</div></li></ol></section>
-<section class="sec rv"><h2>Что сейчас я бы сделал иначе</h2><p class="w">Раньше подключил бы аналитику и заложил события для каждой цели ещё на этапе прототипов. Тогда метрики можно было бы показать уже по первой версии, а не только как целевые значения.</p></section>
-  <nav class="nav2" aria-label="Навигация по кейсам"><a href="index.html"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M11 4.5H1M4.5 1 1 4.5 4.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>На главную</a><a href="pump.html">Следующий кейс <svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5h10M7.5 1 11 4.5 7.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></nav>
+<main class="av3 bf">
+  <section class="hero3">
+    <div class="c hero3-in">
+      <div class="hero3-tx">
+        <a class="back3" href="index.html"><span class="c24">←</span>На главную</a>
+        <div class="eyebrow"><img src="assets/bitflare/logo.webp" alt="" width="28" height="28">Bitflare · лаунчпад для инвестиций до листинга</div>
+        <h1 class="h1x">Спроектировал лаунчпад, которому инвестор верит за минуту</h1>
+        <p class="lead">Bitflare соединяет две стороны первичного размещения: фаундеры подают заявку и привлекают деньги, инвесторы выбирают проект и покупают аллокацию до листинга. Я спроектировал платформу целиком — от бренда и страницы проекта до кошелька, 2FA и VIP Club — как одну систему.</p>
+        <dl class="facts">
+          <div><dt>Роль</dt><dd>Продуктовый дизайнер</dd></div>
+          <div><dt>Платформы</dt><dd>Desktop и mobile web</dd></div>
+          <div><dt>Команда</dt><dd>Фаундер, PM, frontend, backend</dd></div>
+        </dl>
+      </div>
+      <div class="hero3-vis bf-hero" aria-label="Bitflare: страница проекта на десктопе и покупка на телефоне">
+        <div class="glow3"></div>
+        <div class="br bf-br"><div class="br-top"><i></i><i></i><i></i><span>bitflare.com/launcher/bte</span></div><img src="assets/bitflare/v3/hero-web.webp" alt="Страница проекта Bitflare (BTE)" width="1200" height="544" fetchpriority="high"></div>
+        <div class="ph ph-main bf-ph">
+          <div class="ph-scr reel" id="reel">
+            <img class="on" src="assets/bitflare/v3/m-project.webp" alt="Страница проекта на телефоне" width="780" height="1688">
+            <img src="assets/bitflare/v3/m-review.webp" alt="Подтверждение покупки" width="780" height="1688" decoding="async">
+            <img src="assets/bitflare/v3/m-success.webp" alt="Покупка завершена" width="780" height="1688" decoding="async">
+            <img src="assets/bitflare/v3/m-wallet.webp" alt="Кошелёк" width="780" height="1688" decoding="async">
+          </div>
+        </div>
+        <div class="reelbar" id="reelbar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="c nums">
+    <div class="num3 rv3"><b data-count="330">330</b><span>экранов на desktop и mobile</span></div>
+    <div class="num3 rv3"><b data-count="10">10</b><span>модулей продукта</span></div>
+    <div class="num3 rv3"><b data-count="139">139</b><span>флоу, включая ошибки и пограничные случаи</span></div>
+    <div class="num3 rv3"><b data-count="312">312</b><span>состояний в компонентах</span></div>
+  </section>
+
+  <section class="c prob">
+    <h2 class="h2x rv3">На первичных размещениях много сомнительных проектов. Инвестор это знает</h2>
+    <p class="body3 rv3">Решение «доверяю или нет» он принимает за первую минуту на странице. Я разобрал PinkSale, DxSale, Polkastarter и TrustPad, а у Binance и Bybit — паттерны кошелька и безопасности. Везде одно и то же: важное разбросано, механика объяснена таблицей, а ошибка отправляет начинать заново.</p>
+    <div class="qs">
+      <article class="q3 rv3"><span class="qn">01</span><h3>Проверен ли проект?</h3><p>Команда, токеномика и аудит лежат в разных местах страницы.</p><div class="qv badges" id="badges" aria-hidden="true"><i>KYC Verified</i><i>Audited</i><i>VC Backed</i></div></article>
+      <article class="q3 rv3"><span class="qn">02</span><h3>Сколько я получу?</h3><p>Уровни участия объяснены таблицей цифр, которую никто не читает.</p><div class="qv calc3" aria-hidden="true"><b>250 <small>USDT</small></b><span>→ 10 000 BTE <em>+1.5%</em></span></div></article>
+      <article class="q3 rv3"><span class="qn">03</span><h3>Что, если что-то пойдёт не так?</h3><p>Не хватило денег или не вошёл в аккаунт — сделка обрывается.</p><div class="qv err3" aria-hidden="true"><i></i><span>Not enough <b>200 USDT</b></span></div></article>
+    </div>
+    <p class="note3 rv3">Бенчмаркинг: PinkSale, DxSale, Polkastarter, TrustPad, Binance, Bybit</p>
+  </section>
+
+  <section class="c cab">
+    <h2 class="h2x rv3">Пять разделов — одна система</h2>
+    <p class="body3 rv3">Лаунчер, страница проекта, аллокация, кошелёк и VIP Club собраны на одних компонентах. Экраны длинные и плотные, поэтому ниже они прокручиваются так, как их видит инвестор.</p>
+    <div class="cab-tabs rv3" id="cabTabs" role="tablist">
+      <button role="tab" class="on" data-i="0">Лаунчер<i></i></button>
+      <button role="tab" data-i="1">Страница проекта<i></i></button>
+      <button role="tab" data-i="2">Аллокация<i></i></button>
+      <button role="tab" data-i="3">Кошелёк<i></i></button>
+      <button role="tab" data-i="4">VIP Club<i></i></button>
+    </div>
+    <div class="br cab-br rv3"><div class="br-top"><i></i><i></i><i></i><span id="cabUrl">bitflare.com/launcher</span></div>
+      <div class="cab-vp" id="cabVp">
+        <img class="on" src="assets/bitflare/v3/s-landing.webp" alt="Лаунчер" width="1632" height="4600" loading="lazy" data-url="bitflare.com/launcher">
+        <img src="assets/bitflare/v3/s-project.webp" alt="Страница проекта" width="1632" height="2122" loading="lazy" data-url="bitflare.com/launcher/bte">
+        <img src="assets/bitflare/v3/s-alloc.webp" alt="Выбор аллокации" width="1632" height="1853" loading="lazy" data-url="bitflare.com/launcher/bte/allocation">
+        <img src="assets/bitflare/v3/s-funding.webp" alt="Кошелёк" width="1632" height="1890" loading="lazy" data-url="bitflare.com/assets/funding">
+        <img src="assets/bitflare/v3/s-vip.webp" alt="VIP Club" width="1152" height="4620" loading="lazy" data-url="bitflare.com/vip">
+      </div>
+    </div>
+    <p class="cab-cap" id="cabCap"></p>
+  </section>
+
+  <section class="c dossier">
+    <div class="dos-tx">
+      <h2 class="h2x rv3">Страница проекта как досье</h2>
+      <p class="body3 rv3">Всё, что нужно для доверия, стоит в первом экране, рядом с названием. Вкладки идут в одном порядке у всех проектов: страницу достаточно научиться читать один раз.</p>
+      <ol class="fc-leg rv3">
+        <li><i>01</i><span><b>Отметки проверки</b>KYC, аудит и венчурные инвесторы — плашками рядом с тикером</span></li>
+        <li><i>02</i><span><b>Цифры раунда в одну строку</b>собрано, цена, цель и заполненность</span></li>
+        <li><i>03</i><span><b>Таймер раунда</b>сколько осталось до конца цены</span></li>
+        <li><i>04</i><span><b>Виджет покупки закреплён</b>справа на десктопе, внизу на телефоне</span></li>
+      </ol>
+    </div>
+    <div class="dos-vis rv3">
+      <div class="glow3"></div>
+      <div class="ph dos-ph"><div class="ph-scr"><img src="assets/bitflare/v3/m-project.webp" alt="Страница проекта на телефоне" width="780" height="1688" loading="lazy"></div></div>
+      <span class="chip3 c1">KYC Verified</span><span class="chip3 c2">Audited</span><span class="chip3 c3">VC Backed</span>
+    </div>
+  </section>
+
+  <section class="c tiers-s">
+    <h2 class="h2x rv3">3 уровня × 3 тира — выбор, а не таблица</h2>
+    <p class="body3 rv3">Механику уровней участия я разложил карточками. Уровень читается по цвету и иконке, в каждой карточке бонус, цена и итог в токенах. Калькулятор рядом сразу пересчитывает сумму и показывает бонус.</p>
+    <div class="seg bseg rv3" id="tseg" role="tablist" aria-label="Уровни участия">
+      <button role="tab" class="on" data-i="0">Basic</button><button role="tab" data-i="1">Scale</button><button role="tab" data-i="2">Enterprise</button><span class="seg-k" aria-hidden="true"></span>
+    </div>
+    <div class="tiers-grid">
+      <div class="trow rv3" id="trow">
+        <div class="tset on"><img src="assets/bitflare/v3/tier-00.webp" alt="Basic Tier 1" width="400" height="562" loading="lazy"><img src="assets/bitflare/v3/tier-01.webp" alt="Basic Tier 2" width="400" height="562" loading="lazy"><img src="assets/bitflare/v3/tier-02.webp" alt="Basic Tier 3" width="400" height="562" loading="lazy"></div>
+        <div class="tset"><img src="assets/bitflare/v3/tier-10.webp" alt="Scale Tier 1" width="400" height="562" loading="lazy"><img src="assets/bitflare/v3/tier-11.webp" alt="Scale Tier 2" width="400" height="562" loading="lazy"><img src="assets/bitflare/v3/tier-12.webp" alt="Scale Tier 3" width="400" height="562" loading="lazy"></div>
+        <div class="tset"><img src="assets/bitflare/v3/tier-20.webp" alt="Enterprise Tier 1" width="400" height="562" loading="lazy"><img src="assets/bitflare/v3/tier-21.webp" alt="Enterprise Tier 2" width="400" height="562" loading="lazy"><img src="assets/bitflare/v3/tier-22.webp" alt="Enterprise Tier 3" width="400" height="562" loading="lazy"></div>
+      </div>
+      <div class="calc-w rv3"><img src="assets/bitflare/v3/md-calc.webp" alt="Калькулятор покупки" width="800" height="1022" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="c buy-s" id="buyS">
+    <div class="buy-tx">
+      <h2 class="h2x rv3">Одна точка подтверждения вместо десятка тупиков</h2>
+      <p class="body3 rv3">Главное решение кейса. Пользователь может прийти без аккаунта, без денег на балансе или с неподтверждённой почтой. Любая ветка возвращает его к одному экрану подтверждения, а выбранный тир и сумма сохраняются.</p>
+      <ol class="path" id="path">
+        <li class="on" data-k="0"><button type="button"><i>01</i><span><b>Калькулятор</b>выбрал тир и сумму</span></button></li>
+        <li data-k="1" class="br1"><button type="button"><i>02</i><span><b>Вход поверх страницы</b>без аккаунта — модалка, а не переход</span></button></li>
+        <li data-k="2"><button type="button"><i>03</i><span><b>Подтверждение</b>что платит, что получит, бонус</span></button></li>
+        <li data-k="3" class="br2"><button type="button"><i>04</i><span><b>Точная сумма нехватки</b>«Not enough 200 USDT»</span></button></li>
+        <li data-k="4" class="br2"><button type="button"><i>05</i><span><b>Пополнение по шагам</b>монета, сеть, детали</span></button></li>
+        <li data-k="5" class="br2"><button type="button"><i>06</i><span><b>Предупреждение до ошибки</b>сеть, которая сожжёт деньги, названа прямо</span></button></li>
+        <li data-k="6"><button type="button"><i>07</i><span><b>Покупка завершена</b>и видна в истории</span></button></li>
+      </ol>
+    </div>
+    <div class="buy-vis rv3">
+      <div class="buy-stage" id="buyStage">
+        <svg class="mapl" viewBox="0 0 360 142" aria-hidden="true">
+          <path class="mp-main" d="M20 60H340"/>
+          <path class="mp-b1" pathLength="1" d="M20 60C60 60 80 22 135 22C170 22 176 44 180 60"/>
+          <path class="mp-b2" pathLength="1" d="M180 60C178 90 188 104 202 104C222 110 236 114 252 114C272 114 292 108 298 96C306 78 270 66 186 61"/>
+          <g class="nodes"><circle cx="20" cy="60" r="7"/><circle cx="135" cy="22" r="7"/><circle cx="180" cy="60" r="7"/><circle cx="202" cy="104" r="7"/><circle cx="252" cy="114" r="7"/><circle cx="298" cy="96" r="7"/><circle cx="340" cy="60" r="7"/></g>
+          <g class="lbl"><text x="20" y="44">старт</text><text x="135" y="8">вход</text><text x="180" y="44">review</text><text x="252" y="138">пополнение</text><text x="340" y="44">успех</text></g>
+        </svg>
+        <div class="mdl" id="mdl">
+          <img class="on" src="assets/bitflare/v3/md-calc.webp" alt="Калькулятор" width="800" height="1022" loading="lazy">
+          <img src="assets/bitflare/v3/md-login.webp" alt="Вход поверх страницы" width="532" height="745" loading="lazy">
+          <img src="assets/bitflare/v3/md-review.webp" alt="Подтверждение покупки" width="840" height="571" loading="lazy">
+          <img src="assets/bitflare/v3/md-short.webp" alt="Не хватает 200 USDT" width="840" height="686" loading="lazy">
+          <img src="assets/bitflare/v3/md-coin.webp" alt="Выбор монеты для пополнения" width="900" height="658" loading="lazy">
+          <img src="assets/bitflare/v3/md-notice.webp" alt="Предупреждение о сети" width="900" height="534" loading="lazy">
+          <img src="assets/bitflare/v3/md-success.webp" alt="Покупка завершена" width="840" height="553" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="c wal-s">
+    <h2 class="h2x rv3">Кошелёк без необратимых ошибок</h2>
+    <p class="body3 rv3">Депозит и вывод идут по шагам: монета, сеть, детали. Для сетей с кодом получателя — отдельная форма и предупреждение. Статусы операций одинаковые везде, а номер транзакции ведёт прямо в блокчейн, без обращения в поддержку.</p>
+    <div class="wal-vis rv3" id="walVis">
+      <div class="br wal-br"><div class="br-top"><i></i><i></i><i></i><span>bitflare.com/assets/funding</span></div><img src="assets/bitflare/v3/w-funding.webp" alt="Funding Account на десктопе" width="1200" height="875" loading="lazy"></div>
+      <div class="ph wal-ph"><div class="ph-scr"><img src="assets/bitflare/v3/m-deposit.webp" alt="Депозит на телефоне" width="780" height="1688" loading="lazy"></div></div>
+      <img class="wal-md" src="assets/bitflare/v3/md-chain.webp" alt="Выбор сети с предупреждением" width="900" height="658" loading="lazy">
+    </div>
+  </section>
+
+  <section class="c bento-wrap">
+    <h2 class="h2x rv3">Безопасность и заявка — без лишних слов</h2>
+    <div class="bento">
+      <article class="cell rv3">
+        <div class="cell-tx"><h3>Одно правило 2FA</h3><p>Пользователь выбирает основной метод — Google, телефон или почта, — и платформа запрашивает именно его при выводе, смене адресов и пароля.</p></div>
+        <div class="crop duo"><div class="ph d1"><div class="ph-scr"><img src="assets/bitflare/v3/m-2fa.webp" alt="Выбор основного метода 2FA" width="780" height="1688" loading="lazy"></div></div><div class="ph d2"><div class="ph-scr"><img src="assets/bitflare/v3/m-account.webp" alt="Аккаунт: статус верификации" width="780" height="1688" loading="lazy"></div></div></div>
+      </article>
+      <article class="cell rv3">
+        <div class="cell-tx"><h3>Заявка фаундера за 7 шагов</h3><p>По одному блоку вопросов на экран и счётчик прогресса — нетехническая команда не тонет в длинной форме.</p></div>
+        <div class="ido" id="ido" aria-hidden="true">
+          <div class="br sm ido-br"><div class="br-top"><i></i><i></i><i></i></div><div class="ido-vp"><img class="on" src="assets/bitflare/v3/ido-full1.webp" alt="" width="1152" height="625" loading="lazy"><img src="assets/bitflare/v3/ido-full2.webp" alt="" width="1152" height="625" loading="lazy"></div></div>
+          <div class="ido-bar"><span id="idoN">Шаг 1 / 7</span><i><s id="idoS"></s></i></div>
+        </div>
+      </article>
+      <article class="cell wide rv3">
+        <div class="cell-tx"><h3>Весь продукт — и в телефоне</h3><p>Страница проекта, покупка, кошелёк, лидерборд и личный кабинет. Модалки на мобильном становятся нижними листами, виджет покупки — закреплённой кнопкой.</p></div>
+        <div class="fan" id="fan">
+          <div class="ph f1"><div class="ph-scr"><img src="assets/bitflare/v3/m-holders.webp" alt="Топ держателей" width="780" height="1688" loading="lazy"></div></div>
+          <div class="ph f2"><div class="ph-scr"><img src="assets/bitflare/v3/m-review.webp" alt="Подтверждение покупки" width="780" height="1688" loading="lazy"></div></div>
+          <div class="ph f3"><div class="ph-scr"><img src="assets/bitflare/v3/m-ido.webp" alt="Заявка фаундера" width="780" height="1688" loading="lazy"></div></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="vip-s">
+    <div class="c vip-in">
+      <div class="vip-tx">
+        <h2 class="h2x rv3">VIP Club: тот же продукт — другой статус</h2>
+        <p class="body3 rv3">VIP Club собран на тех же компонентах и сценариях, что и основная платформа. Меняется только визуальный язык: золото, шахматные фигуры и тёплый свет. Пользователь остаётся в знакомой логике, а по визуалу понимает, что он в другом статусе.</p>
+        <ul class="vip-list rv3"><li><b>7</b>VIP-уровней с привилегиями</li><li><b>3</b>пути вступления: объём, холдинг $BTE, VIP-заявка</li><li><b>1</b>набор компонентов на обе темы</li></ul>
+      </div>
+      <div class="vip-vis rv3">
+        <div class="br vip-br"><div class="br-top"><i></i><i></i><i></i><span>bitflare.com/vip</span></div><div class="vip-vp" id="vipVp"><img src="assets/bitflare/v3/s-vip.webp" alt="VIP Club целиком" width="1152" height="4620" loading="lazy"></div></div>
+        <div class="ph vip-ph"><div class="ph-scr"><img src="assets/bitflare/v3/m-vip.webp" alt="VIP Club на телефоне" width="780" height="1688" loading="lazy"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="c outro">
+    <h2 class="h2x big rv3">Итог: платформа целиком на одной системе</h2>
+    <p class="body3 rv3 narrow">Frontend собрал из моих компонентов атомарную дизайн-систему в коде. Цели по конверсии я заложил в решения ещё на этапе прототипов.</p>
+    <div class="res res6 rv3">
+      <div class="rc"><b>330</b><span>экранов на desktop и mobile — от бренда до VIP Club</span></div>
+      <div class="rc"><b>139</b><span>флоу, включая ошибки и пограничные случаи</span></div>
+      <div class="rc"><b>312</b><span>состояний в компонентах дизайн-системы</span></div>
+      <div class="rc"><b>45%</b><span>цель: доля покупок, которые завершаются, даже если на оплате не хватило средств</span></div>
+      <div class="rc"><b>&lt;2 мин</b><span>цель: от открытия страницы проекта до покупки</span></div>
+      <div class="rc"><b>60%</b><span>цель: доля начатых заявок фаундеров, которые доходят до отправки</span></div>
+    </div>
+    <div class="learn rv3">
+      <div><h3>Чему научил проект</h3><p>Сложный финансовый продукт продаёт ясность. Инвестор не читает механику — он смотрит, можно ли доверять и сколько он получит. А ошибка не должна обрывать сделку: каждая ветка обязана вести обратно к покупке.</p></div>
+      <div><h3>Что сделал бы иначе</h3><p>Подключил бы аналитику и заложил события для каждой цели ещё на этапе прототипов. Тогда метрики можно было бы показать уже по первой версии, а не только как целевые значения.</p></div>
+    </div>
+  </section>
+
+  <div class="c nav3wrap"><nav class="nav2 navx" aria-label="Навигация по кейсам"><a href="index.html"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>На главную</a><a href="pump.html">Следующий кейс<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></nav></div>
 </main>
 <footer class="ftr">
   <div class="links">
@@ -81,5 +275,6 @@ document.querySelectorAll('.carf').forEach(f=>{const car=f.querySelector('.car')
   const vio=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting&&e.intersectionRatio>.5&&!reduce){v.play().catch(()=>{});}else v.pause();}),{threshold:[0,.5,1]});
   vids.forEach(v=>vio.observe(v));});
 </script>
+<script src="bf-v3.js" defer></script>
 </body>
 </html>

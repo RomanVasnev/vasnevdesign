@@ -446,7 +446,7 @@ FINHAM = dict(
 
 if __name__ == '__main__':
     # anty.html is the hand-built v3 page (anty-v3.css/js) — not generated
-    for fn, c in (('project.html', BITFLARE),):  # anty.html, pump.html, finhamster.html are hand-built v3 pages
+    for fn, c in ():  # all case pages (project, anty, pump, finhamster) are hand-built v3 pages
         with open(os.path.join(ROOT, fn), 'w') as f:
             f.write(page(c))
         print('wrote', fn)
