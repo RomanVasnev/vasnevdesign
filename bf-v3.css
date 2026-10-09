@@ -154,3 +154,26 @@
 .seg-k{position:absolute;top:4px;bottom:4px;left:4px;width:calc((100% - 8px)/3);border-radius:22px;transition:transform .45s cubic-bezier(.2,.8,.2,1);transform:translateX(calc(var(--i,0)*100%))}
 .bf .bseg .seg-k{background:var(--ac)}
 .av3 .vip-s{max-width:none;width:100%;margin-left:0;margin-right:0}
+
+/* ===== v3.1 buy scenarios ===== */
+.scn{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:8px;max-width:520px}
+.scn button{display:flex;gap:14px;width:100%;text-align:left;padding:14px 16px;border-radius:16px;border:1px solid #1a1a1f;background:#0d0d10;font:inherit;color:var(--mut3);font-size:15px;line-height:1.4;letter-spacing:-.02em;cursor:pointer;transition:border-color .35s,background .35s,color .35s;position:relative;overflow:hidden}
+.scn i{flex:none;font-style:normal;width:26px;height:26px;border-radius:50%;background:#1b1b20;color:#8a8a93;font-size:13px;font-weight:500;display:grid;place-items:center;transition:background .35s,color .35s}
+.scn b{display:block;color:#b9b9c0;font-weight:500;transition:color .35s}
+.scn button::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--ac)}
+.scn li.on button{border-color:#3b4a0c;background:#11140a;color:#cfcfd6}
+.scn li.on b{color:#fff}.scn li.on i{background:var(--ac);color:#000}
+.scn li.on button::after{animation:scnp var(--d,8s) linear forwards}
+@keyframes scnp{to{width:100%}}
+.chips{display:flex;flex-wrap:wrap;align-items:center;gap:6px 4px;min-height:34px}
+.chip{display:inline-flex;align-items:center;height:30px;padding:0 12px;border-radius:15px;font-size:12.5px;letter-spacing:-.01em;color:#6a6a72;background:#151518;border:1px solid #222228;transition:color .3s,background .3s,border-color .3s,box-shadow .3s}
+.chip.done{color:#b9c98a;border-color:#2d3510}
+.chip.cur{color:#000;background:var(--ac);border-color:var(--ac)}
+.chip.hub{border-color:#6c8a12;box-shadow:0 0 0 3px rgba(198,255,0,.12)}
+.chip.hub.cur{box-shadow:0 0 0 4px rgba(198,255,0,.25),0 0 22px rgba(198,255,0,.45)}
+.chip.err.cur{background:#e5484d;border-color:#e5484d;color:#fff}
+.chev{color:#3a3a42;font-size:12px}
+.stepcap{margin-top:16px;text-align:center;font-size:14px;color:#cfcfd6;letter-spacing:-.02em;min-height:1.4em}
+.stepcap b{color:var(--ac);font-weight:500}
+.buy-stage .mdl{height:400px;margin-top:20px}
+@media (min-width:900px){.buy-stage .mdl{height:470px}}

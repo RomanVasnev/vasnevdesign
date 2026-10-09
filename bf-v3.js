@@ -57,13 +57,21 @@
   if(tseg){const bt=$$('#tseg button'),sets=$$('#trow .tset'),k=tseg.querySelector('.seg-k');
     cycler(3,i=>{bt.forEach((b,n)=>{b.classList.toggle('on',n===i);b.setAttribute('aria-selected',n===i);});sets.forEach((s,n)=>s.classList.toggle('on',n===i));k.style.setProperty('--i',i);},3600,$('#trow'),bt);}
 
-  /* buy flow: one confirmation point */
+  /* buy flow: three scenarios, one confirmation point */
   const stage=$('#buyStage');
-  if(stage){const li=$$('#path li'),mi=$$('#mdl img'),cs=$$('#buyStage circle');
-    const NODE=[0,1,2,3,4,5,6];
-    cycler(li.length,i=>{li.forEach((l,n)=>{l.classList.toggle('on',n===i);l.classList.toggle('done',n<i);});mi.forEach((m,n)=>m.classList.toggle('on',n===i));
-      cs.forEach((c,n)=>{c.classList.toggle('cur',n===NODE[i]);c.classList.toggle('done',n<NODE[i]);});
-      stage.classList.toggle('b1',i>=1);stage.classList.toggle('b2',i>=3);},2800,stage,li.map(l=>l.querySelector('button')));}
+  if(stage){const sl=$$('#scn li'),mi=$$('#mdl img'),chips=$('#chips'),cap=$('#stepcap');
+    const L={calc:'Калькулятор',login:'Вход',review:'Подтверждение',short:'Подтверждение',coin:'Монета',chain:'Сеть',notice:'Проверка',success:'Готово'};
+    const C={calc:'Выбрал тир и сумму — нажимает «Buy BTE»',login:'Нет аккаунта: вход открывается поверх страницы, сумма сохранена',review:'<b>Единая точка</b> — что платит, что получит и бонус',short:'<b>Та же точка</b>, но продукт называет точную нехватку: 200 USDT',coin:'Пополнение по шагам: сначала монета',chain:'Затем сеть — с подсказкой, какую выбрать',notice:'Предупреждение до перевода, а не после потери денег',success:'Покупка завершена и видна в истории'};
+    const S=[['calc','review','success'],['calc','login','review','success'],['calc','short','coin','chain','notice','review','success']];
+    const MS=2300;let s=0,k=0,t=0,vis=false;
+    function draw(){const seq=S[s];
+      chips.innerHTML=seq.map((x,n)=>`${n?'<span class="chev">›</span>':''}<span class="chip${x==='review'||x==='short'?' hub':''}${x==='short'?' err':''}${n<k?' done':''}${n===k?' cur':''}">${L[x]}</span>`).join('');
+      mi.forEach(m=>m.classList.toggle('on',m.dataset.k===seq[k]));cap.innerHTML=C[seq[k]];}
+    function scen(i,user){clearTimeout(t);s=i;k=0;sl.forEach((l,n)=>{l.classList.remove('on');l.querySelector('button').style.setProperty('--d',(S[n].length*MS)+'ms');});void sl[i].offsetWidth;sl[i].classList.add('on');draw();if(vis&&!RM)t=setTimeout(next,MS);}
+    function next(){if(k<S[s].length-1){k++;draw();t=setTimeout(next,MS);}else scen((s+1)%S.length);}
+    sl.forEach((l,n)=>l.querySelector('button').addEventListener('click',()=>scen(n,true)));
+    draw();sl[0].classList.add('on');
+    watch(stage,v=>{const was=vis;vis=v;if(v&&!was)scen(s);if(!v)clearTimeout(t);},.3);}
 
   /* IDO form progress */
   const ido=$('#ido');

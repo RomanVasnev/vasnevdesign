@@ -130,35 +130,27 @@
   <section class="c buy-s" id="buyS">
     <div class="buy-tx">
       <h2 class="h2x rv3">Одна точка подтверждения вместо десятка тупиков</h2>
-      <p class="body3 rv3">Главное решение кейса. Пользователь может прийти без аккаунта, без денег на балансе или с неподтверждённой почтой. Любая ветка возвращает его к одному экрану подтверждения, а выбранный тир и сумма сохраняются.</p>
-      <ol class="path" id="path">
-        <li class="on" data-k="0"><button type="button"><i>01</i><span><b>Калькулятор</b>выбрал тир и сумму</span></button></li>
-        <li data-k="1" class="br1"><button type="button"><i>02</i><span><b>Вход поверх страницы</b>без аккаунта — модалка, а не переход</span></button></li>
-        <li data-k="2"><button type="button"><i>03</i><span><b>Подтверждение</b>что платит, что получит, бонус</span></button></li>
-        <li data-k="3" class="br2"><button type="button"><i>04</i><span><b>Точная сумма нехватки</b>«Not enough 200 USDT»</span></button></li>
-        <li data-k="4" class="br2"><button type="button"><i>05</i><span><b>Пополнение по шагам</b>монета, сеть, детали</span></button></li>
-        <li data-k="5" class="br2"><button type="button"><i>06</i><span><b>Предупреждение до ошибки</b>сеть, которая сожжёт деньги, названа прямо</span></button></li>
-        <li data-k="6"><button type="button"><i>07</i><span><b>Покупка завершена</b>и видна в истории</span></button></li>
+      <p class="body3 rv3">Главное решение кейса. Инвестор приходит в разном состоянии: всё готово, нет аккаунта или не хватает денег. В любом случае он попадает на один и тот же экран подтверждения, а выбранный тир и сумма не теряются по дороге.</p>
+      <ol class="scn rv3" id="scn">
+        <li class="on"><button type="button"><i>A</i><span><b>Всё есть</b>калькулятор → подтверждение → готово</span></button></li>
+        <li><button type="button"><i>B</i><span><b>Нет аккаунта</b>вход открывается поверх страницы, а не уводит с неё</span></button></li>
+        <li><button type="button"><i>C</i><span><b>Не хватает денег</b>точная сумма нехватки, пополнение по шагам — и обратно к подтверждению</span></button></li>
       </ol>
     </div>
     <div class="buy-vis rv3">
       <div class="buy-stage" id="buyStage">
-        <svg class="mapl" viewBox="0 0 360 142" aria-hidden="true">
-          <path class="mp-main" d="M20 60H340"/>
-          <path class="mp-b1" pathLength="1" d="M20 60C60 60 80 22 135 22C170 22 176 44 180 60"/>
-          <path class="mp-b2" pathLength="1" d="M180 60C178 90 188 104 202 104C222 110 236 114 252 114C272 114 292 108 298 96C306 78 270 66 186 61"/>
-          <g class="nodes"><circle cx="20" cy="60" r="7"/><circle cx="135" cy="22" r="7"/><circle cx="180" cy="60" r="7"/><circle cx="202" cy="104" r="7"/><circle cx="252" cy="114" r="7"/><circle cx="298" cy="96" r="7"/><circle cx="340" cy="60" r="7"/></g>
-          <g class="lbl"><text x="20" y="44">старт</text><text x="135" y="8">вход</text><text x="180" y="44">review</text><text x="252" y="138">пополнение</text><text x="340" y="44">успех</text></g>
-        </svg>
+        <div class="chips" id="chips" aria-hidden="true"></div>
         <div class="mdl" id="mdl">
-          <img class="on" src="assets/bitflare/v3/md-calc.webp" alt="Калькулятор" width="800" height="1022" loading="lazy">
-          <img src="assets/bitflare/v3/md-login.webp" alt="Вход поверх страницы" width="532" height="745" loading="lazy">
-          <img src="assets/bitflare/v3/md-review.webp" alt="Подтверждение покупки" width="840" height="571" loading="lazy">
-          <img src="assets/bitflare/v3/md-short.webp" alt="Не хватает 200 USDT" width="840" height="686" loading="lazy">
-          <img src="assets/bitflare/v3/md-coin.webp" alt="Выбор монеты для пополнения" width="900" height="658" loading="lazy">
-          <img src="assets/bitflare/v3/md-notice.webp" alt="Предупреждение о сети" width="900" height="534" loading="lazy">
-          <img src="assets/bitflare/v3/md-success.webp" alt="Покупка завершена" width="840" height="553" loading="lazy">
+          <img data-k="calc" src="assets/bitflare/v3/md-calc.webp" alt="Калькулятор покупки" width="800" height="1022" loading="lazy">
+          <img data-k="login" src="assets/bitflare/v3/md-login.webp" alt="Вход поверх страницы" width="532" height="745" loading="lazy">
+          <img data-k="review" src="assets/bitflare/v3/md-review.webp" alt="Подтверждение покупки" width="840" height="571" loading="lazy">
+          <img data-k="short" src="assets/bitflare/v3/md-short.webp" alt="Подтверждение: не хватает 200 USDT" width="840" height="686" loading="lazy">
+          <img data-k="coin" src="assets/bitflare/v3/md-coin.webp" alt="Пополнение: выбор монеты" width="900" height="658" loading="lazy">
+          <img data-k="chain" src="assets/bitflare/v3/md-chain.webp" alt="Пополнение: выбор сети с подсказкой" width="900" height="658" loading="lazy">
+          <img data-k="notice" src="assets/bitflare/v3/md-notice.webp" alt="Предупреждение перед депозитом" width="900" height="534" loading="lazy">
+          <img data-k="success" src="assets/bitflare/v3/md-success.webp" alt="Покупка завершена" width="840" height="553" loading="lazy">
         </div>
+        <p class="stepcap" id="stepcap"></p>
       </div>
     </div>
   </section>
