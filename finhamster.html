@@ -4,12 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>FinHamster — Роман Васнёв</title>
-<meta name="description" content="FinHamster: учёт финансов, который сразу подсказывает следующий шаг. Кейс продуктового дизайнера Романа Васнёва.">
+<meta name="description" content="FinHamster: учёт личных финансов, который сразу подсказывает следующий шаг. Мобильное приложение, веб-финплан, лендинг и питч-дек. Кейс продуктового дизайнера Романа Васнёва.">
 <meta name="theme-color" content="#060606">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&display=swap">
+<link rel="icon" href="assets/finhamster/logo.webp">
 <link rel="stylesheet" href="case.css">
-<style>:root{--accent:#ff8a3d}</style>
+<link rel="stylesheet" href="anty-v3.css">
+<link rel="stylesheet" href="pump-v3.css">
+<link rel="stylesheet" href="fh-v3.css">
+<style>:root{--accent:#ff6b2c}</style>
 </head>
 <body>
 <header class="hdr">
@@ -19,30 +23,233 @@
     <button class="mbtn" id="mopen" aria-haspopup="dialog" aria-controls="menu">menu <span class="dot18"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
   </div>
 </header>
-<main class="wrap gut">
-  <a class="back" href="index.html"><span class="c24"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M11 4.5H1M4.5 1 1 4.5 4.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>На главную</a>
-  <div class="prj"><div><b>FinHamster</b><small>ИИ-помощник для личных финансов</small></div></div>
-  <h1>Учёт финансов, который сразу подсказывает следующий шаг</h1>
-  <div class="tags"><span>Fintech</span><span>B2C</span><span>Mobile</span><span>AI</span></div>
+<main class="av3 fh">
+  <section class="hero3">
+    <div class="c hero3-in">
+      <div class="hero3-tx">
+        <a class="back3" href="index.html"><span class="c24">←</span>На главную</a>
+        <div class="eyebrow"><img src="assets/finhamster/logo.webp" alt="" width="28" height="28">FinHamster · ИИ-помощник для личных финансов</div>
+        <h1 class="h1x">Превратил скучный учёт расходов в план с советами</h1>
+        <p class="lead">Учёт финансов бросают в первый же месяц: он скучный и ничего не подсказывает. Я спроектировал продукт целиком вокруг одной идеи — каждая запись сразу даёт понятный следующий шаг. Мобильное приложение, веб-финплан, лендинг и питч-дек для инвесторов.</p>
+        <dl class="facts">
+          <div><dt>Роль</dt><dd>Продуктовый дизайнер</dd></div>
+          <div><dt>Платформы</dt><dd>iOS, Android, веб</dd></div>
+          <div><dt>Зона</dt><dd>UX, UI, дизайн-система, лендинг, питч-дек</dd></div>
+        </dl>
+      </div>
+      <div class="hero3-vis fh-hero" aria-label="FinHamster: веб-финплан и мобильное приложение">
+        <div class="glow3"></div>
+        <div class="br fh-br"><div class="br-top"><i></i><i></i><i></i><span>finhamster · финплан</span></div><img src="assets/finhamster/w-plan.webp" alt="Веб-финплан: доходы и график капитала" width="1728" height="972" fetchpriority="high"></div>
+        <div class="ph ph-main fh-ph">
+          <div class="ph-scr reel" id="reel">
+            <img class="on" src="assets/finhamster/m-main.webp" alt="Учёт: корзины на главном экране" width="690" height="1494">
+            <img src="assets/finhamster/m-an-bask.webp" alt="Аналитика по корзинам" width="690" height="1494" decoding="async">
+            <img src="assets/finhamster/m-rec2.webp" alt="Рекомендации" width="690" height="1494" decoding="async">
+            <img src="assets/finhamster/m-tx.webp" alt="Новая трата" width="690" height="1494" decoding="async">
+          </div>
+        </div>
+        <div class="reelbar" id="reelbar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </section>
 
-  <dl class="meta"><div><dt>Платформа</dt><dd>Мобильное приложение и веб</dd></div><div><dt>Роль</dt><dd>Продуктовый дизайнер</dd></div><div><dt>Зона</dt><dd>UX, UI, дизайн-система, лендинг и питч-дек</dd></div><div><dt>Объём</dt><dd>200+ мобильных экранов и 29 экранов веба</dd></div></dl>
-<section class="sec rv"><h2>Суть проекта</h2><p class="w">FinHamster это сервис учёта и планирования личных финансов. В приложении пользователь делит деньги на корзины с месячными лимитами, записывает траты, смотрит аналитику и получает советы, которые подстраиваются под его данные.</p><p class="w">Я спроектировал продукт целиком: архитектуру, мобильное приложение, веб-кабинет финансового плана, лендинг, питч-дек для инвесторов и дизайн-систему.</p><div class="stats"><div><b>200+</b><span>мобильных экранов</span></div><div><b>29</b><span>экранов веб-финплана</span></div><div><b>168</b><span>валют с поиском</span></div><div><b>52</b><span>набора компонентов в системе</span></div></div></section>
-<section class="sec rv"><h2>Контекст проекта</h2><p>Деньги у людей разбросаны по нескольким банкам, а банковская аналитика видит только свой банк и ничего не планирует. Учёт превращается в список покупок, который никто не открывает.</p><h3>Для кого продукт</h3><ol class="nl"><li><div>Новичок в финансах. Живёт от зарплаты до зарплаты, ему нужен простой учёт и понятные лимиты</div></li><li><div>Осторожный накопитель. Боится потерять накопления, ему нужен план и подушка безопасности</div></li><li><div>Будущий инвестор. Не понимает, как работают инвестиции, ему нужны объяснения и первые шаги</div></li></ol><blockquote class="q">Цифры сами по себе не говорят, что делать. Хорошо ли, что на кафе ушло 10 000 ₽, и сколько можно тратить, чтобы накопить на отпуск?</blockquote></section>
-<section class="sec rv"><h2>Рынок</h2><p>Почти все ведут бюджет, но почти никто не делает это системно. А те, кто скачал приложение, быстро его бросают.</p><div class="stats"><div><b>70%</b><span>россиян так или иначе ведут семейный бюджет</span></div><div><b>32%</b><span>из них считают деньги в уме</span></div><div><b>7%</b><span>пользуются приложениями или таблицами</span></div><div><b>4,2%</b><span>пользователей финприложений остаются к 30-му дню</span></div></div><p class="note">Данные: НАФИ (2025), Business of Apps (2026)</p><blockquote class="q">Проблема не в том, что людям не нужен учёт. Учёт скучный и не даёт ответа, поэтому его бросают в первый же месяц.</blockquote></section>
-<section class="sec rv"><h2>Исследование</h2><h3>Конкуренты</h3><p>Я сравнил пять типов решений, которыми пользуются для личного бюджета.</p><table><thead><tr><th scope="col">Продукт</th><th scope="col">Сильная сторона</th><th scope="col">Ограничение</th></tr></thead><tbody><tr><td>CoinKeeper</td><td>Категории с лимитами, около 350 тыс. MAU</td><td>Семейный бюджет только в старшем тарифе</td></tr><tr><td>Дзен-мани</td><td>Импорт из 3 300+ банков</td><td>Сложный старт, автоматизация платная</td></tr><tr><td>Monefy</td><td>Очень быстрый ручной ввод</td><td>Нет планирования и целей</td></tr><tr><td>Т-Банк, Сбер</td><td>Автоматические категории</td><td>Видят только свой банк</td></tr><tr><td>YNAB</td><td>Метод конвертов</td><td>Около 30 минут работы в неделю</td></tr></tbody></table><p class="note">Данные: сайты продуктов, AppBrain, RB.ru, Penny Hoarder</p><h3>Где ниша FinHamster</h3><ol class="nl"><li><div>Между банком и трекером. Банки автоматизируют, но не планируют. Трекеры планируют, но требуют ручной работы или платного тарифа</div></li><li><div>Конверты без бухгалтерии. Метод YNAB, но в простом и дружелюбном интерфейсе</div></li><li><div>Совет, а не отчёт. Учёт сразу подсказывает, что делать дальше</div></li></ol></section>
-<section class="sec rv"><h2>Гипотезы</h2><h3>Ключевая продуктовая гипотеза</h3><blockquote class="q">Человек продолжит вести учёт, если запись траты занимает секунды, а в ответ он сразу получает понятный совет.</blockquote><p>Отсюда пять принципов, которые легли в продукт:</p><ol class="nl"><li><div>Корзины вместо сотни категорий. Лимит ставится на цель, а не на каждую строчку</div></li><li><div>Трата на одном экране</div></li><li><div>График отвечает на вопрос, а не просто показывает цифры</div></li><li><div>Совет зависит от уровня и данных пользователя</div></li><li><div>Мотивация через марафоны вместо сухих отчётов</div></li></ol><h3>Архитектура</h3><p>В таб-баре пять разделов: Учёт, Капитал, кнопка новой транзакции, Аналитика и Профиль. Финансовый план с денежным потоком, имуществом и обязательствами живёт в вебе.</p></section>
-<section class="sec rv"><h2>Что вошло в продукт</h2><h3>Первая версия</h3><ol class="nl"><li><div>Онбординг, который объясняет пользу до регистрации</div></li><li><div>Корзины с месячными лимитами</div></li><li><div>Запись траты на одном экране</div></li><li><div>Аналитика в трёх срезах</div></li><li><div>Рекомендации по уровню и марафоны</div></li><li><div>Подписка, валюты и настройки уведомлений</div></li><li><div>Веб-финплан, лендинг и питч-дек</div></li></ol><h3>Бизнес-модель</h3><p>Freemium: базовый учёт бесплатно, подписка на 3 месяца, 12 месяцев или навсегда. Платное должно ощущаться как следующий шаг, а не как стена посреди сценария.</p></section>
-<section class="sec rv"><h2>Корзины вместо категорий</h2><p>Главное решение кейса. Классический учёт это десятки категорий, в которых легко утонуть. Лимит на каждую никто не ставит, а без лимита учёт превращается в список покупок.</p><ol class="nl"><li><div>Пользователь делит деньги на корзины-цели: «Путешествия», «Моё обучение», «Еда, продукты, кафе»</div></li><li><div>У корзины и у каждой категории внутри свой месячный лимит</div></li><li><div>На главном экране сразу видно сумму и прогресс: «45 000 ₽ из 50 000 ₽»</div></li><li><div>Категории добавляются и удаляются на одном экране</div></li></ol><blockquote class="q">Корзина отвечает на вопрос «на что я коплю и сколько могу потратить», а не «куда ушли деньги». Так люди и думают о бюджете.</blockquote></section>
-<section class="sec rv"><h2>Трата на одном экране</h2><ol class="nl"><li><div>Корзина и категория подставляются из контекста, откуда открыта форма</div></li><li><div>Сумма набирается вручную или кнопками 100, 200, 500 и 1000 ₽</div></li><li><div>Дата: «Сейчас», «Сегодня», «Вчера» или барабан вместо календаря</div></li><li><div>Метки и комментарии, регулярные операции</div></li><li><div>Перед удалением подсказка о последствиях</div></li></ol></section>
-<section class="sec rv"><h2>Аналитика в трёх срезах</h2><p>Переключатель «Корзины / Категории / Транзакции» показывает одни и те же деньги с разных сторон. Цвет категории повторяет цвет её корзины, а период выбирается в два тапа.</p></section>
-<section class="sec rv"><h2>Советы, которые растут вместе с пользователем</h2><p>Общие советы вроде «тратьте меньше» не работают, а точные невозможны без данных. Поэтому советы привязаны к уровню.</p><ol class="nl"><li><div>Шкала показывает, насколько точны советы сейчас и что сделать, чтобы они стали точнее</div></li><li><div>На продвинутом уровне совет опирается на корзины пользователя, например метод 50 / 30 / 20</div></li><li><div>С полными данными появляются персональные советы и первые шаги в инвестициях</div></li><li><div>Марафоны превращают совет в задачу на месяц: цель, срок и кнопка «Принять участие»</div></li></ol></section>
-<section class="sec rv"><h2>Подписка без давления</h2><ol class="nl"><li><div>Выгодный тариф выделен цветом, но выбор остаётся за пользователем</div></li><li><div>Основная валюта выбирается из 168 с поиском</div></li><li><div>Перед удалением аккаунта сервис спрашивает причину</div></li><li><div>Разделы в работе не прячутся: заглушка объясняет, что там будет, и предлагает уведомление о запуске</div></li></ol></section>
-<section class="sec rv"><h2>Финплан, лендинг и питч-дек</h2><p>Длинные сценарии вынесены в веб: доходы по категориям, график будущего капитала, денежный поток, имущество и обязательства.</p><p>Лендинг ведёт в приложение и веб-финплан. Питч-дек рассказывает инвестору о проблеме, рынке, продукте и бизнес-модели в тех же цветах и с тем же хомяком.</p></section>
-<section class="sec rv"><h2>Дизайн-система</h2><p>Приложение, веб и маркетинговые материалы собраны на одной системе. Тёмная сине-оранжевая палитра повторяет цвета хомяка.</p><div class="stats"><div><b>52</b><span>набора компонентов</span></div><div><b>153</b><span>варианта</span></div><div><b>121</b><span>отдельный компонент</span></div><div><b>3</b><span>продукта на одной системе</span></div></div></section>
-<section class="sec rv"><h2>Метрики продукта</h2><p>Под каждое ключевое решение я заложил метрику, по которой видно, работает ли оно.</p><table><thead><tr><th scope="col">Метрика</th><th scope="col">Что показывает</th><th scope="col">Цель</th></tr></thead><tbody><tr><td>D7 / D30 retention</td><td>Записывают ли траты через неделю и месяц</td><td>N% / N%</td></tr><tr><td>Время на трату</td><td>Сколько секунд уходит на одну запись</td><td>&lt; N сек</td></tr><tr><td>Корзины с лимитом</td><td>Доля пользователей с хотя бы одной корзиной</td><td>N%</td></tr><tr><td>Конверсия в подписку</td><td>Кто платит и после какого действия</td><td>N%</td></tr></tbody></table></section>
-<section class="sec rv"><h2>Результаты после запуска</h2><p>Через месяц после релиза я сравнил фактические цифры с целями и с рынком.</p><div class="stats"><div><b>N%</b><span>остались к 7-му дню</span></div><div><b>N%</b><span>остались к 30-му дню при 4,2% по рынку</span></div><div><b>N сек</b><span>уходит на запись одной траты</span></div><div><b>N%</b><span>завели корзину с лимитом</span></div><div><b>N%</b><span>перешли на подписку</span></div><div><b>N</b><span>пользователей за первый месяц</span></div></div><blockquote class="q">Рынок удерживает к 30-му дню 4,2% пользователей, FinHamster удержал N%.</blockquote></section>
-<section class="sec rv"><h2>Итоги работы</h2><h3>Опыт</h3><p>Учёт финансов полезен, только когда подсказывает следующий шаг. Корзины перевели бюджет на язык целей, а советы и марафоны превратили цифры в действия.</p><h3>Результаты</h3><ol class="nl"><li><div>Продукт спроектирован целиком: от онбординга и учёта до веб-финплана и питч-дека</div></li><li><div>200+ мобильных экранов и 29 экранов веба на одной системе компонентов</div></li><li><div>Приложение, лендинг и питч-дек говорят на одном визуальном языке</div></li></ol><blockquote class="q">Продукт одинаково понятен и пользователю, и инвестору, потому что у них один язык.</blockquote></section>
-  <nav class="nav2" aria-label="Навигация по кейсам"><a href="index.html"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M11 4.5H1M4.5 1 1 4.5 4.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>На главную</a><a href="project.html">Следующий кейс <svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5h10M7.5 1 11 4.5 7.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></nav>
+  <section class="c nums">
+    <div class="num3 rv3"><b data-count="200" data-suf="+">200+</b><span>экранов мобильного приложения</span></div>
+    <div class="num3 rv3"><b data-count="29">29</b><span>экранов веб-финплана</span></div>
+    <div class="num3 rv3"><b data-count="168">168</b><span>валют с поиском</span></div>
+    <div class="num3 rv3"><b data-count="52">52</b><span>набора компонентов в дизайн-системе</span></div>
+  </section>
+
+  <section class="c prob">
+    <h2 class="h2x rv3">Бюджет ведут почти все. В приложении — почти никто</h2>
+    <div class="fh-prob">
+      <div class="funnel rv3" id="funnel" aria-label="70% ведут бюджет, 32% считают в уме, 7% пользуются приложениями или таблицами">
+        <div class="fr" style="--v:70"><span>ведут семейный бюджет</span><i></i><b>70%</b></div>
+        <div class="fr" style="--v:32"><span>из них считают в уме</span><i></i><b>32%</b></div>
+        <div class="fr hot" style="--v:7"><span>пользуются приложениями или таблицами</span><i></i><b>7%</b></div>
+      </div>
+      <div class="ret rv3" id="ret" aria-label="К 30-му дню в финансовых приложениях остаётся 4,2% пользователей">
+        <svg viewBox="0 0 600 220" preserveAspectRatio="none" aria-hidden="true">
+          <defs><linearGradient id="rg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6b2c" stop-opacity=".35"/><stop offset="1" stop-color="#ff6b2c" stop-opacity="0"/></linearGradient></defs>
+          <path class="area" d="M0 18 C 30 18 50 120 90 150 S 200 188 300 196 S 480 204 600 206 L600 220 L0 220Z" fill="url(#rg)"/>
+          <path class="ln" d="M0 18 C 30 18 50 120 90 150 S 200 188 300 196 S 480 204 600 206"/>
+        </svg>
+        <span class="tag t1">день 1 · 100%</span><span class="tag t2">день 30 · 4,2%</span>
+      </div>
+    </div>
+    <div class="prob-cols">
+      <p class="rv3"><b>Проблема не в том, что людям не нужен учёт.</b> Он скучный и не отвечает на главный вопрос: хорошо ли, что на кафе ушло 10&nbsp;000&nbsp;₽, и сколько можно тратить, чтобы накопить на отпуск.</p>
+      <p class="rv3"><b>Банки видят только свой банк и ничего не планируют.</b> Трекеры планируют, но требуют ручной работы или платного тарифа. Ниша — между ними: конверты без бухгалтерии и совет вместо отчёта.</p>
+    </div>
+    <p class="note3 rv3">Данные: НАФИ (2025), Business of Apps (2026)</p>
+  </section>
+
+  <section class="story c">
+    <div class="story-tx">
+      <h2 class="h2x rv3">Корзины вместо сотни категорий</h2>
+      <div class="step3" data-scr="b1">
+        <span class="no">01</span>
+        <h3>Корзина — это цель</h3>
+        <p>Классический учёт — десятки категорий, лимит на каждую никто не ставит. Здесь деньги делятся на цели: «Путешествия», «Моё обучение», «Еда, продукты, кафе». Лимит ставится на цель.</p>
+        <div class="ph ph-inline"><div class="ph-scr"><img src="assets/finhamster/m-basket-new.webp" alt="Создание корзины" width="690" height="1494" loading="lazy" decoding="async"></div></div>
+      </div>
+      <div class="step3" data-scr="b2">
+        <span class="no">02</span>
+        <h3>Категории живут внутри</h3>
+        <p>У каждой категории свой месячный лимит и свой цвет. Иконку и валюту можно выбрать сразу — без отдельных настроек.</p>
+        <div class="ph ph-inline"><div class="ph-scr"><img src="assets/finhamster/m-cat-new.webp" alt="Добавление категории" width="690" height="1494" loading="lazy" decoding="async"></div></div>
+      </div>
+      <div class="step3" data-scr="b3">
+        <span class="no">03</span>
+        <h3>Весь месяц — на одном экране</h3>
+        <p>Сверху сумма за месяц и прогресс, ниже корзины с категориями-плашками. Корзину можно свернуть, если она сейчас не нужна.</p>
+        <div class="ph ph-inline"><div class="ph-scr"><img src="assets/finhamster/m-main.webp" alt="Главный экран учёта" width="690" height="1494" loading="lazy" decoding="async"></div></div>
+      </div>
+      <div class="step3" data-scr="b4">
+        <span class="no">04</span>
+        <h3>Перерасход видно сразу</h3>
+        <p>Когда категории вышли за лимит корзины, её сумма краснеет. Пользователь узнаёт об этом в момент траты, а не в конце месяца.</p>
+        <div class="ph ph-inline"><div class="ph-scr"><img src="assets/finhamster/m-over.webp" alt="Корзина с превышением лимита" width="690" height="1494" loading="lazy" decoding="async"></div></div>
+      </div>
+    </div>
+    <div class="story-vis" aria-hidden="true">
+      <div class="story-pin">
+        <div class="ph"><div class="ph-scr" id="storyScr">
+          <img class="on" data-k="b1" src="assets/finhamster/m-basket-new.webp" alt="" width="690" height="1494">
+          <img data-k="b2" src="assets/finhamster/m-cat-new.webp" alt="" width="690" height="1494" loading="lazy">
+          <img data-k="b3" src="assets/finhamster/m-main.webp" alt="" width="690" height="1494" loading="lazy">
+          <img data-k="b4" src="assets/finhamster/m-over.webp" alt="" width="690" height="1494" loading="lazy">
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="c mob-s tx-s">
+    <div class="mob-vis rv3">
+      <div class="glow3"></div>
+      <div class="ph mob-ph"><div class="ph-scr"><img src="assets/finhamster/m-tx.webp" alt="Запись траты" width="690" height="1494" loading="lazy"></div></div>
+      <span class="chip3 c1">+500 ₽ в один тап</span><span class="chip3 c2">Сегодня · Вчера</span><span class="chip3 c3">корзина уже выбрана</span>
+    </div>
+    <div class="mob-tx">
+      <h2 class="h2x rv3">Трата — за пару тапов</h2>
+      <p class="body3 rv3">Ключевая гипотеза продукта: человек продолжит вести учёт, если запись занимает секунды, а в ответ он сразу видит, что изменилось.</p>
+      <ol class="fc-leg rv3">
+        <li><i>01</i><span><b>Контекст подставляется сам</b>корзина и категория — из экрана, откуда открыта форма</span></li>
+        <li><i>02</i><span><b>Сумма кнопками</b>100, 200, 500 и 1000 ₽ или вручную в любой из 168 валют</span></li>
+        <li><i>03</i><span><b>Дата без календаря</b>«Сейчас», «Сегодня», «Вчера» или барабан</span></li>
+        <li><i>04</i><span><b>Остальное — по желанию</b>метки, комментарий, регулярная операция, QR с чека</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="c an-s">
+    <div class="an-tx">
+      <h2 class="h2x rv3">Одни и те же деньги — три среза</h2>
+      <p class="body3 rv3">Переключатель повторяет то, как люди думают о бюджете: на какие цели ушло, на что конкретно и когда. Цвет категории совпадает с цветом её корзины, а полоса сверху показывает структуру трат одним взглядом.</p>
+      <div class="seg rv3" id="seg" role="tablist" aria-label="Срезы аналитики">
+        <button role="tab" class="on" data-i="0">Корзины</button><button role="tab" data-i="1">Категории</button><button role="tab" data-i="2">Транзакции</button><span class="seg-k" aria-hidden="true"></span>
+      </div>
+    </div>
+    <div class="an-vis rv3">
+      <div class="glow3"></div>
+      <div class="ph an-ph"><div class="ph-scr" id="anScr">
+        <img class="on" src="assets/finhamster/m-an-bask.webp" alt="Аналитика по корзинам" width="690" height="1494" loading="lazy">
+        <img src="assets/finhamster/m-an-cat.webp" alt="Аналитика по категориям" width="690" height="1494" loading="lazy">
+        <img src="assets/finhamster/m-an-tx.webp" alt="Аналитика по транзакциям" width="690" height="1494" loading="lazy">
+      </div></div>
+    </div>
+  </section>
+
+  <section class="c rec-s">
+    <div class="rec-vis rv3">
+      <div class="glow3"></div>
+      <div class="ph rec-ph"><div class="ph-scr" id="recScr">
+        <img class="on" src="assets/finhamster/m-rec1.webp" alt="Рекомендации: начальный уровень" width="690" height="1494" loading="lazy">
+        <img src="assets/finhamster/m-rec2.webp" alt="Рекомендации: продвинутый уровень" width="690" height="1494" loading="lazy">
+        <img src="assets/finhamster/m-rec3.webp" alt="Рекомендации: очень высокий уровень" width="690" height="1494" loading="lazy">
+      </div></div>
+    </div>
+    <div class="rec-tx">
+      <h2 class="h2x rv3">Советы растут вместе с пользователем</h2>
+      <p class="body3 rv3">Общие советы вроде «тратьте меньше» не работают, а точные невозможны без данных. Поэтому шкала честно показывает, насколько точен совет сейчас и что сделать, чтобы он стал точнее.</p>
+      <ol class="lv rv3" id="lv">
+        <li class="on" style="--c:#ffd02b;--w:68%"><button type="button"><b>Начальный</b><span>мало данных — совет учит заводить корзины и категории</span><i><s></s></i></button></li>
+        <li style="--c:#ff6b2c;--w:48%"><button type="button"><b>Продвинутый</b><span>совет опирается на корзины пользователя: метод 50 / 30 / 20 под его цель</span><i><s></s></i></button></li>
+        <li style="--c:#7be319;--w:100%"><button type="button"><b>Очень высокий</b><span>персональные советы и первые шаги в инвестициях</span><i><s></s></i></button></li>
+      </ol>
+      <p class="body3 rv3 small">Марафоны превращают совет в задачу на месяц: цель, срок и кнопка «Принять участие».</p>
+    </div>
+  </section>
+
+  <section class="c bento-wrap">
+    <h2 class="h2x rv3">Платное — следующий шаг, а не стена</h2>
+    <div class="bento">
+      <article class="cell wide rv3">
+        <div class="cell-tx"><h3>Freemium без давления</h3><p>Выгодный тариф выделен цветом, но выбор за пользователем. Раздел в работе не прячется: заглушка говорит, что там будет и когда, и предлагает уведомить о запуске. Перед удалением аккаунта сервис спрашивает причину.</p></div>
+        <div class="fan" id="fan">
+          <div class="ph f1"><div class="ph-scr"><img src="assets/finhamster/m-capital.webp" alt="Раздел «Капитал» в разработке" width="690" height="1494" loading="lazy"></div></div>
+          <div class="ph f2"><div class="ph-scr"><img src="assets/finhamster/m-sub.webp" alt="Выбор подписки" width="690" height="1494" loading="lazy"></div></div>
+          <div class="ph f3"><div class="ph-scr"><img src="assets/finhamster/m-delete.webp" alt="Удаление аккаунта: причина ухода" width="690" height="1494" loading="lazy"></div></div>
+        </div>
+      </article>
+      <article class="cell rv3">
+        <div class="cell-tx"><h3>Польза — до регистрации</h3><p>Онбординг объясняет, что умеет сервис: учёт расходов, имущества, анализ бюджета и финплан. Регистрация — после.</p></div>
+        <div class="crop duo"><div class="ph d1"><div class="ph-scr"><img src="assets/finhamster/m-ob1.webp" alt="Онбординг: учёт расходов" width="690" height="1494" loading="lazy"></div></div><div class="ph d2"><div class="ph-scr"><img src="assets/finhamster/m-ob4.webp" alt="Онбординг: финансовое планирование" width="690" height="1494" loading="lazy"></div></div></div>
+      </article>
+      <article class="cell rv3">
+        <div class="cell-tx"><h3>Профиль и сервисные экраны</h3><p>Валюта из 168 с поиском, уведомления, совместный доступ. Перед необратимым действием — подсказка о последствиях.</p></div>
+        <div class="crop duo"><div class="ph d1"><div class="ph-scr"><img src="assets/finhamster/m-profile.webp" alt="Личный профиль" width="690" height="1494" loading="lazy"></div></div><div class="ph d2"><div class="ph-scr"><img src="assets/finhamster/m-hint.webp" alt="Подсказка перед удалением транзакции" width="690" height="1494" loading="lazy"></div></div></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="c web-s">
+    <h2 class="h2x rv3">Финплан — на большом экране</h2>
+    <p class="body3 rv3">Длинные сценарии я вынес в веб: доходы и расходы на годы вперёд, денежный поток, капитал и цели на одном графике. Каждый доход связывается с имуществом и обязательствами прямо в окне создания.</p>
+    <div class="web-vis rv3" id="webVis">
+      <div class="br web-br"><div class="br-top"><i></i><i></i><i></i><span>finhamster · планирование</span></div><img src="assets/finhamster/w-plan.webp" alt="Веб-финплан: доходы и график капитала" width="1728" height="972" loading="lazy"></div>
+      <img class="web-modal" src="assets/finhamster/w-modal.webp" alt="Окно создания дохода со связями с имуществом" width="1485" height="720" loading="lazy">
+    </div>
+  </section>
+
+  <section class="c lnd-s">
+    <h2 class="h2x rv3">Один язык для пользователя и инвестора</h2>
+    <p class="body3 rv3">Лендинг ведёт в приложение и рассказывает о нём на языке выгоды. Питч-дек объясняет инвестору проблему, рынок, продукт и бизнес-модель — в тех же цветах и с тем же хомяком.</p>
+    <div class="lnd-grid">
+      <div class="br lnd-br rv3"><div class="br-top"><i></i><i></i><i></i><span>finhamster.ru</span></div>
+        <div class="lnd-vp" id="lndVp"><img src="assets/finhamster/s-landing.webp" alt="Лендинг FinHamster целиком" width="1440" height="6320" loading="lazy"></div>
+      </div>
+      <div class="deck3 rv3">
+        <div class="deck-track" id="deckTrack" tabindex="0" aria-label="Слайды питч-дека">
+          <img src="assets/finhamster/d-cover.webp" alt="Питч-дек: обложка" width="1152" height="648" loading="lazy">
+          <img src="assets/finhamster/d-problem.webp" alt="Питч-дек: проблема" width="1152" height="648" loading="lazy">
+          <img src="assets/finhamster/d-market.webp" alt="Питч-дек: размер рынка" width="1152" height="648" loading="lazy">
+          <img src="assets/finhamster/d-service.webp" alt="Питч-дек: сервис" width="1152" height="648" loading="lazy">
+          <img src="assets/finhamster/d-model.webp" alt="Питч-дек: бизнес-модель freemium" width="1152" height="648" loading="lazy">
+          <img src="assets/finhamster/d-roadmap.webp" alt="Питч-дек: роадмап" width="1152" height="648" loading="lazy">
+        </div>
+        <div class="deck-ctl"><button type="button" id="deckPrev" aria-label="Предыдущий слайд">←</button><span id="deckN">1 / 6</span><button type="button" id="deckNext" aria-label="Следующий слайд">→</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="c outro">
+    <h2 class="h2x big rv3">Итог: продукт целиком на одной системе</h2>
+    <div class="res res6 rv3">
+      <div class="rc"><b>200+</b><span>экранов мобильного приложения — от онбординга до удаления аккаунта</span></div>
+      <div class="rc"><b>29</b><span>экранов веб-финплана</span></div>
+      <div class="rc"><b>3</b><span>продукта на одной системе: приложение, веб и маркетинг</span></div>
+      <div class="rc"><b>52</b><span>набора компонентов</span></div>
+      <div class="rc"><b>153</b><span>варианта компонентов</span></div>
+      <div class="rc"><b>168</b><span>валют с поиском</span></div>
+    </div>
+    <div class="learn rv3">
+      <div><h3>Чему научил проект</h3><p>Учёт полезен, только когда подсказывает следующий шаг. Корзины перевели бюджет на язык целей, а советы и марафоны превратили цифры в действия.</p></div>
+      <div><h3>Метрики и решения</h3><p>Под каждое ключевое решение я заложил метрику: удержание на 7-й и 30-й день, время на запись траты, долю пользователей с корзиной и конверсию в подписку. Готов подробно разобрать их на звонке.</p></div>
+    </div>
+  </section>
+
+  <div class="c nav3wrap"><nav class="nav2 navx" aria-label="Навигация по кейсам"><a href="index.html"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>На главную</a><a href="project.html">Следующий кейс<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></nav></div>
 </main>
 <footer class="ftr">
   <div class="links">
@@ -88,5 +295,6 @@ document.querySelectorAll('.carf').forEach(f=>{const car=f.querySelector('.car')
   const vio=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting&&e.intersectionRatio>.5&&!reduce){v.play().catch(()=>{});}else v.pause();}),{threshold:[0,.5,1]});
   vids.forEach(v=>vio.observe(v));});
 </script>
+<script src="fh-v3.js" defer></script>
 </body>
 </html>
