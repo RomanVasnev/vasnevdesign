@@ -360,8 +360,9 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .cases.sl{display:flex;flex-direction:row;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:calc(var(--pad)*-1);padding-inline:var(--pad);scroll-padding-inline:var(--pad);overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
 .cases.sl::-webkit-scrollbar{display:none}
 .cases.sl .card{flex:none;width:min(340px,calc(100vw - var(--pad)*2 - 28px));scroll-snap-align:start}
-.slnav{margin-top:28px}
 .slnav[hidden]{display:none}
+@media (max-width:767px){
+.slnav{margin-top:28px}
 .sldots{display:flex;gap:8px}
 .sldots i{position:relative;flex:1;height:3px;border-radius:2px;background:#2c2c2c;cursor:pointer;overflow:hidden}
 .sldots i::before{content:"";position:absolute;inset:-10px 0}
@@ -369,12 +370,24 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .sldots i.done::after{transform:none}
 .sldots i.on::after{animation:slp var(--d,6s) linear forwards}
 .sldots.paused i.on::after{animation:none;transform:none}
-@keyframes slp{to{transform:none}}
 .slbtns{display:flex;gap:12px;margin-top:28px}
-.slb{width:132px;height:64px;border-radius:32px;border:1.5px solid #fff;background:transparent;color:#fff;display:grid;place-items:center;cursor:pointer;transition:background .25s,color .25s,opacity .25s,border-color .25s}
-.slb:hover:not(:disabled){background:#fff;color:#000}
+.slb{width:112px;height:56px;border-radius:32px;border:1.5px solid #fff;background:transparent;color:#fff;display:grid;place-items:center;cursor:pointer;transition:background .25s,color .25s,opacity .25s,border-color .25s}
+.slb:active:not(:disabled){background:#fff;color:#000}
 .slb:disabled{opacity:.35;border-color:#555;cursor:default}
-@media (max-width:767px){.slb{width:112px;height:56px}}
+}
+@keyframes slp{to{transform:none}}
+/* desktop: unchanged look — round buttons left/right, dots in the middle */
+@media (min-width:768px){
+.slnav{display:flex;align-items:center;gap:14px;margin-top:28px}
+.slbtns{display:contents}
+#slPrev{order:0}.sldots{order:1}#slNext{order:2}
+.slb{width:44px;height:44px;border-radius:50%;border:1px solid #2a2a2a;background:#121212;color:#fff;display:grid;place-items:center;cursor:pointer;transition:background .25s,opacity .25s}
+.slb svg{width:16px;height:12px}
+.slb:hover{background:#1e1e1e}.slb:disabled{opacity:.3;cursor:default}
+.sldots{display:flex;gap:6px;flex:1;justify-content:center}
+.sldots i{width:6px;height:6px;border-radius:3px;background:#3a3a3a;cursor:pointer;transition:width .35s cubic-bezier(.2,.8,.2,1),background .3s}
+.sldots i.on{width:22px;background:#fff}
+}
 @media (min-width:768px){.cases.sl{gap:24px;margin-inline:0;padding-inline:0;scroll-padding-inline:0}.cases.sl .card{width:calc((100% - 24px)/2.15)}}
 @media (min-width:1200px){.cases.sl .card{width:calc((100% - 48px)/2.6)}}
 /* Pump: presale chart cover */
@@ -654,7 +667,8 @@ const SLD=6000;let slT=0,slVis=false,slUser=false,slLast=-1;
 function slMark(){const i=slIdx(),max=caseList.scrollWidth-caseList.clientWidth;
   if(i!==slLast){slLast=i;[...sldots.children].forEach((d,k)=>{d.classList.remove('on');d.classList.toggle('done',k<i);});const d=sldots.children[i];if(d){void d.offsetWidth;d.style.setProperty('--d',SLD+'ms');d.classList.add('on');}slAuto();}
   $('#slPrev').disabled=caseList.scrollLeft<4;$('#slNext').disabled=caseList.scrollLeft>max-4;}
-function slAuto(){clearTimeout(slT);sldots.classList.toggle('paused',slUser||reduce);if(!slVis||slUser||reduce||!caseList.classList.contains('sl'))return;
+const slMob=matchMedia('(max-width:767px)');
+function slAuto(){clearTimeout(slT);sldots.classList.toggle('paused',slUser||reduce);if(!slMob.matches||!slVis||slUser||reduce||!caseList.classList.contains('sl'))return;
   slT=setTimeout(()=>{const n=slCards().length,i=slIdx(),max=caseList.scrollWidth-caseList.clientWidth;slGo(caseList.scrollLeft>max-4?0:(i+1)%n);},SLD);}
 caseList.addEventListener('scroll',()=>{if(caseList.classList.contains('sl'))slMark();},{passive:true});
 const slStop=()=>{slUser=true;slAuto();};
