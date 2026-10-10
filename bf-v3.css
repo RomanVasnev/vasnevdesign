@@ -195,3 +195,7 @@
   .pr{border-radius:24px}
   .pr-main figcaption{left:18px;bottom:18px;right:auto;max-width:440px;font-size:14px}
 }
+.pr figcaption{position:absolute;left:10px;bottom:10px;right:auto;max-width:calc(100% - 20px);padding:6px 10px;border-radius:10px;background:rgba(10,10,12,.78);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font-size:12px;line-height:1.35;color:#d6d6dc;letter-spacing:-.02em}
+.proto-grid{grid-template-columns:1fr}
+@media (min-width:600px){.proto-grid{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:900px){.proto-grid{max-width:none}}
