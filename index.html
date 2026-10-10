@@ -364,10 +364,14 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .cases.sl .cover{flex:none;height:230px;aspect-ratio:auto;border-radius:20px}
 .cases.sl .cbody{margin-top:0;padding:0 15px 15px;gap:16px;flex:1;min-height:0}
 .cases.sl .ctitle{font-size:22px;line-height:29px;letter-spacing:-.05em}
-.cases.sl .cdesc{font-size:16px;line-height:24px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+.cases.sl .cdesc{font-size:16px;line-height:24px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;color:#767676}
 .cases.sl .cmore{display:none}
 .cases.sl .card{transition:opacity .45s ease}
 .cases.sl .card.dim{opacity:.5}
+.cases.sl .ctitle,.cases.sl .cdesc,.cases.sl .cbadges span{transition:color .45s ease,filter .45s ease}
+.cases.sl .card.dim .ctitle{color:#5a5a5a}
+.cases.sl .card.dim .cdesc{color:#3a3a3a}
+.cases.sl .card.dim .cbadges{filter:brightness(.5)}
 }
 /* ---------- cases slider ---------- */
 .cases.sl{display:flex;flex-direction:row;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:calc(var(--pad)*-1);padding-inline:var(--pad);scroll-padding-inline:var(--pad);overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
