@@ -364,8 +364,10 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .cases.sl .cover{flex:none;height:230px;aspect-ratio:auto;border-radius:20px}
 .cases.sl .cbody{margin-top:0;padding:0 15px 15px;gap:16px;flex:1;min-height:0}
 .cases.sl .ctitle{font-size:22px;line-height:29px;letter-spacing:-.05em}
-.cases.sl .cdesc{font-size:16px;line-height:24px}
+.cases.sl .cdesc{font-size:16px;line-height:24px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
 .cases.sl .cmore{display:none}
+.cases.sl .card{transition:opacity .45s ease}
+.cases.sl .card.dim{opacity:.5}
 }
 /* ---------- cases slider ---------- */
 .cases.sl{display:flex;flex-direction:row;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:calc(var(--pad)*-1);padding-inline:var(--pad);scroll-padding-inline:var(--pad);overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
@@ -482,7 +484,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
     <div class="drop" id="drop" aria-label="Ключевые слова"></div>
     <div class="gut">
       <div class="who rv" data-hero>
-        <div class="ava"><img src="assets/avatar.png" alt="Роман Васнёв" width="60" height="80"></div>
+        <div class="ava"><img src="assets/main/avatar2.webp" alt="Роман Васнёв" width="60" height="80"></div>
         <div>
           <h1 class="name">Роман Васнёв</h1>
           <p class="role">Product Designer · UX/UI Designer</p>
@@ -672,11 +674,10 @@ function slCards(){return [...caseList.querySelectorAll('.card')];}
 function slIdx(){const cs=slCards();if(!cs.length)return 0;const x=caseList.scrollLeft;let b=0,bd=1e9;cs.forEach((c,i)=>{const d=Math.abs(c.offsetLeft-caseList.offsetLeft-x-(cs[0].offsetLeft-caseList.offsetLeft));if(d<bd){bd=d;b=i;}});return b;}
 function slGo(i){const cs=slCards();i=Math.max(0,Math.min(cs.length-1,i));caseList.scrollTo({left:cs[i].offsetLeft-cs[0].offsetLeft,behavior:reduce?'auto':'smooth'});}
 function slSync(){const cs=slCards();sldots.innerHTML=cs.map((_,i)=>`<i data-i="${i}" role="tab" aria-label="Кейс ${i+1}"></i>`).join('');slLast=-1;slMark();}
-const SLD=6000;let slT=0,slVis=false,slUser=false,slLast=-1;
-function slMark(){const i=slIdx(),max=caseList.scrollWidth-caseList.clientWidth;
+const slMob=matchMedia('(max-width:767px)');const SLD=6000;let slT=0,slVis=false,slUser=false,slLast=-1;
+function slMark(){const i=slIdx(),max=caseList.scrollWidth-caseList.clientWidth;slCards().forEach((c,k)=>c.classList.toggle('dim',slMob.matches&&k!==i));
   if(i!==slLast){slLast=i;[...sldots.children].forEach((d,k)=>{d.classList.remove('on');d.classList.toggle('done',k<i);});const d=sldots.children[i];if(d){void d.offsetWidth;d.style.setProperty('--d',SLD+'ms');d.classList.add('on');}slAuto();}
   $('#slPrev').disabled=caseList.scrollLeft<4;$('#slNext').disabled=caseList.scrollLeft>max-4;}
-const slMob=matchMedia('(max-width:767px)');
 function slAuto(){clearTimeout(slT);sldots.classList.toggle('paused',slUser||reduce);if(!slMob.matches||!slVis||slUser||reduce||!caseList.classList.contains('sl'))return;
   slT=setTimeout(()=>{const n=slCards().length,i=slIdx(),max=caseList.scrollWidth-caseList.clientWidth;slGo(caseList.scrollLeft>max-4?0:(i+1)%n);},SLD);}
 caseList.addEventListener('scroll',()=>{if(caseList.classList.contains('sl'))slMark();},{passive:true});
