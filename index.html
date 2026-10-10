@@ -356,6 +356,17 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 }
 
 
+
+/* mobile slider cards — 340×510 fixed (Figma Mobile / Main) */
+@media (max-width:767px){
+.cases.sl{gap:16px;align-items:stretch}
+.cases.sl .card{width:340px;max-width:calc(100vw - var(--pad)*2 - 20px);height:510px;display:flex;flex-direction:column;gap:20px;background:#121212;border-radius:20px;overflow:hidden}
+.cases.sl .cover{flex:none;height:230px;aspect-ratio:auto;border-radius:20px}
+.cases.sl .cbody{margin-top:0;padding:0 15px 15px;gap:16px;flex:1;min-height:0}
+.cases.sl .ctitle{font-size:22px;line-height:29px;letter-spacing:-.05em}
+.cases.sl .cdesc{font-size:16px;line-height:24px}
+.cases.sl .cmore{display:none}
+}
 /* ---------- cases slider ---------- */
 .cases.sl{display:flex;flex-direction:row;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:calc(var(--pad)*-1);padding-inline:var(--pad);scroll-padding-inline:var(--pad);overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
 .cases.sl::-webkit-scrollbar{display:none}
