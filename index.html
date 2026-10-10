@@ -355,6 +355,33 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   .menu.open .mlist li{animation:none}
 }
 
+
+/* ---------- cases slider ---------- */
+.cases.sl{display:flex;flex-direction:row;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:calc(var(--pad)*-1);padding-inline:var(--pad);scroll-padding-inline:var(--pad);overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+.cases.sl::-webkit-scrollbar{display:none}
+.cases.sl .card{flex:none;width:min(340px,calc(100vw - var(--pad)*2 - 28px));scroll-snap-align:start}
+.slnav{display:flex;align-items:center;gap:14px;margin-top:28px}
+.slnav[hidden]{display:none}
+.slb{width:44px;height:44px;border-radius:50%;border:1px solid #2a2a2a;background:#121212;color:#fff;display:grid;place-items:center;cursor:pointer;transition:background .25s,opacity .25s}
+.slb:hover{background:#1e1e1e}.slb:disabled{opacity:.3;cursor:default}
+.sldots{display:flex;gap:6px;flex:1;justify-content:center}
+.sldots i{width:6px;height:6px;border-radius:3px;background:#3a3a3a;cursor:pointer;transition:width .35s cubic-bezier(.2,.8,.2,1),background .3s}
+.sldots i.on{width:22px;background:#fff}
+@media (min-width:768px){.cases.sl{gap:24px;margin-inline:0;padding-inline:0;scroll-padding-inline:0}.cases.sl .card{width:calc((100% - 24px)/2.15)}}
+@media (min-width:1200px){.cases.sl .card{width:calc((100% - 48px)/2.6)}}
+/* Pump: presale chart cover */
+.cpc{background:radial-gradient(90% 70% at 70% 30%,rgba(111,211,79,.16),transparent 60%),#0b0b0d}
+.cpc svg{position:absolute;left:0;right:0;top:20%;width:100%;height:62%}
+.cpc path{fill:none;vector-effect:non-scaling-stroke}
+.cpc .g0{stroke:#2a2a30;stroke-dasharray:3 5;stroke-width:1}
+.cpc .mk{stroke:#ff5c5c;stroke-width:2;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2s cubic-bezier(.6,.05,.3,1)}
+.cpc .pdl{stroke:#8fe66f;stroke-width:3;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2s cubic-bezier(.6,.05,.3,1) .35s;filter:drop-shadow(0 0 5px rgba(143,230,111,.6))}
+.cpc.in .mk,.cpc.in .pdl{stroke-dashoffset:0}
+.cl{position:absolute;font-size:clamp(9px,3.2cqw,13px);letter-spacing:-.02em;padding:.5em .9em;border-radius:2em;background:#1b1b20;color:#cfcfd6;white-space:nowrap;opacity:0;transition:opacity .6s ease 1.6s}
+.cpc.in .cl{opacity:1}
+.cl b{font-weight:500}.cl.l0{left:5%;top:7%;transition-delay:.2s}.cl.l1{right:4%;top:20%;background:#1d3a14;color:#c9f5b5}.cl.l2{right:4%;bottom:17%;background:#3a1517;color:#ffb0b0}
+.cx{position:absolute;left:5%;right:5%;bottom:5%;display:flex;justify-content:space-between;font-size:clamp(8px,2.6cqw,11px);color:#55555c}
+@media (prefers-reduced-motion:reduce){.cpc .mk,.cpc .pdl{stroke-dashoffset:0;transition:none}.cl{opacity:1;transition:none}}
 /* animated covers: device mockups with real screens */
 .cover{container-type:inline-size}
 .cvr{position:absolute;inset:0}
@@ -449,7 +476,8 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 
   <section class="gut" id="cases" style="margin-top:40px">
     <h2 class="sr">Продуктовые кейсы</h2>
-    <div class="cases" id="caseList"></div>
+    <div class="cases sl" id="caseList"></div>
+    <div class="slnav" id="slnav" aria-hidden="false"><button type="button" class="slb" id="slPrev" aria-label="Предыдущий кейс"><svg width="14" height="12" viewBox="0 0 14 12" fill="none"><path d="M13 6H1M6 1 1 6l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="sldots" id="sldots"></div><button type="button" class="slb" id="slNext" aria-label="Следующий кейс"><svg width="14" height="12" viewBox="0 0 14 12" fill="none"><path d="M1 6h12M8 1l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
   </section>
 
   <section class="gut appr" id="approach">
@@ -547,11 +575,12 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------- content ---------- */
 const CASES=[
- {cov:'bf',img:'assets/main/cover-bitflare.webp',bg:'radial-gradient(120% 100% at 30% 0%,#e4ff6a 0%,#c6ff00 45%,#9fd400 100%)',alt:'Bitflare — лаунчпад для инвестиций',href:'project.html',tags:['Fintech','SaaS','B2B','B2C'],t:'Спроектировал лаунчпад и бренд для запуска IPO',d:'Платформа, где стартапы собирают инвестиции, а инвесторы заходят в проект до листинга.'},
- {img:'assets/main/cover-robinhood.webp',vid:'',bg:'#c6f63e',alt:'Robinhood Learn — уроки по инвестициям в приложении Robinhood',nda:1,tags:['Fintech','B2C','Mobile','EdTech'],t:'Как короткие уроки помогли новичкам решиться на первую инвестицию в Robinhood',d:'Совместно с командой сделали онбординг для Robinhood, который повысил первые инвестиции от новичков на 92%.'},
- {cov:'pd',img:'assets/main/cover-pump.webp',bg:'radial-gradient(120% 90% at 50% 0%,#3d7a22 0%,#1d3d10 55%,#0d1f06 100%)',alt:'Pump DAO — DeFi-платформа для мем-токена',href:'pump.html',tags:['Fintech','SaaS','B2C'],t:'Механика удержания, которая сохранила ~$2 млн капитализации после пресейла',d:'Создал продукт для мем-токена на фоне плохого рынка и неожиданных новостей: в сжатые сроки запустил продукт и сохранил капитализацию $2 млн.'},
- {cov:'anty',img:'assets/main/cover-anty.webp',bg:'radial-gradient(120% 90% at 50% 0%,#2a2c8f 0%,#14153f 55%,#0b0b1c 100%)',alt:'Anty Wallet — крипто-кошелёк внутри Telegram',href:'anty.html',tags:['Fintech','B2C','Telegram'],t:'Собрал MVP с UX-решением, которое выкупил крупный Web3-проект',d:'Кошелёк в Telegram для массовой аудитории: 50 000 пользователей в месяц. Продукт выкупили вместе с моими UX-решениями.'},
- {cov:'fh',alt:'FinHamster — учёт личных финансов',bg:'radial-gradient(120% 90% at 50% 0%,#1d5bd6 0%,#0a3068 50%,#041633 100%)',href:'finhamster.html',tags:['Fintech','B2C','Mobile','AI'],t:'Превратил скучный учёт расходов в план с советами',d:'FinHamster: ИИ-помощник для личных финансов, где учёт сразу подсказывает следующий шаг.'},
+ {cov:'img',img:'assets/main/cover-bitflare2.webp',bg:'#c6ff00',alt:'Bitflare — лаунчпад для запуска IPO',href:'project.html',tags:['Fintech','SaaS','B2B','B2C'],t:'Как я спроектировал SaaS и бренд для запуска IPO с нуля за 2 месяца',d:'Платформа, где стартапы собирают инвестиции, а инвесторы заходят в проект до листинга.'},
+ {img:'assets/main/cover-robinhood2.webp',bg:'#c6f63e',alt:'Robinhood Learn — уроки по инвестициям в приложении Robinhood',nda:1,tags:['Fintech','SaaS','B2B','B2C'],t:'Как короткие уроки помогли новичкам решиться на первую инвестицию в Robinhood',d:'Вместе с командой сделали онбординг для Robinhood, который повысил первые инвестиции новичков на 92%.'},
+ {cov:'pdc',bg:'#0b0b0d',alt:'Pump DAO: курс после пресейла держится, пока обычные пресейлы падают до −99%',href:'pump.html',tags:['Fintech','SaaS','B2C'],t:'Механика удержания, которая сохранила ~$2 млн капитализации после пресейла',d:'Сделал продукт для мем-токена на фоне плохого рынка и неожиданных новостей: запустил в сжатые сроки и сохранил капитализацию $2 млн.'},
+ {img:'assets/main/cover-slothereum.webp',bg:'#2b6fe8',alt:'Slothereum OS — торговый терминал',href:'slothereum.html',tags:['Fintech','SaaS','B2B','B2C'],t:'Как я спроектировал первый трейдинг-терминал между блокчейнами',d:'Мем-ОС на Ethereum: запуск токена, торговля в любой сети и покупки прямо из Twitter — даже без криптокошелька.'},
+ {cov:'anty',bg:'radial-gradient(120% 90% at 50% 0%,#2a2c8f 0%,#14153f 55%,#0b0b1c 100%)',alt:'Anty Wallet — крипто-кошелёк внутри Telegram',href:'anty.html',tags:['Fintech','SaaS','B2B','B2C'],t:'Собрал MVP с UX-решением, которое выкупил крупный Web3-проект',d:'Webapp-кошелёк для массовой аудитории, где точка входа — Telegram. 50 000 пользователей в месяц.'},
+ {img:'assets/main/cover-testnet.webp',bg:'#000',alt:'Aether Testnet — тестнет L3-блокчейна',nda:1,tags:['Fintech','SaaS','B2B','B2C'],t:'Спроектировал тестнет L3-блокчейна',d:'Тестнет для сети третьего уровня: кошелёк, кран и эксплорер в одном интерфейсе.'},
 ];
 /* AI pipeline: title, what happens, tools (assets/<name>.png), step icon */
 const AI_STEPS=[
@@ -586,10 +615,11 @@ const COVER={
  anty:c=>`<div class="cvr cfan" aria-label="${esc(c.alt||'')}">${['walletBasic','wallet','walletHot'].map((k,i)=>PH(`assets/anty/v3/${k}.webp`,'f'+(i+1))).join('')}</div>`,
  bf:c=>{const B='assets/bitflare/v3/';return `<div class="cvr cbf" aria-label="${esc(c.alt||'')}"><div class="cbr"><div class="cbr-top"><i></i><i></i><i></i></div><img src="${B}hero-web.webp" alt="" loading="lazy" decoding="async"></div>${PH([B+'m-project.webp',B+'m-review.webp',B+'m-success.webp',B+'m-wallet.webp'],'p1 cyc')}</div>`},
  pd:c=>{const B='assets/pump/v3/';return `<div class="cvr cpd" aria-label="${esc(c.alt||'')}">${PH(B+'m-staking.webp','p1',1)}${PH([B+'m-panel.webp',B+'m-contracts.webp'],'p2 cyc',1)}${PH(B+'m-leader.webp','p3',1)}</div>`},
+ pdc:c=>`<div class="cvr cpc" aria-label="${esc(c.alt||'')}"><svg viewBox="0 0 600 260" preserveAspectRatio="none" aria-hidden="true"><path class="g0" d="M0 130H600"/><path class="mk" pathLength="1" d="M0 120 C 60 110 90 150 130 190 S 230 236 330 244 S 520 250 600 252"/><path class="pdl" pathLength="1" d="M0 120 C 60 112 100 140 150 132 S 260 108 330 112 S 480 104 600 106"/></svg><span class="cl l0">пресейл</span><span class="cl l1">Pump DAO <b>+10%</b> к цене пресейла через месяц</span><span class="cl l2">обычный пресейл Solana <b>до −99%</b></span><div class="cx"><span>старт</span><span>неделя 1</span><span>месяц 1</span></div></div>`,
  fh:c=>{const B='assets/finhamster/';const s=['m-main','m-an-bask','m-rec2','m-tx','m-an-cat','m-marathon'];const row=s.map(k=>PH(B+k+'.webp','')).join('');return `<div class="cvr cfh" aria-label="${esc(c.alt||'')}"><div class="ctrack">${row}${row}</div></div>`}
 };
-function cardsHTML(list){return list.map(c=>{const off=c.soon||c.nda,tag=off?'div':'a';const href=off?'':` href="${c.href}"`;return `<${tag} class="card${c.soon?' soon':''}${c.nda?' nda':''}"${href}><div class="cover" style="background:${c.bg}">${c.cov?COVER[c.cov](c):c.vid?`<video src="${c.vid}" poster="${c.img}" muted loop playsinline autoplay preload="metadata" aria-label="${esc(c.alt||'')}"></video>`:c.img?`<img src="${c.img}" alt="${esc(c.alt||'')}" loading="lazy" decoding="async">`:''}${c.nda?'<span class="ndab">NDA 🛠️</span>':''}</div><div class="cbody"><h3 class="ctitle">${esc(c.t)}</h3><div class="cbadges">${c.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div><p class="cdesc">${esc(c.d)}</p><span class="cmore">${c.soon?'Кейс скоро':c.nda?'NDA (по запросу) '+ARW:'Читать кейс '+ARW}</span></div></${tag}>`}).join('');}
-$('#caseList').innerHTML=cardsHTML(CASES).replace(/class="card"/g,'class="card rv"');
+function cardsHTML(list){return list.map(c=>{const off=c.soon||c.nda,tag=off?'div':'a';const href=off?'':` href="${c.href}"`;return `<${tag} class="card${c.soon?' soon':''}${c.nda?' nda':''}"${href}><div class="cover" style="background:${c.bg}">${c.cov&&COVER[c.cov]?COVER[c.cov](c):c.vid?`<video src="${c.vid}" poster="${c.img}" muted loop playsinline autoplay preload="metadata" aria-label="${esc(c.alt||'')}"></video>`:c.img?`<img src="${c.img}" alt="${esc(c.alt||'')}" loading="lazy" decoding="async">`:''}${c.nda?'<span class="ndab">NDA 🛠️</span>':''}</div><div class="cbody"><h3 class="ctitle">${esc(c.t)}</h3><div class="cbadges">${c.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div><p class="cdesc">${esc(c.d)}</p><span class="cmore">${c.soon?'Кейс скоро':c.nda?'NDA (по запросу) '+ARW:'Читать кейс '+ARW}</span></div></${tag}>`}).join('');}
+$('#caseList').innerHTML=cardsHTML(CASES);
 /* covers animate in when visible; screens cycle like a recording */
 const fio=new IntersectionObserver(es=>es.forEach(e=>{e.target.classList.toggle('on',e.isIntersecting);if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.35});
 function watchFans(){document.querySelectorAll('.cvr').forEach(f=>fio.observe(f));}watchFans();
@@ -602,8 +632,22 @@ $('#stk').innerHTML=GROUPS.map(g=>{const n=g[2].length,rs=n>1?25/(n-1):0;return 
 $('#rows').innerHTML=EXP.map(e=>`<div class="row rv"><div>${e[0]}<small>${e[1]}</small></div><div>${e[2]}<small>${e[3]}</small></div></div>`).join('');
 $('#mlist').innerHTML=MENU.map((m,i)=>`<li style="animation-delay:${.08+i*.05}s"><a href="${m[2]}"><strong>${m[0]} <span class="c"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></strong><p>${m[1]}</p></a></li>`).join('');
 
+
+
 /* ---------- tabs + empty states with timer ---------- */
 const tabsEl=$('.tabs'),caseList=$('#caseList');let curTab='cases';
+/* ---------- cases slider ---------- */
+const sldots=$('#sldots');
+function slCards(){return [...caseList.querySelectorAll('.card')];}
+function slIdx(){const cs=slCards();if(!cs.length)return 0;const x=caseList.scrollLeft;let b=0,bd=1e9;cs.forEach((c,i)=>{const d=Math.abs(c.offsetLeft-caseList.offsetLeft-x-(cs[0].offsetLeft-caseList.offsetLeft));if(d<bd){bd=d;b=i;}});return b;}
+function slGo(i){const cs=slCards();i=Math.max(0,Math.min(cs.length-1,i));caseList.scrollTo({left:cs[i].offsetLeft-cs[0].offsetLeft,behavior:reduce?'auto':'smooth'});}
+function slSync(){const cs=slCards();sldots.innerHTML=cs.map((_,i)=>`<i data-i="${i}"></i>`).join('');slMark();}
+function slMark(){const i=slIdx(),n=slCards().length,max=caseList.scrollWidth-caseList.clientWidth;[...sldots.children].forEach((d,k)=>d.classList.toggle('on',k===i));
+  $('#slPrev').disabled=caseList.scrollLeft<4;$('#slNext').disabled=caseList.scrollLeft>max-4;}
+caseList.addEventListener('scroll',()=>{if(caseList.classList.contains('sl'))slMark();},{passive:true});
+$('#slPrev').addEventListener('click',()=>slGo(slIdx()-1));$('#slNext').addEventListener('click',()=>slGo(slIdx()+1));
+sldots.addEventListener('click',e=>{const d=e.target.closest('i');if(d)slGo(+d.dataset.i);});
+addEventListener('resize',slMark);slSync();
 const WAIT=15,EMPTY={};let tick1=0;
 const fmt=n=>'00:'+String(Math.max(0,n)).padStart(2,'0');
 function emptyHTML(st){return st.left>0
@@ -613,7 +657,8 @@ function runTimer(k){clearInterval(tick1);const st=EMPTY[k];if(st.left<=0)return
   tick1=setInterval(()=>{if(curTab!==k){clearInterval(tick1);return;}st.left--;const el=$('#tmr');
     if(st.left>0){if(el)el.textContent=fmt(st.left);}else{clearInterval(tick1);caseList.innerHTML=emptyHTML(st);}},1000);}
 function showTab(k){clearInterval(tick1);
-  if(k==='cases'){caseList.innerHTML=cardsHTML(CASES);watchFans();return;}
+  caseList.classList.toggle('sl',k==='cases');$('#slnav').hidden=k!=='cases';
+  if(k==='cases'){caseList.innerHTML=cardsHTML(CASES);watchFans();slSync();return;}
   const st=EMPTY[k]||(EMPTY[k]={left:WAIT});caseList.innerHTML=emptyHTML(st);runTimer(k);}
 document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{if(t.dataset.k===curTab)return;curTab=t.dataset.k;
   document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected',x===t));

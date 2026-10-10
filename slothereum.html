@@ -3,102 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Slothereum — Роман Васнёв</title>
-<meta name="description" content="Slothereum OS: мем-операционная система с лаунчпадом токенов, торговым терминалом и ботом в Twitter. Кейс продуктового дизайнера Романа Васнёва.">
+<title>Slothereum OS — Роман Васнёв</title>
+<meta name="description" content="Slothereum OS: мем-операционная система на Ethereum — лаунчпад токенов, торговый терминал между сетями, торговля через биржу без кошелька и бот в Twitter. Кейс продуктового дизайнера Романа Васнёва.">
 <meta name="theme-color" content="#060606">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&display=swap">
-<style>
-:root{--bg:#060606;--fg:#fff;--muted:#767676;--dim:#404040;--line:#202020;--blue:#043ae5;--blue2:#3c2cff;--tag:#3565ff;--font:'Geist',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--pad:20px;--max:450px;color-scheme:dark}
-*{box-sizing:border-box}
-html,body{background:var(--bg)}
-body{margin:0;color:var(--fg);font-family:var(--font);letter-spacing:-.05em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
-.wrap{max-width:var(--max);margin:0 auto;position:relative}
-.gut{padding-inline:var(--pad)}
-.arr{width:15px;height:15px;flex:none}
-:focus-visible{outline:2px solid var(--tag);outline-offset:3px;border-radius:6px}
-/* header */
-.hdr{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px)}
-.hdr .wrap{height:80px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:19px var(--pad) 0}
-.hdr::before{content:"";position:absolute;inset:0;background:rgba(6,6,6,.6);-webkit-backdrop-filter:blur(4px) saturate(1.5) brightness(1.08);backdrop-filter:blur(4px) saturate(1.5) brightness(1.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.08);-webkit-mask:linear-gradient(#000 26%,rgba(0,0,0,.55) 62%,transparent);mask:linear-gradient(#000 26%,rgba(0,0,0,.55) 62%,transparent)}
-.hdr .dom,.hdr .mbtn{position:relative;font-size:16px;font-weight:500;white-space:nowrap}
-.prog{position:relative;flex:1;max-width:130px;height:2px;border-radius:40px;background:#323232;overflow:hidden}
-.prog i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:40px;background:linear-gradient(90deg,#3c2cff,#c4ceff)}
-.mbtn{display:flex;align-items:center;gap:6px}
-.dot18{width:18px;height:18px;border-radius:50%;background:#fff;display:grid;place-items:center}
-
-/* footer */
-.ftr{margin-top:100px;background:#fff;color:#000;border-radius:30px 30px 0 0;padding:39px var(--pad) calc(25px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:center;gap:20px}
-.ftr .links{margin:0;justify-content:center}
-.ftr small{font-size:12px;color:#b4b4b4}
-
-/* menu */
-.menu{position:fixed;inset:0;z-index:80;background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#000;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility 0s .35s}
-.menu.open{opacity:1;visibility:visible;transition:opacity .35s ease}
-.menu .wrap{min-height:100%;display:flex;flex-direction:column}
-.menu .top{height:80px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:19px var(--pad) 0;margin-top:env(safe-area-inset-top,0px)}
-.lang{margin:30px var(--pad) 0;font-size:18px;font-weight:500}
-.lang span{color:var(--muted)}
-.mlist{list-style:none;margin:22px 0 0;padding:0 var(--pad);display:flex;flex-direction:column;gap:22px;flex:1}
-.mlist a{display:block}
-.mlist strong{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:500}
-.mlist .c{width:24px;height:24px;border-radius:50%;background:#000;display:grid;place-items:center}
-.mlist .c path{stroke:#fff}
-.menu .dot18{background:#000}
-.menu .dot18 path{stroke:#fff}
-.mlist p{margin:8px 0 0;font-size:14px;line-height:20px;color:var(--muted)}
-.menu .ftr{margin-top:40px;background:#000;color:#fff}
-.menu .ftr .links a{color:#fff}
-.menu.open .mlist li{animation:mi .5s both cubic-bezier(.2,.7,.2,1)}
-@keyframes mi{from{opacity:0;filter:blur(8px);transform:translateY(12px)}}
-
-/* project page (Figma: Mobile / Project page) */
-main{padding-top:146px}
-.c24{width:24px;height:24px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none}
-.back{display:inline-flex;align-items:center;gap:8px;font-size:20px;font-weight:500;line-height:26px}
-.prj{display:flex;gap:12px;align-items:center;margin-top:34px}
-.logo{width:40px;height:40px;border-radius:14px;border:1px solid #0f0f0f;overflow:hidden;flex:none;background:#7b5cf0}
-.logo img{width:100%;height:100%;display:block}
-.prj b{display:block;font-size:16px;font-weight:500;line-height:21px}
-.prj small{display:block;font-size:14px;color:var(--muted);line-height:18px}
-h1{font-size:24px;font-weight:500;line-height:27px;margin:12px 0 0;text-wrap:balance}
-.flow{display:flex;flex-direction:column;gap:12px;margin-top:36px}
-.shot{margin:0;border-radius:20px;overflow:hidden;background:#141414}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.shot img{display:block;width:100%;height:auto}
-.tx{margin:-2px 0 24px}
-.tx .lbl{display:block;font-size:14px;line-height:18px;color:var(--muted);margin:0 0 6px}
-.tx p{margin:0;font-size:16px;line-height:20px;font-weight:300}
-.tx p b{font-weight:500}
-.tx ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
-.tx li{position:relative;padding-left:16px;font-size:16px;line-height:20px;font-weight:300}
-.tx li::before{content:"";position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:var(--tag)}
-.ctx{margin:0 0 28px;display:flex;flex-direction:column}
-.ctx div{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line);font-size:14px;line-height:18px}
-.ctx div:last-child{border-bottom:1px solid var(--line)}
-.ctx dt{color:var(--muted)}
-.ctx dd{margin:0}
-.res{margin-top:68px}
-.res h2{font-size:26px;font-weight:500;line-height:28px;margin:0}
-.rp{margin:12px 0 0;font-size:16px;line-height:20px;font-weight:300}
-.mx{display:grid;grid-template-columns:1fr 1fr;gap:28px 16px;margin-top:36px}
-.mx b{display:block;font-size:44px;line-height:44px;font-weight:500;letter-spacing:-.06em;background:linear-gradient(90deg,#fff,#c4ceff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.mx span{display:block;margin-top:10px;font-size:14px;line-height:18px;color:var(--muted)}
-.note{margin:28px 0 0;padding:14px 16px;border-radius:16px;background:#121212;font-size:14px;line-height:18px;color:var(--muted)}
-.credits{margin-top:120px;display:flex;flex-direction:column;gap:12px}
-.credits b{display:block;font-size:22px;font-weight:500;line-height:29px}
-.credits small{display:block;margin-top:8px;font-size:18px;font-weight:500;line-height:20px;color:var(--muted)}
-.sep{border:0;border-top:1px solid var(--line);margin:80px 0 0}
-.next{display:flex;align-items:center;gap:16px;margin-top:60px}
-.next .th{width:96px;height:62px;border-radius:14px;background:#1a1a1a;overflow:hidden;flex:none}
-.next .th img{width:100%;height:100%;object-fit:cover;display:block}
-.next span.t{display:flex;align-items:center;gap:8px;font-size:20px;font-weight:500;line-height:26px}
-.ftr{margin-top:150px}
-@media (prefers-reduced-motion:reduce){.menu{transition:none}.menu.open .mlist li{animation:none}}
-</style>
-<link rel="stylesheet" href="desk.css">
+<link rel="icon" href="assets/slothereum/logo.webp">
+<link rel="stylesheet" href="case.css">
+<link rel="stylesheet" href="anty-v3.css">
+<link rel="stylesheet" href="pump-v3.css">
+<link rel="stylesheet" href="sl-v3.css">
+<style>:root{--accent:#2f7bff}</style>
 </head>
 <body>
 <header class="hdr">
@@ -108,72 +23,160 @@ h1{font-size:24px;font-weight:500;line-height:27px;margin:12px 0 0;text-wrap:bal
     <button class="mbtn" id="mopen" aria-haspopup="dialog" aria-controls="menu">menu <span class="dot18"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
   </div>
 </header>
-<main class="wrap gut">
-  <a class="back" href="index.html"><span class="c24"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M11 4.5H1M4.5 1 1 4.5 4.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>На главную</a>
-  <div class="prj"><div class="logo"><img src="assets/slothereum/logo.webp" alt="" width="40" height="40"></div><div><b>Slothereum OS</b><small>Мем-операционная система на Ethereum</small></div></div>
-  <h1>Торговая платформа, где можно купить токен в любой сети без криптокошелька</h1>
-  <div class="flow">
-    <figure class="shot"><img src="assets/slothereum/01-hero.webp" alt="Slothereum OS: торговый терминал" width="1600" height="1174" fetchpriority="high" decoding="async"></figure>
-  <div class="tx"><p>SLOTHEREUM OS — мем-операционная система на Ethereum. В ней можно выпустить свой токен, торговать им во встроенном терминале, обменивать токены между сетями и покупать их прямо из Twitter через бота. Я спроектировал платформу целиком: структуру, сценарии, интерфейсы для desktop и mobile и UI-kit, готовый к разработке.</p></div>
-  <dl class="ctx">
-  <div><dt>Платформа</dt><dd>Web: desktop и mobile, интерфейс в виде операционной системы</dd></div>
-  <div><dt>Роль</dt><dd>Product Designer: структура, UX-сценарии, UI, UI-kit, подготовка к разработке</dd></div>
-  <div><dt>Модули</dt><dd>Лаунчпад токенов, торговый терминал, обмен, бот в Twitter, API для разработчиков</dd></div>
- </dl>
-  <figure class="shot"><img src="assets/slothereum/03-os.webp" alt="Рабочий стол Slothereum OS" width="1600" height="1018" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="assets/slothereum/02-phone.webp" alt="Мобильная версия кошелька" width="895" height="888" loading="lazy" decoding="async"></figure>
-  <div class="tx"><span class="lbl">Задача</span><p>Сделать продукт для мем-комьюнити, где всё — от выпуска токена до сделки — проходит в одном месте и не требует технических знаний. Пользователь должен торговать в любой сети, даже если у него нет криптокошелька, а есть только аккаунт на бирже.</p></div>
-  <figure class="shot"><img src="assets/slothereum/04-naming.webp" alt="Нейминг: SLO и Ethereum" width="1600" height="464" loading="lazy" decoding="async"></figure>
-  <div class="tx"><span class="lbl">Нейминг и характер</span><p>Название собрано из SLO и Ethereum. Ленивец SLO высмеивает медленные транзакции в сети Ethereum и задаёт тон всему продукту: интерфейс серьёзный, а характер — мемный. Каждый модуль оформлен как приложение на рабочем столе своей ОС.</p></div>
-  <figure class="shot"><img src="assets/slothereum/05-slopad.webp" alt="SLOPAD на десктопе" width="1516" height="896" loading="lazy" decoding="async"></figure>
-  <div class="tx"><span class="lbl">Модуль 1</span><p><b>SLOPAD — токен за 3 шага.</b> Генератор и лаунчпад мем-токенов без программирования: название, тикер, настройки эмиссии и ликвидности — и токен сразу торгуется внутри экосистемы. Лента сверху показывает свежие запуски и покупки в реальном времени.</p></div>
-  <figure class="shot"><img src="assets/slothereum/06a-launch.webp" alt="Запуск токена на мобильном" width="897" height="566" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="assets/slothereum/06b-token.webp" alt="Страница токена на мобильном" width="893" height="937" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="assets/slothereum/06c-mobile.webp" alt="SLOPAD: список токенов и компоненты" width="1600" height="1245" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="assets/slothereum/07-slopad-desktop.webp" alt="Страница токена с графиком и холдерами" width="1600" height="1068" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Страница токена.</b> График с периодами, прогресс сбора ликвидности, цена, капитализация и объём, а покупка — в один клик с быстрыми суммами. Ниже лента сделок и холдеры с пометками создателя и пула.</p></div>
-  <figure class="shot"><img src="assets/slothereum/08-terminal.webp" alt="Торговый терминал" width="1518" height="902" loading="lazy" decoding="async"></figure>
-  <div class="tx"><span class="lbl">Модуль 2</span><p><b>Торговый терминал.</b> Покупка, продажа и отслеживание токенов в любой сети, а не только в Ethereum. Fast buy и Fast sell принимают адрес контракта — без поиска по спискам.</p></div>
-  <figure class="shot"><img src="assets/slothereum/09-cex.webp" alt="Подключение бирж Bybit, MEXC и Binance" width="1600" height="1281" loading="lazy" decoding="async"></figure>
-  <div class="tx"><span class="lbl">Ключевое решение</span><p><b>Торговля через биржу, без кошелька.</b> Пользователь входит через свою централизованную биржу — Binance, Bybit или MEXC — и торгует сразу, не настраивая криптокошелёк. Для каждой биржи есть подсказка, где взять API-ключи.</p></div>
-  <figure class="shot"><img src="assets/slothereum/10-onboarding.webp" alt="Подключение бирж при регистрации" width="1600" height="576" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p>На регистрации биржи можно подключить сразу или пропустить этот шаг. Порог входа ниже на старте, а подключить биржу продукт предлагает позже — в момент, когда она действительно нужна.</p></div>
-  <figure class="shot"><img src="assets/slothereum/11-hub.webp" alt="Главный экран терминала" width="1600" height="914" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Универсальный торговый хаб.</b> Баланс, позиции, отправка, получение, обмен и смена кошелька — с главного экрана в один клик.</p></div>
-  <figure class="shot"><img src="assets/slothereum/12-wallet-flow.webp" alt="Покупка через кошелёк" width="1420" height="753" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="assets/slothereum/13-cex-flow.webp" alt="Покупка через биржу" width="1420" height="801" loading="lazy" decoding="async"></figure>
-  <div class="tx"><span class="lbl">Ключевое решение</span><p><b>Два сценария подтверждения.</b> API бирж работает иначе, чем кошелёк: сделка может исполняться дольше, а цена — сдвинуться. Поэтому я развёл подтверждение на два флоу. Для биржи — время исполнения и допустимое отклонение цены, для кошелька — короткое подтверждение. Человек всегда понимает, что произойдёт с его ордером.</p></div>
-  <figure class="shot"><img src="assets/slothereum/14-garry.webp" alt="Garry Bot в чате" width="1600" height="946" loading="lazy" decoding="async"></figure>
-  <div class="tx"><span class="lbl">Модуль 3</span><p><b>Garry Bot — торговля прямо в Twitter.</b> Бот покупает, продаёт и обменивает токены в любых сетях по ответу на твит: #garybuy, #garysell, #garyswap. Сделка идёт через подключённый кошелёк или биржу — торговать можно там, где идёт обсуждение.</p></div>
-  <figure class="shot"><img src="assets/slothereum/15-garry-tabs.webp" alt="Логи и позиции бота" width="896" height="883" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="assets/slothereum/16-transactions.webp" alt="Флоу получения, покупки и отправки" width="1600" height="1675" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="assets/slothereum/17-states.webp" alt="Статусы транзакций" width="1320" height="710" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Транзакции без неожиданностей.</b> Получение, покупка, отправка и обмен проходят через одинаковое подтверждение, а итог показывается одним из понятных статусов: получено, отправлено, обменяно или ошибка со ссылкой в обозреватель блоков.</p></div>
-  <figure class="shot"><img src="assets/slothereum/18-uikit.webp" alt="UI-kit Slothereum OS" width="1600" height="1238" loading="lazy" decoding="async"></figure>
-  <div class="tx"><span class="lbl">UI-kit</span><p>UI-kit собран по правилам React-вёрстки: rem-отступы, flex-компоненты, адаптивная логика. Поэтому Locofy.ai и Figma Tokens переводят макеты в чистый React-код с правильными размерами — разработчикам меньше ручной работы и ошибок.</p></div>
-  </div>
-  <section class="res" aria-labelledby="resH">
-  <h2 id="resH">Результаты</h2>
-  <p class="rp">Платформа спроектирована целиком: лаунчпад, терминал, обмен, бот в Twitter и транзакции — на desktop и mobile, на одном UI-kit, готовом к автоматической конвертации в React.</p>
-  <div class="mx"><div><b>5</b><span>модулей в одной системе</span></div><div><b>3</b><span>шага до запуска токена</span></div><div><b>2</b><span>сценария подтверждения: биржа и кошелёк</span></div><div><b>2</b><span>платформы — desktop и mobile</span></div></div>
-</section>
-<section class="res" aria-labelledby="outH">
-  <h2 id="outH">Выводы</h2>
-  <p class="rp">Чтобы человек начал торговать, ему не нужно разбираться в кошельках: достаточно биржи, которой он уже пользуется. Мемный характер помог сделать сложный финансовый продукт дружелюбным, а строгий UI-kit — быстро довести его до кода.</p>
-</section>
-  <div class="credits"><div><b>Product Design</b><small>Васнёв Роман</small></div><div><b>UX/UI</b><small>Васнёв Роман</small></div><div><b>UI Kit</b><small>Васнёв Роман</small></div><div><b>Mascot</b><small>@Bloobell</small></div></div>
-  <hr class="sep">
-  <a class="next" href="project.html"><span class="th"><img src="assets/bitflare/cover.webp" alt="" loading="lazy"></span><span class="t">Следующий проект <span class="c24"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5h10M7.5 1 11 4.5 7.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a>
+<main class="av3 sl">
+  <section class="hero3">
+    <div class="c hero3-in">
+      <div class="hero3-tx">
+        <a class="back3" href="index.html"><span class="c24">←</span>На главную</a>
+        <div class="eyebrow"><img src="assets/slothereum/logo.webp" alt="" width="28" height="28">Slothereum OS · мем-операционная система на Ethereum</div>
+        <h1 class="h1x">Спроектировал первый трейдинг-терминал между блокчейнами</h1>
+        <p class="lead">В Slothereum OS можно выпустить свой токен, торговать им в любой сети, обменивать токены между блокчейнами и покупать их прямо из Twitter. Главное — для этого не нужен криптокошелёк: достаточно аккаунта на бирже. Я спроектировал платформу целиком: структуру, сценарии, desktop, mobile и UI-kit.</p>
+        <dl class="facts">
+          <div><dt>Роль</dt><dd>Продуктовый дизайнер</dd></div>
+          <div><dt>Платформы</dt><dd>Desktop и mobile web</dd></div>
+          <div><dt>Модули</dt><dd>Лаунчпад, терминал, обмен, бот, API</dd></div>
+        </dl>
+      </div>
+      <div class="hero3-vis sl-hero" aria-label="Торговый терминал Slothereum OS">
+        <div class="glow3"></div>
+        <div class="sl-card" id="slHero"><img src="assets/main/cover-slothereum.webp" alt="Торговый терминал Slothereum OS: мультикошелёк, смена биржи и fast buy" width="1020" height="690" fetchpriority="high"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="c nums">
+    <div class="num3 rv3"><b data-count="5">5</b><span>модулей в одной системе</span></div>
+    <div class="num3 rv3"><b data-count="3">3</b><span>шага до запуска своего токена</span></div>
+    <div class="num3 rv3"><b data-count="2">2</b><span>сценария подтверждения: биржа и кошелёк</span></div>
+    <div class="num3 rv3"><b>0</b><span>криптокошельков нужно, чтобы начать торговать</span></div>
+  </section>
+
+  <section class="c prob">
+    <h2 class="h2x rv3">Мем-комьюнити хочет торговать, а не настраивать кошельки</h2>
+    <div class="prob-cols">
+      <p class="rv3"><b>Задача:</b> собрать продукт, где всё — от выпуска токена до сделки — проходит в одном месте и не требует технических знаний.</p>
+      <p class="rv3"><b>Главное ограничение:</b> пользователь должен торговать в любой сети, даже если у него нет криптокошелька, а есть только аккаунт на бирже.</p>
+    </div>
+    <figure class="sl-wide rv3"><img src="assets/slothereum/04-naming.webp" alt="Нейминг: SLO и Ethereum" width="1600" height="464" loading="lazy"></figure>
+    <p class="body3 rv3">Название собрано из SLO и Ethereum. Ленивец SLO высмеивает медленные транзакции в Ethereum и задаёт тон продукту: интерфейс серьёзный, характер — мемный. Каждый модуль оформлен как приложение на рабочем столе своей ОС.</p>
+  </section>
+
+  <section class="c cab">
+    <h2 class="h2x rv3">Пять приложений на одном рабочем столе</h2>
+    <p class="body3 rv3">Каждый модуль открывается как окно операционной системы — пользователь сразу понимает, где он и как вернуться.</p>
+    <div class="cab-tabs rv3" id="mTabs" role="tablist">
+      <button role="tab" class="on">SLOPAD<i></i></button>
+      <button role="tab">Страница токена<i></i></button>
+      <button role="tab">Терминал<i></i></button>
+      <button role="tab">Торговый хаб<i></i></button>
+      <button role="tab">Garry Bot<i></i></button>
+    </div>
+    <div class="mstage rv3" id="mStage">
+      <img class="on" src="assets/slothereum/05-slopad.webp" alt="SLOPAD на десктопе" width="1516" height="896" loading="lazy">
+      <img src="assets/slothereum/07-slopad-desktop.webp" alt="Страница токена с графиком и холдерами" width="1600" height="1068" loading="lazy">
+      <img src="assets/slothereum/08-terminal.webp" alt="Торговый терминал" width="1518" height="902" loading="lazy">
+      <img src="assets/slothereum/11-hub.webp" alt="Главный экран терминала" width="1600" height="914" loading="lazy">
+      <img src="assets/slothereum/14-garry.webp" alt="Garry Bot в чате" width="1600" height="946" loading="lazy">
+    </div>
+    <p class="cab-cap" id="mCap"></p>
+  </section>
+
+  <section class="c split cex-s">
+    <div class="split-tx">
+      <span class="kick rv3">Ключевое решение</span>
+      <h2 class="h2x rv3">Торговля через биржу — без кошелька</h2>
+      <p class="body3 rv3">Пользователь входит через биржу, которой уже пользуется — Binance, Bybit или MEXC, — и торгует сразу. Для каждой биржи есть подсказка, где взять API-ключи.</p>
+      <div class="cexs rv3" id="cexs" aria-hidden="true"><span>Binance</span><span>Bybit</span><span>MEXC</span></div>
+    </div>
+    <figure class="sl-img rv3"><img src="assets/slothereum/09-cex.webp" alt="Подключение бирж Bybit, MEXC и Binance" width="1600" height="1281" loading="lazy"></figure>
+  </section>
+
+  <section class="c">
+    <figure class="sl-wide rv3"><img src="assets/slothereum/10-onboarding.webp" alt="Подключение бирж при регистрации" width="1600" height="576" loading="lazy"></figure>
+    <p class="body3 rv3">На регистрации биржу можно подключить сразу или пропустить. Порог входа ниже, а подключить её продукт предлагает позже — в момент, когда она действительно нужна.</p>
+  </section>
+
+  <section class="c conf-s">
+    <span class="kick rv3">Ключевое решение</span>
+    <h2 class="h2x rv3">Два сценария подтверждения</h2>
+    <p class="body3 rv3">API биржи работает иначе, чем кошелёк: сделка может исполняться дольше, а цена — сдвинуться. Поэтому подтверждение разведено на два флоу — человек всегда понимает, что произойдёт с его ордером.</p>
+    <div class="seg sseg rv3" id="cseg" role="tablist" aria-label="Сценарий подтверждения"><button role="tab" class="on">Через кошелёк</button><button role="tab">Через биржу</button><span class="seg-k" aria-hidden="true"></span></div>
+    <div class="conf rv3">
+      <div class="conf-vp" id="confVp"><img class="on" src="assets/slothereum/12-wallet-flow.webp" alt="Покупка через кошелёк" width="1420" height="753" loading="lazy"><img src="assets/slothereum/13-cex-flow.webp" alt="Покупка через биржу" width="1420" height="801" loading="lazy"></div>
+      <ul class="conf-l" id="confL">
+        <li class="on"><b>Кошелёк</b>короткое подтверждение: сколько платишь, что получишь и комиссия</li>
+        <li><b>Биржа</b>плюс примерное время исполнения и допустимое отклонение цены — ползунком</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="c split garry-s">
+    <figure class="sl-img rv3"><img src="assets/slothereum/15-garry-tabs.webp" alt="Логи и позиции бота" width="896" height="883" loading="lazy"></figure>
+    <div class="split-tx">
+      <h2 class="h2x rv3">Garry Bot — торговля прямо в Twitter</h2>
+      <p class="body3 rv3">Бот покупает, продаёт и обменивает токены в любых сетях по ответу на твит. Сделка идёт через подключённый кошелёк или биржу — торговать можно там, где идёт обсуждение. Логи и позиции бота видны в приложении.</p>
+      <div class="tags3 rv3" id="garry" aria-hidden="true"><span>#garybuy</span><span>#garysell</span><span>#garyswap</span></div>
+    </div>
+  </section>
+
+  <section class="c bento-wrap">
+    <h2 class="h2x rv3">Всё остальное — так же понятно</h2>
+    <div class="bento">
+      <article class="cell wide rv3">
+        <div class="cell-tx"><h3>Транзакции без неожиданностей</h3><p>Получение, покупка, отправка и обмен проходят через одинаковое подтверждение, а итог — один из понятных статусов: получено, отправлено, обменяно или ошибка со ссылкой в обозреватель блоков.</p></div>
+        <div class="cimg"><img src="assets/slothereum/17-states.webp" alt="Статусы транзакций" width="1320" height="710" loading="lazy"></div>
+      </article>
+      <article class="cell rv3">
+        <div class="cell-tx"><h3>Токен за 3 шага</h3><p>Название, тикер, настройки эмиссии и ликвидности — и токен сразу торгуется внутри экосистемы.</p></div>
+        <div class="cimg"><img src="assets/slothereum/06a-launch.webp" alt="Запуск токена на мобильном" width="897" height="566" loading="lazy"></div>
+      </article>
+      <article class="cell rv3">
+        <div class="cell-tx"><h3>Весь продукт в телефоне</h3><p>Кошелёк, лаунчпад и страница токена работают на mobile так же, как на desktop.</p></div>
+        <div class="cimg"><img src="assets/slothereum/02-phone.webp" alt="Мобильная версия кошелька" width="895" height="888" loading="lazy"></div>
+      </article>
+      <article class="cell wide rv3">
+        <div class="cell-tx"><h3>Флоу получения, покупки и отправки</h3><p>Каждый сценарий разложен по шагам — от QR-кода для получения до экрана статуса.</p></div>
+        <div class="cimg tall"><img src="assets/slothereum/16-transactions.webp" alt="Флоу получения, покупки и отправки" width="1600" height="1675" loading="lazy"></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="c split kit-s">
+    <div class="split-tx">
+      <h2 class="h2x rv3">UI-kit, который сам становится кодом</h2>
+      <p class="body3 rv3">UI-kit собран по правилам React-вёрстки: rem-отступы, flex-компоненты, адаптивная логика. Поэтому Locofy.ai и Figma Tokens переводят макеты в чистый React-код с правильными размерами — у разработчиков меньше ручной работы и ошибок.</p>
+    </div>
+    <figure class="sl-img rv3"><img src="assets/slothereum/18-uikit.webp" alt="UI-kit Slothereum OS" width="1600" height="1238" loading="lazy"></figure>
+  </section>
+
+  <section class="c outro">
+    <h2 class="h2x big rv3">Итог: платформа целиком на одном UI-kit</h2>
+    <p class="body3 rv3 narrow">Лаунчпад, терминал, обмен, бот в Twitter и транзакции — на desktop и mobile, на одной системе, готовой к автоматической конвертации в React.</p>
+    <div class="res res6 rv3">
+      <div class="rc"><b>5</b><span>модулей в одной системе</span></div>
+      <div class="rc"><b>3</b><span>шага до запуска токена</span></div>
+      <div class="rc"><b>3</b><span>биржи вместо кошелька: Binance, Bybit, MEXC</span></div>
+      <div class="rc"><b>2</b><span>сценария подтверждения: биржа и кошелёк</span></div>
+      <div class="rc"><b>2</b><span>платформы — desktop и mobile</span></div>
+      <div class="rc"><b>1</b><span>UI-kit, который конвертируется в React</span></div>
+    </div>
+    <div class="learn rv3">
+      <div><h3>Чему научил проект</h3><p>Чтобы человек начал торговать, ему не нужно разбираться в кошельках: достаточно биржи, которой он уже пользуется. Мемный характер сделал сложный финансовый продукт дружелюбным, а строгий UI-kit — быстро довёл его до кода.</p></div>
+      <div><h3>Команда</h3><p>Product design, UX/UI и UI-kit — Роман Васнёв. Маскот SLO — иллюстратор @Bloobell.</p></div>
+    </div>
+  </section>
+
+  <div class="c nav3wrap"><nav class="nav2 navx" aria-label="Навигация по кейсам"><a href="index.html"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>На главную</a><a href="anty.html">Следующий кейс<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></nav></div>
 </main>
 <footer class="ftr">
-    <div class="links">
-      <a href="https://www.behance.net/vasnevdesign" target="_blank" rel="noopener">Telegram <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
-      <a href="https://max.ru/u/f9LHodD0cOK4eRodbkhxQK8rvB1LvE0quIyuQ6KT-D9FbLrRK_ah-9t5UUU" target="_blank" rel="noopener">Max <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
-      <a href="mailto:roman.vasnev@mail.ru">E-mail <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
-    </div>
-    <small>© 2026 - Васнёв Роман</small>
-    <div class="apps" aria-hidden="true"><img src="assets/main/ic-he.webp" alt="" width="32" height="32" loading="lazy"><img src="assets/main/ic-lp.webp" alt="" width="32" height="32" loading="lazy"><img src="assets/main/ic-me.webp" alt="" width="32" height="32" loading="lazy"></div>
-  </footer>
+  <div class="links">
+    <a href="https://www.behance.net/vasnevdesign" target="_blank" rel="noopener">Telegram <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
+    <a href="https://max.ru/u/f9LHodD0cOK4eRodbkhxQK8rvB1LvE0quIyuQ6KT-D9FbLrRK_ah-9t5UUU" target="_blank" rel="noopener">Max <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
+    <a href="mailto:roman.vasnev@mail.ru">E-mail <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
+  </div>
+  <small>© 2026 - Васнёв Роман</small>
+  <div class="apps" aria-hidden="true"><img src="assets/main/ic-he.webp" alt="" width="32" height="32" loading="lazy"><img src="assets/main/ic-lp.webp" alt="" width="32" height="32" loading="lazy"><img src="assets/main/ic-me.webp" alt="" width="32" height="32" loading="lazy"></div>
+</footer>
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Меню">
   <div class="wrap">
     <div class="top"><span style="font-size:16px;font-weight:500">vasnevdesign.ru</span><div class="prog"><i style="width:100%"></i></div><button class="mbtn" id="mclose">закрыть <span class="dot18"><svg width="8" height="8" viewBox="0 0 8 8"><path d="M1 1l6 6M7 1 1 7" stroke="#000" stroke-width="1.4" stroke-linecap="round"/></svg></span></button></div>
@@ -186,25 +189,29 @@ h1{font-size:24px;font-weight:500;line-height:27px;margin:12px 0 0;text-wrap:bal
     </footer>
   </div>
 </div>
-
 <script>
-const $=s=>document.querySelector(s);const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
-const MENU=[['Обо мне','Кто я, чем занимаюсь и как со мной связаться.','index.html#about'],['От идеи до релиза','Продукты, которые я вёл от исследования до передачи в разработку.','index.html#cases'],['Мой подход к дизайну','Этапы, через которые проходит каждый мой проект.','index.html#approach'],['Работа с AI','Как я с помощью AI быстро собираю MVP и проверяю гипотезы.','index.html#ai'],['Мой стек технологий','Инструменты, в которых я работаю на каждом этапе.','index.html#stack'],['Опыт работы','Компании и проекты, в которых я работал с 2017 года.','index.html#exp']];
+document.documentElement.classList.add('js');
+const $=s=>document.querySelector(s);const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const MENU=[['Обо мне','Кто я, чем занимаюсь и как со мной связаться.','index.html#about'],['Продуктовые кейсы','Продукты, которые я вёл от исследования до передачи в разработку.','index.html#cases'],['Мой подход к дизайну','Этапы, через которые я провожу продукт: от исследования до handoff.','index.html#approach'],['Работа с AI','Как я с помощью AI быстро собираю MVP и проверяю гипотезы.','index.html#ai'],['Мой стек технологий','Инструменты, в которых я работаю на каждом этапе.','index.html#stack'],['Пет проекты','Плагины, инструменты и проекты для Figma Community.','index.html#pet'],['Опыт работы','Компании и проекты, в которых я работал с 2017 года.','index.html#exp']];
 $('#mlist').innerHTML=MENU.map((m,i)=>`<li style="animation-delay:${.08+i*.05}s"><a href="${m[2]}"><strong>${m[0]} <span class="c"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></strong><p>${m[1]}</p></a></li>`).join('');
-
-/* ---------- menu ---------- */
 const menu=$('#menu');
 $('#mopen').addEventListener('click',()=>{menu.classList.add('open');document.body.style.overflow='hidden';$('#mclose').focus({focusVisible:false});});
 function closeMenu(){menu.classList.remove('open');document.body.style.overflow='';}
 $('#mclose').addEventListener('click',closeMenu);
-menu.addEventListener('click',e=>{if(e.target.closest('a[href^="#"]'))closeMenu();});
 addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
-
-/* ---------- scroll progress ---------- */
 const prog=$('#prog');
 function onScroll(){const h=document.documentElement.scrollHeight-innerHeight;prog.style.width=(h>0?Math.min(100,scrollY/h*100):0)+'%';}
 addEventListener('scroll',onScroll,{passive:true});onScroll();
-
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{rootMargin:'0px 0px -6% 0px',threshold:.04});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+/* carousel: dots + play only the visible video */
+document.querySelectorAll('.carf').forEach(f=>{const car=f.querySelector('.car'),vids=[...car.querySelectorAll('video')],dots=[...f.querySelectorAll('.dots i')];
+  const cur=()=>Math.round(car.scrollLeft/(car.firstElementChild.offsetWidth+12));
+  const sync=()=>{const i=cur();dots.forEach((d,j)=>d.classList.toggle('on',j===i));};
+  car.addEventListener('scroll',sync,{passive:true});
+  const vio=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting&&e.intersectionRatio>.5&&!reduce){v.play().catch(()=>{});}else v.pause();}),{threshold:[0,.5,1]});
+  vids.forEach(v=>vio.observe(v));});
 </script>
+<script src="sl-v3.js" defer></script>
 </body>
 </html>
