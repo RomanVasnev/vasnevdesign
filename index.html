@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Роман Васнёв — продуктовый дизайнер. Финтех, Web3, e-commerce: от исследования до передачи в разработку.">
 <meta name="theme-color" content="#060606">
+<style>.lang button{all:unset;cursor:pointer;color:#767676;transition:color .2s}.lang button.on{color:#fff}.lang button:hover{color:#fff}</style>
 </head>
 <body>
 <title>Роман Васнёв</title>
@@ -594,7 +595,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Меню">
   <div class="wrap">
     <div class="top"><span style="font-size:16px;font-weight:500">vasnev.art</span><div class="prog"><i style="width:100%"></i></div><button class="mbtn" id="mclose">закрыть <span class="dot18"><svg width="8" height="8" viewBox="0 0 8 8"><path d="M1 1l6 6M7 1 1 7" stroke="#000" stroke-width="1.4" stroke-linecap="round"/></svg></span></button></div>
-    <div class="lang">RU / <span>EN</span></div>
+    <div class="lang"><button type="button" data-l="ru">RU</button> / <button type="button" data-l="en">EN</button></div>
     <ul class="mlist" id="mlist"></ul>
     <footer class="ftr">
       <div class="links"><a href="https://t.me/RomanVasnev" target="_blank" rel="noopener">Telegram <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#767676" stroke-width="1.4" fill="none"/></svg></a><a href="https://max.ru/u/f9LHodD0cOK4eRodbkhxQK8rvB1LvE0quIyuQ6KT-D9FbLrRK_ah-9t5UUU" target="_blank" rel="noopener">Max <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#767676" stroke-width="1.4" fill="none"/></svg></a><a href="mailto:roman.vasnev@mail.ru">E-mail <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#767676" stroke-width="1.4" fill="none"/></svg></a></div>
@@ -939,5 +940,6 @@ const ready=Promise.all([document.fonts?document.fonts.ready:Promise.resolve(),n
 ready.then(finish);setTimeout(finish,4000);
 </script>
 
+<script src="i18n.js"></script>
 </body>
 </html>
