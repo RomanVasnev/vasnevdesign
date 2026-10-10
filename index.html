@@ -355,24 +355,59 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   .menu.open .mlist li{animation:none}
 }
 
-/* Anty cover: fan of wallet phones */
-.cfan{position:absolute;inset:0}
-.cph{--w:118px;position:absolute;left:50%;top:14%;width:var(--w);aspect-ratio:418/872;margin-left:calc(var(--w)/-2);border-radius:calc(var(--w)*.16);padding:calc(var(--w)*.032);
+/* animated covers: device mockups with real screens */
+.cover{container-type:inline-size}
+.cvr{position:absolute;inset:0}
+.cph{--w:30cqw;position:absolute;width:var(--w);height:calc(var(--w)*2.104);border-radius:calc(var(--w)*.155);
   background:linear-gradient(150deg,#55585f,#1d1e22 18%,#2b2d31 52%,#16171a 80%,#4b4e55);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22),0 24px 40px -12px rgba(0,0,0,.7);
-  transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
-.cps{width:100%;height:100%;border-radius:calc(var(--w)*.13);overflow:hidden;position:relative}
-.cps img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  backface-visibility:hidden;will-change:transform;transition:transform 1.2s cubic-bezier(.2,.8,.2,1),opacity .8s ease}
+.cps{position:absolute;inset:calc(var(--w)*.026);border-radius:calc(var(--w)*.13);overflow:hidden;background:#0b0f15;box-shadow:0 0 0 1px #000}
+.cps.lt{background:#f5faf2}
+.cps img{position:absolute;left:0;top:0;width:100%;height:auto;display:block;opacity:0;transition:opacity .6s ease}
+.cps.lt img{top:5.5%}
+.cps img.on{opacity:1}
 .cps::before{content:"";position:absolute;left:50%;top:1.1%;width:36%;height:4.4%;margin-left:-18%;border-radius:999px;background:#000;z-index:2}
-.cph{backface-visibility:hidden;will-change:transform}
-.cph.f2{z-index:2;top:10%}
+/* Anty: fan */
+.cfan .cph{--w:31cqw;left:50%;top:11%;margin-left:calc(var(--w)/-2)}
+.cfan .f2{z-index:2;top:7%}
 .cfan.in .f1{transform:translateX(-62%) rotate(-10deg) translateY(10%)}
 .cfan.in .f3{transform:translateX(62%) rotate(10deg) translateY(10%)}
 .card:not(.nda):hover .cfan.in .f1{transform:translateX(-72%) rotate(-13deg) translateY(8%)}
 .card:not(.nda):hover .cfan.in .f3{transform:translateX(72%) rotate(13deg) translateY(8%)}
 .card:not(.nda):hover .cfan .f2{transform:translateY(-4%)}
-@media (min-width:768px){.cph{--w:150px}}
-@media (min-width:1100px){.cph{--w:170px}}
-@media (prefers-reduced-motion:reduce){.cph{transition:none}}
+/* Bitflare: desktop behind, phone in front */
+.cbr{position:absolute;left:7%;top:13%;width:70%;border-radius:2cqw;overflow:hidden;background:#f0f0f0;box-shadow:0 0 0 1px rgba(0,0,0,.08),0 30px 50px -20px rgba(40,60,0,.55);
+  transform:translate3d(-14%,8%,0) rotate(-6deg);opacity:0;transition:transform 1.3s cubic-bezier(.2,.8,.2,1),opacity .8s ease}
+.cbr-top{height:3.4cqw;display:flex;align-items:center;gap:.9cqw;padding:0 1.6cqw;background:#e6e6e6}
+.cbr-top i{width:1.2cqw;height:1.2cqw;border-radius:50%;background:#ff5f57}.cbr-top i:nth-child(2){background:#febc2e}.cbr-top i:nth-child(3){background:#28c840}
+.cbr img{display:block;width:100%;height:auto}
+.cbf .p1{--w:27cqw;right:9%;top:16%;transform:translate3d(0,40%,0) rotate(6deg);opacity:0}
+.cbf.in .cbr{transform:translate3d(0,0,0) rotate(-3deg);opacity:1}
+.cbf.in .p1{transform:translate3d(0,0,0) rotate(4deg);opacity:1;transition-delay:.15s}
+.card:not(.nda):hover .cbf.in .cbr{transform:translate3d(-2%,-3%,0) rotate(-4deg)}
+.card:not(.nda):hover .cbf.in .p1{transform:translate3d(0,-5%,0) rotate(2deg)}
+/* Pump: three phones rise in a staggered row */
+.cpd .cph{--w:25cqw;top:16%;transform:translate3d(0,70%,0);opacity:0}
+.cpd .p1{left:9%}.cpd .p2{left:37.5%;z-index:2}.cpd .p3{right:9%}
+.cpd.in .p1{transform:translate3d(0,14%,0) rotate(-3deg);opacity:1}
+.cpd.in .p2{transform:translate3d(0,-4%,0);opacity:1;transition-delay:.12s}
+.cpd.in .p3{transform:translate3d(0,14%,0) rotate(3deg);opacity:1;transition-delay:.24s}
+.card:not(.nda):hover .cpd.in .p1{transform:translate3d(-4%,8%,0) rotate(-5deg)}
+.card:not(.nda):hover .cpd.in .p2{transform:translate3d(0,-10%,0)}
+.card:not(.nda):hover .cpd.in .p3{transform:translate3d(4%,8%,0) rotate(5deg)}
+/* FinHamster: a tilted ribbon of screens drifting sideways */
+.cfh{overflow:hidden}
+.ctrack{position:absolute;left:-6%;top:13%;display:flex;gap:4cqw;transform:rotate(-9deg);transform-origin:10cqw 50%;opacity:0;transition:opacity .9s ease}
+.cfh.in .ctrack{opacity:1}
+.cfh.on .ctrack{animation:cribbon 38s linear infinite}
+.cfh .cph{--w:24cqw;position:relative;flex:none}
+.cfh .cph:nth-child(even){margin-top:9cqw}
+@keyframes cribbon{from{translate:0 0}to{translate:calc(-50% - 2cqw) 0}}
+.card:not(.nda):hover .cfh .ctrack{animation-duration:22s}
+.cover .cvr img{inset:auto;left:0;top:0;width:100%;height:auto;object-fit:fill;transform:none!important;transition:opacity .6s ease}
+.cover .cvr .cbr img{position:relative}
+.cover .cvr .cps.lt img{top:5.5%}
+@media (prefers-reduced-motion:reduce){.cph,.cbr,.ctrack{transition:none}.cfh.on .ctrack{animation:none}}
 </style>
 
 <div class="loader" id="loader" aria-hidden="true"><div class="dom">vasnevdesign.ru</div><div class="bar"><i id="lbar"></i></div></div>
@@ -512,11 +547,11 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------- content ---------- */
 const CASES=[
- {img:'assets/main/cover-bitflare.webp',bg:'#c6ff00',alt:'Bitflare — лаунчпад для инвестиций',href:'project.html',tags:['Fintech','SaaS','B2B','B2C'],t:'Спроектировал лаунчпад и бренд для запуска IPO',d:'Платформа, где стартапы собирают инвестиции, а инвесторы заходят в проект до листинга.'},
+ {cov:'bf',img:'assets/main/cover-bitflare.webp',bg:'radial-gradient(120% 100% at 30% 0%,#e4ff6a 0%,#c6ff00 45%,#9fd400 100%)',alt:'Bitflare — лаунчпад для инвестиций',href:'project.html',tags:['Fintech','SaaS','B2B','B2C'],t:'Спроектировал лаунчпад и бренд для запуска IPO',d:'Платформа, где стартапы собирают инвестиции, а инвесторы заходят в проект до листинга.'},
  {img:'assets/main/cover-robinhood.webp',vid:'',bg:'#c6f63e',alt:'Robinhood Learn — уроки по инвестициям в приложении Robinhood',nda:1,tags:['Fintech','B2C','Mobile','EdTech'],t:'Как короткие уроки помогли новичкам решиться на первую инвестицию в Robinhood',d:'Совместно с командой сделали онбординг для Robinhood, который повысил первые инвестиции от новичков на 92%.'},
- {img:'assets/main/cover-pump.webp',bg:'linear-gradient(180deg,#244215,#122c05)',alt:'Pump DAO — DeFi-платформа для мем-токена',href:'pump.html',tags:['Fintech','SaaS','B2C'],t:'Механика удержания, которая сохранила ~$2 млн капитализации после пресейла',d:'Создал продукт для мем-токена на фоне плохого рынка и неожиданных новостей: в сжатые сроки запустил продукт и сохранил капитализацию $2 млн.'},
- {img:'assets/main/cover-anty.webp',fan:1,bg:'radial-gradient(120% 90% at 50% 0%,#2a2c8f 0%,#14153f 55%,#0b0b1c 100%)',alt:'Anty Wallet — крипто-кошелёк внутри Telegram',href:'anty.html',tags:['Fintech','B2C','Telegram'],t:'Собрал MVP с UX-решением, которое выкупил крупный Web3-проект',d:'Кошелёк в Telegram для массовой аудитории: 50 000 пользователей в месяц. Продукт выкупили вместе с моими UX-решениями.'},
- {bg:'#0a3068',href:'finhamster.html',tags:['Fintech','B2C','Mobile','AI'],t:'Превратил скучный учёт расходов в план с советами',d:'FinHamster: ИИ-помощник для личных финансов, где учёт сразу подсказывает следующий шаг.'},
+ {cov:'pd',img:'assets/main/cover-pump.webp',bg:'radial-gradient(120% 90% at 50% 0%,#3d7a22 0%,#1d3d10 55%,#0d1f06 100%)',alt:'Pump DAO — DeFi-платформа для мем-токена',href:'pump.html',tags:['Fintech','SaaS','B2C'],t:'Механика удержания, которая сохранила ~$2 млн капитализации после пресейла',d:'Создал продукт для мем-токена на фоне плохого рынка и неожиданных новостей: в сжатые сроки запустил продукт и сохранил капитализацию $2 млн.'},
+ {cov:'anty',img:'assets/main/cover-anty.webp',bg:'radial-gradient(120% 90% at 50% 0%,#2a2c8f 0%,#14153f 55%,#0b0b1c 100%)',alt:'Anty Wallet — крипто-кошелёк внутри Telegram',href:'anty.html',tags:['Fintech','B2C','Telegram'],t:'Собрал MVP с UX-решением, которое выкупил крупный Web3-проект',d:'Кошелёк в Telegram для массовой аудитории: 50 000 пользователей в месяц. Продукт выкупили вместе с моими UX-решениями.'},
+ {cov:'fh',alt:'FinHamster — учёт личных финансов',bg:'radial-gradient(120% 90% at 50% 0%,#1d5bd6 0%,#0a3068 50%,#041633 100%)',href:'finhamster.html',tags:['Fintech','B2C','Mobile','AI'],t:'Превратил скучный учёт расходов в план с советами',d:'FinHamster: ИИ-помощник для личных финансов, где учёт сразу подсказывает следующий шаг.'},
 ];
 /* AI pipeline: title, what happens, tools (assets/<name>.png), step icon */
 const AI_STEPS=[
@@ -545,11 +580,20 @@ const COM=[['Glassmorphism wallpaper (abstract 3d figure)','assets/main/com-1.we
 const FALL_ICONS=['lottiefiles','zeplin','pixso','figma','higgsfield','photoshop','blender','hotjar'];
 const $=s=>document.querySelector(s);const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
 const ARW='<span class="dot18"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
-function cardsHTML(list){return list.map(c=>{const off=c.soon||c.nda,tag=off?'div':'a';const href=off?'':` href="${c.href}"`;return `<${tag} class="card${c.soon?' soon':''}${c.nda?' nda':''}"${href}><div class="cover" style="background:${c.bg}">${c.fan?`<div class="cfan" aria-label="${esc(c.alt||'')}">${['walletBasic','wallet','walletHot'].map((k,i)=>`<div class="cph f${i+1}"><div class="cps"><img src="assets/anty/v3/${k}.webp" alt="" loading="lazy" decoding="async"></div></div>`).join('')}</div>`:c.vid?`<video src="${c.vid}" poster="${c.img}" muted loop playsinline autoplay preload="metadata" aria-label="${esc(c.alt||'')}"></video>`:c.img?`<img src="${c.img}" alt="${esc(c.alt||'')}" loading="lazy" decoding="async">`:''}${c.nda?'<span class="ndab">NDA 🛠️</span>':''}</div><div class="cbody"><h3 class="ctitle">${esc(c.t)}</h3><div class="cbadges">${c.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div><p class="cdesc">${esc(c.d)}</p><span class="cmore">${c.soon?'Кейс скоро':c.nda?'NDA (по запросу) '+ARW:'Читать кейс '+ARW}</span></div></${tag}>`}).join('');}
+/* animated covers: real screens in device mockups */
+const PH=(src,cls,lt)=>`<div class="cph ${cls}"><div class="cps${lt?' lt':''}">${[].concat(src).map((s,i)=>`<img${i?'':' class="on"'} src="${s}" alt="" loading="lazy" decoding="async">`).join('')}</div></div>`;
+const COVER={
+ anty:c=>`<div class="cvr cfan" aria-label="${esc(c.alt||'')}">${['walletBasic','wallet','walletHot'].map((k,i)=>PH(`assets/anty/v3/${k}.webp`,'f'+(i+1))).join('')}</div>`,
+ bf:c=>{const B='assets/bitflare/v3/';return `<div class="cvr cbf" aria-label="${esc(c.alt||'')}"><div class="cbr"><div class="cbr-top"><i></i><i></i><i></i></div><img src="${B}hero-web.webp" alt="" loading="lazy" decoding="async"></div>${PH([B+'m-project.webp',B+'m-review.webp',B+'m-success.webp',B+'m-wallet.webp'],'p1 cyc')}</div>`},
+ pd:c=>{const B='assets/pump/v3/';return `<div class="cvr cpd" aria-label="${esc(c.alt||'')}">${PH(B+'m-staking.webp','p1',1)}${PH([B+'m-panel.webp',B+'m-contracts.webp'],'p2 cyc',1)}${PH(B+'m-leader.webp','p3',1)}</div>`},
+ fh:c=>{const B='assets/finhamster/';const s=['m-main','m-an-bask','m-rec2','m-tx','m-an-cat','m-marathon'];const row=s.map(k=>PH(B+k+'.webp','')).join('');return `<div class="cvr cfh" aria-label="${esc(c.alt||'')}"><div class="ctrack">${row}${row}</div></div>`}
+};
+function cardsHTML(list){return list.map(c=>{const off=c.soon||c.nda,tag=off?'div':'a';const href=off?'':` href="${c.href}"`;return `<${tag} class="card${c.soon?' soon':''}${c.nda?' nda':''}"${href}><div class="cover" style="background:${c.bg}">${c.cov?COVER[c.cov](c):c.vid?`<video src="${c.vid}" poster="${c.img}" muted loop playsinline autoplay preload="metadata" aria-label="${esc(c.alt||'')}"></video>`:c.img?`<img src="${c.img}" alt="${esc(c.alt||'')}" loading="lazy" decoding="async">`:''}${c.nda?'<span class="ndab">NDA 🛠️</span>':''}</div><div class="cbody"><h3 class="ctitle">${esc(c.t)}</h3><div class="cbadges">${c.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div><p class="cdesc">${esc(c.d)}</p><span class="cmore">${c.soon?'Кейс скоро':c.nda?'NDA (по запросу) '+ARW:'Читать кейс '+ARW}</span></div></${tag}>`}).join('');}
 $('#caseList').innerHTML=cardsHTML(CASES).replace(/class="card"/g,'class="card rv"');
-/* Anty cover fan opens when the card comes into view */
-const fio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');fio.unobserve(e.target);}}),{threshold:.4});
-function watchFans(){document.querySelectorAll('.cfan:not(.in)').forEach(f=>fio.observe(f));}watchFans();
+/* covers animate in when visible; screens cycle like a recording */
+const fio=new IntersectionObserver(es=>es.forEach(e=>{e.target.classList.toggle('on',e.isIntersecting);if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.35});
+function watchFans(){document.querySelectorAll('.cvr').forEach(f=>fio.observe(f));}watchFans();
+if(!reduce)setInterval(()=>{document.querySelectorAll('.cvr.on .cyc').forEach(p=>{const im=[...p.querySelectorAll('img')];if(im.length<2)return;const i=im.findIndex(x=>x.classList.contains('on'));im[i].classList.remove('on');im[(i+1)%im.length].classList.add('on');});},2600);
 
 $('#petList').innerHTML=PET.map(([t,d,src])=>`<div class="pcard"><div class="img"><img src="${src}" alt="${esc(t)}" loading="lazy" decoding="async" width="308" height="174"></div><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join('');
 $('#comList').innerHTML=COM.map(([t,src])=>`<div class="pcard"><div class="img"><img src="${src}" alt="${esc(t)}" loading="lazy" decoding="async" width="308" height="174"></div><h3>${esc(t)}</h3></div>`).join('');
