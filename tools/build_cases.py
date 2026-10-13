@@ -55,8 +55,7 @@ def page(c):
 <title>{c['name']} — Роман Васнёв</title>
 <meta name="description" content="{c['desc']}">
 <meta name="theme-color" content="#060606">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="case.css">
 <style>:root{{--accent:{c['accent']}}}</style>
 </head>
