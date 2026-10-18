@@ -4,100 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Клубок — Роман Васнёв</title>
-<meta name="description" content="Клубок: маркетплейс авторских туров для путешественников, гидов и компаний. Кейс продуктового дизайнера Романа Васнёва.">
+<meta name="description" content="Клубок: маркетплейс авторских туров, где путешественник бронирует без переписки, а гид продаёт без менеджера. Кейс продуктового дизайнера Романа Васнёва.">
 <meta name="theme-color" content="#060606">
 <link rel="stylesheet" href="fonts.css">
-<style>
-:root{--bg:#060606;--fg:#fff;--muted:#767676;--dim:#404040;--line:#202020;--blue:#043ae5;--blue2:#3c2cff;--tag:#3565ff;--font:'Geist',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--pad:20px;--max:450px;color-scheme:dark}
-*{box-sizing:border-box}
-html,body{background:var(--bg)}
-body{margin:0;color:var(--fg);font-family:var(--font);letter-spacing:-.05em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
-.wrap{max-width:var(--max);margin:0 auto;position:relative}
-.gut{padding-inline:var(--pad)}
-.arr{width:15px;height:15px;flex:none}
-:focus-visible{outline:2px solid var(--tag);outline-offset:3px;border-radius:6px}
-/* header */
-.hdr{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px)}
-.hdr .wrap{height:80px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:19px var(--pad) 0}
-.hdr::before{content:"";position:absolute;inset:0;background:rgba(6,6,6,.6);-webkit-backdrop-filter:blur(4px) saturate(1.5) brightness(1.08);backdrop-filter:blur(4px) saturate(1.5) brightness(1.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.08);-webkit-mask:linear-gradient(#000 26%,rgba(0,0,0,.55) 62%,transparent);mask:linear-gradient(#000 26%,rgba(0,0,0,.55) 62%,transparent)}
-.hdr .dom,.hdr .mbtn{position:relative;font-size:16px;font-weight:500;white-space:nowrap}
-.prog{position:relative;flex:1;max-width:130px;height:2px;border-radius:40px;background:#323232;overflow:hidden}
-.prog i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:40px;background:linear-gradient(90deg,#3c2cff,#c4ceff)}
-.mbtn{display:flex;align-items:center;gap:6px}
-.dot18{width:18px;height:18px;border-radius:50%;background:#fff;display:grid;place-items:center}
-
-/* footer */
-.ftr{margin-top:100px;background:#fff;color:#000;border-radius:30px 30px 0 0;padding:39px var(--pad) calc(25px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:center;gap:20px}
-.ftr .links{margin:0;justify-content:center}
-.ftr small{font-size:12px;color:#b4b4b4}
-
-/* menu */
-.menu{position:fixed;inset:0;z-index:80;background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#000;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility 0s .35s}
-.menu.open{opacity:1;visibility:visible;transition:opacity .35s ease}
-.menu .wrap{min-height:100%;display:flex;flex-direction:column}
-.menu .top{height:80px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:19px var(--pad) 0;margin-top:env(safe-area-inset-top,0px)}
-.lang{margin:30px var(--pad) 0;font-size:18px;font-weight:500}
-.lang span{color:var(--muted)}
-.mlist{list-style:none;margin:22px 0 0;padding:0 var(--pad);display:flex;flex-direction:column;gap:22px;flex:1}
-.mlist a{display:block}
-.mlist strong{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:500}
-.mlist .c{width:24px;height:24px;border-radius:50%;background:#000;display:grid;place-items:center}
-.mlist .c path{stroke:#fff}
-.menu .dot18{background:#000}
-.menu .dot18 path{stroke:#fff}
-.mlist p{margin:8px 0 0;font-size:14px;line-height:20px;color:var(--muted)}
-.menu .ftr{margin-top:40px;background:#000;color:#fff}
-.menu .ftr .links a{color:#fff}
-.menu.open .mlist li{animation:mi .5s both cubic-bezier(.2,.7,.2,1)}
-@keyframes mi{from{opacity:0;filter:blur(8px);transform:translateY(12px)}}
-
-/* project page (Figma: Mobile / Project page) */
-main{padding-top:146px}
-.c24{width:24px;height:24px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none}
-.back{display:inline-flex;align-items:center;gap:8px;font-size:20px;font-weight:500;line-height:26px}
-.prj{display:flex;gap:12px;align-items:center;margin-top:34px}
-.logo{width:40px;height:40px;border-radius:14px;border:1px solid #0f0f0f;overflow:hidden;flex:none;background:#fff}
-.logo img{width:100%;height:100%;display:block}
-.prj b{display:block;font-size:16px;font-weight:500;line-height:21px}
-.prj small{display:block;font-size:14px;color:var(--muted);line-height:18px}
-h1{font-size:24px;font-weight:500;line-height:27px;margin:12px 0 0;text-wrap:balance}
-.flow{display:flex;flex-direction:column;gap:12px;margin-top:36px}
-.shot{margin:0;border-radius:20px;overflow:hidden;background:#141414}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.shot img{display:block;width:100%;height:auto}
-.tx{margin:-2px 0 24px}
-.tx .lbl{display:block;font-size:14px;line-height:18px;color:var(--muted);margin:0 0 6px}
-.tx p{margin:0;font-size:16px;line-height:20px;font-weight:300}
-.tx p b{font-weight:500}
-.tx ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
-.tx li{position:relative;padding-left:16px;font-size:16px;line-height:20px;font-weight:300}
-.tx li::before{content:"";position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:var(--tag)}
-.ctx{margin:0 0 28px;display:flex;flex-direction:column}
-.ctx div{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line);font-size:14px;line-height:18px}
-.ctx div:last-child{border-bottom:1px solid var(--line)}
-.ctx dt{color:var(--muted)}
-.ctx dd{margin:0}
-.res{margin-top:68px}
-.res h2{font-size:26px;font-weight:500;line-height:28px;margin:0}
-.rp{margin:12px 0 0;font-size:16px;line-height:20px;font-weight:300}
-.mx{display:grid;grid-template-columns:1fr 1fr;gap:28px 16px;margin-top:36px}
-.mx b{display:block;font-size:44px;line-height:44px;font-weight:500;letter-spacing:-.06em;background:linear-gradient(90deg,#fff,#c4ceff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.mx span{display:block;margin-top:10px;font-size:14px;line-height:18px;color:var(--muted)}
-.note{margin:28px 0 0;padding:14px 16px;border-radius:16px;background:#121212;font-size:14px;line-height:18px;color:var(--muted)}
-.credits{margin-top:120px;display:flex;flex-direction:column;gap:12px}
-.credits b{display:block;font-size:22px;font-weight:500;line-height:29px}
-.credits small{display:block;margin-top:8px;font-size:18px;font-weight:500;line-height:20px;color:var(--muted)}
-.sep{border:0;border-top:1px solid var(--line);margin:80px 0 0}
-.next{display:flex;align-items:center;gap:16px;margin-top:60px}
-.next .th{width:96px;height:62px;border-radius:14px;background:#1a1a1a;overflow:hidden;flex:none}
-.next .th img{width:100%;height:100%;object-fit:cover;display:block}
-.next span.t{display:flex;align-items:center;gap:8px;font-size:20px;font-weight:500;line-height:26px}
-.ftr{margin-top:150px}
-@media (prefers-reduced-motion:reduce){.menu{transition:none}.menu.open .mlist li{animation:none}}
-</style>
-<link rel="stylesheet" href="desk.css">
+<link rel="icon" href="assets/klubok/logo.webp">
+<link rel="stylesheet" href="case.css">
+<link rel="stylesheet" href="anty-v3.css">
+<link rel="stylesheet" href="pump-v3.css">
+<link rel="stylesheet" href="kl-v3.css">
+<style>:root{--accent:#e04049}</style>
 <style>.lang button{all:unset;cursor:pointer;color:#767676;transition:color .2s}.lang button.on{color:#fff}.lang button:hover{color:#fff}</style>
 </head>
 <body>
@@ -108,69 +23,251 @@ h1{font-size:24px;font-weight:500;line-height:27px;margin:12px 0 0;text-wrap:bal
     <button class="mbtn" id="mopen" aria-haspopup="dialog" aria-controls="menu">menu <span class="dot18"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
   </div>
 </header>
-<main class="wrap gut">
-  <a class="back" href="index.html"><span class="c24"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M11 4.5H1M4.5 1 1 4.5 4.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>На главную</a>
-  <div class="prj"><div class="logo"><img src="assets/klubok/logo.webp" alt="" width="40" height="40"></div><div><b>Клубок</b><small>Маркетплейс авторских туров</small></div></div>
-  <h1>Маркетплейс туров, где путешественник решает без переписки, а гид продаёт без менеджера</h1>
-  <div class="flow">
-    <figure class="shot"><img src="assets/klubok/01-hero.webp" alt="Клубок: страница тура на десктопе и мобильном" width="1200" height="900" fetchpriority="high" decoding="async"></figure>
-  <div class="tx"><p>Клубок — travel-tech платформа, где путешественники находят и бронируют авторские туры по России и миру, а гиды и турагентства создают, продают и ведут их в одном кабинете. Я спроектировал сервис с нуля: анализ рынка, архитектуру ролей, сценарии, UI для desktop и mobile, дизайн-систему и email-коммуникации.</p></div>
-  <dl class="ctx">
-  <div><dt>Платформа</dt><dd>Web: desktop и mobile</dd></div>
-  <div><dt>Роль</dt><dd>Product Designer: исследование, UX-архитектура, UI, дизайн-система, письма, handoff</dd></div>
-  <div><dt>Роли</dt><dd>Путешественник, гид, компания, модератор</dd></div>
-  <div><dt>Объём</dt><dd>257 экранов: 161 desktop и 96 mobile</dd></div>
-  <div><dt>Статус</dt><dd>В продакшене — clubok.travel</dd></div>
- </dl>
-  <div class="tx"><span class="lbl">Контекст</span><p>Внутренний туризм в России растёт — в 2024 году рекордные 92–96 млн поездок, и спрос смещается к небольшим группам и авторским маршрутам. При этом организаторы авторских туров продают через мессенджеры, соцсети и таблицы.</p></div>
-  <div class="tx"><span class="lbl">Проблема</span><p>Путешественник не доверяет незнакомому организатору, не понимает, что входит в цену и что будет при отмене. Гиды и компании ведут туры вручную, не могут раздать даты сотрудникам и тратят время на реквизиты.</p></div>
-  <div class="tx"><span class="lbl">Задача</span><p>Спроектировать маркетплейс, в котором путешественник решает без переписки с организатором, а гид или компания проходят путь от регистрации до продаж без менеджера платформы.</p></div>
-  <div class="tx"><span class="lbl">Исследование</span><p>Сравнил YouTravel.me, Tripster, Sputnik8, «Большую Страну» и «Клуб Гидов». Сильные игроки есть, но каждый закрывает только часть задачи — ниша Клубка в командах гидов, видимом доверии и повторных продажах.</p></div>
-  <figure class="shot"><img src="assets/klubok/02-search.webp" alt="Поиск: когда, куда и кто едет" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><span class="lbl">Ключевое решение</span><p><b>Поиск из трёх вопросов.</b> «Когда? Куда? Кто едет?» вместо стены фильтров: календарь на два месяца с гибкими датами, автоподсказки по регионам и состав группы — взрослые, дети и питомцы. Под шапкой — лента из 27 типов активностей.</p></div>
-  <figure class="shot"><img src="assets/klubok/03-tour.webp" alt="Страница тура" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Страница тура без скрытых условий.</b> Рейтинг, сложность, размер группы и возраст детей — в шапке, даты и остаток мест — в виджете справа. Ниже маршрут на карте, программа по дням, что входит в цену и что взять с собой.</p></div>
-  <figure class="shot"><img src="assets/klubok/04-booking.webp" alt="Бронирование тура" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Цена считается сразу.</b> Анкета на каждого участника, расчёт по взрослым и детским тарифам, предоплата 30% или 100% — а условия бронирования и отмены стоят рядом с кнопкой оплаты, а не в оферте.</p></div>
-  <figure class="shot"><img src="assets/klubok/05-wizard.webp" alt="Шаги мастера создания тура" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><span class="lbl">Ключевое решение</span><p><b>Мастер создания тура.</b> Авторский тур — это десятки параметров, и одна длинная форма такой объём не выдержит. 22 шага в 3 этапах — параметры, контент, продажи — по одному вопросу на экран, с черновиком «Сохранить и выйти» и подсказками на каждом шаге.</p></div>
-  <figure class="shot"><img src="assets/klubok/06-dates.webp" alt="Выбор дат тура и команда гидов" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Даты, гиды и цены.</b> Период выбирается одним кликом, на каждую дату назначается основной и дополнительный гид — из команды или по приглашению на email, у каждой даты своя цена и количество мест.</p></div>
-  <figure class="shot"><img src="assets/klubok/07-cabinet.webp" alt="Кабинет гида с турами" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Кабинет с двумя ролями.</b> Переключатель «Я гид / Я турист» меняет меню, и путешественник становится гидом без второй регистрации. Карточки туров со статусами, выручка за месяц и сортировка.</p></div>
-  <figure class="shot"><img src="assets/klubok/08-legal.webp" alt="Реквизиты по юридическому статусу" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Реквизиты по статусу.</b> ООО, ИП, физлицо и иностранный гражданин — у каждого своя анкета только с нужными полями. Кабинет подсказывает выбрать статус ещё до первого тура.</p></div>
-  <figure class="shot"><img src="assets/klubok/09-emails.webp" alt="Email-рассылки по статусам" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Продукт пишет сам.</b> Каждый статус тура и брони порождает уведомление в кабинете и письмо: модерация, приглашение гидом, горящие туры, день рождения. 11 сценариев в 28 макетах работают как CRM, которой у организаторов обычно нет.</p></div>
-  <figure class="shot"><img src="assets/klubok/10-mobile.webp" alt="Мобильная версия: поиск, тур, кабинет" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="assets/klubok/11-mobile-search.webp" alt="Мобильный подбор, мастер тура и фильтр" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>96 мобильных экранов.</b> Не урезанная копия desktop: поиск, тур, покупка, кабинет и мастер создания тура спроектированы под одну руку. Вкладки поиска становятся аккордеоном, а фильтр — полноэкранной формой.</p></div>
-  <figure class="shot"><img src="assets/klubok/12-states.webp" alt="Пустой поиск и страница 404" width="1200" height="900" loading="lazy" decoding="async"></figure>
-  <div class="tx"><p><b>Без тупиков.</b> Пустой поиск подсказывает, что изменить в запросе, истёкшая ссылка — отправить письмо ещё раз, 404 — вернуться на главную.</p></div>
-  </div>
-  <section class="res" aria-labelledby="resH">
-  <h2 id="resH">Результаты</h2>
-  <p class="rp">Клубок запущен и работает на clubok.travel: путешественники бронируют туры, гиды и компании ведут их в кабинете. Организатор проходит путь от регистрации до продаж сам, без менеджера платформы. Система держится на 68 наборах компонентов.</p>
-  <div class="mx"><div><b>257</b><span>экранов: 161 desktop и 96 mobile</span></div><div><b>4</b><span>роли на одной системе</span></div><div><b>22</b><span>шага в мастере создания тура</span></div><div><b>28</b><span>email-макетов в светлой и тёмной теме</span></div></div>
-  <p class="note">Дальше я бы измерял конверсию страницы тура в бронь, долю туров, прошедших модерацию с первого раза, и время создания тура в мастере.</p>
-</section>
-<section class="res" aria-labelledby="outH">
-  <h2 id="outH">Выводы</h2>
-  <p class="rp">Продуктовый дизайн собрал двусторонний рынок в одну систему. Путешественнику продукт отвечает на вопросы до того, как их зададут, а гиду даёт инструмент вместо мессенджеров и таблиц. Поиск, тур, бронь, кабинет, модерация и письма опираются на одни статусы и компоненты — поэтому продукт масштабируется без переписывания.</p>
-</section>
-  <div class="credits"><div><b>Product Design</b><small>Васнёв Роман</small></div><div><b>UX/UI</b><small>Васнёв Роман</small></div><div><b>Design System</b><small>Васнёв Роман</small></div></div>
-  <hr class="sep">
-  <a class="next" href="slothereum.html"><span class="th"><img src="assets/slothereum/cover.webp" alt="" loading="lazy"></span><span class="t">Следующий проект <span class="c24"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5h10M7.5 1 11 4.5 7.5 8" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a>
+<main class="av3 kl">
+  <section class="hero3">
+    <div class="c hero3-in">
+      <div class="hero3-tx">
+        <a class="back3" href="index.html"><span class="c24">←</span>На главную</a>
+        <div class="eyebrow"><img src="assets/klubok/logo.webp" alt="" width="28" height="28">Клубок · маркетплейс авторских туров</div>
+        <h1 class="h1x">Спроектировал маркетплейс туров с нуля</h1>
+        <p class="lead">Путешественник находит и бронирует авторский тур без переписки с организатором. Гид или турагентство создаёт тур, назначает даты и гидов и получает оплату без менеджера платформы. Я вёл продукт целиком: от анализа рынка и ролей до UI, дизайн-системы и писем.</p>
+        <dl class="facts">
+          <div><dt>Роль</dt><dd>Продуктовый дизайнер</dd></div>
+          <div><dt>Платформы</dt><dd>Web: desktop и mobile</dd></div>
+          <div><dt>Зона</dt><dd>Исследование, UX, UI, дизайн-система, письма</dd></div>
+        </dl>
+      </div>
+      <div class="hero3-vis kl-hero" aria-label="Клубок: главная на десктопе и тур на телефоне">
+        <div class="glow3"></div>
+        <div class="br kl-br"><div class="br-top"><i></i><i></i><i></i><span>clubok.travel</span></div><img src="assets/klubok/v3/d-home.webp" alt="Главная Клубка: поиск и каталог туров" width="1200" height="750" fetchpriority="high"></div>
+        <div class="ph ph-main kl-ph">
+          <div class="ph-scr reel" id="reel">
+            <img class="on" src="assets/klubok/v3/m-tour.webp" alt="Страница тура на телефоне" width="780" height="1688">
+            <img src="assets/klubok/v3/m-buy-sum.webp" alt="Расчёт стоимости брони" width="780" height="1688" decoding="async">
+            <img src="assets/klubok/v3/m-cab-a.webp" alt="Кабинет гида: туры, даты и люди" width="780" height="2910" decoding="async">
+            <img src="assets/klubok/v3/m-filter.webp" alt="Фильтр подбора тура" width="780" height="2410" decoding="async">
+          </div>
+        </div>
+        <div class="reelbar" id="reelbar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="c nums">
+    <div class="num3 rv3"><b data-count="257">257</b><span>экранов: 161 desktop и 96 mobile</span></div>
+    <div class="num3 rv3"><b data-count="4">4</b><span>роли: путешественник, гид, компания, модератор</span></div>
+    <div class="num3 rv3"><b data-count="27">27</b><span>типов активностей в каталоге</span></div>
+    <div class="num3 rv3"><b data-count="68">68</b><span>наборов компонентов в дизайн-системе</span></div>
+  </section>
+
+  <section class="c prob">
+    <h2 class="h2x rv3">Авторские туры продают в мессенджерах. Доверия там нет</h2>
+    <p class="body3 rv3">Внутренний туризм растёт: по оценке правительства, в 2024 году — около 92 млн поездок, и спрос смещается к небольшим группам и авторским маршрутам. Но у таких туров нет своей витрины, и обе стороны сделки теряют на этом.</p>
+    <div class="sides">
+      <article class="side rv3">
+        <span class="who"><i></i>Путешественник</span>
+        <h3>Не готов платить незнакомцу</h3>
+        <ul>
+          <li><b>Не доверяет организатору:</b> нет рейтинга, отзывов и истории туров</li>
+          <li><b>Не понимает цену:</b> что входит, что нет и сколько стоит ребёнок</li>
+          <li><b>Боится потерять деньги:</b> условия отмены надо выяснять в переписке</li>
+        </ul>
+      </article>
+      <article class="side rv3">
+        <span class="who"><i></i>Гид и турагентство</span>
+        <h3>Ведёт продажи вручную</h3>
+        <ul>
+          <li><b>Собирает группы в чатах</b> и считает места в таблицах</li>
+          <li><b>Не может раздать даты</b> своим гидам и видеть, кто где работает</li>
+          <li><b>Тратит время на документы:</b> реквизиты, договоры, чеки</li>
+        </ul>
+      </article>
+    </div>
+    <div class="rivals rv3" aria-label="Конкуренты"><span>YouTravel.me</span><span>Tripster</span><span>Sputnik8</span><span>Большая Страна</span><span>Клуб Гидов</span><span class="me">Клубок: команды гидов, видимое доверие, повторные продажи</span></div>
+    <p class="note3 rv3">Каждый из сильных игроков закрывает только часть задачи. Ниша Клубка — между ними.</p>
+  </section>
+
+  <section class="c srch">
+    <div class="srch-tx">
+      <h2 class="h2x rv3">Поиск из трёх вопросов вместо стены фильтров</h2>
+      <p class="body3 rv3">Люди выбирают поездку так: когда, куда и с кем. Поэтому поиск задаёт ровно эти вопросы, а подробный фильтр остаётся за отдельной кнопкой.</p>
+      <div class="seg rv3" id="kseg" role="tablist" aria-label="Поиск">
+        <button role="tab" class="on" data-i="0">Когда?</button><button role="tab" data-i="1">Куда?</button><button role="tab" data-i="2">Кто едет?</button><span class="seg-k" aria-hidden="true"></span>
+      </div>
+    </div>
+    <div class="srch-vis rv3">
+      <div class="br"><div class="br-top"><i></i><i></i><i></i><span>clubok.travel</span></div>
+        <div class="srch-vp" id="srchVp">
+          <img class="on" src="assets/klubok/v3/d-when.webp" alt="Поиск: календарь и гибкие даты" width="1200" height="750" loading="lazy">
+          <img src="assets/klubok/v3/d-where.webp" alt="Поиск: популярные направления" width="1200" height="750" loading="lazy">
+          <img src="assets/klubok/v3/d-who.webp" alt="Поиск: взрослые, дети и питомцы" width="1200" height="750" loading="lazy">
+        </div>
+      </div>
+      <p class="srch-cap" id="srchCap"></p>
+    </div>
+  </section>
+
+  <section class="c cab">
+    <h2 class="h2x rv3">Тур без скрытых условий</h2>
+    <p class="body3 rv3">Всё, что нужно для решения, стоит на одной странице. Экраны длинные, поэтому ниже они прокручиваются так, как их видит путешественник.</p>
+    <div class="cab-tabs rv3" id="tourTabs" role="tablist">
+      <button role="tab" class="on" data-i="0">Страница тура<i></i></button>
+      <button role="tab" data-i="1">Бронирование<i></i></button>
+    </div>
+    <div class="br cab-br rv3"><div class="br-top"><i></i><i></i><i></i><span id="tourUrl">clubok.travel/tour</span></div>
+      <div class="cab-vp" id="tourVp">
+        <img class="on" src="assets/klubok/v3/d-tour.webp" alt="Страница тура целиком" width="1200" height="5936" loading="lazy" data-url="clubok.travel/tour/kamchatka">
+        <img src="assets/klubok/v3/d-booking.webp" alt="Бронирование: анкеты участников и условия" width="1200" height="2458" loading="lazy" data-url="clubok.travel/tour/kamchatka/booking">
+      </div>
+    </div>
+    <p class="cab-cap" id="tourCap"></p>
+  </section>
+
+  <section class="story c">
+    <div class="story-tx">
+      <h2 class="h2x rv3">Бронь — за четыре касания</h2>
+      <div class="step3" data-scr="b1">
+        <span class="no">01</span>
+        <h3>Сразу видно главное</h3>
+        <p>Сколько мест осталось, цена за дату и сумма, которой достаточно для брони. Рядом — чат тура в Telegram, если остались вопросы.</p>
+        <div class="ph ph-inline"><div class="ph-scr"><img src="assets/klubok/v3/m-buy0.webp" alt="Покупка тура" width="780" height="1688" loading="lazy" decoding="async"></div></div>
+      </div>
+      <div class="step3" data-scr="b2">
+        <span class="no">02</span>
+        <h3>Дата с остатком мест</h3>
+        <p>У каждой даты своя цена и своё количество свободных мест. Полные даты не прячутся, а честно показывают, что мест нет.</p>
+        <div class="ph ph-inline"><div class="ph-scr"><img src="assets/klubok/v3/m-buy-dates.webp" alt="Выбор даты тура" width="780" height="1688" loading="lazy" decoding="async"></div></div>
+      </div>
+      <div class="step3" data-scr="b3">
+        <span class="no">03</span>
+        <h3>Взрослые и дети отдельно</h3>
+        <p>Счётчики вместо полей ввода. У детей свой тариф, поэтому состав группы задаётся сразу.</p>
+        <div class="ph ph-inline"><div class="ph-scr"><img src="assets/klubok/v3/m-buy-people.webp" alt="Количество путешественников" width="780" height="1688" loading="lazy" decoding="async"></div></div>
+      </div>
+      <div class="step3" data-scr="b4">
+        <span class="no">04</span>
+        <h3>Цена собирается на глазах</h3>
+        <p>Расчёт по тарифам видно до оплаты, а правила отмены — под кнопкой, а не в оферте.</p>
+        <div class="ph ph-inline"><div class="ph-scr"><img src="assets/klubok/v3/m-buy-sum.webp" alt="Итоговый расчёт брони" width="780" height="1688" loading="lazy" decoding="async"></div></div>
+      </div>
+    </div>
+    <div class="story-vis" aria-hidden="true">
+      <div class="story-pin"><div class="ph"><div class="ph-scr" id="storyScr">
+        <img class="on" data-k="b1" src="assets/klubok/v3/m-buy0.webp" alt="" width="780" height="1688">
+        <img data-k="b2" src="assets/klubok/v3/m-buy-dates.webp" alt="" width="780" height="1688" loading="lazy">
+        <img data-k="b3" src="assets/klubok/v3/m-buy-people.webp" alt="" width="780" height="1688" loading="lazy">
+        <img data-k="b4" src="assets/klubok/v3/m-buy-sum.webp" alt="" width="780" height="1688" loading="lazy">
+      </div></div></div>
+    </div>
+  </section>
+
+  <section class="c cab">
+    <h2 class="h2x rv3">Мастер вместо формы на сто полей</h2>
+    <p class="body3 rv3">Авторский тур — это десятки параметров. Я разбил создание на 3 этапа: параметры, контент и продажи. На экране один вопрос, а черновик сохраняется в любой момент кнопкой «Сохранить и выйти».</p>
+    <div class="cab-tabs rv3" id="wizTabs" role="tablist">
+      <button role="tab" class="on" data-i="0">Этап 1<i></i></button>
+      <button role="tab" data-i="1">Нитка тура<i></i></button>
+      <button role="tab" data-i="2">Тип путешествия<i></i></button>
+      <button role="tab" data-i="3">Даты и гиды<i></i></button>
+      <button role="tab" data-i="4">Условия отмены<i></i></button>
+    </div>
+    <div class="br cab-br rv3"><div class="br-top"><i></i><i></i><i></i><span id="wizUrl">clubok.travel/create</span></div>
+      <div class="cab-vp" id="wizVp">
+        <img class="on" src="assets/klubok/v3/w-stage1.webp" alt="Мастер: вступление к первому этапу" width="1200" height="825" loading="lazy" data-url="clubok.travel/create/stage-1">
+        <img src="assets/klubok/v3/w-route.webp" alt="Мастер: нитка тура на карте" width="1200" height="925" loading="lazy" data-url="clubok.travel/create/route">
+        <img src="assets/klubok/v3/w-type.webp" alt="Мастер: тип путешествия" width="1200" height="1133" loading="lazy" data-url="clubok.travel/create/type">
+        <img src="assets/klubok/v3/w-dates.webp" alt="Мастер: выбор дат тура" width="1200" height="950" loading="lazy" data-url="clubok.travel/create/dates">
+        <img src="assets/klubok/v3/w-terms.webp" alt="Мастер: условия оплаты и отказа" width="1200" height="825" loading="lazy" data-url="clubok.travel/create/terms">
+      </div>
+    </div>
+    <p class="cab-cap" id="wizCap"></p>
+  </section>
+
+  <section class="c states-s">
+    <h2 class="h2x rv3">Статус — на самой карточке</h2>
+    <p class="body3 rv3">Гид ведёт десятки дат одновременно. Поэтому каждая карточка сама говорит, что с ней происходит: сколько мест продано, кто ведёт группу и сколько денег внесено.</p>
+    <div class="cards-row" id="cardsRow">
+      <figure class="kc"><img src="assets/klubok/v3/c-tour.webp" alt="Карточка тура" width="368" height="556" loading="lazy"><figcaption><b>Тур</b>рейтинг, сложность и быстрые действия</figcaption></figure>
+      <figure class="kc"><img src="assets/klubok/v3/c-date.webp" alt="Дата: идёт сейчас" width="368" height="556" loading="lazy"><figcaption><b>Идёт сейчас</b>бронь 8 из 12, внесено за бронь</figcaption></figure>
+      <figure class="kc"><img src="assets/klubok/v3/c-active.webp" alt="Дата: активная" width="368" height="556" loading="lazy"><figcaption><b>Активная</b>продажи открыты</figcaption></figure>
+      <figure class="kc"><img src="assets/klubok/v3/c-cancel.webp" alt="Дата: отменена" width="368" height="556" loading="lazy"><figcaption><b>Отменена</b>видно, сколько вернуть</figcaption></figure>
+      <figure class="kc"><img src="assets/klubok/v3/c-archive.webp" alt="Дата: в архиве" width="368" height="556" loading="lazy"><figcaption><b>Архив</b>история и выручка</figcaption></figure>
+      <figure class="kc"><img src="assets/klubok/v3/c-add.webp" alt="Добавить дату" width="368" height="556" loading="lazy"><figcaption><b>Новая дата</b>в один клик</figcaption></figure>
+      <figure class="kc"><img src="assets/klubok/v3/c-user.webp" alt="Участник тура" width="368" height="556" loading="lazy"><figcaption><b>Участник</b>размер, город и сколько мест</figcaption></figure>
+      <figure class="kc"><img src="assets/klubok/v3/c-guide.webp" alt="Гид команды" width="368" height="556" loading="lazy"><figcaption><b>Гид команды</b>рейтинг и контакты</figcaption></figure>
+      <figure class="kc"><img src="assets/klubok/v3/c-guide-inv.webp" alt="Пригласить гида" width="368" height="556" loading="lazy"><figcaption><b>Новый гид</b>приглашение по почте</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="c cabk">
+    <div class="cabk-tx">
+      <h2 class="h2x rv3">Один кабинет на две роли</h2>
+      <p class="body3 rv3">Путешественник становится гидом без второй регистрации: переключатель меняет меню, а данные остаются. Сверху — выручка за месяц, ниже туры и их даты в одной сетке.</p>
+      <div class="role rv3" aria-hidden="true"><span class="on">Я гид</span><span>Я турист</span></div>
+      <ol class="fc-leg rv3">
+        <li><i>01</i><span><b>Команда гидов</b>на каждую дату — основной и дополнительные гиды, из команды или по приглашению</span></li>
+        <li><i>02</i><span><b>Своя цена у даты</b>и своё количество мест</span></li>
+        <li><i>03</i><span><b>Уведомления и письма</b>на каждый статус тура и брони</span></li>
+      </ol>
+    </div>
+    <div class="br rv3"><div class="br-top"><i></i><i></i><i></i><span>clubok.travel/cabinet</span></div><img src="assets/klubok/v3/d-cabinet.webp" alt="Кабинет гида: выручка, туры и даты" width="1200" height="1017" loading="lazy"></div>
+  </section>
+
+  <section class="c bento-wrap">
+    <h2 class="h2x rv3">Мобильная версия и всё, что вокруг</h2>
+    <div class="bento">
+      <article class="cell wide rv3">
+        <div class="cell-tx"><h3>Не урезанная копия desktop</h3><p>96 мобильных экранов. Поиск, тур, покупка, кабинет и мастер создания тура спроектированы под одну руку: вкладки становятся каруселями, а фильтр — полноэкранной формой.</p></div>
+        <div class="fan" id="fan">
+          <div class="ph f1"><div class="ph-scr"><img src="assets/klubok/v3/m-step-region.webp" alt="Мастер на телефоне: регион тура" width="780" height="2360" loading="lazy"></div></div>
+          <div class="ph f2"><div class="ph-scr"><img src="assets/klubok/v3/m-cab-b.webp" alt="Кабинет гида на телефоне" width="780" height="2910" loading="lazy"></div></div>
+          <div class="ph f3"><div class="ph-scr"><img src="assets/klubok/v3/m-step-type.webp" alt="Мастер на телефоне: тип путешествия" width="780" height="3154" loading="lazy"></div></div>
+        </div>
+      </article>
+      <article class="cell rv3">
+        <div class="cell-tx"><h3>Реквизиты по статусу</h3><p>ООО, ИП, физлицо и иностранный гражданин — у каждого своя анкета только с нужными полями. Кабинет просит выбрать статус ещё до первого тура.</p></div>
+        <div class="crop duo">
+          <div class="ph d1"><div class="ph-scr"><img src="assets/klubok/v3/m-burger.webp" alt="Меню кабинета на телефоне" width="780" height="2206" loading="lazy"></div></div>
+          <div class="ph d2"><div class="ph-scr"><img src="assets/klubok/v3/m-legal.webp" alt="Реквизиты ООО на телефоне" width="780" height="3218" loading="lazy"></div></div>
+        </div>
+      </article>
+      <article class="cell rv3">
+        <div class="cell-tx"><h3>Без тупиков</h3><p>Пустой поиск подсказывает, что изменить, истёкшая ссылка — отправить письмо ещё раз, а 404 ведёт на живые разделы.</p></div>
+        <div class="tiles">
+          <figure class="tile t-wide"><img src="assets/klubok/v3/s-empty.webp" alt="Пустой результат поиска" width="780" height="176" loading="lazy"></figure>
+          <figure class="tile"><img src="assets/klubok/v3/s-expired.webp" alt="Истёкшая ссылка подтверждения" width="780" height="360" loading="lazy"></figure>
+          <figure class="tile"><img src="assets/klubok/v3/s-404.webp" alt="Страница 404" width="780" height="600" loading="lazy"></figure>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="c outro">
+    <h2 class="h2x big rv3">Итог: сервис, где сделка проходит без посредника</h2>
+    <div class="res res6 rv3">
+      <div class="rc"><b>257</b><span>экранов: 161 desktop и 96 mobile</span></div>
+      <div class="rc"><b>4</b><span>роли в одном продукте</span></div>
+      <div class="rc"><b>3</b><span>этапа мастера создания тура</span></div>
+      <div class="rc"><b>27</b><span>типов активностей</span></div>
+      <div class="rc"><b>68</b><span>наборов компонентов</span></div>
+      <div class="rc"><b>11</b><span>сценариев писем</span></div>
+    </div>
+    <div class="learn rv3">
+      <div><h3>Чему научил проект</h3><p>В маркетплейсе две стороны, и терять нельзя ни одну. Путешественнику доверие дают прозрачная цена и условия рядом с кнопкой оплаты, а организатору скорость дают мастер, статусы и команда гидов в одном кабинете.</p></div>
+      <div><h3>Метрики и решения</h3><p>Под ключевые решения я заложил метрики: конверсию из страницы тура в бронь, долю дошедших до конца мастера, время до первой продажи у нового гида и повторные брони. Готов подробно разобрать их на звонке.</p></div>
+    </div>
+  </section>
+  <div class="c nav3wrap"><nav class="nav2 navx" aria-label="Навигация по кейсам"><a href="index.html"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>На главную</a><a href="project.html">Следующий кейс<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></nav></div>
 </main>
 <footer class="ftr">
-    <div class="links">
-      <a href="https://t.me/RomanVasnev" target="_blank" rel="noopener">Telegram <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
-      <a href="https://max.ru/u/f9LHodD0cOK4eRodbkhxQK8rvB1LvE0quIyuQ6KT-D9FbLrRK_ah-9t5UUU" target="_blank" rel="noopener">Max <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
-      <a href="mailto:roman.vasnev@mail.ru">E-mail <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
-    </div>
-    <small>© 2026 - Васнёв Роман</small>
-    <div class="apps" aria-hidden="true"><img src="assets/main/ic-he.webp" alt="" width="32" height="32" loading="lazy"><img src="assets/main/ic-lp.webp" alt="" width="32" height="32" loading="lazy"><img src="assets/main/ic-me.webp" alt="" width="32" height="32" loading="lazy"></div>
-  </footer>
+  <div class="links">
+    <a href="https://t.me/RomanVasnev" target="_blank" rel="noopener">Telegram <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
+    <a href="https://max.ru/u/f9LHodD0cOK4eRodbkhxQK8rvB1LvE0quIyuQ6KT-D9FbLrRK_ah-9t5UUU" target="_blank" rel="noopener">Max <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
+    <a href="mailto:roman.vasnev@mail.ru">E-mail <svg class="arr" viewBox="0 0 15 15"><path d="M4 11 11 4M5 4h6v6" stroke="#b4b4b4" stroke-width="1.4" fill="none"/></svg></a>
+  </div>
+  <small>© 2026 - Васнёв Роман</small>
+  <div class="apps" aria-hidden="true"><img src="assets/main/ic-he.webp" alt="" width="32" height="32" loading="lazy"><img src="assets/main/ic-lp.webp" alt="" width="32" height="32" loading="lazy"><img src="assets/main/ic-me.webp" alt="" width="32" height="32" loading="lazy"></div>
+</footer>
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Меню">
   <div class="wrap">
     <div class="top"><span style="font-size:16px;font-weight:500">vasnev.art</span><div class="prog"><i style="width:100%"></i></div><button class="mbtn" id="mclose">закрыть <span class="dot18"><svg width="8" height="8" viewBox="0 0 8 8"><path d="M1 1l6 6M7 1 1 7" stroke="#000" stroke-width="1.4" stroke-linecap="round"/></svg></span></button></div>
@@ -183,26 +280,30 @@ h1{font-size:24px;font-weight:500;line-height:27px;margin:12px 0 0;text-wrap:bal
     </footer>
   </div>
 </div>
-
 <script>
-const $=s=>document.querySelector(s);const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
-const MENU=[['Обо мне','Кто я, чем занимаюсь и как со мной связаться.','index.html#about'],['От идеи до релиза','Продукты, которые я вёл от исследования до передачи в разработку.','index.html#cases'],['Мой подход к дизайну','Этапы, через которые проходит каждый мой проект.','index.html#approach'],['Работа с AI','Как я с помощью AI быстро собираю MVP и проверяю гипотезы.','index.html#ai'],['Мой стек технологий','Инструменты, в которых я работаю на каждом этапе.','index.html#stack'],['Опыт работы','Компании и проекты, в которых я работал с 2017 года.','index.html#exp']];
+document.documentElement.classList.add('js');
+const $=s=>document.querySelector(s);const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const MENU=[['Обо мне','Кто я, чем занимаюсь и как со мной связаться.','index.html#about'],['Продуктовые кейсы','Продукты, которые я вёл от исследования до передачи в разработку.','index.html#cases'],['Мой подход к дизайну','Этапы, через которые я провожу продукт: от исследования до handoff.','index.html#approach'],['Работа с AI','Как я с помощью AI быстро собираю MVP и проверяю гипотезы.','index.html#ai'],['Мой стек технологий','Инструменты, в которых я работаю на каждом этапе.','index.html#stack'],['Пет проекты','Плагины, инструменты и проекты для Figma Community.','index.html#pet'],['Опыт работы','Компании и проекты, в которых я работал с 2017 года.','index.html#exp']];
 $('#mlist').innerHTML=MENU.map((m,i)=>`<li style="animation-delay:${.08+i*.05}s"><a href="${m[2]}"><strong>${m[0]} <span class="c"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4h8M6 1l3 3-3 3" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></strong><p>${m[1]}</p></a></li>`).join('');
-
-/* ---------- menu ---------- */
 const menu=$('#menu');
 $('#mopen').addEventListener('click',()=>{menu.classList.add('open');document.body.style.overflow='hidden';$('#mclose').focus({focusVisible:false});});
 function closeMenu(){menu.classList.remove('open');document.body.style.overflow='';}
 $('#mclose').addEventListener('click',closeMenu);
-menu.addEventListener('click',e=>{if(e.target.closest('a[href^="#"]'))closeMenu();});
 addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
-
-/* ---------- scroll progress ---------- */
 const prog=$('#prog');
 function onScroll(){const h=document.documentElement.scrollHeight-innerHeight;prog.style.width=(h>0?Math.min(100,scrollY/h*100):0)+'%';}
 addEventListener('scroll',onScroll,{passive:true});onScroll();
-
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{rootMargin:'0px 0px -6% 0px',threshold:.04});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+/* carousel: dots + play only the visible video */
+document.querySelectorAll('.carf').forEach(f=>{const car=f.querySelector('.car'),vids=[...car.querySelectorAll('video')],dots=[...f.querySelectorAll('.dots i')];
+  const cur=()=>Math.round(car.scrollLeft/(car.firstElementChild.offsetWidth+12));
+  const sync=()=>{const i=cur();dots.forEach((d,j)=>d.classList.toggle('on',j===i));};
+  car.addEventListener('scroll',sync,{passive:true});
+  const vio=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting&&e.intersectionRatio>.5&&!reduce){v.play().catch(()=>{});}else v.pause();}),{threshold:[0,.5,1]});
+  vids.forEach(v=>vio.observe(v));});
 </script>
+<script src="kl-v3.js" defer></script>
 <script src="i18n.js"></script>
 </body>
 </html>
