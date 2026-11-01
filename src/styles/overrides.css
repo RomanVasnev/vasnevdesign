@@ -1,0 +1,221 @@
+/* Later passes v56–v64, kept in their original order: each one overrides what comes before — by vasnev.art */
+
+/* ===== v56 · header with Roman, assistant without orb, touch & footer fixes — by vasnev.art ===== */
+html{-webkit-tap-highlight-color:transparent}
+/* Roman next to the logo */
+.nav .nav-ro{flex:none;height:100%;display:inline-flex;align-items:center;gap:12px;padding:0 clamp(16px,1.4vw,24px) 0 6px;border:0;border-radius:16px;background:var(--bg);color:var(--fg);font:inherit;font-size:clamp(16px,1.05vw,20px);letter-spacing:-.04em;white-space:nowrap;cursor:pointer;transition:background .2s}
+.nav .nav-ro:hover,.nav .nav-ro.open{background:#fff}
+.nav .nav-ro img{height:calc(100% - 12px);aspect-ratio:1;width:auto;border-radius:11px;object-fit:cover;background:#E9E9EB;flex:none}
+.nav .nav-ro:focus-visible{outline:2px solid var(--c-sel,#6CA7FF);outline-offset:2px}
+.nav-ro-t{display:inline-block;transition:opacity .2s}
+.nav-ro.ro-hint .nav-ro-t{color:var(--fg)}
+.nav-ro-tip{display:none}
+/* the assistant: Roman's photo instead of the orb */
+.va-ava{flex:none;display:block;width:28px;height:28px;margin-bottom:19px;border-radius:9px;object-fit:cover;background:#E9E9EB}
+.va-bot.thinking .va-ava{margin-bottom:0}
+.va-eb .va-ava{width:20px;height:20px;margin:0;border-radius:6px}
+.va-bot.thinking p:empty{display:flex;gap:4px;align-items:center;height:41px;padding:0 16px}
+.va-bot.thinking p:empty::before,.va-bot.thinking p:empty::after{content:'';width:6px;height:6px;border-radius:50%;background:#8E8E93;animation:vaDots 1s ease-in-out infinite}
+.va-bot.thinking p:empty::after{animation-delay:.2s}
+@keyframes vaDots{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:1;transform:translateY(-2px)}}
+/* after the first question: no video strip, only the chat / contacts toggle on top */
+.va.chatting .va-tile{height:44px!important;background:transparent;overflow:visible}
+.va.chatting .va-tile video{opacity:0;visibility:hidden;transition:opacity .2s,visibility 0s .2s}
+.va.chatting .va-bar{top:4px;left:4px;right:4px}
+.va.chatting .va-tabs,.va.chatting .va-ic{background:var(--va-chip);-webkit-backdrop-filter:none;backdrop-filter:none}
+.va.chatting .va-tab[aria-selected="true"]{background:#fff}
+.va-tile video{transition:object-position .55s var(--va-ease),opacity .25s}
+/* last frame: photo and the role line from the first screen */
+.me-ava{background:#E9E9EB url(/assistant/ava.jpg) center/cover}
+.me-n i.me-role{display:inline-flex;align-items:center;gap:.42em;font-weight:500;font-size:14px;letter-spacing:-.02em;color:var(--c-comp,#8E5CFF)}
+.me-role svg{width:.62em;height:.62em;fill:currentColor;flex:none}
+/* other pages: the footer is only the vasnev.art word with its shapes */
+html.pg-cases .xp-wrap,html.pg-ui .xp-wrap{display:none}
+
+/* touch screens: frames, shapes and cards never catch the finger */
+@media (hover:none),(pointer:coarse){
+  .obj,.drag,.me,.bdg,.g{touch-action:pan-y!important;cursor:default!important}
+  .obj,.drag,.me,.bdg,.il-box,.frm{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+  .obj.held,.drag.held,.me.held,.bdg.held{outline:0!important}
+}
+
+@media (max-width:900px){
+  /* header back on top, solid like on desktop, no section name */
+  .nav-wrap{top:calc(8px + env(safe-area-inset-top,0px));bottom:auto}
+  .nav{position:relative;height:64px;background:var(--chip);-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none}
+  .nav-pg{display:none!important}
+  .nav .brand{order:0}
+  .nav .nav-ro{order:1;width:48px;padding:0;justify-content:center}
+  .nav .nav-ro img{height:40px;border-radius:11px}
+  .nav-ro-t{display:none}
+  .nav .more{order:2;margin-left:auto}
+  body{padding-bottom:0}
+  .hero.hero2{padding-top:calc(env(safe-area-inset-top,0px) + 8px + 64px + 28px)}
+  html.pg-cases #cases,html.pg-ui #ui-library{padding-top:calc(env(safe-area-inset-top,0px) + 8px + 64px + 32px)}
+  /* the hint lives under Roman in the header */
+  .nav-ro-tip{display:block;position:absolute;left:var(--x,0px);top:calc(100% + 8px);height:40px;padding:0 14px;border:0;border-radius:14px;background:#0B0B0C;color:#fff;font:inherit;font-size:15px;letter-spacing:-.02em;white-space:nowrap;cursor:pointer;
+    box-shadow:0 12px 28px -10px rgba(11,11,12,.45);opacity:0;transform:translateY(-6px) scale(.96);transform-origin:20px 0;pointer-events:none;transition:opacity .2s,transform .45s cubic-bezier(.34,1.56,.64,1)}
+  .nav-ro-tip.on{opacity:1;transform:none;pointer-events:auto}
+  .nav-ro-tip::before{content:'';position:absolute;left:18px;top:-5px;width:10px;height:10px;border-radius:2px;background:#0B0B0C;transform:rotate(45deg)}
+  /* menu sheet: fixed heights, so no tile can spill over the swipe row */
+  .menu .mn-t{aspect-ratio:auto;height:calc((min(100vw,480px) - 46px) * .375)}
+  .menu .mn-v{aspect-ratio:auto;height:calc((min(100vw,480px) - 36px) * .5625)}
+  .menu .mn-h{height:auto}
+  .mn-sw{position:relative;min-height:68px}
+  /* «Обо мне»: a lower band for the shapes */
+  .fr-blue{padding-bottom:calc(var(--fp) + 24vw)}
+  .fr-blue .g-circ{width:21%;bottom:calc(var(--fp) - 3vw)}
+  .fr-blue .g-cur{width:9%;left:calc(var(--fp) + 16%);bottom:calc(var(--fp) - 5vw)}
+  .fr-blue .g-tri{width:19%;bottom:calc(var(--fp) - 1vw)}
+}
+@media (prefers-reduced-motion:reduce){.nav-ro-tip,.va.chatting .va-tile video{transition:none}.va-bot.thinking p:empty::before,.va-bot.thinking p:empty::after{animation:none}}
+
+
+/* ===== v57 · top menu sheet, live Roman in the header, assistant as a bottom sheet — by vasnev.art ===== */
+.nav .nav-ro video{height:calc(100% - 12px);aspect-ratio:1;width:auto;border-radius:11px;object-fit:cover;object-position:50% 18%;background:#E9E9EB;flex:none;pointer-events:none}
+/* assistant sheet, rising from the bottom on every screen */
+.va-sbd{position:fixed;inset:0;z-index:60;background:rgba(11,11,12,.28);opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
+.va-sbd.on{opacity:1;visibility:visible;transition:opacity .3s}
+.va-float,.va-float.on{left:50%!important;right:auto!important;top:auto!important;bottom:calc(8px + env(safe-area-inset-bottom,0px))!important;width:min(440px,calc(100vw - 16px))!important;height:min(780px,calc(100dvh - 96px - env(safe-area-inset-top,0px)))!important;
+  display:flex;flex-direction:column;padding:0 6px 6px;border-radius:32px;opacity:1;visibility:hidden;pointer-events:none;transform-origin:50% 100%!important;
+  transform:translate(-50%,calc(100% + 40px));transition:transform .42s cubic-bezier(.32,.72,0,1),visibility 0s .42s}
+.va-float.on{visibility:visible;pointer-events:auto;transform:translate(-50%,0);transition:transform .5s cubic-bezier(.32,.72,0,1),visibility 0s}
+.va-float.drag{transition:none}
+.va-float>.va{flex:1;min-height:0;height:auto}
+.va-grab{flex:none;display:grid;place-items:center;height:26px;cursor:grab;touch-action:none}
+.va-grab i{width:40px;height:5px;border-radius:3px;background:#D1D1D6}
+html.va-sheet{overflow:hidden}
+@media (max-width:900px){
+  /* menu: drops from the top, grabber at the bottom edge */
+  .menu{top:calc(8px + env(safe-area-inset-top,0px));bottom:auto;padding:10px 10px 0;box-shadow:0 10px 50px rgba(11,11,12,.16);transform:translateY(calc(-100% - 40px))}
+  .menu.open{transform:none}
+  .mn-g{order:99}
+}
+@media (prefers-reduced-motion:reduce){.va-float,.va-float.on,.va-sbd{transition:none}}
+
+
+/* ===== v58 · menu hangs from the header, planet + live Roman, assistant on its own on phones — by vasnev.art ===== */
+.va-sbd{-webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2);background:rgba(11,11,12,.18)}
+@media (max-width:900px){
+  /* header: logo, Roman, language, menu — language is up front for visitors from abroad */
+  .nav .lang{display:inline-flex!important;order:2;margin-left:auto;padding:0 12px;font-size:16px;border-radius:14px}
+  .nav .more{order:3;margin-left:0}
+  .nav{z-index:2}
+  .lyr{display:none!important}
+  /* the menu is the header growing downwards: same edges, same grey, the bar stays on top */
+  .menu{z-index:1;top:calc(8px + env(safe-area-inset-top,0px));left:var(--gutter-l);right:var(--gutter-r);max-width:none;margin:0;border-radius:20px;
+    padding:calc(64px + 8px) 8px 0;max-height:calc(100dvh - 16px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));box-shadow:0 24px 60px -20px rgba(11,11,12,.28);
+    transform:translateY(calc(-100% + 64px))}
+  .menu.open{transform:none}
+  .menu:not(.open){box-shadow:none}
+  .mn-f{display:none!important}
+  .menu .mn-t{height:calc((100vw - var(--gutter-l) - var(--gutter-r) - 26px) * .375)}
+  .menu .mn-v{height:calc((100vw - var(--gutter-l) - var(--gutter-r) - 16px) * .5)}
+  .menu .mn-h{height:auto}
+  /* planet + live Roman */
+  .mn-row{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .mn-gl,.mn-ro{position:relative;aspect-ratio:1;border-radius:22px;overflow:hidden}
+  .mn-gl{display:flex;flex-direction:column;justify-content:flex-start;gap:10px;padding:14px 16px;background:#fff}
+  .mn-gl canvas{position:absolute;right:-18%;bottom:-24%;width:76%;aspect-ratio:1;height:auto;pointer-events:none}
+  .mn-gl-c{position:relative;display:inline-flex;align-items:center;gap:6px;font:500 15px/1 'Geist',sans-serif;letter-spacing:-.03em;color:#0B0B0C}
+  .mn-gl-c svg{width:11px;height:15px}
+  .mn-gl-c path{fill:var(--c-blue)}
+  .mn-gl-c circle{fill:#fff}
+  .mn-gl-t{position:relative;display:flex;align-items:baseline;font-weight:500;font-size:36px;line-height:1;letter-spacing:-.06em;font-variant-numeric:tabular-nums;color:#0B0B0C}
+  .mn-gl-t .tw-s{font-size:14px;letter-spacing:-.02em;color:#8E8E93;margin-left:3px}
+  .mn-ro{display:block;padding:0;border:0;background:#E9E9EB;color:#0B0B0C;font:inherit;text-align:left;cursor:pointer;transition:transform .45s var(--spr-jelly)}
+  .mn-ro:active{transform:scale(.97)}
+  .mn-ro video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 14%}
+  .mn-ro-l{position:absolute;left:8px;right:8px;bottom:8px;display:flex;flex-direction:column;gap:2px;padding:8px 10px 9px;border-radius:14px;background:rgba(255,255,255,.92)}
+  .mn-ro-l b{font-weight:500;font-size:14px;letter-spacing:-.02em}
+  .mn-ro-l i{font-style:normal;font:400 11px/1.2 'Geist Mono',ui-monospace,monospace;color:var(--c-comp,#8E5CFF)}
+  .mn-ro:focus-visible{outline:2px solid var(--c-sel,#6CA7FF);outline-offset:2px}
+  /* the assistant under the first frame, full width */
+  #heroWrap>#ai.ai{margin-top:44px;width:100%;height:clamp(540px,calc(100svh - 104px),680px);min-height:0}
+}
+/* footer clock keeps its height now that the resources list is shorter, so the planet never sits on the time */
+@media (min-width:901px){.xp-wrap .tw{min-height:500px}}
+@media (max-width:360px){.nav .brand{padding:0 14px;gap:8px}.nav .lang{padding:0 10px}}
+
+
+/* ===== v59 · sheets go edge to edge — by vasnev.art ===== */
+/* assistant sheet: sits on the bottom edge, only the top corners are round */
+.va-float,.va-float.on{bottom:0!important;border-radius:32px 32px 0 0;padding-bottom:calc(6px + env(safe-area-inset-bottom,0px))}
+@media (max-width:900px){
+  .nav .nav-ro{display:none!important}
+  /* menu: full width, hangs from the top edge, round only at the bottom */
+  .menu{top:0;left:0;right:0;border-radius:0 0 28px 28px;
+    padding:calc(env(safe-area-inset-top,0px) + 8px + 64px + 10px) calc(var(--gutter-r) + 8px) 0 calc(var(--gutter-l) + 8px);
+    max-height:calc(100dvh - 48px);transform:translateY(-100%)}
+  .menu.open{transform:none}
+  .menu .mn-t{height:calc((100vw - var(--gutter-l) - var(--gutter-r) - 26px) * .375)}
+  .menu .mn-v{height:calc((100vw - var(--gutter-l) - var(--gutter-r) - 16px) * .5)}
+  /* the bar keeps a soft shadow over the open sheet, so scrolled tiles slide under it cleanly */
+  .nav{transition:box-shadow .3s}
+  .nav:has(.more[aria-expanded="true"]){box-shadow:0 10px 24px -12px rgba(11,11,12,.28),0 1px 0 rgba(11,11,12,.04)}
+  /* assistant sheet: full width */
+  .va-float,.va-float.on{width:100vw!important;height:min(780px,calc(100dvh - 48px - env(safe-area-inset-top,0px)))!important}
+}
+
+
+/* ===== v61 · Roman down to the chest everywhere, solid header over the open menu — by vasnev.art ===== */
+/* the assistant takes the height its content needs: video 4:5 + greeting + field */
+#ai.ai{height:auto!important;min-height:0!important;align-self:start}
+#ai.ai>.va,.va-float>.va{height:var(--va-need,620px);flex:none}
+.va-tile video{object-fit:cover;object-position:50% 0%}
+.fr-white{height:auto!important}
+@media (min-width:901px){.fr-white{min-height:max(600px,calc(100vh - clamp(96px,11vh,120px) - 94px))}}
+@media (max-width:900px){.fr-white{min-height:0!important}}
+/* the sheet hugs its content and scrolls only if a short screen asks for it */
+.va-float,.va-float.on{height:auto!important;max-height:calc(100dvh - 24px - env(safe-area-inset-top,0px));overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;width:min(400px,calc(100vw - 16px))!important}
+.va-float::-webkit-scrollbar{display:none}
+@media (max-width:900px){
+  #heroWrap>#ai.ai{height:auto!important}
+  .va-float,.va-float.on{width:100vw!important}
+  /* open menu: the bar becomes a solid strip from the very top, one shadow along its whole width */
+  .nav-wrap{transition:background .25s,box-shadow .3s}
+  .nav-wrap:has(.more[aria-expanded="true"]){top:0;padding-top:calc(env(safe-area-inset-top,0px) + 8px);padding-bottom:8px;background:var(--chip);box-shadow:0 10px 24px -12px rgba(11,11,12,.3),0 1px 0 rgba(11,11,12,.05)}
+  .nav:has(.more[aria-expanded="true"]){box-shadow:none}
+  .menu{padding-top:calc(env(safe-area-inset-top,0px) + 8px + 64px + 8px + 12px)}
+  /* the assistant goes first in the menu */
+  .mn-row{order:-1}
+}
+
+
+/* ===== v62 · the open header is one solid shape with a shadow; swipe sits under Roman — by vasnev.art ===== */
+@media (max-width:900px){
+  .nav-wrap:has(.more[aria-expanded="true"]){border-radius:0 0 24px 24px;box-shadow:0 12px 28px -10px rgba(11,11,12,.32),0 1px 0 rgba(11,11,12,.05)}
+  .mn-row{order:-2}
+  .mn-sw{order:-1}
+}
+
+
+/* ===== v62b · the solid header strip is its own layer: above the menu tiles, under the bar ===== */
+@media (max-width:900px){
+  .nav-wrap:has(.more[aria-expanded="true"]){background:transparent!important;box-shadow:none!important;border-radius:0}
+  .nav-wrap::before{content:'';position:absolute;inset:0;z-index:2;border-radius:0 0 24px 24px;background:var(--chip);
+    box-shadow:0 12px 28px -10px rgba(11,11,12,.32),0 1px 0 rgba(11,11,12,.05);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s,visibility 0s .25s}
+  .nav-wrap:has(.more[aria-expanded="true"])::before{opacity:1;visibility:visible;transition:opacity .25s}
+  .nav{z-index:3}
+  .menu{z-index:1}
+}
+
+
+/* ===== v63 · no zoom on focus, lighter open header — by vasnev.art ===== */
+@media (max-width:900px){
+  /* iOS zooms into any field under 16px: keep it at 16 so nothing jumps when the keyboard opens */
+  .va-field input,.pw-f input,input,textarea{font-size:16px!important}
+  .nav-wrap::before{box-shadow:0 6px 18px -12px rgba(11,11,12,.16)}
+}
+
+
+/* ===== v64 · smooth scroll on big Retina screens — by vasnev.art ===== */
+/* the dot grid used background-attachment:fixed, which makes Safari repaint the whole screen on every scroll frame;
+   now it is its own fixed layer that the GPU just keeps in place */
+body{background-image:none}
+body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(circle,rgba(11,11,12,.075) 0 1px,transparent 1.4px);background-size:20px 20px;background-position:-6px -6px;transform:translateZ(0)}
+/* full-screen dialogs dim the page instead of blurring it: a live blur under an animated component is redrawn every frame */
+.uc,.pw{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:rgba(11,11,12,.44)}
+@media (max-width:900px){.menu-bd{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
+/* cards keep their paint to themselves */
+.ul-st{contain:paint}

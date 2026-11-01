@@ -3,3 +3,6 @@ _backup*/
 _to_delete/
 yc-function.zip
 .DS_Store
+node_modules/
+dist/
+.astro/

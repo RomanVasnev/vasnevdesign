@@ -1,0 +1,53 @@
+/* ---------- mobile: header becomes a bottom bar, menu a bottom sheet ---------- */
+.menu-bd,.nav-pg{display:none}
+@media (max-width:900px){
+  .nav-wrap{top:auto;bottom:calc(12px + env(safe-area-inset-bottom,0px))}
+  .nav{height:64px;background:rgba(237,237,237,.82);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);box-shadow:0 8px 32px rgba(11,11,12,.10)}
+  .nav-r{width:100%}
+  .nav .lang{display:none}
+  .nav-pg{display:block;flex:1;min-width:0;padding-left:8px;font-size:16px;letter-spacing:-.03em;color:var(--fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;order:1}
+  .nav .brand{order:0;font-size:17px;padding:0 18px;gap:10px}
+  .nav .more{order:2;width:48px;border-radius:14px}
+  body{padding-bottom:calc(88px + env(safe-area-inset-bottom,0px))}
+  html.pg-cases #cases,html.pg-ui #ui-library{padding-top:calc(28px + env(safe-area-inset-top,0px))}
+
+  .menu-bd{display:block;position:fixed;inset:0;background:rgba(11,11,12,.28);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:opacity .25s,visibility 0s .25s}
+  .menu-bd.open{opacity:1;visibility:visible;transition:opacity .25s}
+  .menu{position:fixed;top:auto;left:max(8px,env(safe-area-inset-left,0px));right:max(8px,env(safe-area-inset-right,0px));bottom:calc(8px + env(safe-area-inset-bottom,0px));max-width:480px;margin:0 auto;max-height:calc(100dvh - 16px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;
+    display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 10px 10px;border-radius:32px;background:var(--chip);box-shadow:0 -10px 50px rgba(11,11,12,.16);
+    opacity:1;visibility:hidden;transform:translateY(calc(100% + 40px));transition:transform .42s cubic-bezier(.32,.72,0,1),visibility 0s .42s}
+  .menu.open{visibility:visible;transform:none;transition:transform .5s cubic-bezier(.32,.72,0,1),visibility 0s}
+  .menu.drag{transition:none}
+  .menu::-webkit-scrollbar{display:none}
+  .mn-g{grid-column:1/-1;display:grid;place-items:center;height:28px;cursor:grab;touch-action:none}
+  .mn-g i{width:40px;height:5px;border-radius:3px;background:#D1D1D6}
+  .menu .mn-t{position:relative;height:auto;aspect-ratio:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;gap:3px;padding:16px;border-radius:22px;aspect-ratio:4/3;background:#fff;color:var(--fg);font-size:17px;letter-spacing:-.03em;overflow:hidden;transition:transform .45s var(--spr-jelly),background .2s}
+  .menu .mn-t:active{transform:scale(.97)}
+  .menu .mn-t b{font-weight:500}
+  .menu .mn-t span{font-size:15px;color:#8E8E93}
+  .menu a.mn-t.on{background:var(--fg);color:#fff;font-weight:400}
+  .menu a.mn-t.on span{color:rgba(255,255,255,.55)}
+  .menu .mn-t[aria-disabled="true"] b{color:#8E8E93}
+  .menu .mn-v{grid-column:1/-1;aspect-ratio:16/9;background:#fff}
+  .mn-pr{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+  .mn-pr>div{position:absolute;left:50%;top:50%;height:560px}
+  .menu .mn-v b,.menu .mn-v span{position:relative;z-index:1}
+  .menu a.mn-v.on{background:#fff;color:var(--fg)}
+  .menu a.mn-v.on span{color:#8E8E93}
+  .mn-sw{grid-column:1/-1}
+  .mn-sw .stc{--muted:#fff;--muted-fg:#8E8E93}
+  .mn-sw .stc-tr{height:68px}
+  .mn-sw .stc-th{width:60px;height:60px}
+  .menu .mn-h{aspect-ratio:auto;min-height:72px;padding:12px 16px}
+  .mn-tw{grid-column:1/-1;min-height:0;padding:12px 18px 14px;border-radius:22px;background:#fff}
+  .mn-tw .tw-h{height:28px}
+  .mn-tw .tw-t{font-size:48px;margin-top:4px}
+  .mn-tw .tw-d{margin-top:6px}
+  .mn-tw .tw-bar{margin-top:14px}
+  .mn-f{grid-column:1/-1;display:flex;justify-content:space-between;gap:10px;margin-top:2px}
+  .menu .mn-f .lang{display:inline-flex;height:52px;padding:0 18px;border-radius:16px;background:#fff;font-size:17px}
+  .mn-x{display:grid;place-items:center;width:52px;height:52px;padding:0;border:0;border-radius:16px;background:#fff;color:var(--fg);cursor:pointer;transition:transform .45s var(--spr-jelly)}
+  .mn-x:active{transform:scale(.92)}
+  .mn-x svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}
+}
+@media (max-width:900px) and (prefers-reduced-motion: reduce){.menu,.menu.open,.menu-bd{transition:none}}

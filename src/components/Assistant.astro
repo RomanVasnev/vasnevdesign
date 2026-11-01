@@ -1,0 +1,42 @@
+---
+/* AI-ассистент: video tile, chat and contacts (logic in scripts/assistant.js) — by vasnev.art */
+---
+<section class="ai" id="ai" aria-label="AI-ассистент: вопросы обо мне">
+  <div class="va" id="va">
+    <div class="va-tile">
+      <video muted loop playsinline autoplay preload="auto" poster="assistant/avatar-poster.jpg" aria-label="Роман в белой футболке смотрит в камеру и улыбается"><source src="assistant/avatar-loop.mp4" type="video/mp4"><source src="assistant/avatar-loop.webm" type="video/webm"></video>
+      <div class="va-bar">
+        <div class="va-tabs" role="tablist" aria-label="Разделы ассистента">
+          <button type="button" class="va-tab" role="tab" data-va="chat" aria-selected="true">Чат</button>
+          <button type="button" class="va-tab" role="tab" data-va="contacts" aria-selected="false">Контакты</button>
+        </div>
+        <div class="va-icons">
+          <button type="button" class="va-ic va-x" data-va="close" aria-label="Свернуть ассистента"><svg viewBox="0 0 16 16"><path d="m4 4 8 8M12 4l-8 8"/></svg></button>
+        </div>
+      </div>
+      <div class="va-who" aria-hidden="true"><b>Роман</b><span data-va="state">Отвечает за пару секунд</span></div>
+    </div>
+    <div class="va-body">
+      <div class="va-view va-intro" data-view="intro">
+        <div><p class="va-eb">Роман · ИИ-ассистент</p><h3 data-va="greet"></h3></div>
+        <div class="va-chips" data-va="chips"></div>
+      </div>
+      <div class="va-view" data-view="chat" aria-hidden="true">
+        <div class="va-log ym-hide-content" data-va="log" aria-live="polite"></div>
+        <div class="va-after" data-va="after"></div>
+      </div>
+      <div class="va-view va-contacts" data-view="contacts" aria-hidden="true">
+        <h3>Написать Роману</h3>
+        <div class="va-row"><div><small>Telegram, быстрее всего</small><span>@RomanVasnev</span></div><a href="https://t.me/RomanVasnev" target="_blank" rel="noopener">Открыть</a></div>
+        <div class="va-row"><div><small>Почта</small><span data-va="mail">roman.vasnev@mail.ru</span></div><button type="button" data-va="copy">Скопировать</button></div>
+      </div>
+    </div>
+    <form class="va-comp" data-va="form" autocomplete="off">
+      <div class="va-field">
+        <label class="sr-only" for="aiI">Вопрос Роману</label>
+        <input id="aiI" class="ym-disable-keys" type="text" placeholder="Спросите что-нибудь обо мне…" maxlength="300">
+        <button class="va-send" type="submit" disabled aria-label="Отправить"><svg viewBox="0 0 16 16"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg></button>
+      </div>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,76 @@
+---
+/* vasnev.art — «Обо мне», «Кейсы» and «UI Library» on one page, switched by the hash (scripts/pages.js) — by vasnev.art */
+import Base from '../layouts/Base.astro';
+import '../styles/shell.css';
+import '../styles/home.css';
+import '../styles/cases.css';
+import '../styles/ui-library.css';
+import '../styles/mobile.css';
+import '../styles/assistant.css';
+import '../styles/overrides.css';
+import '../styles/cookie.css';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Interlude from '../components/Interlude.astro';
+import Approach from '../components/Approach.astro';
+import Experience from '../components/Experience.astro';
+import Cases from '../components/Cases.astro';
+import UiLibrary from '../components/UiLibrary.astro';
+import Contacts from '../components/Contacts.astro';
+import Footer from '../components/Footer.astro';
+import Tooltip from '../components/Tooltip.astro';
+import Loader from '../components/Loader.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import intro from '../scripts/intro.js?raw';
+import matterMin from '../scripts/matter.min.js?raw';
+import site from '../scripts/site.js?raw';
+import nav from '../scripts/nav.js?raw';
+import aiPlaque from '../scripts/ai-plaque.js?raw';
+import cases from '../scripts/cases.js?raw';
+import pages from '../scripts/pages.js?raw';
+import uiLibrary from '../scripts/ui-library.js?raw';
+import uiDrop from '../scripts/ui-drop.js?raw';
+import assistantData from '../scripts/assistant-data.js?raw';
+import assistant from '../scripts/assistant.js?raw';
+---
+<Base title="vasnev.art — Обо мне">
+<Nav />
+
+<Hero />
+
+<About />
+
+<Interlude id="il2" text={["Решения на данных,","а не на вкусе"]} />
+
+<Approach />
+
+<Experience />
+
+<Interlude id="il4" text={["Беру продукт","от идеи до релиза"]} />
+
+<Cases />
+
+<UiLibrary />
+<Contacts />
+
+<Footer />
+
+<Tooltip />
+
+<Loader />
+
+<script is:inline set:html={intro}></script>
+<script is:inline set:html={matterMin}></script>
+<script is:inline set:html={site}></script>
+<script is:inline set:html={nav}></script>
+<script is:inline set:html={aiPlaque}></script>
+<script is:inline set:html={cases}></script>
+<script is:inline set:html={pages}></script>
+<script is:inline set:html={uiLibrary}></script>
+<script is:inline set:html={uiDrop}></script>
+<script is:inline set:html={assistantData}></script>
+<script is:inline set:html={assistant}></script>
+
+<CookieBanner />
+</Base>

@@ -1,0 +1,41 @@
+---
+/* Header: section links, «Спросить Романа», brand and the dropdown menu — by vasnev.art */
+---
+<div class="nav-wrap" id="navWrap">
+  <nav class="nav" aria-label="Разделы">
+    <div class="nav-l">
+      <a href="#about" class="on" aria-current="true" data-n data-sec>Обо мне</a>
+      <a href="#cases" data-n data-sec>Кейсы</a>
+      <a href="#ui-library" data-n data-sec>UI Library</a>
+      <a href="#studio" data-n data-sec>Studio</a>
+      <a href="#articles" data-n data-sec>Статьи</a>
+    </div>
+    <div class="nav-r">
+      <a href="#lang" class="lang" data-n>RU<span>/EN</span></a>
+      <span class="nav-pg" id="navPg" aria-hidden="true">Обо мне</span><button type="button" class="nav-ro" id="navRo" aria-label="Спросить Романа" aria-haspopup="dialog" aria-expanded="false" data-n><video muted loop playsinline autoplay preload="metadata" poster="assistant/ava.jpg" aria-hidden="true" tabindex="-1"><source src="assistant/avatar-loop.mp4" type="video/mp4"><source src="assistant/avatar-loop.webm" type="video/webm"></video><span class="nav-ro-t" id="navRoT">Спросить Романа</span></button><a href="#top" class="brand" id="brand" data-n data-tip="vasnev.art" data-tip-sub="портфолио Романа Васнёва"><svg class="brand-mark" viewBox="0 0 322 257" aria-hidden="true"><path d="M7.00,0.00 L74.00,0.00 A53,53 0 0 1 127.00,53.00 L127.00,94.43 A16,16 0 0 0 155.55,104.35 L236.19,2.28 A6,6 0 0 1 240.90,0.00 L315.00,0.00 A7,7 0 0 1 322.00,7.00 L322.00,76.99 A7,7 0 0 1 320.49,81.33 L183.81,254.34 A7,7 0 0 1 178.32,257.00 L104.00,257.00 A7,7 0 0 1 97.00,250.00 L97.00,155.00 A21,21 0 0 0 76.00,134.00 L7.00,134.00 A7,7 0 0 1 0.00,127.00 L0.00,7.00 A7,7 0 0 1 7.00,0.00Z" fill="currentColor"/></svg>vasnev.art</a>
+      <button type="button" class="more" id="menuBtn" aria-label="Меню" aria-expanded="false" aria-controls="menu" data-n><svg viewBox="0 0 40 40" aria-hidden="true"><path class="l1" d="M12 16h16"/><path class="l2" d="M12 24h16"/></svg></button>
+    </div>
+  </nav>
+  <div class="menu-bd" id="menuBd" aria-hidden="true"></div>
+  <div class="menu" id="menu" aria-label="Разделы" role="navigation">
+    <div class="mn-g" aria-hidden="true"><i></i></div>
+    <a href="#about" class="mn-t on" aria-current="true" data-sec><b>Обо мне</b><span>Опыт и подход</span></a>
+    <a href="#cases" class="mn-t" data-sec><b>Кейсы</b><span>6 проектов</span></a>
+    <a href="#ui-library" class="mn-t mn-v" data-sec><div class="mn-pr" id="mnPr" aria-hidden="true"></div><b>UI Library</b><span>10 компонентов · код и превью</span></a>
+    <div class="mn-sw" id="mnSw"></div>
+    <a href="#studio" class="mn-t mn-h" data-sec><b>Studio</b><span>Скоро</span></a>
+    <a href="#articles" class="mn-t mn-h" data-sec><b>Статьи</b><span>Скоро</span></a>
+    <div class="mn-row">
+      <section class="mn-gl" aria-label="Время в Москве">
+        <canvas id="mnG" aria-hidden="true"></canvas>
+        <span class="mn-gl-c"><svg viewBox="0 0 12 16" aria-hidden="true"><path d="M6 15s5-5.1 5-8.6A5 5 0 0 0 1 6.4C1 9.9 6 15 6 15Z"/><circle cx="6" cy="6.3" r="1.9"/></svg>Москва</span>
+        <span class="mn-gl-t" aria-live="off"><span id="mnHM">--:--</span><span class="tw-s" id="mnS">:--</span></span>
+      </section>
+      <button type="button" class="mn-ro" id="mnRo" aria-label="Открыть ИИ-ассистента Романа">
+        <video muted loop playsinline preload="none" poster="assistant/avatar-poster.jpg" aria-hidden="true" tabindex="-1"><source src="assistant/avatar-loop.mp4" type="video/mp4"><source src="assistant/avatar-loop.webm" type="video/webm"></video>
+        <span class="mn-ro-l"><b>Спросить Романа</b><i>ИИ-ассистент</i></span>
+      </button>
+    </div>
+    <div class="mn-f"><a href="#lang" class="lang">RU<span>/EN</span></a><button type="button" class="mn-x" id="menuX" aria-label="Закрыть меню"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5 5 15"/></svg></button></div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+---
+/* First screen: name, role, contacts and the AI-ассистент — by vasnev.art */
+import Assistant from './Assistant.astro';
+---
+<main class="hero hero2" id="hero" aria-hidden="true">
+  <div class="fr-wrap wrap hw" id="heroWrap">
+    <div class="fr-label"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1v10M8.5 1v10M1 3.5h10M1 8.5h10"/></svg>Главная</div>
+    <div class="frm fr-white pre" id="f0">
+      <div class="h0-l">
+        <div class="h0-row">
+          <h1 class="f-h h0-name" id="f0-h">Васнёв Роман</h1>
+          <p class="h0-role"><svg viewBox="-.6 -.6 8.2 8.2" aria-hidden="true"><path d="M3.5 0 5 1.5 3.5 3 2 1.5ZM1.5 2 3 3.5 1.5 5 0 3.5ZM5.5 2 7 3.5 5.5 5 4 3.5ZM3.5 4 5 5.5 3.5 7 2 5.5Z"/></svg>Senior Product Designer</p>
+        </div>
+        <p class="h0-lead">Проектирую и создаю цифровые продукты — финтех и платёжные сервисы, маркетплейсы, B2B‑системы и e‑commerce, от первой идеи до релиза.</p>
+        <nav class="h0-cta" aria-label="Контакты">
+          <a class="cta-b" href="https://t.me/RomanVasnev" target="_blank" rel="noopener" data-tip="Telegram" data-tip-sub="@RomanVasnev">Telegram<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"/></svg></a>
+          <a class="cta-b cta-b-ghost" href="mailto:roman.vasnev@mail.ru" data-copy="roman.vasnev@mail.ru" data-tip="E-mail" data-tip-sub="нажми, чтобы скопировать">E-mail</a>
+        </nav>
+      </div>
+      <div class="h0-drop" id="h0Drop" aria-hidden="true"></div>
+      <Assistant />
+    </div>
+  </div>
+</main>

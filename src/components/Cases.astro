@@ -1,0 +1,31 @@
+---
+/* Кейсы: folders (filled by scripts/cases.js), password dialog and the case page container — by vasnev.art */
+---
+<section class="cp wrap" id="cases" aria-labelledby="fc-h">
+  <div class="cp-in">
+    <header class="cp-hd">
+      <h2 class="f-h" id="fc-h">Кейсы</h2>
+      <p class="f-p">Продукты, которые я вёл целиком: от механики и исследования до передачи в разработку. Все кейсы под паролем — пришлю после знакомства.</p>
+    </header>
+    <ul class="fds" id="fds"></ul>
+  </div>
+</section>
+
+<div class="pw" id="pw" role="dialog" aria-modal="true" aria-labelledby="pwH" aria-describedby="pwP" hidden>
+  <div class="pw-c">
+    <button type="button" class="pw-x" id="pwX" aria-label="Закрыть"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 2l8 8M10 2 2 10"/></svg></button>
+    <span class="pw-ic" aria-hidden="true"><svg viewBox="0 0 18 18"><rect x="3" y="8" width="12" height="8" rx="2.5"/><path d="M6 8V6a3 3 0 0 1 6 0v2"/></svg></span>
+    <h3 id="pwH">Кейс по паролю</h3>
+    <p id="pwP">Этот кейс под NDA или ещё оформляется. Пароль пришлю после короткого знакомства.</p>
+    <form class="pw-f" id="pwF" autocomplete="off">
+      <label class="sr-only" for="pwI">Пароль</label>
+      <input id="pwI" type="password" placeholder="Пароль" autocomplete="off" spellcheck="false">
+      <button type="submit">Открыть</button>
+    </form>
+    <p class="pw-e" id="pwE" role="alert"></p>
+    <div class="pw-ok"><button type="button" id="pwGo">Открыть Pump DAO</button><button type="button" id="pwOk">Понятно</button></div>
+    <div class="pw-a"><a href="https://t.me/RomanVasnev" target="_blank" rel="noopener">Запросить пароль в Telegram<svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round"><path d="M3 9 9 3M4 3h5v5"/></svg></a></div>
+  </div>
+</div>
+
+<div class="cs" id="cs" role="dialog" aria-modal="true" aria-labelledby="csH" hidden></div>

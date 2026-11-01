@@ -1,0 +1,13 @@
+---
+/* Interlude: one text layer, typed by the scroll — by vasnev.art */
+interface Props { id: string; text: string[] }
+const { id, text } = Astro.props;
+---
+<section class="il il-r wrap" aria-label="Принцип">
+  <div class="il-box" id={id}>
+    <span class="il-lb" aria-hidden="true"><b>T</b>Принцип</span>
+    <p class="il-t">{text.map((t, i) => <Fragment>{i ? ' ' : ''}<span class="ln">{t}</span></Fragment>)}</p>
+    <i class="il-h" style="left:0;top:0"></i><i class="il-h" style="left:100%;top:0"></i><i class="il-h" style="left:0;top:100%"></i><i class="il-h" style="left:100%;top:100%"></i>
+    <span class="il-sz" aria-hidden="true">Geist Medium · <span>128</span></span>
+  </div>
+</section>

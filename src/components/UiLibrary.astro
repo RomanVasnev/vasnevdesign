@@ -1,0 +1,20 @@
+---
+/* UI Library: filters and the grid (filled by scripts/ui-library.js) plus the component sheet — by vasnev.art */
+---
+<section class="cp wrap" id="ui-library" aria-labelledby="ul-h">
+  <div class="cp-in">
+    <header class="ul-hd">
+      <h2 class="f-h" id="ul-h">UI Library</h2>
+      <p class="f-p">Компоненты, которые я проектирую и сам довожу до кода. Бесплатные публикую на 21st.dev, платные паки — на Craftwork. Каждый можно потрогать прямо здесь, открыть код и скопировать.</p>
+    </header>
+    <div class="ul-bar">
+      <div class="ul-f" role="group" aria-label="Фильтр компонентов">
+        <button type="button" data-f="all" aria-pressed="true">Все <i></i></button>
+        <button type="button" data-f="free" aria-pressed="false">Бесплатные <i></i></button>
+        <button type="button" data-f="pro" aria-pressed="false">Платные <i></i></button>
+      </div>
+    </div>
+    <ul class="ul-g" id="ulG"></ul>
+  </div>
+</section>
+<div class="uc" id="uc" role="dialog" aria-modal="true" aria-labelledby="ucH" hidden></div>

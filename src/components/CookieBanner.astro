@@ -1,0 +1,9 @@
+---
+/* Cookie notice — by vasnev.art */
+import cookie from '../scripts/cookie.js?raw';
+---
+<section class="ck" id="ck" role="region" aria-label="Уведомление о cookie" hidden>
+  <p>Сайт использует cookie и&nbsp;Яндекс Метрику для&nbsp;статистики. <a href="/privacy/">Подробнее</a></p>
+  <button type="button" id="ckOk">Принять</button>
+</section>
+<script is:inline set:html={cookie}></script>
