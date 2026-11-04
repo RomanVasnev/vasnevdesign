@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Дизайн-процесс: фигуры</title>
+<style>
+/* «Обо мне»: the same seven steps and headlines, drawn with one alphabet of compound shapes — by vasnev.art */
+@font-face{font-family:'Geist';font-weight:400;font-display:swap;src:url(../public/fonts/geist-400.woff2) format('woff2')}
+@font-face{font-family:'Geist';font-weight:500;font-display:swap;src:url(../public/fonts/geist-500.woff2) format('woff2')}
+:root{--ink:#131313;--paper:#FFFFFF}
+*{box-sizing:border-box}
+html,body{margin:0;background:#F8F8F8;color:var(--ink);font-family:'Geist',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+button:focus-visible,a:focus-visible{outline:3px solid #4F4DFF;outline-offset:3px}
+.track{position:relative}
+.pin{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center}
+.frame{position:relative;flex:none;overflow:hidden;border-radius:28px;background:var(--bgc,#fff)}
+.stage{position:absolute;left:0;top:0;width:1360px;height:800px;transform-origin:0 0;color:var(--fgc,#131313)}
+.after{margin:16px clamp(8px,2vw,24px) 40px;padding:32px;border-radius:28px;background:var(--ink);color:#fff;font-size:24px;letter-spacing:-.03em}
+
+.cnt{position:absolute;left:48px;top:30px;display:flex;gap:18px;font-size:18px;line-height:1.2;letter-spacing:-.012em;z-index:6}
+.cnt a{color:inherit;opacity:.55;text-underline-offset:3px}
+.sc{position:absolute;inset:0;opacity:0;visibility:hidden}
+.v{position:absolute;left:0;top:0;width:1360px;height:800px;overflow:hidden}
+.h{position:absolute;left:44px;top:64px;margin:0;font-weight:500;font-size:104px;line-height:1;letter-spacing:-.048em;z-index:2}
+.say{position:absolute;left:48px;bottom:44px;width:520px;margin:0;font-weight:400;font-size:21px;line-height:1.22;letter-spacing:-.012em;text-wrap:pretty;z-index:2}
+.t{font-family:'Geist',sans-serif;font-weight:500;letter-spacing:-.025em;fill:currentColor}
+.cta{position:absolute;right:48px;top:84px;display:flex;align-items:center;height:64px;padding:0 30px;border-radius:32px;background:var(--ink);color:#fff;font-weight:500;font-size:22px;letter-spacing:-.02em;text-decoration:none;z-index:3;transition:transform .25s ease}
+.cta:hover{transform:scale(1.04)}
+.st{position:absolute;bottom:0;border:0;padding:0 18px 24px;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;text-align:left;cursor:pointer;color:var(--f);background:var(--b);font-weight:500;font-size:27px;letter-spacing:-.03em;line-height:1.06;overflow:hidden}
+.st svg{position:absolute;left:50%;top:22px;width:120px;height:120px;margin-left:-60px;transition:transform .3s ease}
+.st:hover svg{transform:scale(1.14)}
+.m{display:none}
+@media (max-width:760px){
+  .track{display:none}
+  .after{margin-top:8px}
+  .m{display:grid;gap:8px;padding:8px 8px 0}
+  .mh{padding:28px 20px 96px;border-radius:24px;background:#4F4DFF;color:#fff;font-weight:500;font-size:52px;line-height:1;letter-spacing:-.048em}
+  .mp{position:relative;overflow:hidden;min-height:440px;padding:18px 20px 22px;border-radius:24px;background:var(--b);color:var(--f);display:flex;flex-direction:column}
+  .mp small{font-size:15px;letter-spacing:-.01em}
+  .mp h3{margin:8px 0 0;font-weight:500;font-size:clamp(30px,10.2vw,44px);line-height:1;letter-spacing:-.045em;white-space:nowrap}
+  .mp p{margin:auto 0 0;font-weight:400;font-size:21px;line-height:1.16;letter-spacing:-.022em;max-width:30ch}
+  .mp svg{position:absolute;right:-10px;top:104px;width:150px;height:150px}
+  .mc{display:flex;align-items:center;justify-content:center;height:64px;border-radius:24px;background:var(--ink);color:#fff;font-weight:500;font-size:20px;text-decoration:none}
+}
+@media (prefers-reduced-motion:reduce){.cta,.st svg{transition:none}}
+</style>
+</head>
+<body>
+<div class="m" id="m"></div>
+<section class="track" id="track" aria-label="Как я делаю продукты">
+  <div class="pin"><div class="frame" id="frame"><div class="stage" id="stage">
+    <div class="cnt"><span id="cn"></span><a id="skip" href="#next">Пропустить</a></div>
+
+    <div class="sc" data-s="0"><svg class="v" viewBox="0 0 1360 800" aria-hidden="true" id="v0"></svg>
+      <h2 class="h" style="top:462px">Как я делаю<br>продукты</h2>
+      <p class="say" style="bottom:auto;top:688px;width:440px">Семь шагов от&nbsp;гипотезы до&nbsp;метрики.</p></div>
+
+    <div class="sc" data-s="1"><svg class="v" viewBox="0 0 1360 800" aria-hidden="true" id="v1"></svg>
+      <h3 class="h">Сначала цель.</h3>
+      <p class="say" style="width:390px">Изучаю аудиторию и&nbsp;каналы. Формулирую гипотезу: что меняем и&nbsp;как изменится метрика или конверсия в&nbsp;CTA.</p></div>
+
+    <div class="sc" data-s="2"><svg class="v" viewBox="0 0 1360 800" aria-hidden="true" id="v2"></svg>
+      <h3 class="h">Потом логика.</h3>
+      <p class="say" style="width:410px">Разбираю флоу до&nbsp;первого экрана. Составляю state machine: какие есть состояния, что их&nbsp;переключает и&nbsp;что происходит при ошибке.</p></div>
+
+    <div class="sc" data-s="3"><svg class="v" viewBox="0 0 1360 800" aria-hidden="true" id="v3"></svg>
+      <h3 class="h">Потом атомы.</h3>
+      <p class="say" style="width:550px">Определяю токены и&nbsp;компоненты. Собираю атомарную систему: меняем один токен, и&nbsp;правка доходит до&nbsp;всех экранов.</p></div>
+
+    <div class="sc" data-s="4"><h3 class="h">Потом<br>характер.</h3>
+      <svg class="v" viewBox="0 0 1360 800" aria-hidden="true" id="v4"></svg>
+      <p class="say" style="width:400px">Работаю внутри привычных паттернов. Задаю визуальный язык: один на&nbsp;сайте, в&nbsp;продукте и&nbsp;в&nbsp;рекламе, новизна в&nbsp;подаче и&nbsp;деталях.</p></div>
+
+    <div class="sc" data-s="5"><h3 class="h">Потом скорость.</h3>
+      <svg class="v" viewBox="0 0 1360 800" aria-hidden="true" id="v5"></svg>
+      <p class="say" style="width:520px">Собираю страницы и&nbsp;фичи с&nbsp;ИИ за&nbsp;часы. Прописываю ему три рамки: библиотека компонентов, правила проекта и&nbsp;связь с&nbsp;макетами.</p></div>
+
+    <div class="sc" data-s="6"><h3 class="h">Потом проверка.</h3>
+      <svg class="v" viewBox="0 0 1360 800" aria-hidden="true">
+        <g id="g1"></g><g id="g2"></g><g id="g3"></g>
+        <g id="gt1" text-anchor="middle" class="t"><text x="250" y="574" font-size="24">Зелёная зона</text><text x="250" y="622" font-size="36">ИИ сам</text><text x="250" y="662" font-size="24">типовые страницы</text></g>
+        <g id="gt2" text-anchor="middle" class="t"><text x="680" y="574" font-size="24">Жёлтая зона</text><text x="680" y="622" font-size="36">Моё ревью</text><text x="680" y="662" font-size="22">ключевые экраны и тексты</text></g>
+        <g id="gt3" text-anchor="middle" class="t"><text x="1110" y="574" font-size="24">Красная зона</text><text x="1110" y="622" font-size="34">Ревью специалиста</text><text x="1110" y="662" font-size="22">платежи, данные, доступы</text></g>
+        <rect id="bar" x="889" y="320" width="12" height="480" rx="6" fill="#FFFFFF"/>
+        <circle id="rb" cy="372" r="30" fill="#E5FF99"/>
+        <g id="rp"><rect x="980" y="268" width="262" height="56" rx="10" fill="#14AE5C"/><path d="M1008 286l-10 10 10 10M1030 286l10 10-10 10M1024 282l-10 28" fill="none" stroke="#FFFFFF" stroke-width="3"/><text x="1056" y="305" font-size="27" class="t" style="fill:#FFFFFF">Ready for dev</text></g>
+      </svg>
+      <p class="say" style="bottom:auto;top:184px;width:610px">Размечаю зоны риска до&nbsp;сборки. Назначаю проверку для каждой: где ИИ работает сам, где нужно моё ревью, а&nbsp;где ревью профильного специалиста.</p></div>
+
+    <div class="sc" data-s="7"><h3 class="h">И снова метрика.</h3>
+      <svg class="v" viewBox="0 0 1360 800" aria-hidden="true" id="v7"></svg>
+      <p class="say" style="bottom:auto;top:184px;width:480px">Сверяю метрику с&nbsp;гипотезой из&nbsp;брифа. Записываю решение в&nbsp;журнал: что меняли, почему и&nbsp;чем закончилось.</p></div>
+
+    <div class="sc" data-s="8"><h3 class="h">Семь шагов.<br>Один цикл.</h3>
+      <a class="cta" href="#next">Обсудить проект</a>
+      <div id="sts"></div></div>
+  </div></div></div>
+</section>
+<div class="after" id="next">Дизайн-процесс Романа Васнёва</div>
+
+<script>
+(function () {
+  const $ = (s, r) => (r || document).querySelector(s), $$ = (s, r) => [...(r || document).querySelectorAll(s)];
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const ease = t => t * t * (3 - 2 * t);
+  const out = t => 1 - Math.pow(1 - t, 3);
+  const seg = (p, a, b) => clamp((p - a) / (b - a), 0, 1);
+  const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const NS = 'http://www.w3.org/2000/svg';
+  const frame = $('#frame'), stage = $('#stage'), track = $('#track');
+  const el = (n, a, p) => { const e = document.createElementNS(NS, n); for (const k in a) if (a[k] != null) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; };
+  const C = { peri: '#4F4DFF', green: '#0B5C36', lime: '#E5FF99', orange: '#FF7236', taupe: '#877977', maroon: '#6E1B1E', mag: '#FF00E5', cyan: '#30E0E0', mint: '#66FFA8', lilac: '#C4B8FF', peach: '#FFC9BE', orchid: '#DE8CFF', ink: '#131313', red: '#FF3838', ice: '#C3F7FF', violet: '#5E4694', white: '#FFFFFF' };
+
+  /* the alphabet: every picture in the block is assembled from these */
+  const rect = (p, x, y, w, h, fill, rx) => el('rect', { x, y, width: w, height: h, fill, rx: rx || 0 }, p);
+  const circ = (p, cx, cy, r, fill) => el('circle', { cx, cy, r, fill }, p);
+  const text = (p, s, x, y, size, fill, anchor) => { const t = el('text', { x, y, 'font-size': size, class: 't', 'text-anchor': anchor || 'start' }, p); if (fill) t.style.fill = fill; t.textContent = s; return t; };
+  /* arms taper from a round tip to the centre */
+  function aster(p, cx, cy, R, n, r, fill, rot) {
+    const g = el('g', { fill }, p), w0 = r * .28;
+    for (let k = 0; k < n; k++) {
+      const a = (rot || 0) + k * 2 * Math.PI / n, ux = Math.cos(a), uy = Math.sin(a), nx = -uy, ny = ux, tx = cx + ux * (R - r), ty = cy + uy * (R - r);
+      el('path', { d: `M${cx + nx * w0} ${cy + ny * w0}L${tx + nx * r} ${ty + ny * r}L${tx - nx * r} ${ty - ny * r}L${cx - nx * w0} ${cy - ny * w0}Z` }, g);
+      el('circle', { cx: tx, cy: ty, r }, g);
+    }
+    return g;
+  }
+  /* eight round lobes around a square */
+  function scallop(p, cx, cy, S, fill) {
+    const g = el('g', { fill }, p), r = S * .17, d = S / 2 - r;
+    el('rect', { x: cx - d, y: cy - d, width: 2 * d, height: 2 * d }, g);
+    [-d, 0, d].forEach(x => [-d, 0, d].forEach(y => { if (x || y) el('circle', { cx: cx + x, cy: cy + y, r }, g); }));
+    return g;
+  }
+  /* four big lobes, optionally with a four-point hole */
+  function clover(p, cx, cy, S, fill, hole) {
+    const g = el('g', { fill }, p), r = S * .27, o = S / 2 - r;
+    [[o, 0], [-o, 0], [0, o], [0, -o]].forEach(([x, y]) => el('circle', { cx: cx + x, cy: cy + y, r }, g));
+    el('rect', { x: cx - o, y: cy - o, width: 2 * o, height: 2 * o }, g);
+    if (hole) { const h = S * .11; el('path', { d: `M${cx} ${cy - h}Q${cx} ${cy} ${cx + h} ${cy}Q${cx} ${cy} ${cx} ${cy + h}Q${cx} ${cy} ${cx - h} ${cy}Q${cx} ${cy} ${cx} ${cy - h}Z`, fill: hole }, g); }
+    return g;
+  }
+  /* a rounded diamond with a round hole */
+  function donut(p, cx, cy, S, fill, hole) {
+    const g = el('g', { fill }, p), s = S * .72;
+    el('rect', { x: cx - s / 2, y: cy - s / 2, width: s, height: s, rx: s * .24, transform: `rotate(45 ${cx} ${cy})` }, g);
+    el('circle', { cx, cy, r: S * .19, fill: hole }, g);
+    return g;
+  }
+  function dots(p, cx, cy, R, r, n, fill) { const g = el('g', { fill }, p); for (let k = 0; k < n; k++) { const a = k * 2 * Math.PI / n; el('circle', { cx: cx + Math.cos(a) * R, cy: cy + Math.sin(a) * R, r }, g); } return g; }
+  /* a soft flower: the radius breathes n times around the circle */
+  function flower(p, cx, cy, R, fill, n) {
+    let d = ''; for (let k = 0; k < 96; k++) { const a = k / 96 * 2 * Math.PI, r = R * (.74 + .26 * Math.cos((n || 6) * a)); d += (k ? 'L' : 'M') + (cx + Math.cos(a) * r).toFixed(1) + ' ' + (cy + Math.sin(a) * r).toFixed(1); }
+    return el('path', { d: d + 'Z', fill }, p);
+  }
+  /* nested arches, widest first */
+  function rainbow(p, x, y, w, bottom, cols, step) {
+    const g = el('g', {}, p);
+    cols.forEach((c, i) => { const X = x + i * step, W = w - 2 * i * step, Y = y + i * step, r = W / 2; el('path', { d: `M${X} ${bottom}V${Y + r}A${r} ${r} 0 0 1 ${X + W} ${Y + r}V${bottom}Z`, fill: c }, g); });
+    return g;
+  }
+  function checker(p, x, y, cols, rows, S, a, b) { const g = el('g', {}, p); for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) rect(g, x + c * S, y + r * S, S + .5, S + .5, (c + r) % 2 ? b : a); return g; }
+  /* Figma selection: small squares on the corners of a frame */
+  function handles(p, x, y, w, h, fill, s) { const g = el('g', { fill }, p), S = s || 18; [[x, y], [x + w, y], [x, y + h], [x + w, y + h]].forEach(([X, Y]) => el('rect', { x: X - S / 2, y: Y - S / 2, width: S, height: S }, g)); return g; }
+  /* a thick path cut into two-colour pieces; pieces appear one after another */
+  function ribbon(p, d, w, a, b, len) {
+    const P = el('path', { d }), L = P.getTotalLength(), n = Math.max(1, Math.round(L / len)), segs = [];
+    for (let k = 0; k < n; k++) {
+      let s = ''; const f = k * L / n, t = Math.min(L, (k + 1) * L / n + .8), st = Math.max(2, Math.ceil((t - f) / 8));
+      for (let i = 0; i <= st; i++) { const q = P.getPointAtLength(f + (t - f) * i / st); s += (i ? 'L' : 'M') + q.x.toFixed(1) + ' ' + q.y.toFixed(1); }
+      segs.push(el('path', { d: s, fill: 'none', stroke: k % 2 ? b : a, 'stroke-width': w }, p));
+    }
+    return { P, L, set: q => segs.forEach((e, k) => { e.style.opacity = k / n < q ? 1 : 0; }) };
+  }
+  const pop = (g, cx, cy, q) => { g.setAttribute('transform', `translate(${cx} ${cy}) scale(${q}) translate(${-cx} ${-cy})`); g.style.opacity = q > .01 ? 1 : 0; };
+
+  /* band icons, one colour each, inherit the colour of their band */
+  const icon = f => { const s = el('svg', {}); f(s); return s.innerHTML; };
+  const CUR = 'currentColor';
+  const SH = {
+    target: icon(s => { el('circle', { cx: 60, cy: 60, r: 44, fill: 'none', stroke: CUR, 'stroke-width': 30 }, s); }),
+    fork: icon(s => { el('path', { d: 'M0 60H42C70 60 70 22 120 22M42 60C70 60 70 98 120 98', fill: 'none', stroke: CUR, 'stroke-width': 20 }, s); }),
+    aster: icon(s => aster(s, 60, 60, 58, 8, 11, CUR)),
+    scallop: icon(s => scallop(s, 60, 60, 116, CUR)),
+    flower: icon(s => flower(s, 60, 60, 60, CUR, 6)),
+    clover: icon(s => clover(s, 60, 60, 116, CUR)),
+    arch: icon(s => { el('path', { d: 'M4 116V60A56 56 0 0 1 116 60V116H88V60A28 28 0 0 0 32 60V116Z', fill: CUR }, s); })
+  };
+  const S = [
+    { bg: C.peri, fg: C.white },
+    { n: 'Рынок и гипотеза', bg: C.lime, fg: C.ink, sh: 'target' },
+    { n: 'State machine', bg: C.ink, fg: C.white, sh: 'fork' },
+    { n: 'Атомарная система', bg: C.lilac, fg: C.ink, sh: 'aster' },
+    { n: 'Визуал и бренд', bg: C.peach, fg: C.ink, sh: 'scallop' },
+    { n: 'Сборка с ИИ', bg: C.green, fg: C.white, sh: 'flower' },
+    { n: 'Риски и проверка', bg: C.ink, fg: C.white, sh: 'clover' },
+    { n: 'Метрики и журнал', bg: C.orange, fg: C.ink, sh: 'arch' },
+    { bg: C.white, fg: C.ink }
+  ];
+  const N = S.length, scenes = $$('.sc'), W7 = 1360 / 7;
+  const MT = [['Сначала цель.', 'Изучаю аудиторию и&nbsp;каналы. Формулирую гипотезу: что меняем и&nbsp;как изменится метрика или конверсия в&nbsp;CTA.'], ['Потом логика.', 'Разбираю флоу до&nbsp;первого экрана. Составляю state machine: какие есть состояния, что их&nbsp;переключает и&nbsp;что происходит при ошибке.'], ['Потом атомы.', 'Определяю токены и&nbsp;компоненты. Собираю атомарную систему: меняем один токен, и&nbsp;правка доходит до&nbsp;всех экранов.'], ['Потом характер.', 'Работаю внутри привычных паттернов. Задаю визуальный язык: один на&nbsp;сайте, в&nbsp;продукте и&nbsp;в&nbsp;рекламе, новизна в&nbsp;подаче и&nbsp;деталях.'], ['Потом скорость.', 'Собираю страницы и&nbsp;фичи с&nbsp;ИИ за&nbsp;часы. Прописываю ему три рамки: библиотека компонентов, правила проекта и&nbsp;связь с&nbsp;макетами.'], ['Потом проверка.', 'Размечаю зоны риска до&nbsp;сборки. Назначаю проверку для каждой: где ИИ работает сам, где нужно моё ревью, а&nbsp;где ревью профильного специалиста.'], ['И снова метрика.', 'Сверяю метрику с&nbsp;гипотезой из&nbsp;брифа. Записываю решение в&nbsp;журнал: что меняли, почему и&nbsp;чем закончилось.']];
+  $('#m').innerHTML = '<div class="mh">Как я делаю продукты</div>' + MT.map(([h, p], i) => { const c = S[i + 1]; return `<article class="mp" style="--b:${c.bg};--f:${c.fg}"><small>${i + 1} из 7 · ${c.n}</small><h3>${h}</h3><svg viewBox="0 0 120 120" aria-hidden="true">${SH[c.sh]}</svg><p>${p}</p></article>`; }).join('') + '<a class="mc" href="#next">Обсудить проект</a>';
+  track.style.height = `calc(${N * 142}vh + 100vh)`;
+
+  /* 0: a ribbon around seven tiles, one for each step ahead */
+  const v0 = $('#v0'), T0 = [];
+  const R0 = ribbon(v0, 'M770 840C700 700 640 560 700 400C760 240 940 220 1060 280C1180 340 1270 262 1400 296', 36, C.mag, C.green, 62);
+  const tile0 = (x, y, S, bg, f, rx) => { const g = el('g', {}, v0); rect(g, x, y, S, S, bg, rx); f(g, x + S / 2, y + S / 2, S); T0.push({ g, cx: x + S / 2, cy: y + S / 2 }); };
+  tile0(770, 360, 124, C.white, (g, x, y, S) => aster(g, x, y, S * .42, 16, 3, C.orange));
+  tile0(936, 336, 168, C.green, (g, x, y, S) => clover(g, x, y, S * .84, C.cyan, C.green), 34);
+  tile0(1146, 368, 180, C.orchid, (g, x, y, S) => aster(g, x, y, S * .42, 8, 14, C.maroon));
+  tile0(786, 526, 110, C.violet, (g, x, y) => { [[-38, -38], [38, -38], [-38, 38], [38, 38]].forEach(([a, b]) => circ(g, x + a, y + b, 19, C.ice)); }, 8);
+  tile0(936, 540, 150, C.taupe, (g, x, y, S) => scallop(g, x, y, S * .86, C.mag), 10);
+  tile0(1130, 576, 96, C.lime, (g, x, y) => { [[-22, 20], [20, -14], [-2, -30]].forEach(([a, b]) => circ(g, x + a, y + b, 16, C.orchid)); });
+  { const g = el('g', {}, v0); rainbow(g, 1100, 700, 260, 800, [C.lime, C.peri, C.mag, C.orange], 28); T0.push({ g, cx: 1230, cy: 800 }); }
+
+  /* 1: target rings that close in on one point */
+  const v1 = $('#v1'), RG1 = [[360, C.green], [292, C.peri], [224, C.green], [156, C.peri], [88, C.orange]].map(([R, c]) => ({ e: circ(v1, 1060, 470, 0, c), R }));
+  const star1 = el('g', {}, v1); aster(star1, 0, 0, 72, 8, 11, C.ink);
+
+  /* 2: the road forks into a good branch and a broken one */
+  const v2 = $('#v2');
+  const RM = ribbon(v2, 'M-40 440H700', 64, C.mag, C.green, 84);
+  const RU = ribbon(v2, 'M700 440C880 440 880 250 1120 250', 64, C.mag, C.green, 84);
+  const RD = ribbon(v2, 'M700 440C880 440 880 630 1130 630', 64, C.orange, C.maroon, 84);
+  const e2a = el('g', {}, v2); rect(e2a, 1120, 130, 200, 240, C.mint); el('path', { d: 'M1170 250l40 42 66-86', fill: 'none', stroke: C.ink, 'stroke-width': 24 }, e2a); handles(e2a, 1120, 130, 200, 240, C.white);
+  const e2b = el('g', {}, v2); flower(e2b, 1230, 630, 150, C.red, 6); el('path', { d: 'M1190 590l80 80M1270 590l-80 80', fill: 'none', stroke: C.ink, 'stroke-width': 24 }, e2b);
+  const l2a = text(v2, 'всё хорошо', 1120, 100, 27, C.white), l2b = text(v2, 'пропала сеть', 1060, 748, 27, C.orange, 'end');
+  const b2a = circ(v2, 0, 440, 40, C.lime), b2b = circ(v2, 0, 440, 40, C.lime);
+
+  /* 3: from one shape to a page: every level is built from the one before and the beams show it growing */
+  const v3 = $('#v3'), TK = [C.orange, C.mag], tok = [], L3 = [];
+  const T3 = 104, BOT3 = 606;
+  const fig = (kind, x, y, s, fill, bg, p) => { const cx = x + s / 2, cy = y + s / 2, S = s * .84; return kind === 0 ? aster(p, cx, cy, S / 2, 8, S * .08, fill, Math.PI / 8) : kind === 1 ? scallop(p, cx, cy, S, fill) : kind === 2 ? clover(p, cx, cy, S, fill) : donut(p, cx, cy, S, fill, bg); };
+  const level = (name, x, top, o, beam) => { const g = el('g', {}, v3); L3.push({ g, o }); if (beam) el('path', { d: `M${beam[0]} ${beam[1]}L${x} ${top}L${x} ${BOT3}L${beam[0]} ${BOT3}Z`, fill: C.peach }, g); text(g, name, x, top - 14, 27, C.ink); return g; };
+  const cell = (g, c, r, X, Y, kind, bg) => { const x = X + c * T3, y = Y + r * T3; rect(g, x, y, T3 + .5, T3 + .5, bg); const s = fig(kind, x, y, T3, TK[0], bg, g); s.style.transition = 'fill .25s'; tok.push({ s, x }); };
+  const g30 = level('Токен', 48, BOT3 - 52, .04);
+  const tk0 = aster(g30, 74, BOT3 - 26, 26, 8, 4, TK[0], Math.PI / 8); tk0.style.transition = 'fill .25s'; tok.push({ s: tk0, x: 48 });
+  cell(level('Атом', 169, BOT3 - T3, .14, [100, BOT3 - 52]), 0, 0, 169, BOT3 - T3, 0, C.green);
+  const g32 = level('Молекула', 342, BOT3 - T3, .24, [273, BOT3 - T3]); cell(g32, 0, 0, 342, BOT3 - T3, 0, C.green); cell(g32, 1, 0, 342, BOT3 - T3, 1, C.peri);
+  const g33 = level('Организм', 619, BOT3 - T3 * 2, .34, [550, BOT3 - T3]); [[0, 0, 0, C.green], [1, 0, 1, C.peri], [0, 1, 2, C.peri], [1, 1, 3, C.green]].forEach(c => cell(g33, c[0], c[1], 619, BOT3 - T3 * 2, c[2], c[3]));
+  const g34 = level('Страница', 896, BOT3 - T3 * 4, .46, [827, BOT3 - T3 * 2]);
+  for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) cell(g34, c, r, 896, BOT3 - T3 * 4, (c + 2 * r) % 4, (c + r) % 2 ? C.peri : C.green);
+
+  /* 4: one language on three surfaces: the same alphabet, a composition of its own on each */
+  const v4 = $('#v4'), defs4 = el('defs', {}, v4), P4 = [];
+  const clip4 = (id, x, y, w, h, rx) => { const cp = el('clipPath', { id }, defs4); el('rect', { x, y, width: w, height: h, rx }, cp); return el('g', { 'clip-path': `url(#${id})` }, v4); };
+  const part = (p, o) => { const g = el('g', {}, p); P4.push({ g, o }); return g; };
+  /* laptop */
+  text(v4, 'Сайт', 548, 58, 26, C.ink);
+  rect(v4, 548, 72, 452, 290, C.ink, 14); circ(v4, 774, 77, 2, '#4A4A4F');
+  el('path', { d: 'M520 362H1028V366Q1028 376 1016 376H532Q520 376 520 366Z', fill: C.ink }, v4); rect(v4, 734, 362, 80, 6, '#4A4A4F', 3);
+  const site = clip4('sf-a', 558, 82, 432, 270, 4); rect(site, 558, 82, 432, 270, C.white);
+  let g4 = part(site, .06); circ(g4, 580, 104, 10, C.ink); rect(g4, 902, 92, 72, 24, C.peri, 12);
+  g4 = part(site, .1); rect(g4, 558, 126, 216, 226, C.peri); aster(g4, 666, 239, 96, 8, 16, C.orange, Math.PI / 8);
+  g4 = part(site, .14); rect(g4, 774, 126, 108, 113, C.lime); clover(g4, 828, 182, 88, C.mag);
+  g4 = part(site, .18); rect(g4, 882, 126, 108, 113, C.green); donut(g4, 936, 182, 84, C.cyan, C.green);
+  g4 = part(site, .22); checker(g4, 774, 239, 8, 5, 27, C.orchid, C.orange);
+  /* phone */
+  text(v4, 'Приложение', 1030, 58, 26, C.ink);
+  rect(v4, 1030, 72, 300, 650, C.ink, 50);
+  const app = clip4('sf-b', 1040, 82, 280, 630, 40); rect(app, 1040, 82, 280, 630, C.white);
+  g4 = part(app, .3); rect(g4, 1056, 134, 248, 248, C.violet, 28); scallop(g4, 1180, 258, 206, C.mag);
+  [[1056, C.peri, C.lime, 0], [1142, C.green, C.cyan, 2], [1228, C.lime, C.orange, 1]].forEach((t, i) => { g4 = part(app, .36 + i * .03); rect(g4, t[0], 398, 76, 76, t[1], 16); fig(t[3], t[0] + 12, 410, 52, t[2], t[1], g4); });
+  g4 = part(app, .46); const cp4 = el('clipPath', { id: 'sf-d' }, defs4); rect(cp4, 1056, 490, 248, 100, null, 24); const ar4 = el('g', { 'clip-path': 'url(#sf-d)' }, g4); rect(ar4, 1056, 490, 248, 100, C.orange); rainbow(ar4, 1090, 496, 180, 600, [C.peri, C.lime, C.mag], 22);
+  g4 = part(app, .5); rect(g4, 1056, 606, 248, 56, C.ink, 28);
+  rect(app, 1130, 92, 100, 26, C.ink, 13); rect(app, 1130, 692, 100, 5, C.ink, 2.5);
+  /* ad, the same size as the laptop */
+  text(v4, 'Реклама', 548, 404, 26, C.ink);
+  const ad = clip4('sf-c', 548, 418, 452, 304, 14); rect(ad, 548, 418, 452, 304, C.peri);
+  rainbow(part(ad, .56), 576, 450, 300, 722, [C.lime, C.mag, C.orange, C.violet], 34);
+  aster(part(ad, .64), 930, 480, 52, 16, 3, C.white);
+  g4 = part(ad, .7); rect(g4, 884, 590, 92, 92, C.green); clover(g4, 930, 636, 76, C.cyan);
+
+  /* 5: three frames for the AI; instances leave the library for the screen */
+  const v5 = $('#v5'), c51 = el('g', {}, v5), c52 = el('g', {}, v5), c53 = el('g', {}, v5);
+  const cap5 = (g, s, x) => { const t = text(g, s, x, 608, 21, C.white); t.style.fontWeight = 400; t.style.letterSpacing = '-.012em'; };
+  rect(c51, 48, 200, 234, 349, C.violet);
+  [[76, 232, 178, C.lime], [104, 316, 150, C.orange], [132, 400, 122, C.cyan]].forEach(([x, y, w, c]) => rect(c51, x, y, w, 68, c, 34));
+  [[48, 200], [282, 200], [48, 549], [282, 549]].forEach(([x, y]) => circ(c51, x, y, 18, C.ice));
+  cap5(c51, 'Связь с макетами', 48);
+  checker(c52, 308, 200, 4, 6, 58.25, C.orchid, C.orange); rect(c52, 308 + 58.25 * 2, 200 + 58.25, 58.25, 58.25, C.ink); rect(c52, 308, 200 + 58.25 * 4, 58.25, 58.25, C.lime);
+  cap5(c52, 'Правила проекта', 308);
+  cap5(c53, 'Библиотека компонентов', 568);
+  el('rect', { x: 850, y: 110, width: 470, height: 900, rx: 66, fill: 'none', stroke: C.white, 'stroke-width': 12 }, v5);
+  const pg = id => el('g', { id }, v5);
+  let g5 = pg('p1'); rect(g5, 0, 0, 250, 56, C.lime, 28);
+  g5 = pg('p2'); rect(g5, 0, 0, 390, 270, C.orange, 28); aster(g5, 195, 135, 118, 8, 19, C.ink, Math.PI / 8);
+  g5 = pg('p3'); rect(g5, 0, 0, 390, 92, C.peach, 20); clover(g5, 58, 46, 62, C.peri); rect(g5, 110, 36, 210, 20, C.peri, 10);
+  g5 = pg('p4'); rect(g5, 0, 0, 390, 104, C.ink, 52);
+  g5 = pg('ps'); flower(g5, 0, 0, 120, C.mag, 6);
+  const pt = text(v5, 'вне системы', 1190, 58, 27, C.white);
+  const FR5 = [[568, 200], [568, 246], [568, 420], [568, 487]], Z5 = .6;
+  ['p1', 'p2', 'p3', 'p4'].forEach((id, k) => { const c = $('#' + id).cloneNode(true); c.removeAttribute('id'); c.setAttribute('transform', `translate(${FR5[k][0]} ${FR5[k][1]}) scale(${Z5})`); c53.appendChild(c); });
+
+  /* 6: three zones with a gate before the last */
+  scallop($('#g1'), 250, 630, 412); scallop($('#g2'), 680, 630, 412); scallop($('#g3'), 1110, 630, 412);
+
+  /* 7: arched columns grow towards the goal and an asterisk climbs them */
+  const v7 = $('#v7'), HB = [.1, .17, .25, .36, .5, .72, 1], GOALY = 220, cols = [];
+  HB.forEach((h, i) => cols.push({ r: el('rect', { x: i * W7, width: W7 + 1, y: 800, height: 400, rx: W7 / 2, fill: i === 6 ? C.lime : C.ink }, v7), h: h * (800 - GOALY) }));
+  const was = text(v7, 'было', 66, 776, 27, C.white), now = text(v7, 'стало', 6 * W7 + 62, 776, 27, C.ink);
+  const gt = el('g', {}, v7); text(gt, 'цель из', 6 * W7 + 48, GOALY + 94, 27, C.ink); text(gt, 'гипотезы', 6 * W7 + 48, GOALY + 126, 27, C.ink);
+  const b7 = el('g', {}, v7); aster(b7, 0, 0, 44, 8, 7, C.white);
+
+  /* 8: seven bands back to the seven posters */
+  const sts = $('#sts'), PST = S.slice(1, 8);
+  sts.innerHTML = PST.map((s, i) => `<button class="st" type="button" data-to="${i + 1}" style="left:${i * W7}px;width:${W7 + 1}px;height:440px;--b:${s.bg};--f:${s.fg}"><svg viewBox="0 0 120 120" aria-hidden="true">${SH[s.sh]}</svg>${s.n}</button>`).join('');
+  const stb = $$('.st', sts);
+  sts.addEventListener('click', e => { const b = e.target.closest('[data-to]'); if (!b) return; const r = track.getBoundingClientRect(), span = r.height - innerHeight; scrollTo({ top: scrollY + r.top + ((+b.dataset.to + .9) / (N - .001)) * span, behavior: reduce ? 'instant' : 'smooth' }); });
+
+  const mv = (id, x, y, extra) => $('#' + id).setAttribute('transform', `translate(${x} ${y})${extra || ''}`);
+
+  function play(i, a) {
+    if (i === 0) {
+      R0.set(.3 + .7 * seg(a, 0, .6));
+      T0.forEach((t, k) => pop(t.g, t.cx, t.cy, out(seg(a, k * .08 - .14, k * .08 + .06))));
+    }
+    if (i === 1) {
+      /* from the outermost ring to the point */
+      RG1.forEach((r, k) => r.e.setAttribute('r', r.R * out(seg(a, .06 + k * .1, .3 + k * .1))));
+      const q = out(seg(a, .56, .76)); star1.setAttribute('transform', `translate(1060 470) scale(${q}) rotate(${q * 90})`);
+    }
+    if (i === 2) {
+      const t = seg(a, .06, .3), f = seg(a, .3, .52);
+      RM.set(t); RU.set(f); RD.set(f);
+      const e = seg(a, .5, .58); e2a.style.opacity = e; e2b.style.opacity = e; l2a.style.opacity = e; l2b.style.opacity = e;
+      const go = ease(seg(a, .52, .9)), x0 = lerp(0, 700, seg(go, 0, .4)), s2 = seg(go, .4, 1);
+      const A = RU.P.getPointAtLength(RU.L * s2 * .8), B = RD.P.getPointAtLength(RD.L * s2 * .8);
+      [[b2a, A], [b2b, B]].forEach(([b, p]) => { b.setAttribute('cx', s2 > 0 ? p.x : x0); b.setAttribute('cy', s2 > 0 ? p.y : 440); b.style.opacity = go > 0 ? 1 : 0; });
+    }
+    if (i === 3) {
+      L3.forEach(l => { const q = out(seg(a, l.o, l.o + .1)); l.g.style.opacity = q; l.g.setAttribute('transform', `translate(0 ${(1 - q) * 18})`); });
+      /* the token itself changes and the page follows, from the smallest shape to the largest */
+      const w = seg(a, .68, .84);
+      tok.forEach(t => { t.s.style.fill = w > 0 && (t.x - 48) / 1264 < w ? TK[1] : TK[0]; });
+    }
+    if (i === 4) P4.forEach(p => { const q = out(seg(a, p.o, p.o + .1)); p.g.style.opacity = q; p.g.setAttribute('transform', `translate(0 ${(1 - q) * 14})`); });
+    if (i === 5) {
+      const SL = [[890, 160], [890, 240], [890, 534], [890, 650]];
+      [c51, c52, c53].forEach((g, k) => { g.style.opacity = seg(a, .02 + k * .06, .08 + k * .06); });
+      ['p1', 'p2', 'p3', 'p4'].forEach((id, k) => {
+        const st = .24 + k * .09, q = ease(seg(a, st, st + .16));
+        mv(id, lerp(FR5[k][0], SL[k][0], q), lerp(FR5[k][1], SL[k][1], seg(q, .75, 1)), ` scale(${lerp(Z5, 1, q)})`);
+        $('#' + id).style.opacity = a >= st ? 1 : 0;
+      });
+      /* a foreign shape drops from above, hits the top of the screen and is thrown out */
+      const go = ease(seg(a, .68, .76)), rej = ease(seg(a, .84, .92));
+      mv('ps', lerp(1120, 1460, rej), lerp(lerp(-120, 50, go), -130, rej), ` scale(.45) rotate(${rej * 80})`);
+      pt.style.opacity = seg(a, .74, .77) * (1 - seg(a, .81, .83));
+    }
+    if (i === 6) {
+      const G = [C.mint, '#FFD43B', C.red], x = lerp(-40, 840, ease(seg(a, .06, .46))), pass = ease(seg(a, .68, .78)), fin = lerp(x, 1420, pass);
+      $('#rb').setAttribute('cx', fin);
+      [[1, 250], [2, 680], [3, 1110]].forEach(([k, cx], n) => {
+        const on = n < 2 ? fin >= cx - 60 : pass > .3;
+        $('#g' + k).setAttribute('fill', on ? G[n] : '#232326');
+        $('#gt' + k).style.fill = on ? C.ink : '#8A8A90';
+        $('#gt' + k).style.color = on ? C.ink : '#8A8A90';
+      });
+      /* the mark appears first, then the gate opens */
+      const pin = out(seg(a, .5, .6));
+      $('#rp').style.opacity = pin; $('#rp').setAttribute('transform', `translate(0 ${(1 - pin) * 16})`);
+      const up = 480 * (1 - pass); $('#bar').setAttribute('height', up); $('#bar').setAttribute('y', 800 - up); $('#bar').style.opacity = seg(a, .3, .36);
+    }
+    if (i === 7) {
+      const t = seg(a, .06, .7), Q = cols.map((c, k) => { const q = out(seg(t, k * .09, k * .09 + .42)), y = 800 - c.h * q; c.r.setAttribute('y', y); c.r.setAttribute('height', c.h * q + W7); return y; });
+      was.style.opacity = seg(t, .05, .15); now.style.opacity = seg(t, .85, .95); gt.style.opacity = seg(t, .9, 1);
+      /* the asterisk hops from arch to arch and stops on the goal */
+      const pos = ease(seg(a, .1, .76)) * 6, k = Math.min(5, Math.floor(pos)), f = pos - k, hop = Math.sin(Math.PI * f) * 60;
+      b7.setAttribute('transform', `translate(${(k + f + .5) * W7} ${lerp(Q[k], Q[k + 1], f) - 44 - hop}) rotate(${pos * 45})`);
+      b7.style.opacity = seg(a, .06, .12);
+    }
+    if (i === 8) stb.forEach((b, k) => { const q = out(seg(a, .02 + k * .06, .3 + k * .06)); b.style.transform = `translateY(${(1 - q) * 460}px)`; });
+  }
+
+  /* each poster plays over 77.5% of its scroll, rests on the finished picture for 18.5%, then fades */
+  const pace = p => p < .775 ? p / .775 * .96 : p < .96 ? .96 : .96 + (p - .96);
+  let cur = -1, shown = null, raf = 0;
+  const target = () => { const r = track.getBoundingClientRect(), span = Math.max(1, r.height - innerHeight); return clamp(-r.top / span, 0, 1) * (N - .001); };
+  function render() {
+    const w = Math.min(innerWidth - 2 * clamp(innerWidth * .02, 8, 24), (innerHeight - 28) * 1.7), k = w / 1360;
+    frame.style.width = w + 'px'; frame.style.height = 800 * k + 'px';
+    stage.style.transform = `scale(${k})`;
+    const u = shown == null ? target() : shown, i = Math.floor(u), a = pace(u - i);
+    scenes.forEach((s, n) => {
+      const on = n === i; s.style.visibility = on ? 'visible' : 'hidden';
+      if (on) s.style.opacity = (n === 0 ? 1 : seg(a, 0, .04)) * (n === N - 1 ? 1 : 1 - seg(a, .96, 1));
+    });
+    if (i !== cur) {
+      cur = i; const s = S[i];
+      frame.style.setProperty('--bgc', s.bg); stage.style.setProperty('--fgc', s.fg);
+      $('#cn').textContent = s.n ? `${i} из 7 · ${s.n}` : '';
+      $('#skip').style.display = i === N - 1 ? 'none' : '';
+    }
+    play(i, a);
+  }
+  function tick() {
+    const t = target();
+    if (shown == null || reduce) shown = t; else { shown += (t - shown) * .14; if (Math.abs(t - shown) < .0005) shown = t; }
+    render();
+    raf = shown === t ? 0 : requestAnimationFrame(tick);
+  }
+  const wake = () => { if (!raf) raf = requestAnimationFrame(tick); };
+  addEventListener('scroll', wake, { passive: true });
+  addEventListener('resize', render);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(render);
+  shown = target(); render();
+  window.__film = { render, go: u => { const r = track.getBoundingClientRect(), span = r.height - innerHeight; scrollTo({ top: scrollY + r.top + (u / (N - .001)) * span, behavior: 'instant' }); shown = target(); render(); } };
+})();
+</script>
+</body>
+</html>

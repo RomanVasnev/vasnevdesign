@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Дизайн-процесс: просто</title>
+<style>
+/* Design process as nine plain posters, built like the «Обо мне» block: a claim, a sentence, big facts, a few shapes — by vasnev.art */
+@font-face{font-family:'Geist';font-weight:400;font-display:swap;src:url(../public/fonts/geist-400.woff2) format('woff2')}
+@font-face{font-family:'Geist';font-weight:500;font-display:swap;src:url(../public/fonts/geist-500.woff2) format('woff2')}
+:root{--ink:#0B0B0C;--blue:#2F5CFF;--yellow:#FFD43B;--pink:#FF8AD8;--orange:#FF7A45;--lilac:#D9CBFF;--dark:#121214}
+*{box-sizing:border-box}
+html,body{margin:0;background:#F8F8F8;color:var(--ink);font-family:'Geist',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.track{position:relative}
+.pin{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center}
+.frame{position:relative;flex:none;overflow:hidden;border-radius:32px}
+.stage{position:absolute;left:0;top:0;width:1360px;height:800px;transform-origin:0 0}
+.after{margin:16px clamp(8px,2vw,24px) 40px;padding:32px;border-radius:32px;background:var(--ink);color:#fff;font-size:24px;letter-spacing:-.03em}
+
+.sc{position:absolute;inset:0;padding:84px 64px 56px;display:flex;flex-direction:column;background:var(--b);color:var(--f);opacity:0;visibility:hidden;transition:opacity .25s,visibility 0s .25s}
+.sc.on{opacity:1;visibility:visible;transition:opacity .25s}
+.cnt{position:absolute;left:64px;top:36px;display:flex;gap:18px;font-size:16px;letter-spacing:-.012em;z-index:6}
+.cnt a{color:inherit;opacity:.8;text-underline-offset:3px}
+.copy{position:relative;z-index:5;flex:1;display:flex;flex-direction:column;gap:30px;max-width:800px;pointer-events:none}
+.h{margin:0;font-weight:500;font-size:72px;line-height:.94;letter-spacing:-.065em}
+.h span{display:block}
+.p{margin:0;font-size:22px;line-height:1.35;letter-spacing:-.025em;max-width:34ch;opacity:.88}
+.facts{list-style:none;margin:auto 0 0;padding:0;display:flex;gap:64px}
+.facts li{display:flex;flex-direction:column;gap:8px;width:190px}
+.facts b{font-weight:500;font-size:68px;line-height:.9;letter-spacing:-.06em}
+.facts span{font-size:16px;letter-spacing:-.02em;line-height:1.25;opacity:.74}
+.gx{position:absolute;inset:0;z-index:2;pointer-events:none}
+.g{position:absolute;display:block;overflow:visible;pointer-events:auto;cursor:grab;touch-action:none}
+.g.held{cursor:grabbing}
+.g path,.g circle{fill:var(--c)}
+.g.cur{filter:drop-shadow(0 18px 30px rgba(0,0,0,.18))}
+.g.cur path{stroke:var(--s);stroke-width:5;stroke-linejoin:round}
+.cta{align-self:flex-start;display:flex;align-items:center;height:72px;padding:0 36px;border-radius:36px;background:var(--blue);color:#fff;font-weight:500;font-size:24px;letter-spacing:-.025em;text-decoration:none;pointer-events:auto;transition:transform .25s ease}
+.cta:hover{transform:scale(1.04)}
+.bands{position:absolute;left:0;right:0;bottom:0;height:300px;display:grid;grid-template-columns:repeat(7,1fr);z-index:6}
+.st{position:relative;border:0;padding:0 18px 22px;display:flex;align-items:flex-end;text-align:left;cursor:pointer;background:var(--b);color:var(--f);font-weight:500;font-size:24px;letter-spacing:-.03em;overflow:hidden}
+.st svg{position:absolute;left:50%;top:44px;width:96px;height:96px;margin-left:-48px;fill:currentColor;transition:transform .3s ease}
+.st:hover svg{transform:scale(1.14)}
+
+/* a poster arrives in one pass: words first, then facts, then shapes */
+.rv,.g{opacity:0}
+.rv{transform:translateY(18px)}
+.g{scale:.6}
+.sc.on .rv,.sc.on .g{opacity:1;transform:none;scale:1;transition:opacity .4s ease var(--d,0s),transform .6s cubic-bezier(.2,.8,.2,1) var(--d,0s),scale .7s cubic-bezier(.2,1.35,.4,1) var(--d,0s)}
+.sc.settled .rv,.sc.settled .g{transition:none}
+.g.held{transition:none!important}
+
+@media (max-width:760px){
+  .pin{position:static;height:auto;display:block;padding:8px 8px 0}
+  .frame{width:auto!important;height:auto!important;overflow:visible;border-radius:0}
+  .stage{position:static;width:auto;height:auto;transform:none!important;display:grid;gap:8px}
+  .track{height:auto!important}
+  .after{margin-top:8px}
+  .sc{position:relative;inset:auto;padding:56px 20px 68vw;min-height:0;border-radius:24px;overflow:hidden;opacity:1;visibility:visible}
+  .cnt{left:20px;top:20px;font-size:14px}
+  .cnt a{display:none}
+  .copy{gap:20px;max-width:none}
+  .h{font-size:clamp(28px,8.6vw,40px)}
+  .p{font-size:18px}
+  .facts{margin-top:12px;flex-wrap:wrap;gap:20px 24px}
+  .facts li{width:calc(50% - 12px)}
+  .facts b{font-size:48px}
+  .gx{inset:auto 0 0;height:52vw}
+  .g{pointer-events:none;touch-action:auto}
+  .rv,.g{opacity:1;transform:none;scale:1}
+  .sc[data-s="8"]{padding-bottom:20px}
+  .cta{margin-top:8px}
+  .bands{display:none}
+}
+@media (prefers-reduced-motion:reduce){.sc,.sc.on .rv,.sc.on .g,.cta,.st svg{transition:none}}
+</style>
+</head>
+<body>
+<section class="track" id="track" aria-label="Как я делаю продукты">
+  <div class="pin"><div class="frame" id="frame"><div class="stage" id="stage"></div></div></div>
+</section>
+<div class="after" id="next">Следующий блок сайта</div>
+
+<script>
+(function () {
+  const $ = (s, r) => (r || document).querySelector(s), $$ = (s, r) => [...(r || document).querySelectorAll(s)];
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const frame = $('#frame'), stage = $('#stage'), track = $('#track');
+  const INK = '#0B0B0C', W = '#FFFFFF', BLUE = '#2F5CFF', YEL = '#FFD43B', PINK = '#FF8AD8', OR = '#FF7A45', LIL = '#D9CBFF', DARK = '#121214';
+
+  /* the same three shapes as on the other blocks */
+  const SHAPE = {
+    tri: '<svg class="g" viewBox="0 0 200 180" aria-hidden="true" STYLE><path d="M100 14 188 166H12Z"/></svg>',
+    circ: '<svg class="g" viewBox="0 0 200 200" aria-hidden="true" STYLE><circle cx="100" cy="100" r="96"/></svg>',
+    cur: '<svg class="g cur" viewBox="0 0 120 160" aria-hidden="true" STYLE><path d="M10 8v126l32-30 22 48 26-12-22-47 44-2Z"/></svg>'
+  };
+  const shape = ([k, c, css, s], n) => SHAPE[k].replace('STYLE', `style="--c:${c};--s:${s || INK};--d:${.3 + n * .09}s;${css}"`);
+
+  const S = [
+    { bg: W, fg: INK, h: ['Как я делаю', 'продукты'], p: 'От идеи до результата, который можно измерить.', f: [['7', 'этапов'], ['1', 'цикл: выводы запускают следующий']],
+      g: [['circ', YEL, 'width:27%;right:13%;top:42%'], ['tri', PINK, 'width:29%;right:-3%;top:-8%;rotate:14deg'], ['cur', W, 'width:13%;right:6%;top:68%']] },
+    { n: 'Рынок и гипотеза', t: 'Цель', sh: 'circ', bg: YEL, fg: INK, h: ['Сначала понимаю,', 'что должно', 'измениться'], p: 'Разбираю аудиторию, каналы и конкурентов. Формулирую гипотезу: что меняем и как изменится метрика.', f: [['5', 'интервью на ключевую задачу'], ['1', 'гипотеза в одну строку'], ['1', 'метрика успеха']],
+      g: [['circ', BLUE, 'width:30%;right:4%;top:26%'], ['tri', PINK, 'width:17%;right:27%;top:-5%;rotate:-16deg']] },
+    { n: 'State machine', t: 'Логика', sh: 'tri', bg: DARK, fg: W, h: ['Продумываю продукт', 'до первого экрана'], p: 'Описываю все состояния и переходы, включая ошибки, потерю сети и истёкшую сессию.', f: [['1', 'карта состояний на флоу'], ['5', 'ролей работают по ней'], ['0', 'пикселей до готовой логики']],
+      g: [['tri', YEL, 'width:26%;right:9%;top:6%;rotate:90deg'], ['circ', OR, 'width:17%;right:3%;top:52%'], ['cur', W, 'width:10%;right:25%;top:60%']] },
+    { n: 'Атомарная система', t: 'Система', sh: 'circ', bg: LIL, fg: INK, h: ['Собираю интерфейс', 'из единой системы'], p: 'От токена до готовой страницы. Одна правка обновляет весь продукт.', f: [['5', 'уровней от токена до страницы'], ['7', 'состояний у компонента'], ['1', 'токен меняет весь продукт']],
+      g: [['circ', BLUE, 'width:9%;right:30%;top:60%'], ['circ', BLUE, 'width:16%;right:14%;top:42%'], ['circ', BLUE, 'width:25%;right:-5%;top:6%'], ['tri', OR, 'width:15%;right:2%;top:68%;rotate:-12deg']] },
+    { n: 'Визуал и бренд', t: 'Характер', sh: 'tri', bg: PINK, fg: INK, h: ['Делаю продукт', 'узнаваемым'], p: 'Кнопка остаётся на привычном месте, а новизна появляется в подаче, анимации и деталях.', f: [['3', 'поверхности: сайт, продукт, реклама'], ['1', 'визуальный язык']],
+      g: [['circ', YEL, 'width:28%;right:7%;top:30%'], ['tri', BLUE, 'width:21%;right:-1%;top:-5%;rotate:18deg'], ['cur', W, 'width:12%;right:27%;top:66%;rotate:-8deg']] },
+    { n: 'Сборка с ИИ', t: 'Скорость', sh: 'cur', bg: BLUE, fg: W, h: ['Собираю быстро,', 'но по правилам'], p: 'ИИ берёт рутину, но работает только в рамках проекта и из готовых компонентов.', f: [['3', 'рамки для ИИ'], ['0', 'своих компонентов у ИИ'], ['Часы', 'на страницу или фичу']],
+      g: [['tri', PINK, 'width:30%;right:-3%;top:-9%;rotate:14deg'], ['circ', YEL, 'width:27%;right:12%;bottom:9%'], ['cur', W, 'width:14%;right:6%;bottom:-6%']] },
+    { n: 'Риски и проверка', t: 'Проверка', sh: 'tri', bg: DARK, fg: W, h: ['Проверяю там,', 'где ошибка', 'стоит дорого'], p: 'Размечаю зоны риска до сборки. Платежи, данные и доступы смотрит профильный специалист.', f: [['3', 'зоны риска'], ['2', 'проверки перед релизом: юзабилити и доступность']],
+      g: [['circ', LIL, 'width:20%;right:21%;top:12%'], ['tri', OR, 'width:30%;right:-2%;top:44%;rotate:-14deg']] },
+    { n: 'Метрики и журнал', t: 'Метрика', sh: 'circ', bg: OR, fg: INK, h: ['Сверяю результат', 'с целью'], p: 'После релиза сравниваю метрику с гипотезой и вижу, на каком шаге уходят люди.', f: [['4', 'поля журнала: гипотеза, решение, почему, результат'], ['5', 'минут на запись']],
+      g: [['circ', YEL, 'width:27%;right:-2%;top:5%'], ['tri', BLUE, 'width:22%;right:14%;top:50%;rotate:12deg'], ['cur', W, 'width:11%;right:4%;top:62%']] },
+    { bg: W, fg: INK, h: ['Выводы запускают', 'следующий цикл'], g: [] }
+  ];
+  const N = S.length;
+  const ICON = { circ: '<circle cx="50" cy="50" r="46"/>', tri: '<path d="M50 8 94 88H6Z"/>', cur: '<path d="M22 6v72l18-17 13 28 15-7-13-27 26-1Z"/>' };
+  stage.innerHTML = S.map((s, i) => `<article class="sc" data-s="${i}" style="--b:${s.bg};--f:${s.fg}">
+    <div class="cnt"><span>${s.n ? `${i} из 7 · ${s.n}` : ''}</span>${i < N - 1 ? '<a href="#next">Пропустить блок</a>' : ''}</div>
+    <div class="copy"><h${i ? 3 : 2} class="h rv">${s.h.map(l => `<span>${l}</span>`).join('')}</h${i ? 3 : 2}>
+    ${s.p ? `<p class="p rv" style="--d:.08s">${s.p}</p>` : ''}
+    ${s.f ? `<ul class="facts">${s.f.map(([b, t], k) => `<li class="rv" style="--d:${.16 + k * .08}s"><b>${b}</b><span>${t}</span></li>`).join('')}</ul>` : `<a class="cta rv" style="--d:.1s" href="#next">Обсудить проект</a>`}</div>
+    <div class="gx">${s.g.map(shape).join('')}</div>
+    ${i === N - 1 ? `<div class="bands">${S.slice(1, 8).map((b, k) => `<button class="st" type="button" data-to="${k + 1}" style="--b:${b.bg};--f:${b.fg}"><svg viewBox="0 0 100 100" aria-hidden="true">${ICON[b.sh]}</svg>${b.t}</button>`).join('')}</div>` : ''}
+  </article>`).join('');
+  const scenes = $$('.sc');
+  track.style.height = `calc(${N} * 100vh)`;
+
+  /* one gesture, one poster: eight steps through nine posters */
+  let step = 0;
+  const narrow = () => innerWidth <= 760;
+  function size() {
+    if (narrow()) { frame.style.width = frame.style.height = ''; stage.style.transform = ''; track.style.height = ''; return; }
+    track.style.height = `calc(${N} * 100vh)`;
+    const w = Math.min(innerWidth - 2 * clamp(innerWidth * .02, 8, 24), (innerHeight - 28) * 1.7), k = w / 1360;
+    frame.style.width = w + 'px'; frame.style.height = 800 * k + 'px';
+    stage.style.transform = `scale(${k})`;
+  }
+  /* going back lands on the finished poster, going forward plays it */
+  function show(i, back) {
+    step = i;
+    scenes.forEach((s, n) => { s.classList.toggle('settled', n === i && (back || reduce)); s.classList.toggle('on', n === i); });
+  }
+  const trackTop = () => scrollY + track.getBoundingClientRect().top;
+  function goTo(i, back) { show(i, back); scrollTo({ top: trackTop() + i * innerHeight, behavior: 'instant' }); }
+  const inside = () => { const r = track.getBoundingClientRect(); return !narrow() && r.top <= 1 && r.bottom >= innerHeight - 1; };
+  const atEnd = dir => (dir < 0 && step === 0) || (dir > 0 && step === N - 1);
+  const LOCK = 450, QUIET = 120, LONG = 1400;
+  let lockUntil = 0, lastEvt = 0, gesture = 0;
+  /* a wheel burst counts once; a trackpad's inertia must die down before the next step */
+  addEventListener('wheel', e => {
+    const now = performance.now(), quiet = now - lastEvt > QUIET;
+    if (quiet) gesture = now;
+    lastEvt = now;
+    if (!inside() || !e.deltaY) return;
+    const dir = Math.sign(e.deltaY);
+    if (atEnd(dir)) { if (!quiet) e.preventDefault(); return; }
+    e.preventDefault();
+    if (now < lockUntil || (!quiet && now - gesture < LONG)) return;
+    gesture = now; lockUntil = now + LOCK;
+    goTo(step + dir, dir < 0);
+  }, { passive: false });
+  addEventListener('keydown', e => {
+    const dir = { ArrowDown: 1, PageDown: 1, ArrowUp: -1, PageUp: -1, ' ': e.shiftKey ? -1 : 1 }[e.key];
+    if (!dir || !inside() || atEnd(dir)) return;
+    if (e.key === ' ' && e.target.closest('a,button,input,textarea')) return;
+    e.preventDefault(); goTo(step + dir, dir < 0);
+  });
+  let touchY = null;
+  addEventListener('touchstart', e => { touchY = inside() && !e.target.closest('.g') ? e.touches[0].clientY : null; }, { passive: true });
+  addEventListener('touchmove', e => { if (touchY == null) return; const dir = Math.sign(touchY - e.touches[0].clientY); if (dir && !atEnd(dir)) e.preventDefault(); }, { passive: false });
+  addEventListener('touchend', e => { if (touchY == null) return; const d = touchY - e.changedTouches[0].clientY; touchY = null; if (Math.abs(d) < 40) return; const dir = Math.sign(d); if (!atEnd(dir)) goTo(step + dir, dir < 0); });
+  /* the scrollbar, the skip link and arrivals from other blocks move the page without a gesture */
+  function sync() {
+    if (narrow()) return;
+    const r = track.getBoundingClientRect(), j = clamp(Math.round(-r.top / innerHeight), 0, N - 1);
+    if (j !== step) show(j, j < step);
+  }
+  addEventListener('scroll', sync, { passive: true });
+  addEventListener('resize', () => { size(); if (inside()) scrollTo({ top: trackTop() + step * innerHeight, behavior: 'instant' }); });
+  $('.bands').addEventListener('click', e => { const b = e.target.closest('[data-to]'); if (b) goTo(+b.dataset.to, false); });
+
+  /* shapes can be picked up and moved, as on the other blocks */
+  stage.addEventListener('pointerdown', e => {
+    const g = e.target.closest('.g'); if (!g || narrow()) return;
+    e.preventDefault(); g.setPointerCapture(e.pointerId); g.classList.add('held');
+    const k = frame.getBoundingClientRect().width / 1360, x0 = e.clientX, y0 = e.clientY, [tx, ty] = (g.dataset.t || '0,0').split(',').map(Number);
+    const mv = m => { const x = tx + (m.clientX - x0) / k, y = ty + (m.clientY - y0) / k; g.style.translate = `${x}px ${y}px`; g.dataset.t = `${x},${y}`; };
+    const up = () => { g.classList.remove('held'); g.removeEventListener('pointermove', mv); g.removeEventListener('pointerup', up); g.removeEventListener('pointercancel', up); };
+    g.addEventListener('pointermove', mv); g.addEventListener('pointerup', up); g.addEventListener('pointercancel', up);
+  });
+
+  size(); sync(); show(step, false);
+  window.__film = { step: () => step, go: i => goTo(i, true) };
+})();
+</script>
+</body>
+</html>

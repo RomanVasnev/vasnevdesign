@@ -29,6 +29,18 @@ html{-webkit-tap-highlight-color:transparent}
 .me-ava{background:#E9E9EB url(/assistant/ava.jpg) center/cover}
 .me-n i.me-role{display:inline-flex;align-items:center;gap:.42em;font-weight:500;font-size:14px;letter-spacing:-.02em;color:var(--c-comp,#8E5CFF)}
 .me-role svg{width:.62em;height:.62em;fill:currentColor;flex:none}
+/* the long role wraps between its two titles, never inside one; the mark stays on the first line */
+.me-n i.me-role,.h0-role{align-items:flex-start}
+.me-role svg{margin-top:.33em}
+.h0-role svg{margin-top:.26em}
+.h0-role{line-height:1.15}
+.role-l{white-space:nowrap}
+/* contact card: the role stays on one line, the card grows to fit it; bottom space equals the top */
+.me{padding-bottom:16px}
+.me-p div:last-child{padding-bottom:0}
+.me-role>span{white-space:nowrap}
+@media (min-width:901px){.me{width:max-content}}
+@media (max-width:420px){.me-n i.me-role{font-size:12.5px}}
 /* other pages: the footer is only the vasnev.art word with its shapes */
 html.pg-cases .xp-wrap,html.pg-ui .xp-wrap{display:none}
 
@@ -219,3 +231,29 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 @media (max-width:900px){.menu-bd{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
 /* cards keep their paint to themselves */
 .ul-st{contain:paint}
+
+/* ===== Подход: six cards in two rows of three; the frame height comes from scripts/site.js — by vasnev.art ===== */
+@media (min-width:901px){
+  .f2-lead{max-width:64ch}
+  .fr-dark .obj{width:clamp(216px,calc((100% - 2 * var(--fp) - 80px) / 3),320px)}
+}
+
+/* ===== Избранные кейсы: a white frame with three tasks — by vasnev.art ===== */
+.fr-fx{background:#fff;color:#0B0B0C;padding:var(--fp);display:flex;flex-direction:column;gap:clamp(28px,3vw,44px);box-shadow:0 0 0 1px rgba(11,11,12,.06)}
+.fx-hd{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+.fx-hd .f-h{margin:0}
+.fx-all{flex:none;height:48px;padding:0 20px;font-size:16px;border-radius:14px}
+.fx-g{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,24px)}
+.fx-c{display:flex;flex-direction:column;gap:12px;height:100%;padding:8px 8px 22px;border-radius:24px;background:#F4F4F5;color:inherit;text-decoration:none;transition:background .2s,transform .5s var(--spr-jelly)}
+.fx-c:focus-visible{outline:2px solid var(--c-sel);outline-offset:3px}
+.fx-cv{position:relative;display:block;aspect-ratio:16/10;margin-bottom:6px;border-radius:18px;overflow:hidden;background:#E9E9EB}
+.fx-cv img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.fx-st{position:absolute;left:10px;top:10px;display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:10px;background:#fff;color:#0B0B0C;font-size:13px;letter-spacing:-.01em;white-space:nowrap}
+.fx-st[hidden]{display:none}
+.fx-st svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.fx-t{margin:0;padding:0 10px;font-weight:500;font-size:clamp(20px,1.9vw,28px);line-height:1.08;letter-spacing:-.04em;text-wrap:balance}
+.fx-m{padding:0 10px;font:400 13px/1.2 'Geist Mono',ui-monospace,monospace;color:#8E8E93}
+.fx-r{margin:auto 10px 0;padding-top:12px;border-top:1px solid rgba(11,11,12,.14);font-weight:500;font-size:14px;letter-spacing:-.02em}
+@media (hover:hover){.fx-c:hover{background:#EDEDEF;transform:translateY(-3px)}.fx-c:hover .fx-cv img{transform:scale(1.03)}}
+@media (max-width:900px){.fx-hd{flex-direction:column;align-items:flex-start;gap:16px}.fx-g{grid-template-columns:minmax(0,1fr)}.fx-all{height:44px}}
+@media (prefers-reduced-motion:reduce){.fx-c,.fx-cv img{transition:none}}

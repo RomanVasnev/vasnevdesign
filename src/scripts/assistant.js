@@ -30,8 +30,8 @@
     if (matchMedia('(max-width:900px)').matches) {
       /* the screen height is read once per width, so the keyboard or the collapsing toolbar never resize Roman */
       if (fit.w !== va.clientWidth) { fit.w = va.clientWidth; fit.vh = innerHeight; }
-      const cap = (va.closest('.va-float') ? fit.vh - 24 - 32 - 6 : fit.vh - 104 - 16 - 12) - rest;
-      h = Math.max(Math.round(va.clientWidth * .72), Math.min(h, Math.round(cap)));
+      /* only the sheet has to fit the screen; on the page the block just grows, so Roman stays whole down to the chest */
+      if (va.closest('.va-float')) h = Math.max(Math.round(va.clientWidth * .72), Math.min(h, Math.round(fit.vh - 24 - 32 - 6 - rest)));
     }
     tile.style.height = h + 'px';
     va.style.setProperty('--va-vy', '0%');
@@ -49,7 +49,10 @@
     q('form').hidden = v === 'contacts';
     if (v !== 'chat') requestAnimationFrame(fit);
   }
-  va.querySelectorAll('.va-tab').forEach(t => t.addEventListener('click', () => show(t.dataset.va === 'contacts' ? 'contacts' : (log.children.length ? 'chat' : 'intro'))));
+  va.querySelectorAll('.va-tab').forEach(t => t.addEventListener('click', () => {
+    if (t.dataset.va !== 'contacts' && log.children.length && inline()) return openPanel();
+    show(t.dataset.va === 'contacts' ? 'contacts' : (log.children.length ? 'chat' : 'intro'));
+  }));
   q('copy').addEventListener('click', e => {
     const b = e.currentTarget, t = q('mail').textContent, sel = () => getSelection().selectAllChildren(q('mail'));
     try { navigator.clipboard.writeText(t).then(() => { b.textContent = 'Скопировано'; setTimeout(() => b.textContent = 'Скопировать', 1600); }, sel); } catch (_) { sel(); }
@@ -77,6 +80,7 @@
   }
   function ask(text) {
     text = (text || '').trim(); if (!text || busy) return;
+    if (inline()) openPanel();
     if (mode !== 'chat') show('chat');
     q('after').textContent = '';
     msg('me', text);
@@ -140,6 +144,10 @@
   document.body.append(sbd, panel);
   const M = 16, mq = matchMedia('(max-width:900px)'), html = document.documentElement;
   let heroIn = true, open = false;
+  /* on phones nobody chats inside the page block: the keyboard covers it, so any question opens the sheet */
+  function inline() { return mq.matches && !open; }
+  const syncInput = () => { input.readOnly = inline(); };
+  mq.addEventListener('change', syncInput); syncInput();
 
   function placePanel() {}
   /* a video that was moved between parents may come back blank in Safari: reload it in place */
@@ -147,17 +155,31 @@
   function openPanel() {
     if (open) return;
     open = true; ro.setAttribute('aria-expanded', 'true'); ro.classList.add('open');
-    panel.appendChild(va); va.classList.add('va-float-in'); wake();
+    /* the block keeps its place while Roman is in the sheet, so the page under it does not jump */
+    home.style.setProperty('min-height', home.offsetHeight + 'px', 'important');
+    panel.appendChild(va); va.classList.add('va-float-in'); wake(); syncInput();
+    if (mq.matches && mode === 'intro' && log.children.length) show('chat');
     requestAnimationFrame(() => { panel.classList.add('on'); sbd.classList.add('on'); html.classList.add('va-sheet'); fit(); });
     setTimeout(playAll, 520);
     if (!mq.matches) setTimeout(() => input.focus({ preventScroll: true }), 420);
   }
   window.__vaOpen = openPanel;
+  /* the keyboard only opens inside the tap itself, so the sheet has to be focusable right away */
+  q('form').addEventListener('click', () => {
+    if (!inline()) return;
+    openPanel(); panel.classList.add('on');
+    input.focus({ preventScroll: true });
+  });
   function closePanel(toHero) {
     if (!open) return;
     open = false; ro.setAttribute('aria-expanded', 'false'); ro.classList.remove('open'); panel.classList.remove('on'); sbd.classList.remove('on'); html.classList.remove('va-sheet');
     panel.style.transform = '';
-    setTimeout(() => { home.appendChild(va); va.classList.remove('va-float-in'); wake(); fit(); }, reduce ? 0 : 420);
+    syncInput();
+    setTimeout(() => {
+      home.appendChild(va); home.style.removeProperty('min-height'); va.classList.remove('va-float-in'); wake();
+      if (mq.matches && mode === 'chat') show('intro');
+      fit();
+    }, reduce ? 0 : 420);
     if (!toHero) setTimeout(() => ro.focus({ preventScroll: true }), 300);
   }
   ro.addEventListener('click', () => open ? closePanel() : openPanel());

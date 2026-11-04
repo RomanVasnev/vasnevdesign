@@ -22,6 +22,8 @@
       still = Math.abs(x - 1) < 0.002 && Math.abs(vel) < 0.02 ? still + dt : 0;
       if (still > 0.04) break;
     }
+    /* no linear() in this browser (iOS before 17.2 and its in-app browsers): el.animate() would throw */
+    if (!(window.CSS && CSS.supports && CSS.supports('animation-timing-function', 'linear(0, 1)'))) return { easing: 'cubic-bezier(.22,1,.36,1)', duration: Math.round(t * 1000) };
     const n = 64, pts = [];
     for (let i = 0; i <= n; i++) pts.push(i === n ? 1 : +v[Math.round(i / n * (v.length - 1))].toFixed(4));
     return { easing: 'linear(' + pts.join(',') + ')', duration: Math.round(t * 1000) };
@@ -250,8 +252,11 @@
     $('#sr').textContent = ''; dispatchEvent(new Event('vasnev:ready'));
   }
 
+  /* whatever goes wrong in the animation, the loader never keeps the site from opening */
+  const bail = () => { if (!done) { run++; finish(); } };
   async function play() {
     const id = ++run; reset();
+    setTimeout(() => { if (alive(id)) bail(); }, 8000);
     $('#scene').style.display = 'none';
     const W = innerWidth, H = innerHeight, cx = W / 2, cy = H / 2 - 10;
     const textY = cy + 18;                      // centre line of «привет!»
@@ -390,6 +395,8 @@
   addEventListener('keydown', e => {
     if (e.key === 'Escape' || (e.key === ' ' && document.activeElement === document.body)) { e.preventDefault(); skip(); }
   });
-  addEventListener('vasnev:replay', () => { next(); play(); });
-  (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => requestAnimationFrame(play));
+  addEventListener('vasnev:replay', () => { next(); play().catch(bail); });
+  const fonts = document.fonts ? document.fonts.ready : Promise.resolve();
+  Promise.race([fonts, wait(2500)]).then(() => requestAnimationFrame(() => play().catch(bail)));
+  setTimeout(() => { if (!run) bail(); }, 8000);
 })();

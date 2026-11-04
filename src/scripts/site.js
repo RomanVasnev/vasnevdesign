@@ -9,7 +9,7 @@
     const dt = 1 / 600, v = [0]; let x = 0, vel = 0, still = 0, t = 0;
     while (t < 3) { vel += (-k * (x - 1) - c * vel) * dt; x += vel * dt; t += dt; v.push(x); still = Math.abs(x - 1) < 0.002 && Math.abs(vel) < 0.02 ? still + dt : 0; if (still > 0.04) break; }
     const pts = []; for (let i = 0; i <= 64; i++) pts.push(i === 64 ? 1 : +v[Math.round(i / 64 * (v.length - 1))].toFixed(4));
-    return { easing: 'linear(' + pts.join(',') + ')', duration: Math.round(t * 1000) };
+    return { easing: window.CSS && CSS.supports && CSS.supports('animation-timing-function', 'linear(0, 1)') ? 'linear(' + pts.join(',') + ')' : 'cubic-bezier(.22,1,.36,1)', duration: Math.round(t * 1000) };
   };
   const SP = { pop: spring(480, 18), jelly: spring(300, 12), soft: spring(220, 22), drag: spring(170, 20) };
   root.style.setProperty('--spr-pop', SP.pop.easing);
@@ -232,8 +232,8 @@
       const tT = typeText(h, d.end + 300); me.off(d.end + 420);
       // every card is brought in by someone from the team
       const W = fr.offsetWidth, H = fr.offsetHeight;
-      const who = [['Роман', '#6CA7FF', '#fff'], ['PM', '#FF8AD8', '#0B0B0C'], ['Дизайн-система', '#8E5CFF', '#fff'], ['Dev', '#FFD43B', '#0B0B0C']];
-      const from = [[-W * .45, H * .25, -10], [-W * .1, H * .75, 8], [W * .2, -H * .7, -8], [W * .5, H * .3, 12]];
+      const who = [['Роман', '#6CA7FF', '#fff'], ['PM', '#FF8AD8', '#0B0B0C'], ['Dev', '#FFD43B', '#0B0B0C'], ['Legal', '#FF7A45', '#0B0B0C'], ['Финансы', '#2F5CFF', '#fff'], ['Дизайн-система', '#8E5CFF', '#fff']];
+      const from = [[-W * .45, H * .2, -10], [-W * .1, -H * .5, 8], [W * .45, H * .15, -8], [W * .5, H * .35, 12], [W * .1, H * .75, -8], [-W * .45, H * .4, 10]];
       let tL = 0;
       OBJ.forEach((o, i) => {
         const pos = mqSmall.matches ? { x: o.el.offsetLeft, y: o.el.offsetTop } : { x: o.d.x, y: o.d.y };
@@ -243,6 +243,15 @@
       $$('#links path').forEach((p, i) => { const L = p.getTotalLength(); A(p, [{ strokeDasharray: L, strokeDashoffset: L }, { strokeDasharray: L, strokeDashoffset: 0 }], { duration: 520, delay: t + i * 140, easing: EIO, fill: 'backwards' }); });
       $$('#links rect').forEach((r, i) => A(r, [{ opacity: 0, transform: 'scale(0)' }, { opacity: 1, transform: 'none' }], { ...SP.pop, delay: t + (i >> 1) * 140 + (i & 1) * 480, fill: 'backwards' }));
       d.deselect(tT + 300);
+    },
+    fx(fr) {
+      const wrap = wrapOf(fr), me = Cur(wrap, 'Роман', '#6CA7FF');
+      const d = drawFrame(wrap, fr, 0, me);
+      const h = $('#fx-h'), hp = relTo(h, wrap);
+      me.to(hp.x - 4, hp.y + 10, d.end - 120, { duration: 360, easing: EIO }); me.press(d.end + 220);
+      const tT = typeText(h, d.end + 300); me.off(d.end + 420);
+      rise([$('.fx-all', fr), ...$$('.fx-i', fr)], tT, 110);
+      d.deselect(tT + 500);
     },
     f3(fr) {
       const wrap = wrapOf(fr), me = Cur(wrap, 'Роман', '#6CA7FF');
@@ -354,7 +363,7 @@
 
   /* 02 · cards on the canvas: snapping, smart guides, live connectors */
   const canvas = $('#canvas'), linksSvg = $('#links'), guides = $('#guides'), resetBtn = $('#reset');
-  const OBJ = $$('.obj', canvas).map(el => ({ el, fx0: +el.dataset.x / 100, fy0: +el.dataset.y / 760, r: +el.dataset.r }));
+  const OBJ = (canvas ? $$('.obj', canvas) : []).map(el => ({ el, dy: +el.dataset.dy, r: +el.dataset.r }));
   const CW = () => canvas.clientWidth, CH = () => canvas.clientHeight;
   const place = o => { o.d.x = o.fx * CW(); o.d.y = o.fy * CH(); o.d.set(); };
   const box = o => ({ l: o.d.x, t: o.d.y, w: o.el.offsetWidth, h: o.el.offsetHeight });
@@ -364,10 +373,29 @@
       r: o.r, can: () => !mqSmall.matches,
       bound: (x, y) => [clamp(x, 8, CW() - o.el.offsetWidth - 8), clamp(y, 8, CH() - o.el.offsetHeight - 8)],
       onMove: d => { snap(o); o.fx = d.x / CW(); o.fy = d.y / CH(); drawLinks(); },
-      onDrop: () => { guides.innerHTML = ''; resetBtn.hidden = false; }
+      onDrop: () => { o.moved = true; guides.innerHTML = ''; resetBtn.hidden = false; }
     });
-    place(o);
   });
+  /* two rows of three, a snake: 01-02-03 left to right, 04-05-06 right to left, so the connectors never cross.
+     The rows and the frame are measured from the real cards, so nothing is ever cut off, whatever the width and the text */
+  function layoutCards() {
+    if (!canvas) return;
+    const fr = canvas.parentElement;
+    if (mqSmall.matches) { fr.style.height = ''; return; } if (!CW()) return; /* hidden on another page: the switch back fires a resize */
+    const head = $('.f2-head', fr), pad = parseFloat(getComputedStyle(head).left), n = OBJ.length / 2, W = CW();
+    const rowH = r => Math.max(...OBJ.slice(r * n, (r + 1) * n).map(o => o.el.offsetHeight + o.dy));
+    const y1 = head.offsetTop + head.offsetHeight + 44, y2 = y1 + rowH(0) + 76;
+    OBJ.forEach((o, i) => {
+      const col = i < n ? i : OBJ.length - 1 - i;
+      o.fx0 = (pad + col * (W - 2 * pad - o.el.offsetWidth) / (n - 1)) / W;
+      o.fy0 = (i < n ? y1 : y2) + o.dy;
+    });
+    /* keeps room for «Вернуть как было» under the last row */
+    fr.style.height = y2 + rowH(1) + 84 + 'px';
+    OBJ.forEach(o => { o.fy0 /= CH(); if (!o.moved) { o.fx = o.fx0; o.fy = o.fy0; } place(o); });
+  }
+  layoutCards();
+  if (document.fonts) document.fonts.ready.then(() => { layoutCards(); if (linksSvg && linksSvg.firstChild) drawLinks(); });
   function snap(o) {
     const T = 7, b = box(o), xs = [b.l, b.l + b.w / 2, b.l + b.w], ys = [b.t, b.t + b.h / 2, b.t + b.h];
     let bx = null, by = null;
@@ -384,7 +412,7 @@
     guides.innerHTML = html;
   }
   function drawLinks() {
-    if (mqSmall.matches) return;
+    if (!canvas || mqSmall.matches) return;
     let html = '';
     for (let i = 0; i < OBJ.length - 1; i++) {
       const a = box(OBJ[i]), b = box(OBJ[i + 1]);
@@ -405,9 +433,9 @@
     }
     linksSvg.innerHTML = html;
   }
-  resetBtn.addEventListener('click', () => {
+  if (resetBtn) resetBtn.addEventListener('click', () => {
     OBJ.forEach((o, i) => {
-      const x0 = o.d.x, y0 = o.d.y; o.fx = o.fx0; o.fy = o.fy0; place(o);
+      const x0 = o.d.x, y0 = o.d.y; o.moved = false; o.fx = o.fx0; o.fy = o.fy0; place(o);
       o.el.animate([{ translate: `${x0}px ${y0}px` }, { translate: `${o.d.x}px ${o.d.y}px` }], { ...SP.drag, delay: i * 40, fill: 'backwards' });
     });
     const t0 = performance.now(), loop = () => { drawLinksAnimated(); if (performance.now() - t0 < SP.drag.duration + 200) requestAnimationFrame(loop); else drawLinks(); };
@@ -419,7 +447,7 @@
     OBJ.forEach(o => { const t = getComputedStyle(o.el).translate.split(' '); o.d.x = parseFloat(t[0]) || 0; o.d.y = parseFloat(t[1]) || 0; });
     drawLinks(); OBJ.forEach((o, i) => { o.d.x = saved[i][0]; o.d.y = saved[i][1]; });
   }
-  addEventListener('resize', () => { OBJ.forEach(place); drawLinks(); });
+  addEventListener('resize', () => { layoutCards(); drawLinks(); });
 
   /* 04 · my inspector card: avatar from the first screen, can be moved like any layer */
   const meCard = $('#me');
@@ -722,10 +750,10 @@
   flow.className = 'flow'; flow.setAttribute('aria-hidden', 'false');
   flow.innerHTML = '<svg class="flow-s"></svg>';
   document.body.appendChild(flow);
-  const flowSvg = flow.firstChild, NAMES = { f1: 'Обо мне', f2: 'Подход', f3: 'Опыт', f4: 'Контакты' };
+  const flowSvg = flow.firstChild, NAMES = { f1: 'Обо мне', fp: 'Процесс', fx: 'Кейсы', f3: 'Опыт', f4: 'Контакты' };
   // where each node is entered and left (share of its width): the path zigzags, interludes alternate sides
-  const FR = { f0: { o: .78 }, f1: { i: .78, o: .55 }, il2: { i: .55, o: .2 }, f2: { i: .2, o: .8 }, f3: { i: .8, o: .86 }, il4: { i: .55, o: .2 }, f4: { i: .2 } };
-  const pairs = [['f0', 'f1'], ['f1', 'il2'], ['il2', 'f2'], ['f2', 'f3'], ['f3', 'il4'], ['il4', 'f4']].map(([a, b]) => {
+  const FR = { f0: { o: .78 }, f1: { i: .78, o: .55 }, fp: { i: .55, o: .55 }, il2: { i: .55, o: .8 }, fx: { i: .8, o: .5 }, f3: { i: .8, o: .86 }, il4: { i: .55, o: .2 }, f4: { i: .2 } };
+  const pairs = [['f0', 'f1'], ['f1', 'fp'], ['fp', 'il2'], ['il2', 'fx'], ['fx', 'f3'], ['f3', 'il4'], ['il4', 'f4']].map(([a, b]) => {
     const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     g.innerHTML = '<path class="nd"/><circle class="np" r="6"/><path class="na"/>';
     flowSvg.appendChild(g);
@@ -738,14 +766,16 @@
   });
   function rulers() { $$('.mt').forEach(m => { $('.mt-r', m).style.width = $('.mt-n', m).offsetWidth + 'px'; }); }
   rulers(); addEventListener('resize', rulers); if (document.fonts) document.fonts.ready.then(rulers);
+  /* where a block sits on the page without its transform: the entrance animations carry blocks in from far away, and a line measured mid-flight would stay off for good */
+  const pageY = el => { let y = 0; for (let o = el; o; o = o.offsetParent) y += o.offsetTop + (o.offsetParent ? o.offsetParent.clientTop : 0); return y; };
   function flowLayout() {
     const W = document.documentElement.clientWidth, H = document.documentElement.scrollHeight;
     flow.style.height = H + 'px'; flowSvg.setAttribute('viewBox', `0 0 ${W} ${H}`); flowSvg.setAttribute('width', W); flowSvg.setAttribute('height', H);
     pairs.forEach(p => {
       // phones: one straight vertical line through the middle — no zigzag on a narrow screen
       const sm = mqSmall.matches, mid = document.documentElement.clientWidth / 2;
-      const ra = (sm && p.a.id === 'f0' ? $('#ai') || p.a : p.a).getBoundingClientRect(), rb = p.b.getBoundingClientRect();
-      const x1 = sm ? mid : ra.left + ra.width * FR[p.a.id].o, y1 = ra.bottom + scrollY, x2 = sm ? mid : rb.left + rb.width * FR[p.b.id].i, y2 = rb.top + scrollY - 2;
+      const ea = sm && p.a.id === 'f0' ? $('#ai') || p.a : p.a, ra = ea.getBoundingClientRect(), rb = p.b.getBoundingClientRect();
+      const x1 = sm ? mid : ra.left + ra.width * FR[p.a.id].o, y1 = pageY(ea) + ea.offsetHeight, x2 = sm ? mid : rb.left + rb.width * FR[p.b.id].i, y2 = pageY(p.b) - 2;
       const k = (y2 - y1) * .95;
       p.nd.setAttribute('d', sm ? `M${x1} ${y1}L${x2} ${y2 - 12}` : `M${x1} ${y1}C${x1} ${y1 + k} ${x2} ${y2 - k} ${x2} ${y2 - 12}`);
       p.np.setAttribute('cx', x1); p.np.setAttribute('cy', y1);
@@ -770,6 +800,9 @@
   }
   const flowRO = new ResizeObserver(() => { flowLayout(); flowFrame(); });
   flowRO.observe(document.body);
+  /* body is locked to the screen height: the assistant growing or shrinking only shows up on the block itself */
+  flowRO.observe($('#ai'));
+  flowRO.observe($('#fp'));
   addEventListener('resize', () => { flowLayout(); flowFrame(); });
   (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { flowLayout(); flowFrame(); });
 
@@ -807,7 +840,7 @@
   }
 
   /* ---------- layers: a small panel that always says which frame you are in, and jumps between them ---------- */
-  const LAYERS = [['f0', 'Главная'], ['f1', 'Обо мне'], ['f2', 'Подход'], ['f3', 'Опыт'], ['f4', 'Контакты']];
+  const LAYERS = [['f0', 'Главная'], ['f1', 'Обо мне'], ['fp', 'Процесс'], ['fx', 'Кейсы'], ['f3', 'Опыт'], ['f4', 'Контакты']];
   const lyr = document.createElement('nav'); lyr.className = 'lyr'; lyr.setAttribute('aria-label', 'Фреймы страницы');
   const HASH = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1v10M8.5 1v10M1 3.5h10M1 8.5h10"/></svg>';
   lyr.innerHTML = `<ul class="lyr-l" id="lyrL">${LAYERS.map(([id, n], i) => `<li><button type="button" data-id="${id}">${HASH}<span>${n}</span><i>${String(i + 1).padStart(2, '0')}</i></button></li>`).join('')}</ul><button type="button" class="lyr-b" id="lyrB" aria-expanded="false" aria-controls="lyrL"><span class="lyr-h">Слои</span>${HASH}<span id="lyrN">Главная</span><i id="lyrI">1/${LAYERS.length}</i></button>`;

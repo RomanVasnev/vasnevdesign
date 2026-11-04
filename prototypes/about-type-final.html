@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Как я делаю продукты</title>
+<style>
+/* «Обо мне», desktop only. One thought and one giant flat primitive per poster; the headlines read as one sentence — by vasnev.art */
+@font-face{font-family:'Geist';font-weight:400;font-display:swap;src:url(../public/fonts/geist-400.woff2) format('woff2')}
+@font-face{font-family:'Geist';font-weight:500;font-display:swap;src:url(../public/fonts/geist-500.woff2) format('woff2')}
+:root{--ink:#0B0B0C;--paper:#FFFFFF;--blue:#2F5CFF;--yellow:#FFD43B;--pink:#FF8AD8;--orange:#FF7A45;--lilac:#D9CBFF;--mint:#3DDC97}
+*{box-sizing:border-box}
+html,body{margin:0;background:#F8F8F8;color:var(--ink);font-family:'Geist',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.track{position:relative}
+.pin{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center}
+.frame{position:relative;flex:none;overflow:hidden;border-radius:28px;background:var(--bgc,#fff)}
+.stage{position:absolute;left:0;top:0;width:1360px;height:800px;transform-origin:0 0;color:var(--fgc,#0B0B0C)}
+.after{margin:16px clamp(8px,2vw,24px) 40px;padding:32px;border-radius:28px;background:var(--ink);color:#fff;font-size:24px;letter-spacing:-.03em}
+
+.cnt{position:absolute;left:48px;top:30px;display:flex;gap:18px;font-size:18px;line-height:1.2;letter-spacing:-.012em;z-index:6}
+.cnt a{color:inherit;opacity:.55;text-underline-offset:3px}
+.sc{position:absolute;inset:0;opacity:0;visibility:hidden}
+.v{position:absolute;left:0;top:0;width:1360px;height:800px;overflow:hidden}
+.h{position:absolute;left:44px;top:64px;margin:0;font-weight:500;font-size:104px;line-height:1;letter-spacing:-.048em;z-index:2}
+.say{position:absolute;left:48px;bottom:44px;width:520px;margin:0;font-weight:400;font-size:21px;line-height:1.22;letter-spacing:-.012em;text-wrap:pretty;z-index:2}
+.t{font-family:'Geist',sans-serif;font-weight:500;letter-spacing:-.025em;fill:currentColor}
+.cta{position:absolute;right:48px;top:84px;display:flex;align-items:center;height:64px;padding:0 30px;border-radius:32px;background:var(--ink);color:#fff;font-weight:500;font-size:22px;letter-spacing:-.02em;text-decoration:none;z-index:3;transition:transform .25s ease}
+.cta:hover{transform:scale(1.04)}
+.st{position:absolute;bottom:0;border:0;padding:0 18px 24px;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;text-align:left;cursor:pointer;color:var(--f);background:var(--b);font-weight:500;font-size:27px;letter-spacing:-.03em;line-height:1.06;overflow:hidden}
+.st svg{position:absolute;left:50%;top:22px;width:120px;height:120px;margin-left:-60px;transition:transform .3s ease}
+.st:hover svg{transform:scale(1.14)}
+.m{display:none}
+@media (max-width:760px){
+  .track{display:none}
+  .after{margin-top:8px}
+  .m{display:grid;gap:8px;padding:8px 8px 0}
+  .mh{padding:28px 20px 96px;border-radius:24px;background:var(--paper);font-weight:500;font-size:52px;line-height:1;letter-spacing:-.048em}
+  .mp{position:relative;overflow:hidden;min-height:440px;padding:18px 20px 22px;border-radius:24px;background:var(--b);color:var(--f);display:flex;flex-direction:column}
+  .mp small{font-size:15px;letter-spacing:-.01em}
+  .mp h3{margin:8px 0 0;font-weight:500;font-size:clamp(30px,10.2vw,44px);line-height:1;letter-spacing:-.045em;white-space:nowrap}
+  .mp p{margin:auto 0 0;font-weight:400;font-size:21px;line-height:1.16;letter-spacing:-.022em;max-width:30ch}
+  .mp svg{position:absolute;right:-10px;top:104px;width:150px;height:150px}
+  .mc{display:flex;align-items:center;justify-content:center;height:64px;border-radius:24px;background:var(--ink);color:#fff;font-weight:500;font-size:20px;text-decoration:none}
+}
+@media (prefers-reduced-motion:reduce){.cta,.st svg{transition:none}}
+</style>
+</head>
+<body>
+<div class="m" id="m"></div>
+<section class="track" id="track" aria-label="Как я делаю продукты">
+  <div class="pin"><div class="frame" id="frame"><div class="stage" id="stage">
+    <div class="cnt"><span id="cn"></span><a id="skip" href="#next">Пропустить</a></div>
+
+    <div class="sc" data-s="0"><h2 class="h">Как я делаю<br>продукты</h2>
+      <p class="say" style="bottom:auto;top:290px;width:440px">Семь шагов от&nbsp;гипотезы до&nbsp;метрики.</p>
+      <svg class="v" viewBox="0 0 1360 800" aria-hidden="true" id="v0"></svg></div>
+
+    <div class="sc" data-s="1"><h3 class="h">Сначала цель.</h3>
+      <svg class="v" viewBox="0 0 1360 800" aria-hidden="true">
+        <circle id="o1" cx="1060" cy="470" r="300" fill="none" stroke="#0B0B0C" stroke-width="112" pathLength="1" stroke-dasharray="1" transform="rotate(-90 1060 470)"/>
+        <circle id="c1" cx="1060" cy="470" r="124" fill="#0B0B0C"/>
+      </svg>
+      <p class="say" style="width:390px">Изучаю аудиторию и&nbsp;каналы. Формулирую гипотезу: что меняем и&nbsp;как изменится метрика или конверсия в&nbsp;CTA.</p></div>
+
+    <div class="sc" data-s="2"><h3 class="h">Потом логика.</h3>
+      <svg class="v" viewBox="0 0 1360 800" aria-hidden="true">
+        <g fill="none" stroke-width="72">
+          <path id="r1" d="M-40 440H720" stroke="#FFFFFF"/>
+          <path id="r2" d="M720 440C900 440 900 250 1120 250H1240" stroke="#FFFFFF"/>
+          <path id="r3" d="M720 440C900 440 900 630 1120 630H1240" stroke="#FF7A45"/>
+        </g>
+        <g id="e2"><rect x="1120" y="130" width="240" height="240" fill="#FFFFFF"/><path d="M1180 250l44 44 76-92" fill="none" stroke="#0B0B0C" stroke-width="24"/></g>
+        <g id="e3"><circle cx="1240" cy="630" r="120" fill="#FF7A45"/><path d="M1196 586l88 88M1284 586l-88 88" fill="none" stroke="#0B0B0C" stroke-width="24"/></g>
+        <circle id="b2a" r="48" fill="#FFD43B"/><circle id="b2b" r="48" fill="#FFD43B"/>
+        <text id="l2a" x="1120" y="100" font-size="30" class="t" text-anchor="start">всё хорошо</text>
+        <text id="l2b" x="1096" y="742" font-size="30" class="t" text-anchor="end" style="fill:#FF7A45">пропала сеть</text>
+      </svg>
+      <p class="say" style="width:410px">Разбираю флоу до&nbsp;первого экрана. Составляю state machine: какие есть состояния, что их&nbsp;переключает и&nbsp;что происходит при ошибке.</p></div>
+
+    <div class="sc" data-s="3"><h3 class="h">Потом атомы.</h3>
+      <svg class="v" viewBox="0 0 1360 800" aria-hidden="true" id="v3"></svg>
+      <p class="say" style="width:550px">Определяю токены и&nbsp;компоненты. Собираю атомарную систему: меняем один токен, и&nbsp;правка доходит до&nbsp;всех экранов.</p></div>
+
+    <div class="sc" data-s="4"><h3 class="h">Потом<br>характер.</h3>
+      <svg class="v" viewBox="0 0 1360 800" aria-hidden="true" id="v4"></svg>
+      <p class="say" style="width:400px">Работаю внутри привычных паттернов. Задаю визуальный язык: один на&nbsp;сайте, в&nbsp;продукте и&nbsp;в&nbsp;рекламе, новизна в&nbsp;подаче и&nbsp;деталях.</p></div>
+
+    <div class="sc" data-s="5"><h3 class="h">Потом скорость.</h3>
+      <svg class="v" viewBox="0 0 1360 800" aria-hidden="true">
+        <g id="c51"><rect x="48" y="200" width="234" height="76" rx="16" fill="#FFFFFF"/><rect x="82" y="291" width="200" height="76" rx="16" fill="#FFFFFF"/><rect x="116" y="382" width="166" height="76" rx="16" fill="#FFD43B"/><rect x="150" y="473" width="132" height="76" rx="16" fill="#FFFFFF"/>
+          <text x="48" y="600" font-size="21" class="t" style="font-weight:400;letter-spacing:-.012em">Связь с макетами</text></g>
+        <g id="c52"></g>
+        <g id="c53"><text x="568" y="600" font-size="21" class="t" style="font-weight:400;letter-spacing:-.012em">Библиотека компонентов</text></g>
+        <rect x="850" y="110" width="470" height="900" rx="66" fill="none" stroke="#FFFFFF" stroke-width="12"/>
+        <g id="p1"><rect width="250" height="56" rx="12" fill="#FFFFFF"/></g>
+        <g id="p2"><rect width="390" height="270" rx="28" fill="#FFD43B"/><circle cx="195" cy="135" r="78" fill="#0B0B0C"/></g>
+        <g id="p3"><rect width="390" height="92" rx="20" fill="#FFFFFF"/><rect x="28" y="36" width="210" height="20" rx="10" fill="#2F5CFF"/></g>
+        <g id="p4"><rect width="390" height="104" rx="52" fill="#0B0B0C"/></g>
+        <g id="ps"><path d="M0 -112L30 -36L112 -36L46 14L72 94L0 46L-72 94L-46 14L-112 -36L-30 -36Z" fill="#FF8AD8"/></g>
+        <text id="pt" font-size="27" class="t" x="1190" y="58">вне системы</text>
+      </svg>
+      <p class="say" style="width:520px">Собираю страницы и&nbsp;фичи с&nbsp;ИИ за&nbsp;часы. Прописываю ему три рамки: библиотека компонентов, правила проекта и&nbsp;связь с&nbsp;макетами.</p></div>
+
+    <div class="sc" data-s="6"><h3 class="h">Потом проверка.</h3>
+      <svg class="v" viewBox="0 0 1360 800" aria-hidden="true">
+        <circle id="g1" cx="250" cy="630" r="210"/><circle id="g2" cx="680" cy="630" r="210"/><circle id="g3" cx="1110" cy="630" r="210"/>
+        <g id="gt1" text-anchor="middle" class="t"><text x="250" y="574" font-size="24">Зелёная зона</text><text x="250" y="622" font-size="36">ИИ сам</text><text x="250" y="662" font-size="24">типовые страницы</text></g>
+        <g id="gt2" text-anchor="middle" class="t"><text x="680" y="574" font-size="24">Жёлтая зона</text><text x="680" y="622" font-size="36">Моё ревью</text><text x="680" y="662" font-size="24">ключевые экраны и тексты</text></g>
+        <g id="gt3" text-anchor="middle" class="t"><text x="1110" y="574" font-size="24">Красная зона</text><text x="1110" y="622" font-size="36">Ревью специалиста</text><text x="1110" y="662" font-size="24">платежи, данные, доступы</text></g>
+        <rect id="bar" x="889" y="320" width="12" height="480" rx="6" fill="#FFFFFF"/>
+        <circle id="rb" cy="372" r="30" fill="#FFFFFF"/>
+        <g id="rp"><rect x="980" y="268" width="262" height="56" rx="10" fill="#14AE5C"/><path d="M1008 286l-10 10 10 10M1030 286l10 10-10 10M1024 282l-10 28" fill="none" stroke="#FFFFFF" stroke-width="3"/><text x="1056" y="305" font-size="27" class="t" style="fill:#FFFFFF">Ready for dev</text></g>
+      </svg>
+      <p class="say" style="bottom:auto;top:184px;width:610px">Размечаю зоны риска до&nbsp;сборки. Назначаю проверку для каждой: где ИИ работает сам, где нужно моё ревью, а&nbsp;где ревью профильного специалиста.</p></div>
+
+    <div class="sc" data-s="7"><h3 class="h">И снова метрика.</h3>
+      <svg class="v" viewBox="0 0 1360 800" aria-hidden="true" id="v7"></svg>
+      <p class="say" style="bottom:auto;top:184px;width:480px">Сверяю метрику с&nbsp;гипотезой из&nbsp;брифа. Записываю решение в&nbsp;журнал: что меняли, почему и&nbsp;чем закончилось.</p></div>
+
+    <div class="sc" data-s="8"><h3 class="h">Семь шагов.<br>Один цикл.</h3>
+      <a class="cta" href="#next">Обсудить проект</a>
+      <div id="sts"></div></div>
+  </div></div></div>
+</section>
+<div class="after" id="next">Дизайн-процесс Романа Васнёва</div>
+
+<script>
+(function () {
+  const $ = (s, r) => (r || document).querySelector(s), $$ = (s, r) => [...(r || document).querySelectorAll(s)];
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const ease = t => t * t * (3 - 2 * t);
+  const out = t => 1 - Math.pow(1 - t, 3);
+  const seg = (p, a, b) => clamp((p - a) / (b - a), 0, 1);
+  const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const NS = 'http://www.w3.org/2000/svg';
+  const frame = $('#frame'), stage = $('#stage'), track = $('#track');
+  const el = (n, a, p) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
+
+  /* name of the stage comes from the process document; the primitive is what its poster is built on */
+  const SH = {
+    target: '<circle cx="60" cy="60" r="44" fill="none" stroke="currentColor" stroke-width="30"/>',
+    fork: '<path d="M0 60H42C70 60 70 22 120 22M42 60C70 60 70 98 120 98" fill="none" stroke="currentColor" stroke-width="20"/>',
+    tri: '<path d="M60 4L116 116H4Z" fill="currentColor"/>',
+    q: '<path d="M4 4H116A112 112 0 0 1 4 116Z" fill="currentColor"/>',
+    pill: '<rect x="4" y="34" width="112" height="52" rx="26" fill="currentColor"/>',
+    three: '<circle cx="24" cy="60" r="20" fill="currentColor"/><circle cx="60" cy="60" r="20" fill="currentColor" opacity=".55"/><circle cx="96" cy="60" r="20" fill="currentColor" opacity=".25"/>',
+    bars: '<rect x="4" y="74" width="32" height="42" fill="currentColor"/><rect x="44" y="42" width="32" height="74" fill="currentColor"/><rect x="84" y="6" width="32" height="110" fill="currentColor"/>'
+  };
+  const S = [
+    { bg: '#FFFFFF', fg: '#0B0B0C' },
+    { n: 'Рынок и гипотеза', bg: '#FFD43B', fg: '#0B0B0C', sh: 'target' },
+    { n: 'State machine', bg: '#0B0B0C', fg: '#FFFFFF', sh: 'fork' },
+    { n: 'Атомарная система', bg: '#D9CBFF', fg: '#0B0B0C', sh: 'tri' },
+    { n: 'Визуал и бренд', bg: '#FF8AD8', fg: '#0B0B0C', sh: 'q' },
+    { n: 'Сборка с ИИ', bg: '#2F5CFF', fg: '#FFFFFF', sh: 'pill' },
+    { n: 'Риски и проверка', bg: '#0B0B0C', fg: '#FFFFFF', sh: 'three' },
+    { n: 'Метрики и журнал', bg: '#FF7A45', fg: '#0B0B0C', sh: 'bars' },
+    { bg: '#FFFFFF', fg: '#0B0B0C' }
+  ];
+  const N = S.length, scenes = $$('.sc');
+  const MT = [['Сначала цель.', 'Изучаю аудиторию и&nbsp;каналы. Формулирую гипотезу: что меняем и&nbsp;как изменится метрика или конверсия в&nbsp;CTA.'], ['Потом логика.', 'Разбираю флоу до&nbsp;первого экрана. Составляю state machine: какие есть состояния, что их&nbsp;переключает и&nbsp;что происходит при ошибке.'], ['Потом атомы.', 'Определяю токены и&nbsp;компоненты. Собираю атомарную систему: меняем один токен, и&nbsp;правка доходит до&nbsp;всех экранов.'], ['Потом характер.', 'Работаю внутри привычных паттернов. Задаю визуальный язык: один на&nbsp;сайте, в&nbsp;продукте и&nbsp;в&nbsp;рекламе, новизна в&nbsp;подаче и&nbsp;деталях.'], ['Потом скорость.', 'Собираю страницы и&nbsp;фичи с&nbsp;ИИ за&nbsp;часы. Прописываю ему три рамки: библиотека компонентов, правила проекта и&nbsp;связь с&nbsp;макетами.'], ['Потом проверка.', 'Размечаю зоны риска до&nbsp;сборки. Назначаю проверку для каждой: где ИИ работает сам, где нужно моё ревью, а&nbsp;где ревью профильного специалиста.'], ['И снова метрика.', 'Сверяю метрику с&nbsp;гипотезой из&nbsp;брифа. Записываю решение в&nbsp;журнал: что меняли, почему и&nbsp;чем закончилось.']];
+  $('#m').innerHTML = '<div class="mh">Как я делаю продукты</div>' + MT.map(([h, p], i) => { const c = S[i + 1]; return `<article class="mp" style="--b:${c.bg};--f:${c.fg}"><small>${i + 1} из 7 · ${c.n}</small><h3>${h}</h3><svg viewBox="0 0 120 120" aria-hidden="true">${SH[c.sh]}</svg><p>${p}</p></article>`; }).join('') + '<a class="mc" href="#next">Обсудить проект</a>';
+  track.style.height = `calc(${N * 142}vh + 100vh)`;
+
+  /* 0: seven tangent shapes, seven posters ahead */
+  const v0 = $('#v0'), W7 = 1360 / 7, sh0 = [];
+  const C0 = ['#FFD43B', '#0B0B0C', '#D9CBFF', '#FF8AD8', '#2F5CFF', '#3DDC97', '#FF7A45'];
+  [
+    g => el('circle', { cx: W7 / 2, cy: W7 / 2, r: W7 / 2, fill: C0[0] }, g),
+    g => el('rect', { width: W7, height: W7, fill: C0[1] }, g),
+    g => el('path', { d: `M0 ${W7}L${W7 / 2} 0L${W7} ${W7}Z`, fill: C0[2] }, g),
+    g => el('path', { d: `M0 0A${W7} ${W7} 0 0 1 ${W7} ${W7}H0Z`, fill: C0[3] }, g),
+    g => el('rect', { y: W7 * .25, width: W7, height: W7 * .5, rx: W7 * .25, fill: C0[4] }, g),
+    g => el('path', { d: `M0 ${W7 / 2}a${W7 / 2} ${W7 / 2} 0 0 1 ${W7} 0Z`, fill: C0[5], transform: `translate(0 ${W7 / 4})` }, g),
+    g => el('path', { d: `M0 0H${W7}A${W7} ${W7} 0 0 1 0 ${W7}Z`, fill: C0[6] }, g)
+  ].forEach((f, i) => { const g = el('g', {}, v0); f(g); sh0.push({ g, x: i * W7 }); });
+
+  /* 3: from one shape to a page: each level is built from the one before, the token colour runs through all of them */
+  const v3 = $('#v3'), TK = ['#2F5CFF', '#FF7A45'], tok = [], L3 = [];
+  const tx3 = (s, x, y, size, fill, p, anchor) => { const t = el('text', { x, y, 'font-size': size, class: 't', 'text-anchor': anchor || 'start' }, p); t.style.fill = fill; t.textContent = s; return t; };
+  const r3 = (x, y, w, h, rx, fill, p) => el('rect', { x, y, width: w, height: h, rx, fill }, p);
+  /* the shared alphabet; kind: 0 circle, 1 quarter, 2 triangle, 3 half */
+  function fig(kind, x, y, S, fill, p) {
+    if (kind === 0) return el('circle', { cx: x + S / 2, cy: y + S / 2, r: S / 2, fill }, p);
+    if (kind === 1) return el('path', { d: 'M' + x + ' ' + y + 'H' + (x + S) + 'A' + S + ' ' + S + ' 0 0 1 ' + x + ' ' + (y + S) + 'Z', fill }, p);
+    if (kind === 2) return el('path', { d: 'M' + x + ' ' + (y + S) + 'L' + (x + S / 2) + ' ' + y + 'L' + (x + S) + ' ' + (y + S) + 'Z', fill }, p);
+    return el('path', { d: 'M' + x + ' ' + y + 'A' + S / 2 + ' ' + S / 2 + ' 0 0 1 ' + x + ' ' + (y + S) + 'Z', fill }, p);
+  }
+  const T3 = 104, BOT3 = 606, K3 = '#0B0B0C', W3 = '#FFFFFF';
+  const level = (name, x, top, o) => { const g = el('g', {}, v3); L3.push({ g, o }); tx3(name, x, top - 14, 27, K3, g); return g; };
+  const cell = (g, c, r, X, Y, bg, kind) => { const x = X + c * T3, y = Y + r * T3; r3(x, y, T3 + .5, T3 + .5, 0, bg, g); const s = fig(kind, kind === 3 ? x + T3 / 2 : x, y, T3, TK[0], g); s.style.transition = 'fill .25s'; tok.push({ s, x }); };
+  /* token */
+  const g30 = level('Токен', 48, BOT3 - 80, .04); const tkv = tx3(TK[0], 48, BOT3 - 66, 21, K3, g30);
+  const tk0 = el('circle', { cx: 74, cy: BOT3 - 26, r: 26, fill: TK[0] }, g30); tk0.style.transition = 'fill .25s'; tok.push({ s: tk0, x: 48 });
+  /* atom */
+  cell(level('Атом', 169, BOT3 - T3, .14), 0, 0, 169, BOT3 - T3, K3, 0);
+  /* molecule */
+  const g32 = level('Молекула', 342, BOT3 - T3, .24); cell(g32, 0, 0, 342, BOT3 - T3, K3, 0); cell(g32, 1, 0, 342, BOT3 - T3, W3, 1);
+  /* organism */
+  const g33 = level('Организм', 619, BOT3 - T3 * 2, .34); [[0, 0, K3, 0], [1, 0, W3, 1], [0, 1, W3, 2], [1, 1, K3, 3]].forEach(c => cell(g33, c[0], c[1], 619, BOT3 - T3 * 2, c[2], c[3]));
+  /* page */
+  const g34 = level('Страница', 896, BOT3 - T3 * 4, .46);
+  for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) cell(g34, c, r, 896, BOT3 - T3 * 4, (c + r) % 2 ? W3 : K3, (c + 2 * r) % 4);
+
+  /* 4: one language on three surfaces: the same shapes and colours, a composition of its own on each */
+  const v4 = $('#v4'), defs4 = el('defs', {}, v4), P4 = [];
+  const C4 = { k: '#0B0B0C', w: '#FFFFFF', b: '#2F5CFF', y: '#FFD43B', l: '#D9CBFF' };
+  const clip4 = (id, x, y, w, h, rx) => { const cp = el('clipPath', { id }, defs4); el('rect', { x, y, width: w, height: h, rx }, cp); return el('g', { 'clip-path': 'url(#' + id + ')' }, v4); };
+  const part = (p, o) => { const g = el('g', {}, p); P4.push({ g, o }); return g; };
+  /* laptop: wide, a big form on the left and small ones beside it */
+  tx3('Сайт', 548, 58, 26, C4.k, v4);
+  r3(548, 72, 452, 290, 14, C4.k, v4); el('circle', { cx: 774, cy: 77, r: 2, fill: '#4A4A4F' }, v4);
+  el('path', { d: 'M520 362H1028V366Q1028 376 1016 376H532Q520 376 520 366Z', fill: C4.k }, v4); r3(734, 362, 80, 6, 3, '#4A4A4F', v4);
+  const site = clip4('sf-a', 558, 82, 432, 270, 4); r3(558, 82, 432, 270, 0, C4.w, site);
+  let g4 = part(site, .06); el('circle', { cx: 580, cy: 104, r: 10, fill: C4.k }, g4); r3(902, 92, 72, 24, 12, C4.b, g4);
+  g4 = part(site, .1); r3(558, 126, 216, 226, 0, C4.b, g4); fig(1, 558, 126, 216, C4.w, g4);
+  g4 = part(site, .14); r3(774, 126, 108, 113, 0, C4.y, g4); fig(0, 774, 128, 108, C4.k, g4);
+  g4 = part(site, .18); r3(882, 126, 108, 113, 0, C4.k, g4); fig(2, 882, 128, 108, C4.y, g4);
+  g4 = part(site, .22); r3(774, 239, 216, 113, 0, C4.l, g4); fig(3, 882, 239, 113, C4.b, g4); el('circle', { cx: 830, cy: 295, r: 44, fill: C4.k }, g4);
+  /* phone: tall, stacked from top to bottom */
+  tx3('Приложение', 1030, 58, 26, C4.k, v4);
+  r3(1030, 72, 300, 650, 50, C4.k, v4);
+  const app = clip4('sf-b', 1040, 82, 280, 630, 40); r3(1040, 82, 280, 630, 0, C4.w, app);
+  g4 = part(app, .3); r3(1056, 134, 248, 248, 28, C4.y, g4); el('circle', { cx: 1180, cy: 258, r: 92, fill: C4.k }, g4);
+  [[1056, C4.b, C4.w, 2], [1142, C4.k, C4.y, 1], [1228, C4.l, C4.b, 0]].forEach((t, i) => { g4 = part(app, .36 + i * .03); r3(t[0], 398, 76, 76, 16, t[1], g4); fig(t[3], t[0] + 14, 412, 48, t[2], g4); });
+  g4 = part(app, .46); r3(1056, 490, 248, 100, 24, C4.b, g4); el('circle', { cx: 1110, cy: 540, r: 30, fill: C4.w }, g4); r3(1156, 526, 124, 28, 14, C4.w, g4);
+  g4 = part(app, .5); r3(1056, 606, 248, 56, 28, C4.k, g4);
+  r3(1130, 92, 100, 26, 13, C4.k, app); r3(1130, 692, 100, 5, 2.5, C4.k, app);
+  /* ad, the same size as the laptop: one giant shape, nothing else */
+  tx3('Реклама', 548, 404, 26, C4.k, v4);
+  const ad = clip4('sf-c', 548, 418, 452, 304, 14); r3(548, 418, 452, 304, 0, C4.b, ad);
+  el('circle', { cx: 690, cy: 570, r: 190, fill: C4.y }, part(ad, .56));
+  fig(1, 790, 512, 210, C4.k, part(ad, .62));
+  fig(2, 880, 428, 84, C4.w, part(ad, .68));
+
+
+  /* 7: seven tangent columns from the baseline to the goal; a ball climbs them */
+  const v7 = $('#v7'), HB = [.1, .17, .25, .36, .5, .72, 1], GOALY = 220, cols = [], RB7 = 36;
+  HB.forEach((h, i) => cols.push({ r: el('rect', { x: i * W7, width: W7 + 1, y: 800, height: 0, fill: i === 6 ? '#FFD43B' : '#0B0B0C' }, v7), h: h * (800 - GOALY) }));
+  const was = tx3('было', 24, 776, 27, '#FFFFFF', v7), now = tx3('стало', 6 * W7 + 24, 776, 27, '#0B0B0C', v7);
+  const gt = el('g', {}, v7); tx3('цель из', 6 * W7 + 24, GOALY + 44, 27, '#0B0B0C', gt); tx3('гипотезы', 6 * W7 + 24, GOALY + 76, 27, '#0B0B0C', gt);
+  const ball7 = el('circle', { r: RB7, fill: '#FFFFFF' }, v7);
+
+
+  /* 8: seven bands back to the seven posters */
+  const sts = $('#sts'), PST = S.slice(1, 8);
+  sts.innerHTML = PST.map((s, i) => `<button class="st" type="button" data-to="${i + 1}" style="left:${i * W7}px;width:${W7 + 1}px;height:440px;--b:${s.bg};--f:${s.fg}"><svg viewBox="0 0 120 120" aria-hidden="true">${SH[s.sh]}</svg>${s.n}</button>`).join('');
+  const stb = $$('.st', sts);
+  sts.addEventListener('click', e => { const b = e.target.closest('[data-to]'); if (!b) return; const r = track.getBoundingClientRect(), span = r.height - innerHeight; scrollTo({ top: scrollY + r.top + ((+b.dataset.to + .9) / (N - .001)) * span, behavior: reduce ? 'instant' : 'smooth' }); });
+
+  const dash = id => { const p = $('#' + id); p.setAttribute('pathLength', 1); p.style.strokeDasharray = 1; return p; };
+  ['r1', 'r2', 'r3'].forEach(dash);
+  [['p1', 568, 200], ['p2', 568, 246], ['p3', 568, 420], ['p4', 568, 487]].forEach(([id, x, y]) => { const c = $('#' + id).cloneNode(true); c.removeAttribute('id'); c.setAttribute('transform', 'translate(' + x + ' ' + y + ') scale(.6)'); $('#c53').appendChild(c); });
+  const c52 = $('#c52');
+  for (let r = 0; r < 6; r++) for (let c = 0; c < 4; c++) r3(308 + c * 60, 200 + r * 60, 49, 49, 10, r === 1 && c === 2 ? '#0B0B0C' : r === 4 && c === 0 ? '#FFD43B' : '#FFFFFF', c52);
+  const cap5 = tx3('Правила проекта', 308, 600, 21, '#FFFFFF', c52); cap5.style.fontWeight = 400; cap5.style.letterSpacing = '-.012em';
+  const mv = (id, x, y, extra) => $('#' + id).setAttribute('transform', `translate(${x} ${y})${extra || ''}`);
+
+  function play(i, a) {
+    if (i === 0) sh0.forEach((s, k) => { const q = out(seg(a, k * .05, .3 + k * .05)); s.g.setAttribute('transform', `translate(${s.x} ${lerp(820, 800 - W7, q)})`); });
+    if (i === 1) {
+      $('#c1').setAttribute('r', 124 * ease(seg(a, .08, .34)));
+      const ro = ease(seg(a, .3, .72)); $('#o1').style.strokeDashoffset = 1 - ro; $('#o1').style.strokeDasharray = ro >= 1 ? 'none' : '1';
+    }
+    if (i === 2) {
+      const t = seg(a, .06, .3), f = seg(a, .3, .52);
+      $('#r1').style.strokeDashoffset = 1 - t;
+      $('#r2').style.strokeDashoffset = 1 - f; $('#r3').style.strokeDashoffset = 1 - f;
+      $('#r2').style.opacity = $('#r3').style.opacity = f > 0 ? 1 : 0;
+      const e = seg(a, .5, .58); $('#e2').style.opacity = e; $('#e3').style.opacity = e; $('#l2a').style.opacity = e; $('#l2b').style.opacity = e;
+      const go = ease(seg(a, .52, .9)), x0 = lerp(0, 720, seg(go, 0, .4)), s2 = seg(go, .4, 1);
+      const pa = $('#r2'), pb = $('#r3'), A = pa.getPointAtLength(pa.getTotalLength() * s2 * .62), B = pb.getPointAtLength(pb.getTotalLength() * s2 * .62);
+      [['#b2a', A], ['#b2b', B]].forEach(([id, p]) => { const b = $(id); b.setAttribute('cx', s2 > 0 ? p.x : x0); b.setAttribute('cy', s2 > 0 ? p.y : 440); b.style.opacity = go > 0 ? 1 : 0; });
+    }
+    if (i === 3) {
+      L3.forEach(l => { const q = out(seg(a, l.o, l.o + .1)); l.g.style.opacity = q; l.g.setAttribute('transform', 'translate(0 ' + (1 - q) * 18 + ')'); });
+      /* the token itself changes and the page follows, from the smallest shape to the largest */
+      const w = seg(a, .68, .84);
+      tok.forEach(t => { t.s.style.fill = w > 0 && (t.x - 48) / 1264 < w ? TK[1] : TK[0]; });
+      tkv.textContent = w > 0 ? TK[1] : TK[0];
+    }
+    if (i === 4) P4.forEach(p => { const q = out(seg(a, p.o, p.o + .1)); p.g.style.opacity = q; p.g.setAttribute('transform', 'translate(0 ' + (1 - q) * 14 + ')'); });
+    if (i === 5) {
+      /* the library keeps its components; an instance of each flies to its place on the screen */
+      const SL = [[890, 160], [890, 240], [890, 534], [890, 650]], FR = [[568, 200], [568, 246], [568, 420], [568, 487]], Z = .6;
+      ['c51', 'c52', 'c53'].forEach((id, k) => { $('#' + id).style.opacity = seg(a, .02 + k * .06, .08 + k * .06); });
+      ['p1', 'p2', 'p3', 'p4'].forEach((id, k) => {
+        const st = .24 + k * .09, q = ease(seg(a, st, st + .16));
+        mv(id, lerp(FR[k][0], SL[k][0], q), lerp(FR[k][1], SL[k][1], seg(q, .75, 1)), ' scale(' + lerp(Z, 1, q) + ')');
+        $('#' + id).style.opacity = a >= st ? 1 : 0;
+      });
+      /* a foreign shape drops from above, hits the top of the screen and is thrown out */
+      const go = ease(seg(a, .68, .76)), rej = ease(seg(a, .84, .92));
+      mv('ps', lerp(1120, 1460, rej), lerp(lerp(-120, 50, go), -130, rej), ' scale(.45) rotate(' + rej * 80 + ')');
+      $('#pt').style.opacity = seg(a, .74, .77) * (1 - seg(a, .81, .83));
+    }
+    if (i === 6) {
+      const G = ['#3DDC97', '#FFD43B', '#FF5A4E'], x = lerp(-40, 840, ease(seg(a, .06, .46))), pass = ease(seg(a, .68, .78)), fin = lerp(x, 1420, pass);
+      $('#rb').setAttribute('cx', fin);
+      [[1, 250], [2, 680], [3, 1110]].forEach(([k, cx], n) => {
+        const on = n < 2 ? fin >= cx - 60 : pass > .3;
+        $('#g' + k).setAttribute('fill', on ? G[n] : '#232326');
+        $('#gt' + k).style.fill = on ? '#0B0B0C' : '#8A8A90';
+        $('#gt' + k).style.color = on ? '#0B0B0C' : '#8A8A90';
+      });
+      /* the mark appears first, then the gate opens */
+      const pin = out(seg(a, .5, .6));
+      $('#rp').style.opacity = pin; $('#rp').setAttribute('transform', 'translate(0 ' + (1 - pin) * 16 + ')');
+      const up = 480 * (1 - pass); $('#bar').setAttribute('height', up); $('#bar').setAttribute('y', 800 - up); $('#bar').style.opacity = seg(a, .3, .36);
+    }
+    if (i === 7) {
+      const t = seg(a, .06, .7), Q = cols.map((c, k) => { const q = out(seg(t, k * .09, k * .09 + .42)); c.r.setAttribute('y', 800 - c.h * q); c.r.setAttribute('height', c.h * q); return 800 - c.h * q; });
+      was.style.opacity = seg(t, .05, .15); now.style.opacity = seg(t, .85, .95);
+      gt.style.opacity = seg(t, .9, 1);
+      /* the ball hops from step to step and stops on the goal */
+      const pos = ease(seg(a, .1, .76)) * 6, k = Math.min(5, Math.floor(pos)), f = pos - k, hop = Math.sin(Math.PI * f) * 60;
+      ball7.setAttribute('cx', (k + f + .5) * W7); ball7.setAttribute('cy', lerp(Q[k], Q[k + 1], f) - RB7 - hop);
+      ball7.style.opacity = seg(a, .06, .12);
+    }
+    if (i === 8) stb.forEach((b, k) => { const q = out(seg(a, .02 + k * .06, .3 + k * .06)); b.style.transform = `translateY(${(1 - q) * 460}px)`; });
+  }
+
+  /* each poster plays over 77.5% of its scroll, rests on the finished picture for 18.5%, then fades */
+  const pace = p => p < .775 ? p / .775 * .96 : p < .96 ? .96 : .96 + (p - .96);
+  let cur = -1, shown = null, raf = 0;
+  const target = () => { const r = track.getBoundingClientRect(), span = Math.max(1, r.height - innerHeight); return clamp(-r.top / span, 0, 1) * (N - .001); };
+  function render() {
+    const w = Math.min(innerWidth - 2 * clamp(innerWidth * .02, 8, 24), (innerHeight - 28) * 1.7), k = w / 1360;
+    frame.style.width = w + 'px'; frame.style.height = 800 * k + 'px';
+    stage.style.transform = `scale(${k})`;
+    const u = shown == null ? target() : shown, i = Math.floor(u), a = pace(u - i);
+    scenes.forEach((s, n) => {
+      const on = n === i; s.style.visibility = on ? 'visible' : 'hidden';
+      if (on) s.style.opacity = (n === 0 ? 1 : seg(a, 0, .04)) * (n === N - 1 ? 1 : 1 - seg(a, .96, 1));
+    });
+    if (i !== cur) {
+      cur = i; const s = S[i];
+      frame.style.setProperty('--bgc', s.bg); stage.style.setProperty('--fgc', s.fg);
+      $('#cn').textContent = s.n ? `${i} из 7 · ${s.n}` : '';
+      $('#skip').style.display = i === N - 1 ? 'none' : '';
+    }
+    play(i, a);
+  }
+  function tick() {
+    const t = target();
+    if (shown == null || reduce) shown = t; else { shown += (t - shown) * .14; if (Math.abs(t - shown) < .0005) shown = t; }
+    render();
+    raf = shown === t ? 0 : requestAnimationFrame(tick);
+  }
+  const wake = () => { if (!raf) raf = requestAnimationFrame(tick); };
+  addEventListener('scroll', wake, { passive: true });
+  addEventListener('resize', render);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(render);
+  shown = target(); render();
+  window.__film = { render, go: u => { const r = track.getBoundingClientRect(), span = r.height - innerHeight; scrollTo({ top: scrollY + r.top + (u / (N - .001)) * span, behavior: 'instant' }); shown = target(); render(); } };
+})();
+</script>
+</body>
+</html>

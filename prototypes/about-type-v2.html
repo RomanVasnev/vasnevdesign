@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Семь фигур процесса</title>
+<style>
+/* Prototype v2 of the «Обо мне» block, desktop only: the process told with flat shapes and big type on one-colour posters — by vasnev.art */
+@font-face{font-family:'Geist';font-weight:400;font-display:swap;src:url(../public/fonts/geist-400.woff2) format('woff2')}
+@font-face{font-family:'Geist';font-weight:500;font-display:swap;src:url(../public/fonts/geist-500.woff2) format('woff2')}
+@font-face{font-family:'Geist Mono';font-weight:400;font-display:swap;src:url(../public/fonts/geist-mono-400.woff2) format('woff2')}
+:root{--ink:#0B0B0C;--paper:#FFFFFF;--blue:#2F5CFF;--yellow:#FFD43B;--pink:#FF8AD8;--orange:#FF7A45;--lilac:#D9CBFF;--violet:#8E5CFF;--mint:#3DDC97;--accent:#2F5CFF;--mono:'Geist Mono',ui-monospace,monospace}
+*{box-sizing:border-box}
+html,body{margin:0;background:#F8F8F8;color:var(--ink);font-family:'Geist',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.wrap{padding:16px clamp(8px,2vw,24px) 0}
+.fr-label{display:flex;align-items:center;gap:6px;height:24px;margin:0 0 6px;font:400 13px/1 var(--mono);color:#8E8E93}
+.fr-label svg{width:12px;height:12px;fill:none;stroke:currentColor}
+.track{position:relative}
+.pin{position:sticky;top:0;height:100vh;padding:14px clamp(8px,2vw,24px)}
+.frame{position:relative;height:100%;overflow:hidden;border-radius:28px;background:var(--bgc,#fff);transition:background .4s ease}
+.stage{position:absolute;left:0;top:0;width:1360px;height:800px;transform-origin:0 0;color:var(--fgc,#0B0B0C);transition:color .3s ease}
+.after{margin:16px clamp(8px,2vw,24px) 40px;padding:32px;border-radius:28px;background:var(--ink);color:#fff;font-size:24px;letter-spacing:-.03em}
+
+.ey{position:absolute;left:60px;top:44px;font:400 14px/1 var(--mono);opacity:.7;z-index:6}
+.prog{position:absolute;right:60px;top:48px;display:flex;gap:5px;z-index:6}
+.prog i{width:24px;height:4px;border-radius:2px;background:currentColor;opacity:.2}
+.prog i.on{opacity:1}
+.skip{position:absolute;right:60px;top:66px;font-size:14px;color:inherit;opacity:.65;text-underline-offset:3px;z-index:6}
+
+.sc{position:absolute;inset:0;opacity:0;visibility:hidden}
+.sc svg.v{position:absolute;left:0;top:0;width:1360px;height:800px;overflow:visible}
+.wd{position:absolute;left:56px;top:84px;margin:0;font-weight:500;font-size:150px;line-height:1;letter-spacing:-.065em;white-space:nowrap}
+.say{position:absolute;left:60px;bottom:50px;width:430px;margin:0;font-weight:500;font-size:29px;line-height:1.1;letter-spacing:-.035em;text-wrap:balance}
+.t{font-family:'Geist',sans-serif;font-weight:500;letter-spacing:-.02em}
+text{fill:currentColor}
+
+/* opening */
+.big{position:absolute;left:56px;top:96px;width:1200px;margin:0;font-weight:500;font-size:112px;line-height:.98;letter-spacing:-.058em}
+
+/* colour wells: flat */
+.wells{position:absolute;right:60px;bottom:50px;display:flex;align-items:center;gap:10px;z-index:7;font-size:15px}
+.well{width:44px;height:44px;padding:0;border:0;border-radius:50%;background:var(--c);cursor:pointer;transition:transform .25s cubic-bezier(.2,1.3,.36,1)}
+.well:hover{transform:scale(1.12)}
+.well[aria-pressed=true]{box-shadow:0 0 0 3px var(--bgw),0 0 0 6px var(--ink)}
+
+/* poster */
+.gr{position:absolute;left:60px;right:60px;top:92px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.tl{position:relative;height:320px;padding:18px;border:0;border-radius:24px;background:var(--b);color:var(--f);text-align:left;cursor:pointer;overflow:hidden;opacity:0;display:flex;flex-direction:column;justify-content:flex-end;text-decoration:none;transition:border-radius .3s}
+.tl:hover{border-radius:60px}
+.tl svg{position:absolute;right:16px;top:16px;width:118px;height:118px}
+.tl:hover svg{transform:rotate(-8deg)}
+.tl svg{transition:transform .35s cubic-bezier(.2,1.3,.36,1)}
+.tl b{font-weight:500;font-size:37px;letter-spacing:-.05em;line-height:1}
+.tl span{margin-top:7px;font-size:15px;line-height:1.2;letter-spacing:-.012em}
+.tl small{position:absolute;left:18px;top:18px;font:400 13px var(--mono);opacity:.75}
+@media (prefers-reduced-motion:reduce){.frame,.stage,.tl,.tl svg,.well{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="fr-label"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1v10M8.5 1v10M1 3.5h10M1 8.5h10"/></svg>Обо мне</div></div>
+<section class="track" id="track" aria-label="Дизайн-процесс">
+  <div class="pin"><div class="frame" id="frame"><div class="stage" id="stage">
+    <div class="ey" id="ey"></div><div class="prog" id="prog"></div>
+    <a class="skip" id="skip" href="#next">Пропустить</a>
+
+    <!-- 0 -->
+    <div class="sc" data-s="0"><p class="big">Семь фигур о&nbsp;том, как&nbsp;я&nbsp;делаю продукты</p>
+      <svg class="v" viewBox="0 0 1360 800" aria-hidden="true" id="v0"><g id="sh0">
+        <circle cx="130" cy="600" r="70" fill="#FFD43B"/><rect x="230" y="530" width="140" height="140" rx="0" fill="#0B0B0C"/><path d="M420 670L490 530L560 670Z" fill="#D9CBFF"/><path d="M610 530a70 70 0 0 1 0 140Z" fill="#FF8AD8" transform="translate(0 0)"/><rect x="730" y="565" width="170" height="70" rx="35" fill="#2F5CFF"/><path d="M950 670V530h140a140 140 0 0 1-140 140Z" fill="#FF7A45"/><circle cx="1190" cy="600" r="46" fill="none" stroke="#3DDC97" stroke-width="48"/></g></svg></div>
+
+    <!-- 1 -->
+    <div class="sc" data-s="1"><h3 class="wd">Гипотеза</h3>
+      <svg class="v" viewBox="0 0 1360 800" aria-hidden="true">
+        <path id="h1" d="M610 470H1060" fill="none" stroke="#0B0B0C" stroke-width="6" stroke-dasharray="4 18" stroke-linecap="round"/>
+        <circle cx="610" cy="470" r="28" fill="none" stroke="#0B0B0C" stroke-width="6"/>
+        <circle id="ht" cx="1120" cy="470" r="120" fill="none" stroke="#0B0B0C" stroke-width="34"/>
+        <circle id="ho" cx="1120" cy="470" r="44" fill="#0B0B0C" opacity="0"/>
+        <circle id="hb" cx="610" cy="470" r="66" fill="#0B0B0C"/>
+        <text x="610" y="560" text-anchor="middle" font-size="27" class="t" id="hl1">Если сделаем X</text>
+        <text x="850" y="430" text-anchor="middle" font-size="27" class="t" id="hl2">потому что Z</text>
+        <text x="1120" y="650" text-anchor="middle" font-size="27" class="t" id="hl3">метрика Y вырастет</text>
+      </svg>
+      <p class="say">Одна строка и цифра, по которой потом судить.</p></div>
+
+    <!-- 2 -->
+    <div class="sc" data-s="2"><h3 class="wd">Логика</h3>
+      <svg class="v" viewBox="0 0 1360 800" aria-hidden="true">
+        <g fill="none" stroke-width="26" stroke-linecap="round">
+          <path id="r1" d="M560 430H840" stroke="#fff"/>
+          <path id="r2" d="M840 430C940 430 960 280 1160 280" stroke="#fff"/>
+          <path id="r3" d="M840 430C940 430 960 590 1160 590" stroke="#FF7A45"/>
+        </g>
+        <circle cx="560" cy="430" r="44" fill="#fff" id="n1"/><circle cx="840" cy="430" r="44" fill="#fff" id="n2"/>
+        <g id="n3"><rect x="1120" y="236" width="88" height="88" rx="10" fill="#fff"/><path d="M1142 280l18 18 30-38" fill="none" stroke="#0B0B0C" stroke-width="9"/></g>
+        <g id="n4"><circle cx="1164" cy="590" r="48" fill="#FF7A45"/><path d="M1146 572l36 36M1182 572l-36 36" fill="none" stroke="#0B0B0C" stroke-width="9"/></g>
+        <circle id="b1" r="24" fill="#FFD43B"/><circle id="b2" r="24" fill="#FFD43B"/>
+        <text x="560" y="510" text-anchor="middle" font-size="24" class="t" id="tn1">Ввод</text><text x="840" y="510" text-anchor="middle" font-size="24" class="t" id="tn2">Проверка</text><text x="1240" y="290" font-size="24" class="t" id="tn3">Успех</text><text x="1240" y="600" font-size="24" class="t" id="tn4" style="fill:#FF7A45">Нет сети</text>
+      </svg>
+      <p class="say">Сначала все пути, в том числе те, где всё сломалось. Экраны потом.</p></div>
+
+    <!-- 3: the word built from primitives -->
+    <div class="sc" data-s="3" style="--bgw:#D9CBFF">
+      <svg class="v" viewBox="0 0 1360 800" aria-hidden="true" id="v3"></svg>
+      <p class="say" style="width:600px">Токены, атомы, молекулы, организмы, страницы. Один токен меняет всё.</p>
+      <div class="wells" id="wells"></div></div>
+
+    <!-- 4 -->
+    <div class="sc" data-s="4"><h3 class="wd" style="font-size:132px;top:90px">Визуал</h3>
+      <svg class="v" viewBox="0 0 1360 800" aria-hidden="true" id="v4"></svg>
+      <p class="say">Новизна в деталях. Кнопка остаётся там, где её ждут.</p></div>
+
+    <!-- 5 -->
+    <div class="sc" data-s="5"><h3 class="wd">Сборка</h3>
+      <svg class="v" viewBox="0 0 1360 800" aria-hidden="true">
+        <rect x="860" y="70" width="330" height="660" rx="44" fill="none" stroke="#fff" stroke-width="6"/>
+        <g fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="6 8" opacity=".6"><rect x="896" y="120" width="170" height="44" rx="10"/><rect x="896" y="192" width="258" height="190" rx="20"/><rect x="896" y="410" width="258" height="72" rx="16"/><rect x="896" y="620" width="258" height="72" rx="36"/></g>
+        <g id="p1"><rect width="170" height="44" rx="10" fill="#fff"/></g>
+        <g id="p2"><rect width="258" height="190" rx="20" fill="#FFD43B"/><circle cx="129" cy="95" r="52" fill="#0B0B0C"/></g>
+        <g id="p3"><rect width="258" height="72" rx="16" fill="#fff"/><rect x="20" y="28" width="140" height="16" rx="8" fill="#2F5CFF"/></g>
+        <g id="p4"><rect width="258" height="72" rx="36" fill="#0B0B0C"/><text x="129" y="45" text-anchor="middle" font-size="24" class="t" style="fill:#fff">Оплатить</text></g>
+        <g id="ps"><path d="M0 -70L18 -22L70 -22L28 8L44 58L0 28L-44 58L-28 8L-70 -22L-18 -22Z" fill="#FF8AD8"/></g>
+        <text id="pt" font-size="24" class="t" x="700" y="282" text-anchor="middle" style="fill:#FF8AD8">Нет в библиотеке</text>
+      </svg>
+      <p class="say">Страница за часы, но только из готовых деталей. Чужое не проходит.</p></div>
+
+    <!-- 6: traffic light -->
+    <div class="sc" data-s="6"><h3 class="wd">Риски</h3>
+      <svg class="v" viewBox="0 0 1360 800" aria-hidden="true">
+        <circle id="g1" cx="640" cy="430" r="118"/><circle id="g2" cx="900" cy="430" r="118"/><circle id="g3" cx="1160" cy="430" r="118"/>
+        <text x="640" y="438" text-anchor="middle" font-size="25" class="t" id="gt1" style="fill:#0B0B0C">ИИ сам</text>
+        <text x="900" y="425" text-anchor="middle" font-size="25" class="t" id="gt2" style="fill:#0B0B0C"><tspan x="900">ИИ</tspan><tspan x="900" dy="30">и дизайнер</tspan></text>
+        <text x="1160" y="425" text-anchor="middle" font-size="25" class="t" id="gt3" style="fill:#0B0B0C"><tspan x="1160">Только</tspan><tspan x="1160" dy="30">специалист</tspan></text>
+        <rect id="bar" x="1020" y="270" width="10" height="320" rx="5" fill="#fff"/>
+        <circle id="rb" r="26" fill="#fff"/>
+        <g id="rp"><rect x="1050" y="270" width="220" height="50" rx="25" fill="#fff"/><text x="1160" y="303" text-anchor="middle" font-size="22" class="t" style="fill:#0B0B0C">Ревью пройдено ✓</text></g>
+      </svg>
+      <p class="say">Где ошибка стоит денег или доверия, решает человек.</p></div>
+
+    <!-- 7: every letter stands under its bar -->
+    <div class="sc" data-s="7">
+      <svg class="v" viewBox="0 0 1360 800" aria-hidden="true" id="v7"></svg>
+      <p class="say" style="left:auto;right:60px;bottom:auto;top:96px;text-align:right;width:500px">Сверяю цифру с первой строкой. Выводы запускают следующий цикл.</p></div>
+
+    <!-- poster -->
+    <div class="sc" data-s="8"><div class="gr" id="gr"></div></div>
+  </div></div></div>
+</section>
+<div class="after" id="next">Здесь продолжается сайт: следующий блок «Подход»</div>
+
+<script>
+(function () {
+  const $ = (s, r) => (r || document).querySelector(s), $$ = (s, r) => [...(r || document).querySelectorAll(s)];
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const ease = t => t * t * (3 - 2 * t);
+  const out = t => 1 - Math.pow(1 - t, 3);
+  const back = t => { const c = 1.6; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
+  const seg = (p, a, b) => clamp((p - a) / (b - a), 0, 1);
+  const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const NS = 'http://www.w3.org/2000/svg';
+  const frame = $('#frame'), stage = $('#stage'), track = $('#track');
+
+  const S = [
+    { e: 'Дизайн-процесс Романа Васнёва', bg: '#FFFFFF', fg: '#0B0B0C' },
+    { w: 'Гипотеза', e: '1 · Рынок, ЦА и гипотеза', bg: '#FFD43B', fg: '#0B0B0C', d: 'Кому нужно, как дойдут, почему выберут.', ic: '<circle cx="50" cy="50" r="38" fill="none" stroke="currentColor" stroke-width="14"/><circle cx="50" cy="50" r="12" fill="currentColor"/>' },
+    { w: 'Логика', e: '2 · State machine', bg: '#0B0B0C', fg: '#FFFFFF', d: 'Все состояния и ошибки до первого экрана.', ic: '<path d="M8 50H44C60 50 60 18 92 18M44 50C60 50 60 82 92 82" fill="none" stroke="currentColor" stroke-width="12"/>' },
+    { w: 'Атомы', e: '3 · Атомарная система', bg: '#D9CBFF', fg: '#0B0B0C', d: 'Токены и компоненты. Дизайн и код одно и то же.', ic: '<path d="M6 94L50 6L94 94Z" fill="currentColor"/>' },
+    { w: 'Визуал', e: '4 · Визуал и бренд', bg: '#FF8AD8', fg: '#0B0B0C', d: 'Привычные паттерны, узнаваемый язык бренда.', ic: '<path d="M6 6H94A88 88 0 0 1 6 94Z" fill="currentColor"/>' },
+    { w: 'Сборка', e: '5 · Сборка', bg: '#2F5CFF', fg: '#FFFFFF', d: 'ИИ берёт рутину в рамках системы. Прототип в коде.', ic: '<rect x="6" y="6" width="40" height="40" fill="currentColor"/><rect x="54" y="54" width="40" height="40" fill="currentColor"/><rect x="54" y="6" width="40" height="40" rx="20" fill="currentColor"/>' },
+    { w: 'Риски', e: '6 · Матрица рисков и проверка', bg: '#0B0B0C', fg: '#FFFFFF', d: 'Три зоны, тест на людях и аудит доступности.', ic: '<circle cx="18" cy="50" r="15" fill="#3DDC97"/><circle cx="50" cy="50" r="15" fill="#FFD43B"/><circle cx="82" cy="50" r="15" fill="#FF7A45"/>' },
+    { w: 'Метрика', e: '7 · Метрики и журнал решений', bg: '#FF7A45', fg: '#0B0B0C', d: 'Что выросло, где уходят, журнал решений.', ic: '<rect x="8" y="58" width="22" height="36" fill="currentColor"/><rect x="39" y="34" width="22" height="60" fill="currentColor"/><rect x="70" y="8" width="22" height="86" fill="currentColor"/>' },
+    { e: 'Весь процесс', bg: '#F5F5F7', fg: '#0B0B0C' }
+  ];
+  const N = S.length;
+  $('#prog').innerHTML = S.slice(1, 8).map(() => '<i></i>').join('');
+  const dt = $$('i', $('#prog')), scenes = $$('.sc');
+  track.style.height = `calc(${N * 100}vh + 100vh)`;
+  const el = (n, a, p) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
+  const dash = id => { const p = $('#' + id); p.setAttribute('pathLength', 1); p.style.strokeDasharray = 1; return p; };
+
+  /* ---------- 3: «Атомы» built out of primitives, every letter is one level of the system ---------- */
+  const v3 = $('#v3'), parts = [];
+  const CELL = 214, GAP = 30, X0 = (1360 - (CELL * 5 + GAP * 4)) / 2, Y0 = 120, HH = 320;
+  const lvl = ['Токены', 'Атомы', 'Молекулы', 'Организмы', 'Страницы'];
+  /* primitives in a 214×320 cell */
+  const LET = [
+    [['path', { d: 'M0 320L107 0L214 320Z' }], ['path', { d: 'M78 212L107 110L136 212Z', cut: 1 }], ['path', { d: 'M62 320L74 264H140L152 320Z', cut: 1 }]],
+    [['rect', { x: 0, y: 0, width: 214, height: 62 }], ['rect', { x: 76, y: 0, width: 62, height: 320 }]],
+    [['circle', { cx: 107, cy: 160, r: 124, sq: 1 }], ['circle', { cx: 107, cy: 160, r: 62, cut: 1, sq: 1 }]],
+    [['rect', { x: 0, y: 0, width: 56, height: 320 }], ['path', { d: 'M56 0L107 180L158 0V110L107 290L56 110Z' }], ['rect', { x: 158, y: 0, width: 56, height: 320 }]],
+    [['rect', { x: 0, y: 0, width: 56, height: 320 }], ['path', { d: 'M56 130H64A95 95 0 0 1 64 320H56Z' }], ['rect', { x: 170, y: 0, width: 44, height: 320 }]]
+  ];
+  let seed = 9; const rnd = () => (seed = seed * 16807 % 2147483647) / 2147483647;
+  LET.forEach((L, i) => {
+    const cx = X0 + i * (CELL + GAP);
+    L.forEach(([tag, a], k) => {
+      const at = { ...a }; const cut = at.cut, sq = at.sq; delete at.cut; delete at.sq;
+      if (tag === 'circle') { at.cy = 160; }
+      const g = el('g', {}, v3), e = el(tag, at, g);
+      e.style.fill = cut ? 'var(--bgw,#D9CBFF)' : 'var(--accent)';
+      parts.push({ g, x: cx, y: Y0, sx: rnd() * 1360 - 200, sy: rnd() * 700 - 100, rt: (rnd() - .5) * 180, o: (i * .1 + k * .05) });
+    });
+    const t = el('text', { x: cx + CELL / 2, y: Y0 + HH + 44, 'text-anchor': 'middle', 'font-size': 25, class: 't' }, v3); t.textContent = lvl[i]; t.dataset.i = i;
+  });
+  const v3t = $$('text', v3);
+  const COL = [['#2F5CFF', 'Синий'], ['#0B0B0C', 'Чёрный'], ['#8E5CFF', 'Фиолетовый'], ['#FF7A45', 'Оранжевый']];
+  COL.forEach(([c, n], i) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'well'; b.style.setProperty('--c', c); b.setAttribute('aria-label', n); b.setAttribute('aria-pressed', i === 0); b.addEventListener('click', () => { document.documentElement.style.setProperty('--accent', c); $$('.well').forEach(x => x.setAttribute('aria-pressed', x === b)); }); $('#wells').appendChild(b); });
+
+  /* ---------- 4: a grid of tiles; the same shapes make a whole language, the button never moves ---------- */
+  const v4 = $('#v4'), tiles = [];
+  const TX = 560, TY = 84, TS = 176, TG = 8;
+  const PAL = [['#0B0B0C', '#FFFFFF'], ['#FFFFFF', '#2F5CFF'], ['#2F5CFF', '#FFD43B'], ['#FFD43B', '#0B0B0C'], ['#0B0B0C', '#FF8AD8']];
+  const SH = [
+    (g, c) => el('circle', { cx: 88, cy: 88, r: 88, fill: c }, g),
+    (g, c) => el('path', { d: 'M0 0H176A176 176 0 0 1 0 176Z', fill: c }, g),
+    (g, c) => el('path', { d: 'M0 176L88 0L176 176Z', fill: c }, g),
+    (g, c) => el('path', { d: 'M88 0a88 88 0 0 1 0 176Z', fill: c }, g),
+    (g, c) => el('rect', { x: 44, y: 44, width: 88, height: 88, fill: c }, g),
+    (g, c) => el('path', { d: 'M0 0H88V88H176V176H88V88H0Z', fill: c }, g)
+  ];
+  const order = [0, 3, 1, 2, 5, 'btn', 4, 1, 2, 0, 3, 5];
+  order.forEach((sh, i) => {
+    const col = i % 4, row = i >> 2, x = TX + col * (TS + TG), y = TY + row * (TS + TG), g = el('g', { transform: `translate(${x} ${y})` }, v4);
+    const bgr = el('rect', { width: TS, height: TS, fill: '#F7B6E3' }, g);
+    if (sh === 'btn') {
+      /* the button: from the first frame to the last, in its place */
+      el('rect', { width: TS, height: TS, fill: '#FFFFFF' }, g);
+      el('rect', { x: 14, y: 58, width: 148, height: 60, rx: 30, fill: '#0B0B0C' }, g);
+      const t = el('text', { x: 88, y: 95, 'text-anchor': 'middle', 'font-size': 22, class: 't' }, g); t.style.fill = '#fff'; t.textContent = 'Оплатить';
+      return;
+    }
+    const pal = PAL[i % PAL.length], fg = SH[sh](g, '#E78FCE');
+    tiles.push({ bgr, fg, pal, o: Math.hypot(col - 1, row - 1) });
+  });
+
+  /* ---------- 7: bars grow over the letters of the word ---------- */
+  const v7 = $('#v7'), word7 = [...S[7].w], BAR = [.12, .2, .3, .42, .56, .76, 1], BW = 150, BX = (1360 - (BW * 7 + 26 * 6)) / 2, BB = 610, TOPY = 210, bars = [];
+  const goal = el('line', { x1: 60, x2: 1300, y1: TOPY, y2: TOPY, stroke: '#0B0B0C', 'stroke-width': 5, 'stroke-dasharray': '4 16', 'stroke-linecap': 'round' }, v7);
+  const goalT = el('text', { x: 60, y: TOPY - 18, 'font-size': 25, class: 't' }, v7); goalT.textContent = 'цель из первой строки';
+  word7.forEach((ch, i) => {
+    const x = BX + i * (BW + 26), r = el('rect', { x, width: BW, y: BB, height: 0, fill: i === 6 ? '#FFFFFF' : '#0B0B0C' }, v7);
+    const t = el('text', { x: x + BW / 2, y: BB + 138, 'text-anchor': 'middle', 'font-size': 156, class: 't' }, v7); t.style.letterSpacing = '-.05em'; t.textContent = ch;
+    bars.push({ r, h: BAR[i] * (BB - TOPY) });
+  });
+
+  /* ---------- poster ---------- */
+  const gr = $('#gr');
+  gr.innerHTML = S.slice(1, 8).map((s, i) => `<button class="tl" type="button" data-to="${i + 1}" style="--b:${s.bg};--f:${s.fg}"><small>${i + 1}</small><svg viewBox="0 0 100 100" aria-hidden="true">${s.ic}</svg><b>${s.w}</b><span>${s.d}</span></button>`).join('') +
+    `<a class="tl" href="#next" style="--b:#FFFFFF;--f:#0B0B0C"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M10 50H86M56 18l32 32-32 32" fill="none" stroke="currentColor" stroke-width="13"/></svg><b>Обсудить проект</b><span>Цикл начинается заново.</span></a>`;
+  const tls = $$('.tl', gr);
+  gr.addEventListener('click', e => { const b = e.target.closest('[data-to]'); if (!b) return; const r = track.getBoundingClientRect(), span = r.height - innerHeight; scrollTo({ top: scrollY + r.top + ((+b.dataset.to + .7) / (N - .001)) * span, behavior: reduce ? 'instant' : 'smooth' }); });
+
+  ['r1', 'r2', 'r3'].forEach(dash);
+  const mv = (id, x, y, extra) => $('#' + id).setAttribute('transform', `translate(${x} ${y})${extra || ''}`);
+  function play(i, a) {
+    if (i === 0) {
+      /* each shape rises in turn */
+      [...$('#sh0').children].forEach((c, k) => { const q = out(seg(a, k * .05, .25 + k * .05)); c.style.transform = `translateY(${(1 - q) * 260}px)`; c.style.opacity = q; });
+    }
+    if (i === 1) {
+      const q = ease(seg(a, .18, .62)), hit = seg(a, .6, .7);
+      $('#hb').setAttribute('cx', lerp(610, 1120, q));
+      $('#hb').setAttribute('r', lerp(66, 44, q));
+      $('#h1').style.opacity = seg(a, .1, .2);
+      $('#ho').setAttribute('opacity', hit > 0 ? 1 : 0);
+      $('#ht').setAttribute('stroke-width', lerp(34, 44, hit));
+      ['hl1', 'hl2', 'hl3'].forEach((t, k) => { $('#' + t).style.opacity = seg(a, .04 + k * .12, .14 + k * .12); });
+    }
+    if (i === 2) {
+      const tr = seg(a, .05, .3);
+      $('#r1').style.strokeDashoffset = 1 - tr; $('#r1').style.opacity = tr > 0 ? 1 : 0;
+      const fk = seg(a, .3, .5);
+      $('#r2').style.strokeDashoffset = 1 - fk; $('#r3').style.strokeDashoffset = 1 - fk; $('#r2').style.opacity = $('#r3').style.opacity = fk > 0 ? 1 : 0;
+      $('#n1').setAttribute('r', 44 * out(seg(a, .02, .1))); $('#n2').setAttribute('r', 44 * out(seg(a, .2, .3)));
+      const e3 = out(seg(a, .46, .56)); $('#n3').style.opacity = e3; $('#n4').style.opacity = e3;
+      ['tn1', 'tn2', 'tn3', 'tn4'].forEach((t, k) => { $('#' + t).style.opacity = k < 2 ? seg(a, k ? .22 : .04, k ? .3 : .12) : e3; });
+      /* one ball arrives and splits at the fork */
+      const go = ease(seg(a, .5, .9)), pth2 = $('#r2'), pth3 = $('#r3');
+      const seg1 = seg(go, 0, .4), seg2 = seg(go, .4, 1);
+      const x0 = lerp(560, 840, seg1);
+      const p2 = pth2.getPointAtLength(pth2.getTotalLength() * seg2), p3 = pth3.getPointAtLength(pth3.getTotalLength() * seg2);
+      const b1 = $('#b1'), b2 = $('#b2');
+      b1.setAttribute('cx', seg2 > 0 ? p2.x : x0); b1.setAttribute('cy', seg2 > 0 ? p2.y : 430);
+      b2.setAttribute('cx', seg2 > 0 ? p3.x : x0); b2.setAttribute('cy', seg2 > 0 ? p3.y : 430);
+      b1.style.opacity = b2.style.opacity = go > 0 ? 1 : 0;
+    }
+    if (i === 3) {
+      const t = seg(a, .05, .62);
+      parts.forEach(p => { const q = back(seg(t, p.o, p.o + .45)); p.g.setAttribute('transform', `translate(${lerp(p.sx, p.x, q)} ${lerp(p.sy, p.y, q)}) rotate(${p.rt * (1 - q)} 107 160)`); p.g.style.opacity = seg(t, p.o, p.o + .1); });
+      v3t.forEach((x, k) => { x.style.opacity = seg(a, .58 + k * .04, .64 + k * .04); });
+    }
+    if (i === 4) {
+      const t = seg(a, .08, .78);
+      tiles.forEach(k => { const q = seg(t, k.o * .2, k.o * .2 + .35); const on = q > .5; k.bgr.setAttribute('fill', on ? k.pal[0] : '#F7B6E3'); k.fg.setAttribute('fill', on ? k.pal[1] : '#E78FCE'); k.bgr.parentNode.style.opacity = 1; });
+    }
+    if (i === 5) {
+      const SL = [[896, 120], [896, 192], [896, 410], [896, 620]], FROM = [[440, 330], [430, 420], [420, 640], [420, 600]];
+      ['p1', 'p2', 'p3', 'p4'].forEach((id, k) => { const q = back(seg(a, .08 + k * .12, .3 + k * .12)); mv(id, lerp(FROM[k][0], SL[k][0], q), lerp(FROM[k][1], SL[k][1], q)); $('#' + id).style.opacity = seg(a, .08 + k * .12, .14 + k * .12); });
+      const inq = out(seg(a, .58, .68)), rej = ease(seg(a, .72, .88));
+      mv('ps', lerp(620, 790, inq) - rej * 300, lerp(250, 370, inq) + rej * 420, ` rotate(${lerp(0, 22, inq) + rej * 80})`);
+      $('#ps').style.opacity = seg(a, .58, .62) * (1 - seg(a, .84, .92));
+      $('#pt').style.opacity = seg(a, .66, .7) * (1 - seg(a, .8, .86));
+    }
+    if (i === 6) {
+      const G = ['#3DDC97', '#FFD43B', '#FF7A45'], x = lerp(480, 1000, seg(a, .08, .5)), pass = ease(seg(a, .68, .78)), fin = lerp(x, 1250, pass);
+      $('#rb').setAttribute('cx', fin); $('#rb').setAttribute('cy', 430);
+      [[1, 640], [2, 900], [3, 1160]].forEach(([k, cx], n) => {
+        const on = n < 2 ? fin >= cx - 90 : pass > 0;
+        $('#g' + k).setAttribute('fill', on ? G[n] : '#2A2A2E');
+        $('#gt' + k).style.fill = on ? '#0B0B0C' : '#8E8E93';
+      });
+      const pin = seg(a, .52, .6);
+      $('#rp').style.opacity = pin * (1 - seg(a, .92, 1)); $('#rp').style.transform = `translateY(${(1 - out(pin)) * -40}px)`;
+      $('#bar').setAttribute('height', 320 * (1 - pass)); $('#bar').style.opacity = seg(a, .3, .36);
+    }
+    if (i === 7) {
+      const t = seg(a, .08, .72);
+      bars.forEach((b, k) => { const q = out(seg(t, k * .1, k * .1 + .4)); b.r.setAttribute('y', BB - b.h * q); b.r.setAttribute('height', b.h * q); });
+      goal.style.opacity = goalT.style.opacity = seg(a, .04, .14);
+      goalT.textContent = t >= 1 ? 'цель достигнута' : 'цель из первой строки';
+    }
+    if (i === 8) tls.forEach((t, k) => { const q = back(seg(a, .04 + k * .06, .26 + k * .06)); t.style.opacity = seg(q, 0, .3); t.style.transform = `scale(${lerp(.8, 1, q)})`; });
+  }
+
+  let cur = -1, shown = null, raf = 0;
+  const target = () => { const r = track.getBoundingClientRect(), span = Math.max(1, r.height - innerHeight); return clamp(-r.top / span, 0, 1) * (N - .001); };
+  function render() {
+    const fr = frame.getBoundingClientRect(), k = Math.min(fr.width / 1360, fr.height / 800);
+    stage.style.transform = `translate(${(fr.width - 1360 * k) / 2}px,${(fr.height - 800 * k) / 2}px) scale(${k})`;
+    const u = shown == null ? target() : shown, i = Math.floor(u), a = u - i;
+    scenes.forEach((s, n) => {
+      const on = n === i; s.style.visibility = on ? 'visible' : 'hidden';
+      if (on) { s.style.opacity = (n === 0 ? 1 : seg(a, 0, .05)) * (n === N - 1 ? 1 : 1 - seg(a, .95, 1)); s.style.transform = `translateY(${(1 - ease(seg(a, 0, .08))) * (n ? 30 : 0) - ease(seg(a, .94, 1)) * (n === N - 1 ? 0 : 30)}px)`; }
+    });
+    if (i !== cur) {
+      cur = i; const s = S[i];
+      frame.style.setProperty('--bgc', s.bg); stage.style.setProperty('--fgc', s.fg);
+      $('#ey').textContent = s.e; dt.forEach((d, n) => d.classList.toggle('on', n < i));
+      $('#skip').style.display = i === N - 1 ? 'none' : '';
+    }
+    play(i, a);
+  }
+  function tick() {
+    const t = target();
+    if (shown == null || reduce) shown = t; else { shown += (t - shown) * .12; if (Math.abs(t - shown) < .0005) shown = t; }
+    render();
+    raf = shown === t ? 0 : requestAnimationFrame(tick);
+  }
+  const wake = () => { if (!raf) raf = requestAnimationFrame(tick); };
+  addEventListener('scroll', wake, { passive: true });
+  addEventListener('resize', render);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(render);
+  shown = target(); render();
+  window.__film = { render, go: u => { const r = track.getBoundingClientRect(), span = r.height - innerHeight; scrollTo({ top: scrollY + r.top + (u / (N - .001)) * span, behavior: 'instant' }); shown = target(); render(); } };
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Дизайн-процесс: плитки</title>
+<style>
+/* «Обо мне»: the same seven steps and headlines, drawn as a modular wall of symbol tiles — by vasnev.art */
+@font-face{font-family:'Geist';font-weight:400;font-display:swap;src:url(../public/fonts/geist-400.woff2) format('woff2')}
+@font-face{font-family:'Geist';font-weight:500;font-display:swap;src:url(../public/fonts/geist-500.woff2) format('woff2')}
+:root{--ink:#111111;--paper:#FFFFFF}
+*{box-sizing:border-box}
+html,body{margin:0;background:#F8F8F8;color:var(--ink);font-family:'Geist',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+button:focus-visible,a:focus-visible{outline:3px solid #2F4CFF;outline-offset:3px}
+.track{position:relative}
+.pin{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center}
+.frame{position:relative;flex:none;overflow:hidden;border-radius:28px;background:var(--bgc,#fff);transition:background-color .3s ease}
+.stage{position:absolute;left:0;top:0;width:1360px;height:800px;transform-origin:0 0;color:var(--fgc,#131313)}
+.after{margin:16px clamp(8px,2vw,24px) 40px;padding:32px;border-radius:28px;background:var(--ink);color:#fff;font-size:24px;letter-spacing:-.03em}
+
+.cnt{position:absolute;left:48px;top:30px;display:flex;gap:18px;font-size:18px;line-height:1.2;letter-spacing:-.012em;z-index:6}
+.cnt span:empty{display:none}
+.cnt a{color:inherit;opacity:.85;text-underline-offset:3px}
+.sc{position:absolute;inset:0;opacity:0;visibility:hidden}
+.v{position:absolute;left:0;top:0;width:1360px;height:800px;overflow:hidden}
+.h{position:absolute;left:44px;top:64px;margin:0;font-weight:500;font-size:104px;line-height:1;letter-spacing:-.048em;z-index:2}
+.say{position:absolute;left:48px;bottom:44px;width:520px;margin:0;font-weight:400;font-size:21px;line-height:1.3;letter-spacing:-.012em;text-wrap:pretty;z-index:2}
+.t{font-family:'Geist',sans-serif;font-weight:500;letter-spacing:-.025em;fill:currentColor}
+.cta{position:absolute;right:48px;top:118px;display:flex;align-items:center;height:96px;padding:0 48px;border-radius:48px;background:#2F4CFF;color:#fff;font-weight:500;font-size:32px;letter-spacing:-.025em;white-space:nowrap;text-decoration:none;z-index:3;transition:transform .25s ease}
+.cta:hover{transform:scale(1.04)}
+.st{position:absolute;bottom:0;border:0;padding:0 18px 24px;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;text-align:left;cursor:pointer;color:var(--f);background:var(--b);font-weight:500;font-size:27px;letter-spacing:-.03em;line-height:1.06;overflow:hidden}
+.st svg{position:absolute;left:50%;top:22px;width:120px;height:120px;margin-left:-60px;transition:transform .3s ease}
+.st:hover svg{transform:scale(1.14)}
+.m{display:none}
+@media (max-width:760px){
+  .track{display:none}
+  .after{margin-top:8px}
+  .m{display:grid;gap:8px;padding:8px 8px 0}
+  .mh{padding:28px 20px 96px;border-radius:24px;background:#E6E6E6;color:#111111;font-weight:500;font-size:52px;line-height:1;letter-spacing:-.048em}
+  .mp{position:relative;overflow:hidden;min-height:440px;padding:18px 20px 22px;border-radius:24px;background:var(--b);color:var(--f);display:flex;flex-direction:column}
+  .mp small{font-size:15px;letter-spacing:-.01em}
+  .mp h3{margin:8px 0 0;font-weight:500;font-size:clamp(30px,10.2vw,44px);line-height:1;letter-spacing:-.045em;white-space:nowrap}
+  .mp p{margin:auto 0 0;font-weight:400;font-size:21px;line-height:1.16;letter-spacing:-.022em;max-width:30ch}
+  .mp svg{position:absolute;right:-10px;top:104px;width:150px;height:150px}
+  .mc{display:flex;align-items:center;justify-content:center;height:64px;border-radius:24px;background:var(--ink);color:#fff;font-weight:500;font-size:20px;text-decoration:none}
+}
+@media (prefers-reduced-motion:reduce){.frame,.cta,.st svg{transition:none}}
+</style>
+</head>
+<body>
+<div class="m" id="m"></div>
+<section class="track" id="track" aria-label="Как я делаю продукты">
+  <div class="pin"><div class="frame" id="frame"><div class="stage" id="stage">
+    <div class="cnt"><span id="cn"></span><a id="skip" href="#next">Пропустить</a></div>
+
+    <div class="sc" data-s="0"><svg class="v" viewBox="0 0 1360 800" aria-hidden="true" id="v0"></svg>
+      <h2 class="h" style="left:184px;top:186px">Как я делаю<br>продукты</h2>
+      <p class="say" style="left:188px;bottom:auto;top:412px;width:440px">Семь шагов от&nbsp;гипотезы до&nbsp;метрики.</p></div>
+
+    <div class="sc" data-s="1"><svg class="v" viewBox="0 0 1360 800" aria-hidden="true" id="v1"></svg>
+      <h3 class="h">Сначала цель.</h3>
+      <p class="say" style="bottom:auto;top:184px;width:600px">Изучаю аудиторию и&nbsp;каналы. Формулирую гипотезу: что меняем и&nbsp;как изменится метрика или конверсия в&nbsp;CTA.</p></div>
+
+    <div class="sc" data-s="2"><svg class="v" viewBox="0 0 1360 800" aria-hidden="true" id="v2"></svg>
+      <h3 class="h">Потом логика.</h3>
+      <p class="say" style="bottom:auto;top:184px;width:600px">Разбираю сценарии до&nbsp;первого экрана. Составляю state machine: какие есть состояния, что их&nbsp;переключает и&nbsp;что происходит при ошибке.</p></div>
+
+    <div class="sc" data-s="3"><svg class="v" viewBox="0 0 1360 800" aria-hidden="true" id="v3"></svg>
+      <h3 class="h">Потом атомы.</h3>
+      <p class="say" style="bottom:auto;top:184px;width:600px">Определяю токены и&nbsp;компоненты. Собираю атомарную систему: меняем один токен, и&nbsp;правка доходит до&nbsp;всех экранов.</p></div>
+
+    <div class="sc" data-s="4"><h3 class="h">Потом<br>характер.</h3>
+      <svg class="v" viewBox="0 0 1360 800" aria-hidden="true" id="v4"></svg>
+      <p class="say" style="bottom:auto;top:292px;width:440px">Работаю внутри привычных паттернов, а&nbsp;новизну добавляю в&nbsp;подаче и&nbsp;деталях. Задаю визуальный язык: один на&nbsp;сайте, в&nbsp;продукте и&nbsp;в&nbsp;рекламе.</p></div>
+
+    <div class="sc" data-s="5"><h3 class="h">Потом скорость.</h3>
+      <svg class="v" viewBox="0 0 1360 800" aria-hidden="true" id="v5"></svg>
+      <p class="say" style="bottom:auto;top:184px;width:600px">Собираю страницы и&nbsp;фичи с&nbsp;ИИ за&nbsp;часы. Прописываю ему три рамки: библиотека компонентов, правила проекта и&nbsp;связь с&nbsp;макетами.</p></div>
+
+    <div class="sc" data-s="6"><h3 class="h">Потом проверка.</h3>
+      <svg class="v" viewBox="0 0 1360 800" aria-hidden="true">
+        <g id="g1"></g><g id="g2"></g><g id="g3"></g>
+        <g id="gt1" text-anchor="middle" class="t"><text x="250" y="574" font-size="21">Зелёная зона</text><text x="250" y="622" font-size="36">ИИ сам</text><text x="250" y="662" font-size="21">типовые страницы</text></g>
+        <g id="gt2" text-anchor="middle" class="t"><text x="680" y="574" font-size="21">Жёлтая зона</text><text x="680" y="622" font-size="36">Моё ревью</text><text x="680" y="662" font-size="21">ключевые экраны и тексты</text></g>
+        <g id="gt3" text-anchor="middle" class="t"><text x="1110" y="574" font-size="21">Красная зона</text><text x="1110" y="622" font-size="36">Ревью специалиста</text><text x="1110" y="662" font-size="21">платежи, данные, доступы</text></g>
+        <rect id="bar" x="889" y="320" width="12" height="480" rx="6" fill="#FFFFFF"/>
+        <circle id="rb" cy="372" r="30" fill="#FFCC00"/>
+        <g id="rp"><rect x="980" y="268" width="262" height="56" rx="10" fill="#0E7F44"/><path d="M1008 286l-10 10 10 10M1030 286l10 10-10 10M1024 282l-10 28" fill="none" stroke="#FFFFFF" stroke-width="3"/><text x="1056" y="305" font-size="27" class="t" style="fill:#FFFFFF">Ready for dev</text></g>
+      </svg>
+      <p class="say" style="bottom:auto;top:184px;width:600px">Размечаю зоны риска до&nbsp;сборки. Назначаю проверку для каждой: где ИИ работает сам, где нужно моё ревью, а&nbsp;где ревью профильного специалиста.</p></div>
+
+    <div class="sc" data-s="7"><h3 class="h">И снова метрика.</h3>
+      <svg class="v" viewBox="0 0 1360 800" aria-hidden="true" id="v7"></svg>
+      <p class="say" style="bottom:auto;top:184px;width:600px">Сверяю метрику с&nbsp;гипотезой из&nbsp;брифа. Записываю решение в&nbsp;журнал: что меняли, почему и&nbsp;чем закончилось.</p></div>
+
+    <div class="sc" data-s="8"><h3 class="h">Выводы запускают<br>следующий цикл.</h3>
+      <a class="cta" href="#next">Обсудить проект</a>
+      <div id="sts"></div></div>
+  </div></div></div>
+</section>
+<div class="after" id="next">Следующий блок сайта</div>
+
+<script>
+(function () {
+  const $ = (s, r) => (r || document).querySelector(s), $$ = (s, r) => [...(r || document).querySelectorAll(s)];
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const ease = t => t * t * (3 - 2 * t);
+  const out = t => 1 - Math.pow(1 - t, 3);
+  const seg = (p, a, b) => clamp((p - a) / (b - a), 0, 1);
+  const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const NS = 'http://www.w3.org/2000/svg';
+  const frame = $('#frame'), stage = $('#stage'), track = $('#track');
+  const el = (n, a, p) => { const e = document.createElementNS(NS, n); for (const k in a) if (a[k] != null) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; };
+  const C = { ink: '#111111', white: '#FFFFFF', grey: '#E6E6E6', pale: '#E3E7FC', sky: '#B8DCFF', cobalt: '#2F4CFF', purple: '#6B2FFF', yellow: '#FFCC00', orange: '#F85200', green: '#1FAA5B' };
+
+  /* the alphabet: one symbol on one square tile, as on a modular identity */
+  const rect = (p, x, y, w, h, fill, rx) => el('rect', { x, y, width: w, height: h, fill, rx: rx || 0 }, p);
+  const circ = (p, cx, cy, r, fill) => el('circle', { cx, cy, r, fill }, p);
+  const text = (p, s, x, y, size, fill, anchor) => { const t = el('text', { x, y, 'font-size': size, class: 't', 'text-anchor': anchor || 'start' }, p); if (fill) t.style.fill = fill; t.textContent = s; return t; };
+  function sym(p, kind, x, y, S, bg, fg, alt) {
+    const root = el('g', {}, p); if (bg) rect(root, x, y, S, S, bg);
+    const g = el('g', {}, root), cx = x + S / 2, cy = y + S / 2, h = S / 2;
+    g.setAttribute('fill', fg);
+    const stroke = w => { g.setAttribute('fill', 'none'); g.setAttribute('stroke', fg); g.setAttribute('stroke-width', w); };
+    if (kind === 'spark') el('path', { d: `M${cx} ${y}A${h} ${h} 0 0 0 ${x + S} ${cy}A${h} ${h} 0 0 0 ${cx} ${y + S}A${h} ${h} 0 0 0 ${x} ${cy}A${h} ${h} 0 0 0 ${cx} ${y}Z` }, g);
+    if (kind === 'clover') [[.25, .25], [.75, .25], [.25, .75], [.75, .75]].forEach(([a, b]) => el('circle', { cx: x + a * S, cy: y + b * S, r: S / 4 }, g));
+    if (kind === 'quarter') el('path', { d: `M${x} ${y}H${x + S}A${S} ${S} 0 0 1 ${x} ${y + S}Z` }, g);
+    if (kind === 'tear') { el('circle', { cx, cy, r: h }, g); el('rect', { x: cx, y: cy, width: h, height: h }, g); }
+    if (kind === 'halves') { el('path', { d: `M${x} ${y}A${h} ${h} 0 0 1 ${x} ${y + S}Z` }, g); el('path', { d: `M${x + S} ${y}A${h} ${h} 0 0 0 ${x + S} ${y + S}Z`, fill: alt }, g); }
+    if (kind === 'ring') { stroke(S * .2); el('circle', { cx, cy, r: S * .34 }, g); el('circle', { cx, cy, r: S * .07, fill: fg, stroke: 'none' }, g); }
+    if (kind === 'plus') { el('rect', { x: cx - S * .13, y: y + S * .16, width: S * .26, height: S * .68 }, g); el('rect', { x: x + S * .16, y: cy - S * .13, width: S * .68, height: S * .26 }, g); }
+    if (kind === 'dots') [.2, .5, .8].forEach(a => [.2, .5, .8].forEach(b => el('circle', { cx: x + a * S, cy: y + b * S, r: S * .09 }, g)));
+    if (kind === 'check') for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++) if ((r + c) % 2 === 0) el('rect', { x: x + c * S / 3, y: y + r * S / 3, width: S / 3, height: S / 3 }, g);
+    if (kind === 'tri') [0, 1].forEach(r => [0, 1].forEach(c => { const X = x + c * h, Y = y + r * h; el('path', { d: `M${X} ${Y + h}L${X + h / 2} ${Y + h * .12}L${X + h} ${Y + h}Z` }, g); }));
+    if (kind === 'chev') { stroke(S * .1); [.15, .45, .75].forEach(t => el('path', { d: `M${x} ${y + t * S}H${x + S - t * S}V${y + S}` }, g)); }
+    if (kind === 'aster') { stroke(S * .15); g.setAttribute('stroke-linecap', 'round'); [0, 60, 120].forEach(d => { const a = d * Math.PI / 180, r = S * .33; el('line', { x1: cx - Math.cos(a) * r, y1: cy - Math.sin(a) * r, x2: cx + Math.cos(a) * r, y2: cy + Math.sin(a) * r }, g); }); }
+    if (kind === 'lens') { const r = S * .26, d = S * .13, q = Math.sqrt(r * r - d * d); el('circle', { cx: cx - d, cy, r, fill: C.white }, g); el('circle', { cx: cx + d, cy, r, fill: C.ink }, g); el('path', { d: `M${cx} ${cy - q}A${r} ${r} 0 0 1 ${cx} ${cy + q}A${r} ${r} 0 0 1 ${cx} ${cy - q}Z`, fill: C.orange }, g); }
+    if (kind === 'term') { el('path', { d: `M${x + S * .2} ${y + S * .28}L${x + S * .46} ${y + S * .4}L${x + S * .2} ${y + S * .52}V${y + S * .42}L${x + S * .3} ${y + S * .4}L${x + S * .2} ${y + S * .38}Z` }, g); el('rect', { x: x + S * .52, y: y + S * .6, width: S * .28, height: S * .08 }, g); }
+    if (kind === 'slash') { el('circle', { cx, cy, r: S * .23 }, g); el('path', { d: `M${cx - S * .08} ${cy + S * .12}L${cx - S * .01} ${cy - S * .12}H${cx + S * .08}L${cx + S * .01} ${cy + S * .12}Z`, fill: C.white }, g); }
+    return g;
+  }
+  /* a flat label, the only piece of interface in the set */
+  const chip = (p, s, cx, cy, bg, fg, size) => { const g = el('g', {}, p), w = s.length * size * .56 + 26, h = size * 1.62; rect(g, cx - w / 2, cy - h / 2, w, h, bg); text(g, s, cx, cy + size * .35, size, fg, 'middle'); return g; };
+  /* Figma selection: small squares on the corners of a frame */
+  function handles(p, x, y, w, h, fill, s) { const g = el('g', { fill }, p), S = s || 18; [[x, y], [x + w, y], [x, y + h], [x + w, y + h]].forEach(([X, Y]) => el('rect', { x: X - S / 2, y: Y - S / 2, width: S, height: S, stroke: '#0D99FF', 'stroke-width': 3 }, g)); return g; }
+  /* a road drawn as one surface; the centre dashes appear one after another */
+  function road(p, d, w, col, dash, len) {
+    const P = el('path', { d }), L = P.getTotalLength(), n = Math.max(1, Math.round(L / len)), segs = [];
+    const base = el('path', { d, fill: 'none', stroke: col, 'stroke-width': w, pathLength: 1, 'stroke-dasharray': 1 }, p);
+    for (let k = 1; k < n; k += 2) {
+      let s = ''; const f = k * L / n, t = (k + 1) * L / n, st = Math.max(2, Math.ceil((t - f) / 8));
+      for (let i = 0; i <= st; i++) { const q = P.getPointAtLength(f + (t - f) * i / st); s += (i ? 'L' : 'M') + q.x.toFixed(1) + ' ' + q.y.toFixed(1); }
+      segs.push({ e: el('path', { d: s, fill: 'none', stroke: dash, 'stroke-width': w * .14 }, p), k });
+    }
+    return { P, L, set: q => { base.style.strokeDashoffset = 1 - q; base.style.opacity = q > 0 ? 1 : 0; segs.forEach(({ e, k }) => { e.style.opacity = k / n < q ? 1 : 0; }); } };
+  }
+  const pop = (g, cx, cy, q) => { g.setAttribute('transform', `translate(${cx} ${cy}) scale(${q}) translate(${-cx} ${-cy})`); g.style.opacity = q > .01 ? 1 : 0; };
+
+  /* band icons, one colour each, inherit the colour of their band */
+  const icon = f => { const s = el('svg', {}); f(s); return s.innerHTML; };
+  const CUR = 'currentColor';
+  const SH = {
+    ring: icon(s => sym(s, 'ring', 0, 0, 120, null, CUR)),
+    fork: icon(s => { el('path', { d: 'M0 60H42C70 60 70 22 120 22M42 60C70 60 70 98 120 98', fill: 'none', stroke: CUR, 'stroke-width': 20 }, s); }),
+    spark: icon(s => sym(s, 'spark', 0, 0, 120, null, CUR)),
+    quarter: icon(s => sym(s, 'quarter', 4, 4, 112, null, CUR)),
+    aster: icon(s => sym(s, 'aster', 0, 0, 120, null, CUR)),
+    clover: icon(s => sym(s, 'clover', 2, 2, 116, null, CUR)),
+    bars: icon(s => { el('rect', { x: 4, y: 74, width: 32, height: 42, fill: CUR }, s); el('rect', { x: 44, y: 42, width: 32, height: 74, fill: CUR }, s); el('rect', { x: 84, y: 6, width: 32, height: 110, fill: CUR }, s); })
+  };
+  const S = [
+    { bg: C.grey, fg: C.ink },
+    { n: 'Рынок и гипотеза', t: 'Цель', bg: C.yellow, fg: C.ink, sh: 'ring' },
+    { n: 'State machine', t: 'Логика', bg: C.ink, fg: C.white, sh: 'fork' },
+    { n: 'Атомарная система', t: 'Атомы', bg: C.pale, fg: C.ink, sh: 'spark' },
+    { n: 'Визуал и бренд', t: 'Характер', bg: C.sky, fg: C.ink, sh: 'quarter' },
+    { n: 'Сборка с ИИ', t: 'Скорость', bg: C.cobalt, fg: C.white, sh: 'aster' },
+    { n: 'Риски и проверка', t: 'Проверка', bg: C.ink, fg: C.white, sh: 'clover' },
+    { n: 'Метрики и журнал', t: 'Метрика', bg: C.orange, fg: C.ink, sh: 'bars' },
+    { bg: C.white, fg: C.ink }
+  ];
+  const N = S.length, scenes = $$('.sc'), W7 = 1360 / 7;
+  const MT = [['Сначала цель.', 'Изучаю аудиторию и&nbsp;каналы. Формулирую гипотезу: что меняем и&nbsp;как изменится метрика или конверсия в&nbsp;CTA.'], ['Потом логика.', 'Разбираю сценарии до&nbsp;первого экрана. Составляю state machine: какие есть состояния, что их&nbsp;переключает и&nbsp;что происходит при ошибке.'], ['Потом атомы.', 'Определяю токены и&nbsp;компоненты. Собираю атомарную систему: меняем один токен, и&nbsp;правка доходит до&nbsp;всех экранов.'], ['Потом характер.', 'Работаю внутри привычных паттернов, а&nbsp;новизну добавляю в&nbsp;подаче и&nbsp;деталях. Задаю визуальный язык: один на&nbsp;сайте, в&nbsp;продукте и&nbsp;в&nbsp;рекламе.'], ['Потом скорость.', 'Собираю страницы и&nbsp;фичи с&nbsp;ИИ за&nbsp;часы. Прописываю ему три рамки: библиотека компонентов, правила проекта и&nbsp;связь с&nbsp;макетами.'], ['Потом проверка.', 'Размечаю зоны риска до&nbsp;сборки. Назначаю проверку для каждой: где ИИ работает сам, где нужно моё ревью, а&nbsp;где ревью профильного специалиста.'], ['И снова метрика.', 'Сверяю метрику с&nbsp;гипотезой из&nbsp;брифа. Записываю решение в&nbsp;журнал: что меняли, почему и&nbsp;чем закончилось.']];
+  $('#m').innerHTML = '<div class="mh">Как я делаю продукты</div>' + MT.map(([h, p], i) => { const c = S[i + 1]; return `<article class="mp" style="--b:${c.bg};--f:${c.fg}"><small>${i + 1} из 7 · ${c.n}</small><h3>${h}</h3><svg viewBox="0 0 120 120" aria-hidden="true">${SH[c.sh]}</svg><p>${p}</p></article>`; }).join('') + '<a class="mc" href="#next">Обсудить проект</a>';
+  track.style.height = `calc(${N} * 100vh)`;
+
+  /* 0: a wall of 160px tiles around the headline; the half column on the right closes the 17:10 frame */
+  const v0 = $('#v0'), T0 = [], G0 = 160;
+  [
+    [1, 0, 'spark', C.purple, C.white], [2, 0, 'clover', C.white, C.ink], [3, 0, 'halves', C.sky, C.cobalt, C.purple], [4, 0, 'quarter', C.white, C.orange], [5, 0, 'plus', C.green, C.white], [6, 0, 'check', C.white, C.ink], [7, 0, 'tear', C.sky, C.cobalt],
+    [0, 1, 'tri', C.ink, C.white], [5, 1, 'spark', C.pale, C.ink], [6, 1, 'quarter', C.cobalt, C.white], [7, 1, 'dots', C.orange, C.ink],
+    [0, 2, 'aster', C.orange, C.white], [5, 2, 'lens', C.grey, C.white], [6, 2, 'aster', C.white, C.orange], [7, 2, 'ring', C.white, C.ink],
+    [0, 3, 'chev', C.white, C.orange], [1, 3, 'term', C.purple, C.white], [2, 3, 'clover', C.yellow, C.ink], [3, 3, 'slash', C.sky, C.ink], [4, 3, 'spark', C.ink, C.white], [5, 3, 'tear', C.orange, C.white], [6, 3, 'check', C.yellow, C.ink], [7, 3, 'quarter', C.green, C.white],
+    [0, 4, 'dots', C.yellow, C.ink], [1, 4, 'ring', C.white, C.cobalt], [2, 4, 'quarter', C.sky, C.purple], [3, 4, 'tri', C.cobalt, C.white], [4, 4, 'halves', C.white, C.orange, C.ink], [5, 4, 'plus', C.ink, C.yellow], [6, 4, 'spark', C.purple, C.sky], [7, 4, 'aster', C.pale, C.ink]
+  ].forEach(([c, r, k, bg, fg, alt], n) => { const g = el('g', {}, v0), x = c * G0, y = r * G0; sym(g, k, x, y, G0, bg, fg, alt); T0.push({ g, cx: x + 80, cy: y + 80, o: (n * 7) % 31 }); });
+  [[0, C.yellow], [1, C.ink], [2, C.green], [3, C.white], [4, C.cobalt]].forEach(([r, c]) => rect(v0, 1280, r * G0, 80, G0, c));
+  [[0, C.ink], [2, C.white], [4, C.yellow]].forEach(([r, c]) => el('path', { d: `M1280 ${r * G0}A80 80 0 0 1 1280 ${(r + 1) * G0}Z`, fill: c }, v0));
+
+  /* 1: a target on a white tile; two tiles name what the arrow aims at */
+  const v1 = $('#v1'); rect(v1, 760, 200, 600, 600, C.white);
+  const o1 = el('circle', { cx: 1060, cy: 500, r: 225, fill: 'none', stroke: C.ink, 'stroke-width': 90, pathLength: 1, 'stroke-dasharray': 1, transform: 'rotate(-90 1060 500)' }, v1);
+  const s1 = el('g', {}, v1); sym(s1, 'spark', 940, 380, 240, null, C.orange);
+  const t1a = el('g', {}, v1); sym(t1a, 'tear', 600, 480, 160, C.white, C.sky); chip(t1a, 'метрика', 680, 560, C.ink, C.white, 21);
+  const t1b = el('g', {}, v1); sym(t1b, 'quarter', 600, 640, 160, C.white, C.purple); chip(t1b, 'CTA', 665, 690, C.yellow, C.ink, 21);
+
+  const hyp1 = el('g', {}, v1); text(hyp1, 'Если сделаем X, метрика Y', 48, 700, 36, C.ink); text(hyp1, 'изменится, потому что Z', 48, 744, 36, C.ink);
+
+  /* 2: a road that forks into a good tile and a broken one */
+  const v2 = $('#v2');
+  const RM = road(v2, 'M-40 400H644', 72, C.white, C.ink, 70);
+  const RD = road(v2, 'M640 400H760A120 120 0 0 1 880 520A120 120 0 0 0 1000 640H1062', 72, C.orange, C.ink, 70);
+  const RU = road(v2, 'M640 400H760A120 120 0 0 0 880 280A120 120 0 0 1 1000 160H1062', 72, C.white, C.ink, 70);
+  const e2a = el('g', {}, v2); rect(e2a, 1060, 20, 280, 280, C.green); el('path', { d: 'M1136 158l44 46 88-104', fill: 'none', stroke: C.white, 'stroke-width': 32 }, e2a); handles(e2a, 1060, 20, 280, 280, C.white); chip(e2a, 'успех', 1200, 260, C.yellow, C.ink, 21);
+  const e2b = el('g', {}, v2); rect(e2b, 1060, 500, 280, 280, C.orange); el('path', { d: 'M1148 572l104 104M1252 572l-104 104', fill: 'none', stroke: C.white, 'stroke-width': 32 }, e2b); chip(e2b, 'нет сети', 1200, 740, C.ink, C.white, 21);
+  const b2a = circ(v2, 0, 400, 44, C.yellow), b2b = circ(v2, 0, 400, 44, C.yellow);
+
+  /* 3: from one symbol to a page: every level is built from the one before, the beams show it growing */
+  const v3 = $('#v3'), TK = [C.cobalt, C.orange], tok = [], L3 = [];
+  const T3 = 104, BOT3 = 728;
+  const level = (name, x, top, o, beam) => { const g = el('g', {}, v3); L3.push({ g, o }); if (beam) el('path', { d: `M${beam[0]} ${beam[1]}L${x} ${top}L${x} ${BOT3}L${beam[0]} ${BOT3}Z`, fill: '#CFD5F7' }, g); text(g, name, x, top - 14, 27, C.ink); return g; };
+  const cell = (g, c, r, X, Y, kind, bg) => { const x = X + c * T3, y = Y + r * T3, s = sym(g, kind, x, y, T3, bg, TK[0]); s.style.transition = 'fill .25s'; s.removeAttribute('fill'); s.style.fill = TK[0]; tok.push({ s, x }); };
+  const g30 = level('Токен', 48, BOT3 - 62, .04);
+  const tk0 = sym(g30, 'spark', 48, BOT3 - 52, 52, null, TK[0]); tk0.style.transition = 'fill .25s'; tk0.removeAttribute('fill'); tok.push({ s: tk0, x: 48 }); handles(g30, 48, BOT3 - 52, 52, 52, C.white, 10);
+  cell(level('Атом', 169, BOT3 - T3, .14, [112, BOT3 - 52]), 0, 0, 169, BOT3 - T3, 'spark', C.white);
+  const g32 = level('Молекула', 342, BOT3 - T3, .24, [273, BOT3 - T3]); cell(g32, 0, 0, 342, BOT3 - T3, 'spark', C.white); cell(g32, 1, 0, 342, BOT3 - T3, 'quarter', C.ink);
+  const g33 = level('Организм', 619, BOT3 - T3 * 2, .34, [550, BOT3 - T3]); [[0, 0, 'spark', C.white], [1, 0, 'quarter', C.ink], [0, 1, 'clover', C.ink], [1, 1, 'tear', C.white]].forEach(c => cell(g33, c[0], c[1], 619, BOT3 - T3 * 2, c[2], c[3]));
+  const g34 = level('Страница', 896, BOT3 - T3 * 4, .46, [827, BOT3 - T3 * 2]);
+  [['spark', 'quarter', 'tear', 'clover'], ['clover', 'tear', 'spark', 'quarter'], ['quarter', 'spark', 'clover', 'tear'], ['tear', 'clover', 'quarter', 'spark']].forEach((row, r) => row.forEach((k, c) => cell(g34, c, r, 896, BOT3 - T3 * 4, k, (c + r) % 2 ? C.ink : C.white)));
+  const tkc = el('g', {}, v3); rect(tkc, 48, 344, 330, 40, C.ink); text(tkc, 'color.primary', 62, 371, 21, C.white); const tkv = text(tkc, TK[0], 364, 371, 21, C.yellow, 'end'); L3.push({ g: tkc, o: .56 });
+
+  /* 4: one language on three surfaces: the same tiles, a composition of its own on each */
+  const v4 = $('#v4'), defs4 = el('defs', {}, v4), P4 = [];
+  const clip4 = (id, x, y, w, h, rx) => { const cp = el('clipPath', { id }, defs4); el('rect', { x, y, width: w, height: h, rx }, cp); return el('g', { 'clip-path': `url(#${id})` }, v4); };
+  const part = (p, o) => { const g = el('g', {}, p); P4.push({ g, o }); return g; };
+  /* laptop */
+  text(v4, 'Сайт', 548, 58, 27, C.ink);
+  rect(v4, 548, 72, 452, 290, C.ink, 14); circ(v4, 774, 77, 2, '#4A4A4F');
+  el('path', { d: 'M520 362H1028V366Q1028 376 1016 376H532Q520 376 520 366Z', fill: C.ink }, v4); rect(v4, 734, 362, 80, 6, '#4A4A4F', 3);
+  const site = clip4('sf-a', 558, 82, 432, 270, 4); rect(site, 558, 82, 432, 270, C.white);
+  let g4 = part(site, .06); circ(g4, 580, 104, 10, C.ink); rect(g4, 908, 94, 66, 20, C.cobalt);
+  g4 = part(site, .1); rect(g4, 558, 126, 206, 226, C.purple); sym(g4, 'spark', 558, 136, 206, null, C.white);
+  sym(part(site, .14), 'quarter', 764, 126, 113, C.yellow, C.ink);
+  sym(part(site, .18), 'dots', 877, 126, 113, C.orange, C.ink);
+  sym(part(site, .22), 'clover', 764, 239, 113, C.white, C.ink);
+  sym(part(site, .26), 'tear', 877, 239, 113, C.pale, C.cobalt);
+  /* phone */
+  text(v4, 'Приложение', 1030, 58, 27, C.ink);
+  rect(v4, 1030, 72, 300, 650, C.ink, 50);
+  const app = clip4('sf-b', 1040, 82, 280, 630, 40); rect(app, 1040, 82, 280, 630, C.white);
+  sym(part(app, .32), 'tear', 1056, 134, 248, null, C.cobalt);
+  [[1056, 'plus', C.green, C.white], [1142, 'check', C.grey, C.ink], [1228, 'spark', C.purple, C.white]].forEach((t, i) => sym(part(app, .38 + i * .03), t[1], t[0], 398, 76, t[2], t[3]));
+  g4 = part(app, .47); rect(g4, 1056, 490, 248, 100, C.yellow); circ(g4, 1106, 540, 30, C.ink); rect(g4, 1152, 528, 128, 24, C.ink);
+  g4 = part(app, .52); rect(g4, 1056, 606, 248, 56, C.ink);
+  rect(app, 1130, 92, 100, 26, C.ink, 13); rect(app, 1130, 692, 100, 5, C.ink, 2.5);
+  /* ad, the same size as the laptop */
+  text(v4, 'Реклама', 548, 404, 27, C.ink);
+  const ad = clip4('sf-c', 548, 418, 452, 304, 14); rect(ad, 548, 418, 452, 304, C.ink);
+  sym(part(ad, .58), 'quarter', 548, 418, 304, null, C.orange);
+  sym(part(ad, .64), 'spark', 852, 418, 148, C.white, C.ink);
+  g4 = part(ad, .7); rect(g4, 852, 566, 148, 156, C.yellow); sym(g4, 'ring', 852, 570, 148, null, C.ink);
+
+  /* 5: a race: the same page by hand and with AI; instances leave the library for the screen while the AI bar fills */
+  const v5 = $('#v5'), BX5 = 176, BW5 = 640, c51 = el('g', {}, v5), c53 = el('g', {}, v5);
+  text(c51, 'вручную', 48, 334, 27, C.white); text(c51, 'с ИИ', 48, 402, 27, C.white);
+  rect(c51, BX5, 296, BW5, 56, '#1E37C9'); rect(c51, BX5, 364, BW5, 56, '#1E37C9');
+  const bar5a = rect(c51, BX5, 296, 0, 56, C.white), bar5b = rect(c51, BX5, 364, 0, 56, C.yellow);
+  const done5 = text(c51, 'страница готова', BX5 + BW5 - 18, 402, 21, C.ink, 'end');
+  const cap5 = text(c53, 'Библиотека компонентов', 48, 646, 21, C.white); cap5.style.fontWeight = 400; cap5.style.letterSpacing = '-.012em';
+  el('rect', { x: 850, y: 110, width: 470, height: 900, rx: 66, fill: 'none', stroke: C.white, 'stroke-width': 12 }, v5);
+  const pg = id => el('g', { id }, v5);
+  let g5 = pg('p1'); rect(g5, 0, 0, 250, 56, C.yellow);
+  g5 = pg('p2'); rect(g5, 0, 0, 390, 270, C.purple); sym(g5, 'spark', 75, 15, 240, null, C.white);
+  g5 = pg('p3'); rect(g5, 0, 0, 390, 92, C.white); rect(g5, 28, 36, 210, 20, C.cobalt);
+  g5 = pg('p4'); rect(g5, 0, 0, 390, 104, C.ink);
+  g5 = pg('ps'); sym(g5, 'aster', -120, -120, 240, null, C.orange);
+  const pt = text(v5, 'вне системы', 1128, 58, 27, C.white);
+  const FR5 = [[48, 507], [184, 459], [383, 499], [582, 496]], Z5 = .45;
+  ['p1', 'p2', 'p3', 'p4'].forEach((id, k) => { const c = $('#' + id).cloneNode(true); c.removeAttribute('id'); c.setAttribute('transform', `translate(${FR5[k][0]} ${FR5[k][1]}) scale(${Z5})`); c53.appendChild(c); });
+
+  /* 6: three zones as arches with a gate before the last */
+  [[1, 40], [2, 470], [3, 900]].forEach(([k, x]) => el('path', { d: `M${x} 810V640A210 210 0 0 1 ${x + 420} 640V810Z` }, $('#g' + k)));
+
+  /* 7: stacks of blocks grow to the goal and a spark climbs them */
+  const v7 = $('#v7'), NB = [1, 2, 2, 3, 4, 5, 6], BH = 580 / 6, GOALY = 220, W = 1360 / 7, cols = [];
+  let nb7 = 0;
+  NB.forEach((n, i) => { const blocks = []; for (let b = 0; b < n; b++) { blocks.push({ e: rect(v7, i * W + 3, 800 - (b + 1) * BH + 3, W - 6, BH - 6, i === 6 ? C.yellow : C.ink), o: nb7++ }); } cols.push({ blocks, n }); });
+  const TOT7 = nb7;
+  const was = text(v7, 'было', 24, 770, 27, C.white), now = text(v7, 'стало', 6 * W + 24, 770, 27, C.ink);
+  const gt = el('g', {}, v7); text(gt, 'цель из', 6 * W + 24, GOALY + 50, 27, C.ink); text(gt, 'гипотезы', 6 * W + 24, GOALY + 82, 27, C.ink);
+  const b7 = el('g', {}, v7); sym(b7, 'spark', -44, -44, 88, null, C.white);
+
+  /* 8: seven bands back to the seven posters */
+  const sts = $('#sts'), PST = S.slice(1, 8);
+  sts.innerHTML = PST.map((s, i) => `<button class="st" type="button" data-to="${i + 1}" style="left:${i * W7}px;width:${W7 + 1}px;height:440px;--b:${s.bg};--f:${s.fg}"><svg viewBox="0 0 120 120" aria-hidden="true">${SH[s.sh]}</svg>${s.t}</button>`).join('');
+  const stb = $$('.st', sts);
+
+  const mv = (id, x, y, extra) => $('#' + id).setAttribute('transform', `translate(${x} ${y})${extra || ''}`);
+
+  function play(i, a) {
+    if (i === 0) T0.forEach(t => pop(t.g, t.cx, t.cy, out(seg(a, t.o * .02 - .3, t.o * .02 - .14))));
+    if (i === 1) {
+      const ro = ease(seg(a, .06, .46)); o1.style.strokeDashoffset = 1 - ro; o1.style.strokeDasharray = ro >= 1 ? 'none' : '1';
+      s1.setAttribute('transform', `translate(1060 500) scale(${out(seg(a, .4, .6))}) translate(-1060 -500)`);
+      t1a.style.opacity = seg(a, .6, .66); t1b.style.opacity = seg(a, .68, .74); hyp1.style.opacity = seg(a, .72, .8);
+    }
+    if (i === 2) {
+      const t = seg(a, .06, .3), f = seg(a, .3, .52);
+      RM.set(t); RU.set(f); RD.set(f);
+      const e = seg(a, .5, .58); e2a.style.opacity = e; e2b.style.opacity = e;
+      const go = ease(seg(a, .52, .9)), x0 = lerp(-44, 640, seg(go, 0, .4)), s2 = seg(go, .4, 1);
+      const A = RU.P.getPointAtLength(RU.L * s2 * .84), B = RD.P.getPointAtLength(RD.L * s2 * .84);
+      [[b2a, A], [b2b, B]].forEach(([b, p]) => { b.setAttribute('cx', s2 > 0 ? p.x : x0); b.setAttribute('cy', s2 > 0 ? p.y : 400); b.style.opacity = go > 0 ? 1 : 0; });
+    }
+    if (i === 3) {
+      L3.forEach(l => { const q = out(seg(a, l.o, l.o + .1)); l.g.style.opacity = q; l.g.setAttribute('transform', `translate(0 ${(1 - q) * 18})`); });
+      /* the token itself changes and the page follows, from the smallest symbol to the largest */
+      const w = seg(a, .68, .84);
+      tok.forEach(t => { t.s.style.fill = w > 0 && (t.x - 48) / 1264 < w ? TK[1] : TK[0]; });
+      tkv.textContent = w > 0 ? TK[1] : TK[0];
+    }
+    if (i === 4) P4.forEach(p => { const q = out(seg(a, p.o, p.o + .1)); p.g.style.opacity = q; p.g.setAttribute('transform', `translate(0 ${(1 - q) * 14})`); });
+    if (i === 5) {
+      const SL = [[890, 160], [890, 240], [890, 534], [890, 650]];
+      [c51, c53].forEach((g, k) => { g.style.opacity = seg(a, .02 + k * .06, .08 + k * .06); });
+      const race = seg(a, .22, .66); bar5a.setAttribute('width', BW5 * .16 * race); bar5b.setAttribute('width', BW5 * race); done5.style.opacity = seg(a, .66, .7);
+      ['p1', 'p2', 'p3', 'p4'].forEach((id, k) => {
+        const st = .24 + k * .09, q = ease(seg(a, st, st + .16));
+        mv(id, lerp(FR5[k][0], SL[k][0], q), lerp(FR5[k][1], SL[k][1], seg(q, .8, 1)), ` scale(${lerp(Z5, 1, q)})`);
+        $('#' + id).style.opacity = a >= st ? 1 : 0;
+      });
+      /* a foreign shape drops from above, hits the top of the screen and is thrown out */
+      const go = ease(seg(a, .68, .76)), rej = ease(seg(a, .84, .92));
+      mv('ps', lerp(1060, 1460, rej), lerp(lerp(-120, 50, go), -130, rej), ` scale(.42) rotate(${rej * 80})`);
+      pt.style.opacity = seg(a, .74, .77) * (1 - seg(a, .81, .83));
+    }
+    if (i === 6) {
+      const G = [C.green, C.yellow, C.orange], x = lerp(-40, 840, ease(seg(a, .06, .46))), pass = ease(seg(a, .68, .78)), fin = lerp(x, 1420, pass);
+      $('#rb').setAttribute('cx', fin);
+      [[1, 250], [2, 680], [3, 1110]].forEach(([k, cx], n) => {
+        const on = n < 2 ? fin >= cx - 60 : pass > .3;
+        $('#g' + k).setAttribute('fill', on ? G[n] : '#232326');
+        $('#gt' + k).style.fill = on ? C.ink : '#8A8A90';
+        $('#gt' + k).style.color = on ? C.ink : '#8A8A90';
+      });
+      /* the mark appears first, then the gate opens */
+      const pin = out(seg(a, .5, .6));
+      $('#rp').style.opacity = pin; $('#rp').setAttribute('transform', `translate(0 ${(1 - pin) * 16})`);
+      const up = 480 * (1 - pass); $('#bar').setAttribute('height', up); $('#bar').setAttribute('y', 800 - up); $('#bar').style.opacity = seg(a, .3, .36);
+    }
+    if (i === 7) {
+      const t = seg(a, .06, .72) * TOT7, Q = cols.map(c => { let top = 800; c.blocks.forEach((b, k) => { const on = t > b.o; b.e.style.opacity = on ? 1 : 0; if (on) top = 800 - (k + 1) * BH; }); return top; });
+      was.style.opacity = t > 0 ? 1 : 0; now.style.opacity = t > TOT7 - 6 ? 1 : 0; gt.style.opacity = t >= TOT7 - .2 ? 1 : 0;
+      /* the spark hops from stack to stack and stops on the goal */
+      const pos = ease(seg(a, .1, .78)) * 6, k = Math.min(5, Math.floor(pos)), f = pos - k, hop = Math.sin(Math.PI * f) * 70;
+      b7.setAttribute('transform', `translate(${(k + f + .5) * W} ${lerp(Q[k], Q[k + 1], f) - 44 - hop}) rotate(${pos * 45})`);
+      b7.style.opacity = seg(a, .06, .12);
+    }
+    if (i === 8) stb.forEach((b, k) => { const q = out(seg(a, .02 + k * .06, .3 + k * .06)); b.style.transform = `translateY(${(1 - q) * 460}px)`; });
+  }
+
+  /* one gesture, one poster: eight steps through nine posters; each poster then plays on its own clock */
+  const DUR = [800, 2000, 2000, 2200, 2000, 2600, 2000, 2000, 1000], END = .96, FADE = 220;
+  let cur = -1, step = 0, t0 = performance.now(), done = false, frozen = null, raf = 0, started = false;
+  function render() {
+    const w = Math.min(innerWidth - 2 * clamp(innerWidth * .02, 8, 24), (innerHeight - 28) * 1.7), k = w / 1360;
+    frame.style.width = w + 'px'; frame.style.height = 800 * k + 'px';
+    stage.style.transform = `scale(${k})`;
+    const el = performance.now() - t0, a = frozen != null ? frozen : done ? END : Math.min(END, el / DUR[step] * END);
+    scenes.forEach((s, n) => {
+      const on = n === step; s.style.visibility = on ? 'visible' : 'hidden';
+      if (on) s.style.opacity = frozen != null ? 1 : seg(el, 0, FADE);
+    });
+    if (step !== cur) {
+      cur = step; const s = S[step];
+      frame.style.setProperty('--bgc', s.bg); stage.style.setProperty('--fgc', s.fg);
+      $('#cn').textContent = s.n ? `${step} из 7 · ${s.n}` : '';
+      $('#skip').style.display = step === N - 1 ? 'none' : '';
+    }
+    play(step, a);
+  }
+  function tick() {
+    render();
+    raf = frozen == null && performance.now() - t0 < Math.max(FADE, done ? FADE : DUR[step]) + 40 ? requestAnimationFrame(tick) : 0;
+  }
+  const wake = () => { if (!raf) raf = requestAnimationFrame(tick); };
+  /* going back lands on the finished picture; going forward plays it */
+  function show(i, back) { step = i; done = back || reduce; frozen = null; t0 = performance.now(); wake(); }
+  const trackTop = () => scrollY + track.getBoundingClientRect().top;
+  function goTo(i, back) { show(i, back); scrollTo({ top: trackTop() + i * innerHeight, behavior: 'instant' }); }
+  const inside = () => { const r = track.getBoundingClientRect(); return innerWidth > 760 && r.top <= 1 && r.bottom >= innerHeight - 1; };
+  const atEnd = dir => (dir < 0 && step === 0) || (dir > 0 && step === N - 1);
+  const LOCK = 450, QUIET = 120, LONG = 1400;
+  let lockUntil = 0, lastEvt = 0, gesture = 0;
+  /* a wheel burst counts once; a trackpad's inertia must die down before the next step */
+  addEventListener('wheel', e => {
+    const now = performance.now(), quiet = now - lastEvt > QUIET;
+    if (quiet) gesture = now;
+    lastEvt = now;
+    if (!inside() || !e.deltaY) return;
+    const dir = Math.sign(e.deltaY);
+    if (atEnd(dir)) { if (!quiet) e.preventDefault(); return; }
+    e.preventDefault();
+    if (now < lockUntil || (!quiet && now - gesture < LONG)) return;
+    gesture = now; lockUntil = now + LOCK;
+    goTo(step + dir, dir < 0);
+  }, { passive: false });
+  addEventListener('keydown', e => {
+    const dir = { ArrowDown: 1, PageDown: 1, ArrowUp: -1, PageUp: -1, ' ': e.shiftKey ? -1 : 1 }[e.key];
+    if (!dir || !inside() || atEnd(dir)) return;
+    if (e.key === ' ' && e.target.closest('a,button,input,textarea')) return;
+    e.preventDefault(); goTo(step + dir, dir < 0);
+  });
+  let touchY = null;
+  addEventListener('touchstart', e => { touchY = inside() ? e.touches[0].clientY : null; }, { passive: true });
+  addEventListener('touchmove', e => { if (touchY == null) return; const dir = Math.sign(touchY - e.touches[0].clientY); if (dir && !atEnd(dir)) e.preventDefault(); }, { passive: false });
+  addEventListener('touchend', e => { if (touchY == null) return; const d = touchY - e.changedTouches[0].clientY; touchY = null; if (Math.abs(d) < 40) return; const dir = Math.sign(d); if (!atEnd(dir)) goTo(step + dir, dir < 0); });
+  /* the scrollbar, the skip link and arrivals from other blocks move the page without a gesture */
+  function sync() {
+    const r = track.getBoundingClientRect();
+    if (!started && r.top < innerHeight * .6) { started = true; show(step, false); }
+    const j = clamp(Math.round(-r.top / innerHeight), 0, N - 1);
+    if (j !== step && frozen == null) show(j, j < step);
+  }
+  addEventListener('scroll', sync, { passive: true });
+  addEventListener('resize', () => { if (inside()) scrollTo({ top: trackTop() + step * innerHeight, behavior: 'instant' }); render(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(render);
+  sync(); render();
+  sts.addEventListener('click', e => { const b = e.target.closest('[data-to]'); if (b) goTo(+b.dataset.to, false); });
+  window.__film = { render, step: () => step, go: u => { const i = Math.floor(u); step = i; frozen = u - i; scrollTo({ top: trackTop() + i * innerHeight, behavior: 'instant' }); render(); }, play: () => { frozen = null; goTo(step, false); } };
+})();
+</script>
+</body>
+</html>

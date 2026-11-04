@@ -12,6 +12,11 @@
   /* SHA-256 of the case password. Empty until Роман sets one: every attempt is refused. */
   const PASS_HASH = '70444ebbe5f73aaa2ee8fc10af48f8f4d6cf7b652dfc3c83fd9108bacc16577d';
   let unlocked = false; try { unlocked = sessionStorage.getItem('va-cases') === '1'; } catch (e) {}
+  /* a tab opened with rel=noopener starts with empty session storage: the tab that opened it leaves a short-lived note */
+  try {
+    const t = +localStorage.getItem('va-cases-tab');
+    if (t) { localStorage.removeItem('va-cases-tab'); if (Date.now() - t < 15000) { unlocked = true; sessionStorage.setItem('va-cases', '1'); } }
+  } catch (e) {}
 
   /* ---------- the folders (data kept apart from the markup) ---------- */
   const CASES = [
@@ -35,7 +40,33 @@
         </span>
       </button>
     </li>`).join('');
+  /* Избранные кейсы on «Обо мне»: the task and its context live here, the name and the cover come from CASES */
+  const FEATURED = [
+    { id: 'pump-dao', task: 'Механика удержания пользователей после запуска', ctx: 'DeFi' },
+    { id: 'slothereum', task: 'Торговый терминал для сложных финансовых операций', ctx: 'трейдинг' },
+    { id: 'bitflare', task: 'Финансовая платформа с нуля к выходу на IPO', ctx: 'финтех', result: 'Продукт и бренд в одиночку' }
+  ];
+  const fxG = $('#fxG'), mqPhone = matchMedia('(max-width:900px)');
+  fxG.innerHTML = FEATURED.map(f => {
+    const k = CASES.find(c => c.id === f.id);
+    return `
+    <li class="fx-i" data-id="${k.id}">
+      <a class="fx-c" href="#case/${k.id}" target="_blank" rel="noopener">
+        <span class="fx-cv"><img src="${IMG[k.img]}" alt="" loading="lazy" decoding="async"${k.pos ? ` style="object-position:${k.pos}"` : ''}><span class="fx-st"></span></span>
+        <h3 class="fx-t">${f.task}</h3>
+        <span class="fx-m">${k.name} · ${f.ctx}</span>
+        ${f.result ? `<span class="fx-r">${f.result}</span>` : ''}
+      </a>
+    </li>`;
+  }).join('');
+  const tabNote = () => { try { localStorage.setItem('va-cases-tab', String(Date.now())); } catch (e) {} };
   function paint() {
+    $$('.fx-i', fxG).forEach(li => {
+      const k = CASES.find(c => c.id === li.dataset.id), f = FEATURED.find(c => c.id === k.id), st = $('.fx-st', li);
+      st.innerHTML = !unlocked ? LOCK + 'По паролю' : k.open ? '' : 'Скоро';
+      st.hidden = unlocked && !!k.open;
+      $('.fx-c', li).setAttribute('aria-label', `${f.task}. ${k.name}. ${!unlocked ? 'Кейс по паролю' : k.open ? 'Открыть кейс' : 'Кейс оформляется'}`);
+    });
     $$('.fd', fds).forEach(li => {
       const k = CASES.find(c => c.id === li.dataset.id), st = $('.fd-st', li);
       li.classList.toggle('lock', !unlocked); li.classList.toggle('soon', unlocked && !k.open);
@@ -48,10 +79,19 @@
     const k = CASES.find(c => c.id === li.dataset.id);
     if (unlocked && k.open) openCase(k.id); else askPass(k, li);
   }));
+  $$('.fx-i', fxG).forEach(li => {
+    const a = $('.fx-c', li), k = CASES.find(c => c.id === li.dataset.id), ready = () => unlocked && k.open;
+    a.addEventListener('click', e => {
+      if (ready() && !mqPhone.matches) return tabNote();
+      e.preventDefault();
+      if (ready()) overlayFromPage(k.id); else askPass(k, null, true);
+    });
+    a.addEventListener('auxclick', () => { if (ready()) tabNote(); });
+  });
   /* folders slide in when the page is shown */
   /* the folders are carried onto the page by cursors and dropped into the grid, like the cards on the canvas */
   const host = $('.cp-in');
-  const spring = (k, c) => { const v = [], dt = 1 / 60; let x = 0, u = 0, t = 0; while (t < 3) { const f = -k * (x - 1) - c * u; u += f * dt; x += u * dt; v.push(x); t += dt; if (t > .3 && Math.abs(x - 1) < .001 && Math.abs(u) < .01) break; } const n = 48, pts = []; for (let i = 0; i <= n; i++) pts.push(i === n ? 1 : +v[Math.round(i / n * (v.length - 1))].toFixed(4)); return { easing: 'linear(' + pts.join(',') + ')', duration: Math.round(t * 1000) }; };
+  const spring = (k, c) => { const v = [], dt = 1 / 60; let x = 0, u = 0, t = 0; while (t < 3) { const f = -k * (x - 1) - c * u; u += f * dt; x += u * dt; v.push(x); t += dt; if (t > .3 && Math.abs(x - 1) < .001 && Math.abs(u) < .01) break; } const n = 48, pts = []; for (let i = 0; i <= n; i++) pts.push(i === n ? 1 : +v[Math.round(i / n * (v.length - 1))].toFixed(4)); return { easing: window.CSS && CSS.supports && CSS.supports('animation-timing-function', 'linear(0, 1)') ? 'linear(' + pts.join(',') + ')' : 'cubic-bezier(.22,1,.36,1)', duration: Math.round(t * 1000) }; };
   const DRAG = spring(170, 20), JELLY = spring(300, 12), EIO = 'cubic-bezier(.65,0,.35,1)';
   const WHO = [['Роман', '#6CA7FF', '#fff'], ['PM', '#FF8AD8', '#0B0B0C'], ['Дизайн-система', '#8E5CFF', '#fff']];
   let runs = 0;
@@ -113,11 +153,11 @@
     if (e.shiftKey && i <= 0) { f[f.length - 1].focus(); e.preventDefault(); }
     else if (!e.shiftKey && i === f.length - 1) { f[0].focus(); e.preventDefault(); }
   }
-  function askPass(k, li) {
-    pwFor = { k, li }; if (pw.hidden) pwFrom = document.activeElement;
+  function askPass(k, li, fx) {
+    pwFor = { k, li, fx }; if (pw.hidden) pwFrom = document.activeElement;
     $('#pwH').textContent = k.name;
     pw.classList.toggle('done', unlocked);
-    $('#pwP').textContent = unlocked ? 'Этот кейс ещё оформляется — скоро добавлю. Пока можно открыть Pump DAO.' : 'Кейсы под паролем: часть проектов под NDA. Пароль пришлю после короткого знакомства.';
+    $('#pwP').textContent = unlocked ? (k.open ? 'Пароль принят. Кейс откроется в новой вкладке.' : 'Этот кейс ещё оформляется — скоро добавлю. Пока можно открыть Pump DAO.') : 'Кейсы под паролем: часть проектов под NDA. Пароль пришлю после короткого знакомства.';
     pwI.value = ''; pwE.textContent = ''; pwF.classList.remove('bad');
     pw.hidden = false; requestAnimationFrame(() => { pw.classList.add('open'); (unlocked ? $('#pwGo') : pwI).focus(); });
   }
@@ -139,8 +179,10 @@
     if (ok) {
       unlocked = true; try { sessionStorage.setItem('va-cases', '1'); } catch (err) {}
       paint(); pwE.textContent = '';
-      if (pwFor.k.open) { closePass(); openCase(pwFor.k.id); }
-      else askPass(pwFor.k, pwFor.li);
+      /* a new tab needs a fresh click: after the password check the browser would block it */
+      if (pwFor.k.open && pwFor.fx && !mqPhone.matches) askPass(pwFor.k, pwFor.li, true);
+      else if (pwFor.k.open) { closePass(); if (pwFor.fx) overlayFromPage(pwFor.k.id); else openCase(pwFor.k.id); }
+      else askPass(pwFor.k, pwFor.li, pwFor.fx);
       return;
     }
     pwE.textContent = 'Неверный пароль. Попросите актуальный в Telegram.';
@@ -149,7 +191,13 @@
   });
   $('#pwX').addEventListener('click', closePass);
   $('#pwOk').addEventListener('click', closePass);
-  $('#pwGo').addEventListener('click', () => { closePass(); openCase('pump-dao'); });
+  $('#pwGo').addEventListener('click', () => {
+    closePass();
+    if (!pwFor.fx) return openCase('pump-dao');
+    if (mqPhone.matches) return overlayFromPage('pump-dao');
+    tabNote();
+    const a = document.createElement('a'); a.href = '#case/pump-dao'; a.target = '_blank'; a.rel = 'noopener'; a.click();
+  });
   pw.addEventListener('pointerdown', e => { if (e.target === pw) closePass(); });
   pw.addEventListener('keydown', e => { if (e.key === 'Escape') closePass(); else trap(pw, e); });
 
@@ -339,10 +387,17 @@
       });
     });
   }
+  /* opened from «Обо мне» on a phone: closing it brings back the same hash and the same scroll position */
+  let csBack = null, csOn = false;
+  function overlayFromPage(id) { csBack = { y: scrollY }; openCase(id); }
+  const restoreScroll = y => {
+    const go = () => scrollTo({ top: y, behavior: 'instant' });
+    go(); requestAnimationFrame(go); setTimeout(go, 80);
+  };
   function openCase(id, fromHash) {
     if (id !== 'pump-dao') return;
     if (!unlocked) { const k = CASES.find(c => c.id === id); askPass(k, $(`.fd[data-id="${id}"]`)); return; }
-    csFrom = document.activeElement;
+    csFrom = document.activeElement; csOn = true;
     cs.innerHTML = pumpHTML();
     tabs($('.seg', cs));
     const notes = $$('[data-note]', cs);
@@ -358,11 +413,14 @@
     if (!fromHash && location.hash !== '#case/' + id) history.pushState({ cs: id }, '', '#case/' + id);
   }
   function closeCase(e, fromHash) {
-    if (cs.hidden) return;
+    if (cs.hidden || !csOn) return;
+    csOn = false;
     cs.classList.remove('open');
     document.documentElement.classList.remove('cs-on');
     setTimeout(() => { cs.hidden = true; cs.innerHTML = ''; }, reduce ? 0 : 600);
-    if (!fromHash && location.hash.startsWith('#case/')) history.pushState({}, '', location.pathname + location.search + '#cases');
+    const back = csBack; csBack = null;
+    if (back) { if (!fromHash && location.hash.startsWith('#case/')) history.back(); restoreScroll(back.y); }
+    else if (!fromHash && location.hash.startsWith('#case/')) history.pushState({}, '', location.pathname + location.search + '#cases');
     if (csFrom && csFrom.isConnected) csFrom.focus({ preventScroll: true });
   }
   cs.addEventListener('keydown', e => { if (e.key === 'Escape') closeCase(); else trap(cs, e); });

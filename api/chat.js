@@ -20,7 +20,7 @@ const PROVIDERS = [
     models: [process.env.NVIDIA_MODEL, 'deepseek-ai/deepseek-v3.1-terminus', 'meta/llama-3.3-70b-instruct'].filter(Boolean), extra: {} }
 ].filter(p => p.key);
 
-const SYSTEM = `Ты — ИИ-ассистент на сайте vasnev.art. Отвечаешь посетителям (рекрутерам, нанимающим менеджерам, заказчикам) на вопросы о Романе Васнёве, продуктовом дизайнере.
+const SYSTEM = `Ты — ИИ-ассистент на сайте vasnev.art. Отвечаешь посетителям (рекрутерам, нанимающим менеджерам, заказчикам) на вопросы о Романе Васнёве, Product Builder / Product Designer.
 
 Правила:
 - Говори о Романе в третьем лице («Роман», «он»). Ты не сам Роман, а его ассистент.

@@ -1,43 +1,57 @@
 ---
-/* 02 · Подход: draggable process cards on a canvas — by vasnev.art */
+/* 02 · Подход: draggable process cards on a canvas, laid out as a snake by scripts/site.js — by vasnev.art */
 ---
 <section class="fr-wrap wrap" id="do" aria-labelledby="f2-h">
   <div class="fr-label"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1v10M8.5 1v10M1 3.5h10M1 8.5h10"/></svg>Подход</div>
   <div class="frm fr-dark" id="f2">
     <div class="f2-head">
       <h2 class="f-h f-h-m" id="f2-h">Мой подход к созданию продукта</h2>
-      <p class="f2-lead">Один процесс от исследования до релиза: решения не теряются между этапами, а команда получает макеты и код, готовые к разработке.</p>
+      <p class="f2-lead">Обычно работаю короткими циклами: сначала проверяю то, что может не сработать, потом делаю. Если проект большой — по классике, с полным исследованием и дизайн-системой.</p>
     </div>
     <svg class="conn" id="links" aria-hidden="true"></svg>
     <div class="guides" id="guides" aria-hidden="true"></div>
     <div class="canvas" id="canvas">
-      <article class="obj o-y" data-x="3.5" data-y="250" data-r="-3">
+      <article class="obj o-y" data-dy="0" data-r="-2">
         <span class="o-n">01</span>
-        <h3>Исследование</h3>
-        <p>Интервью, анализ конкурентов и продуктовой аналитики. Формулирую гипотезы и метрики успеха.</p>
-        <p class="o-res">Карта проблем / гипотезы</p>
+        <h3>Сначала проблема</h3>
+        <p>Разговариваю с пользователями и смотрю данные. Рисовать начинаю, когда понятно, за что люди готовы платить.</p>
+        <p class="o-res">Гипотезы</p>
         <div class="o-ic"><img src="img/e28b7c2356.png" alt="" data-tip="Perplexity" data-tip-sub="ресёрч рынка"><img src="img/b0a52514dc.png" alt="" data-tip="Claude" data-tip-sub="синтез интервью"><img src="img/5bb209f012.png" alt="" data-tip="Similarweb" data-tip-sub="конкуренты"><img src="img/1c6815ca0e.png" alt="" data-tip="Яндекс Метрика" data-tip-sub="поведение"></div>
       </article>
-      <article class="obj o-w" data-x="28.5" data-y="420" data-r="2">
+      <article class="obj o-w" data-dy="28" data-r="1.5">
         <span class="o-n">02</span>
-        <h3>Проектирование</h3>
-        <p>User flow, краевые случаи, сложные формы и таблицы. Проверяю решения на прототипах.</p>
-        <p class="o-res">Сценарии / прототип</p>
-        <div class="o-ic"><img src="img/215da66519.png" alt="" data-tip="Figma" data-tip-sub="интерфейсы и прототипы"><img src="img/7c3249d3f6.png" alt="" data-tip="Pixso" data-tip-sub="для российских команд"><img src="img/0a4b53cd88.png" alt="" data-tip="Maze" data-tip-sub="юзабилити-тесты"></div>
+        <h3>Метрика заранее</h3>
+        <p>До старта договариваемся, какая цифра должна вырасти: удержание, конверсия, доля успешных оплат. По ней потом и оцениваем результат.</p>
+        <p class="o-res">Метрика успеха</p>
+        <div class="o-ic"><img src="img/1c6815ca0e.png" alt="" data-tip="Яндекс Метрика" data-tip-sub="показатели"></div>
       </article>
-      <article class="obj o-v" data-x="53" data-y="230" data-r="-2">
+      <article class="obj o-v" data-dy="0" data-r="-1.5">
         <span class="o-n">03</span>
-        <h3>Дизайн-система</h3>
-        <p>Атомарный подход: токены, атомы, молекулы, организмы. Экраны собираются быстрее и без расхождений.</p>
-        <p class="o-res">Библиотека / гайдлайны</p>
-        <div class="o-ic"><img src="img/215da66519.png" alt="" data-tip="Figma" data-tip-sub="библиотеки и токены"><img src="img/f1db1b2441.png" alt="" data-tip="React" data-tip-sub="компоненты в коде"></div>
+        <h3>Прототип в коде</h3>
+        <p>В Figma продумываю ключевые экраны, а каждое состояние и переход описываю до разработки. Потом собираю рабочую версию на React и даю людям потрогать.</p>
+        <p class="o-res">Рабочий прототип</p>
+        <div class="o-ic"><img src="img/215da66519.png" alt="" data-tip="Figma" data-tip-sub="ключевые экраны"><img src="img/f1db1b2441.png" alt="" data-tip="React" data-tip-sub="рабочая версия"><img src="img/b0a52514dc.png" alt="" data-tip="Claude" data-tip-sub="AI-инструменты"><img src="img/0a4b53cd88.png" alt="" data-tip="Maze" data-tip-sub="проверка на людях"></div>
       </article>
-      <article class="obj o-b" data-x="75" data-y="430" data-r="3">
+      <article class="obj o-b" data-dy="0" data-r="2">
         <span class="o-n">04</span>
-        <h3>Разработка</h3>
-        <p>Прототипы и MVP на React, передача через Dev Mode и MCP, контроль качества до релиза.</p>
-        <p class="o-res">Код / handoff</p>
-        <div class="o-ic"><img src="img/f1db1b2441.png" alt="" data-tip="React" data-tip-sub="прототипы и MVP"><img src="img/902e34d7c6.png" alt="" data-tip="GitHub" data-tip-sub="код и деплой"><img src="img/d3d32e0bf3.png" alt="" data-tip="Jitter" data-tip-sub="моушн"></div>
+        <h3>Право с первой версии</h3>
+        <p>Учитываю требования РФ и ЕС: 152-ФЗ, закон о рекламе, GDPR, DSA, European Accessibility Act. Согласия, условия и отписка есть в интерфейсе с первой версии.</p>
+        <p class="o-res">Интерфейс без юридических рисков</p>
+        <div class="o-ic"><img src="img/215da66519.png" alt="" data-tip="Figma" data-tip-sub="согласия и условия"><img src="img/b0a52514dc.png" alt="" data-tip="Claude" data-tip-sub="разбор требований"></div>
+      </article>
+      <article class="obj o-y" data-dy="28" data-r="-2">
+        <span class="o-n">05</span>
+        <h3>Деньги в интерфейсе</h3>
+        <p>Платежи, переводы, комиссии, операции, которые нельзя отменить. Проектирую так, чтобы человек понимал, сколько и за что платит, и не ошибался.</p>
+        <p class="o-res">Понятные финансовые операции</p>
+        <div class="o-ic"><img src="img/215da66519.png" alt="" data-tip="Figma" data-tip-sub="платёжные сценарии"><img src="img/f1db1b2441.png" alt="" data-tip="React" data-tip-sub="интерфейсы в коде"></div>
+      </article>
+      <article class="obj o-w" data-dy="0" data-r="1.5">
+        <span class="o-n">06</span>
+        <h3>Дизайн-система — когда продукт взлетел</h3>
+        <p>Токены, компоненты, доступность по WCAG 2.2, передача разработчикам через Dev Mode. Строю систему, когда ясно, что продукт будет жить.</p>
+        <p class="o-res">Библиотека компонентов</p>
+        <div class="o-ic"><img src="img/215da66519.png" alt="" data-tip="Figma" data-tip-sub="токены и компоненты"><img src="img/f1db1b2441.png" alt="" data-tip="React" data-tip-sub="компоненты в коде"><img src="img/902e34d7c6.png" alt="" data-tip="GitHub" data-tip-sub="код и передача"><img src="img/d3d32e0bf3.png" alt="" data-tip="Jitter" data-tip-sub="моушн"></div>
       </article>
     </div>
     <button class="reset" id="reset" type="button" hidden>Вернуть как было</button>

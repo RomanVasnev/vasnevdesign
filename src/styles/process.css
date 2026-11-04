@@ -1,0 +1,102 @@
+/* «Дизайн-процесс»: seven living words, one wheel gesture per word; phones get a plain list of cards — by vasnev.art */
+
+/* Prototype of the «Обо мне» block, desktop only: the seven stages of the process as seven living words — by vasnev.art */
+.pr{--accent:#2F5CFF;--a2:#8E5CFF;--a3:#FF6BD6;--sel:#0D99FF;--comp:#9747FF;--green:#34C759;--amber:#FF9F0A;--red:#FF3B30;--mono:'Geist Mono',ui-monospace,monospace}
+.pr-track{position:relative}
+.pr-pin{position:sticky;top:0;height:100vh;padding:92px 0 16px;display:flex;align-items:center;justify-content:center}
+.pr-frame{position:relative;flex:none;width:min(100%,calc((100vh - 108px)*1.7));aspect-ratio:1.7;overflow:hidden;border-radius:28px;background:var(--bgc,#F5F5F7);transition:background .55s ease}
+.pr-stage{position:absolute;left:0;top:0;width:1360px;height:800px;transform-origin:0 0;color:var(--fgc,#1D1D1F);transition:color .45s ease}
+
+/* interface around the words */
+.pr-ey{position:absolute;left:60px;top:48px;font:400 14px/1 var(--mono);opacity:.62;z-index:6}
+.pr-prog{position:absolute;right:60px;top:52px;display:flex;gap:5px;z-index:6}
+.pr-prog i{width:24px;height:3px;border-radius:2px;background:currentColor;opacity:.18;transition:opacity .25s}
+.pr-prog i.on{opacity:1}
+.pr-skip{position:absolute;right:60px;top:68px;font-size:14px;color:inherit;opacity:.55;text-underline-offset:3px;z-index:6}
+.pr-say{position:absolute;left:60px;bottom:48px;width:640px;margin:0;font-weight:400;font-size:21px;line-height:1.3;letter-spacing:-.012em;text-wrap:pretty;z-index:6}
+.pr-say em{font-style:normal;opacity:.5}
+
+/* a scene */
+.pr-sc{position:absolute;inset:0;opacity:0;visibility:hidden}
+.pr-word{position:absolute;left:60px;right:60px;top:150px;height:400px;display:flex;align-items:center;font-weight:500;letter-spacing:-.06em;white-space:nowrap;line-height:1}
+.pr-line{position:relative;display:inline-flex;align-items:baseline}
+.pr-l{display:inline-block;will-change:transform;transform-origin:50% 100%;position:relative}
+
+/* opening */
+.pr-big{position:absolute;left:60px;top:190px;width:1180px;margin:0;font-weight:500;font-size:104px;line-height:1;letter-spacing:-.052em}
+.pr-big em{font-style:normal;opacity:.3}
+
+/* 1: Figma text box */
+.pr-gd{position:absolute;left:0;right:0;height:1px;background:#FF3D8B;transform-origin:0 50%;opacity:.8;z-index:1}
+.pr-gd span{position:absolute;right:60px;top:-20px;font:400 12px var(--mono);color:#FF3D8B;white-space:nowrap}
+.pr-fbox{position:absolute;box-shadow:0 0 0 1.5px var(--sel);pointer-events:none}
+.pr-fbox i{position:absolute;width:10px;height:10px;background:#fff;box-shadow:0 0 0 1.5px var(--sel)}
+.pr-fbox i:nth-child(1){left:-5px;top:-5px}.pr-fbox i:nth-child(2){right:-5px;top:-5px}.pr-fbox i:nth-child(3){left:-5px;bottom:-5px}.pr-fbox i:nth-child(4){right:-5px;bottom:-5px}
+.pr-fbox span{position:absolute;left:50%;bottom:-32px;transform:translateX(-50%);padding:3px 8px;border-radius:5px;background:var(--sel);color:#fff;font-size:13px;letter-spacing:0;white-space:nowrap}
+.pr-caret{display:inline-block;width:7px;height:.8em;align-self:center;margin-left:8px;background:var(--sel);opacity:0}
+.pr-formula{position:absolute;left:60px;top:556px;font-size:29px;font-weight:500;letter-spacing:-.035em;white-space:nowrap}
+.pr-formula b{font-weight:500;padding:1px 9px;border-radius:9px;background:var(--accent);color:#fff;transition:background .25s}
+
+/* 2 */
+.pr-lk{position:absolute;left:0;top:0;width:1360px;height:800px;overflow:visible;pointer-events:none}
+.pr-lk path{fill:none;stroke-width:4;stroke-linecap:round}
+.pr-chip{position:absolute;padding:6px 13px;border-radius:11px;background:#fff;color:#1D1D1F;font-size:17px;white-space:nowrap;letter-spacing:-.01em;opacity:0}
+.pr-chip.pr-bad{background:var(--red);color:#fff}
+
+/* 3 */
+#pr-cv{position:absolute;left:0;top:0;width:1360px;height:800px}
+
+/* 4 */
+.pr-ol{-webkit-text-stroke:2px rgba(255,255,255,.75);color:transparent}
+.pr-fl{position:absolute;left:0;top:0;color:#fff}
+
+/* 5 */
+.pr-l .pr-cb{position:absolute;inset:6% -1%;box-shadow:0 0 0 1.5px var(--comp);opacity:0;pointer-events:none}
+.pr-l .pr-cb::before{content:"";position:absolute;left:0;top:-14px;width:8px;height:8px;background:var(--comp);transform:rotate(45deg)}
+#pr-rog{position:absolute;font-family:Georgia,'Times New Roman',serif;font-weight:400;color:#FF3BB0;opacity:0;line-height:1}
+#pr-rogT{position:absolute;padding:6px 13px;border-radius:11px;background:var(--red);color:#fff;font-size:17px;white-space:nowrap;opacity:0}
+
+/* 6 */
+#pr-gate{position:absolute;width:5px;background:var(--red);box-shadow:0 0 28px var(--red);opacity:0}
+.pr-pinn{position:absolute;display:flex;align-items:center;gap:10px;padding:9px 16px 9px 12px;border-radius:10px;background:#0E7F44;color:#fff;font-weight:500;font-size:21px;letter-spacing:-.02em;white-space:nowrap;opacity:0}
+.pr-pinn svg{width:24px;height:24px}
+.pr-cur{position:absolute;left:0;top:0;display:flex;align-items:flex-start;pointer-events:none;opacity:0;z-index:7}
+.pr-cur svg{width:24px;height:30px;fill:#fff;stroke:#000;stroke-width:1.2}
+.pr-cur span{margin:20px 0 0 -4px;padding:6px 12px;border-radius:10px;background:#fff;color:#000;font-size:17px;white-space:nowrap}
+
+/* 7 */
+#pr-goal{position:absolute;left:60px;right:60px;border-top:3px dashed currentColor;opacity:0}
+#pr-goalT{position:absolute;right:0;top:-34px;font-size:18px}
+
+/* poster */
+.pr-po{position:absolute;left:60px;right:60px;top:84px}
+.pr-ro{width:100%;border-left:0;border-right:0;border-bottom:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer;transition:color .2s}
+.pr-ro b{transition:transform .35s cubic-bezier(.2,1.25,.36,1),color .2s}
+.pr-ro:hover b{transform:translateX(12px);color:var(--ac2,#7C9BFF)}
+.pr-ro{display:grid;grid-template-columns:600px minmax(0,1fr);align-items:baseline;gap:24px;border-top:1px solid rgba(255,255,255,.18);padding:6px 0 4px;opacity:0}
+.pr-ro b{font-weight:500;font-size:62px;line-height:1.08;letter-spacing:-.055em}
+.pr-ro b sup{font:400 13px var(--mono);letter-spacing:0;vertical-align:top;margin-right:12px;opacity:.5;position:relative;top:15px}
+.pr-ro span{font-size:18px;line-height:1.24;letter-spacing:-.018em;opacity:.72}
+.pr-po-end{position:absolute;left:60px;right:60px;bottom:38px;display:flex;justify-content:space-between;align-items:center;font-size:18px;opacity:0}
+.pr-cta{display:inline-flex;align-items:center;height:52px;padding:0 24px;border-radius:17px;background:var(--accent);color:#fff;font-weight:500;font-size:17px;text-decoration:none;transition:background .25s}
+.fl4{transform-box:fill-box;transform-origin:50% 50%;animation:fl4 14s ease-in-out infinite}
+@keyframes fl4{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-14px) rotate(9deg)}}
+@media (prefers-reduced-motion:reduce){.pr-frame,.pr-stage{transition:none}.fl4{animation:none}}
+
+.pr button{font:inherit;color:inherit}
+.pr button:focus-visible,.pr a:focus-visible{outline:2px solid var(--sel);outline-offset:3px}
+.pr-m{display:none}
+@media (max-width:760px){
+  .pr-track{display:none}
+  .pr-m{display:grid;gap:8px}
+  .pr-mh{padding:24px 20px 28px;border-radius:24px;background:#F5F5F7;font-weight:500;font-size:clamp(30px,9.4vw,40px);line-height:1;letter-spacing:-.05em}
+  .pr-mh em{font-style:normal;opacity:.3}
+  .pr-mc{position:relative;overflow:hidden;padding:18px 20px 22px;border-radius:24px;background:var(--b);color:var(--f)}
+  .pr-mc small{display:block;font:400 12px/1.2 var(--mono);opacity:.62}
+  .pr-mw{display:block;margin:28px 0 22px;font-weight:500;line-height:1;letter-spacing:-.06em;white-space:nowrap}
+  .pr-mw i{font-style:normal;color:var(--w,inherit)}
+  .pr-mc p{margin:0;font-size:17px;line-height:1.3;letter-spacing:-.012em}
+  .pr-mb{padding-bottom:78vw}
+  .pr-mb svg{position:absolute;left:0;right:0;bottom:0;width:100%;height:auto;pointer-events:none}
+  .pr-mcta{display:flex;align-items:center;justify-content:center;height:60px;border-radius:24px;background:var(--accent);color:#fff;font-weight:500;font-size:18px;text-decoration:none}
+}

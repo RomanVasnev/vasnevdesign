@@ -9,11 +9,13 @@ import '../styles/mobile.css';
 import '../styles/assistant.css';
 import '../styles/overrides.css';
 import '../styles/cookie.css';
+import '../styles/process.css';
 import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
 import About from '../components/About.astro';
+import Process from '../components/Process.astro';
 import Interlude from '../components/Interlude.astro';
-import Approach from '../components/Approach.astro';
+import FeaturedCases from '../components/FeaturedCases.astro';
 import Experience from '../components/Experience.astro';
 import Cases from '../components/Cases.astro';
 import UiLibrary from '../components/UiLibrary.astro';
@@ -33,6 +35,7 @@ import uiLibrary from '../scripts/ui-library.js?raw';
 import uiDrop from '../scripts/ui-drop.js?raw';
 import assistantData from '../scripts/assistant-data.js?raw';
 import assistant from '../scripts/assistant.js?raw';
+import processJs from '../scripts/process.js?raw';
 ---
 <Base title="vasnev.art — Обо мне">
 <Nav />
@@ -41,9 +44,11 @@ import assistant from '../scripts/assistant.js?raw';
 
 <About />
 
+<Process />
+
 <Interlude id="il2" text={["Решения на данных,","а не на вкусе"]} />
 
-<Approach />
+<FeaturedCases />
 
 <Experience />
 
@@ -71,6 +76,7 @@ import assistant from '../scripts/assistant.js?raw';
 <script is:inline set:html={uiDrop}></script>
 <script is:inline set:html={assistantData}></script>
 <script is:inline set:html={assistant}></script>
+<script is:inline set:html={processJs}></script>
 
 <CookieBanner />
 </Base>
