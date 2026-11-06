@@ -9,7 +9,7 @@
 <script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(113963788,"init",{webvisor:true,clickmap:true,trackLinks:true,accurateTrackBounce:true,trackHash:true});document.addEventListener("click",function(e){var el=e.target.closest&&e.target.closest("a[href],button");if(!el)return;var h=el.getAttribute("href")||"",g=null;if(h.indexOf("t.me/")>-1)g="contact_telegram";else if(h.indexOf("mailto:")===0)g="contact_email";else if(h.indexOf("max.ru/")>-1)g="contact_max";else if(/^Открыть (ИИ|AI)-ассистента/.test(el.getAttribute("aria-label")||""))g="chat_open";if(g)ym(113963788,"reachGoal",g)},true);
 </script>
 
-<link rel="stylesheet" href="/_astro/index.CJ5vsVFE.css"></head><body><noscript><div><img src="https://mc.yandex.ru/watch/113963788" style="position:absolute;left:-9999px" alt=""></div></noscript>
+<link rel="stylesheet" href="/_astro/index.B30xzfGB.css"></head><body><noscript><div><img src="https://mc.yandex.ru/watch/113963788" style="position:absolute;left:-9999px" alt=""></div></noscript>
 
 <div class="nav-wrap" id="navWrap">
   <nav class="nav" aria-label="Разделы">
@@ -30,7 +30,7 @@
   <div class="menu" id="menu" aria-label="Разделы" role="navigation">
     <div class="mn-g" aria-hidden="true"><i></i></div>
     <a href="#about" class="mn-t on" aria-current="true" data-sec><b>Обо мне</b><span>Опыт и процесс</span></a>
-    <a href="#cases" class="mn-t" data-sec><b>Кейсы</b><span>6 проектов</span></a>
+    <a href="#cases" class="mn-t" data-sec><b>Кейсы</b><span>Обновляю</span></a>
     <a href="#ui-library" class="mn-t mn-v" data-sec><div class="mn-pr" id="mnPr" aria-hidden="true"></div><b>UI Library</b><span>10 компонентов · код и превью</span></a>
     <div class="mn-sw" id="mnSw"></div>
     <a href="#studio" class="mn-t mn-h" data-sec><b>Studio</b><span>Скоро</span></a>
@@ -2578,18 +2578,23 @@
     if (!still) gRaf = requestAnimationFrame(gDraw);
   }
   mRo.addEventListener('click', () => { setOpen(false); setTimeout(() => window.__vaOpen && window.__vaOpen(), 260); });
-  let tick = 0, swOn = false;
+  let tick = 0, swOn = false, tgGone = false;
   const onSheet = v => {
     clearInterval(tick); cancelAnimationFrame(gRaf);
     if (v) {
       clk(); tick = setInterval(clk, 1000); gRaf = requestAnimationFrame(gDraw);
       mVid.play().catch(() => {});
-      if (!swOn && window.__swipe) { swOn = true; window.__swipe(document.getElementById('mnSw'), { label: 'Свайпни, чтобы написать', loadingLabel: 'Открываю Telegram…', successLabel: 'До связи', wait: 500, resetAfter: 1600, onDone: () => { location.href = 'https://t.me/RomanVasnev'; } }); }
+      if (!swOn && window.__swipe) { swOn = true; window.__swipe(document.getElementById('mnSw'), { label: 'Свайпни, чтобы написать', loadingLabel: 'Открываю Telegram…', successLabel: 'До связи', wait: 500, resetAfter: 1600, threshold: .8,
+        /* a swipe opens Telegram in the release itself (iOS needs the gesture); the keyboard path still opens it when done */
+        onRelease: () => { tgGone = true; location.href = 'https://t.me/RomanVasnev'; },
+        onDone: () => { if (!tgGone) location.href = 'https://t.me/RomanVasnev'; tgGone = false; } }); }
       prMount();
     } else { prUnmount(); mVid.pause(); }
   };
   const setOpen = (v, focusBtn) => {
     const tc = document.querySelector('meta[name="theme-color"]'); if (tc) tc.content = v ? '#EDEDED' : '#F8F8F8';
+    /* a sheet always opens from its top, not where it was last scrolled to */
+    if (v && !isOpen()) menu.scrollTop = 0;
     menu.classList.toggle('open', v); bd.classList.toggle('open', v); onSheet(v);
     btn.setAttribute('aria-expanded', v ? 'true' : 'false');
     btn.setAttribute('aria-label', v ? 'Закрыть меню' : 'Меню');
@@ -2623,7 +2628,8 @@
   /* section links: smooth scroll to the frame; sections not built yet say so */
   $$('[data-sec]').forEach(a => {
     const t = document.querySelector(a.getAttribute('href'));
-    if (!t) { a.dataset.tip = a.textContent.trim(); a.dataset.tipSub = 'раздел скоро появится'; a.setAttribute('aria-disabled', 'true'); }
+    /* «Обо мне», «Кейсы» and «UI Library» are pages, not anchors: they exist even without an element with that id */
+    if (!t && !['#about', '#cases', '#ui-library'].includes(a.getAttribute('href'))) { a.dataset.tip = a.textContent.trim(); a.dataset.tipSub = 'раздел скоро появится'; a.setAttribute('aria-disabled', 'true'); }
     a.addEventListener('click', e => {
       e.preventDefault();
       if (isOpen()) setOpen(false);
@@ -3300,12 +3306,14 @@
     host.innerHTML = `<div class="stc${p.tone === 'destructive' ? ' ds' : ''}"><div class="stc-tr"><div class="stc-fill" aria-hidden="true"></div><span class="stc-lb shim" aria-hidden="true"></span><div class="stc-th" role="slider" tabindex="0" aria-label="${p.label}" aria-valuemin="0" aria-valuemax="100"></div></div><p class="sr-only" aria-live="polite"></p></div>`;
     const tr = $('.stc-tr', host), fill = $('.stc-fill', host), lb = $('.stc-lb', host), th = $('.stc-th', host), live = $('.sr-only', host);
     let x = 0, st = 'idle', drag = null, timer = 0, W = tr.clientWidth || 320;
-    const maxX = () => Math.max(0, W - THUMB - PAD * 2);
+    /* the real thumb size: the phone menu uses a bigger one than the 52px default */
+    const TH = () => th.offsetWidth || THUMB;
+    const maxX = () => Math.max(0, W - TH() - PAD * 2);
     const buzz = pt => { try { navigator.vibrate && navigator.vibrate(pt); } catch (e) {} };
     function paint() {
       const m = maxX(), pr = m ? x / m : 0, done = st === 'success', load = st === 'loading', dragging = st === 'dragging';
       fill.style.transition = dragging ? 'none' : 'width 450ms cubic-bezier(.22,1,.36,1), opacity 300ms ease';
-      fill.style.width = (done || load) ? '100%' : (x + THUMB + PAD * 2) + 'px';
+      fill.style.width = (done || load) ? '100%' : (x + TH() + PAD * 2) + 'px';
       fill.style.opacity = (done || load) ? 1 : (.14 + pr * .3);
       lb.textContent = dragging ? p.label : load ? p.loadingLabel : done ? p.successLabel : st === 'error' ? p.errorLabel : p.label;
       lb.classList.toggle('shim', st === 'idle'); lb.classList.toggle('on', done || load); lb.classList.toggle('err', st === 'error');
@@ -3334,7 +3342,8 @@
       if (past && !drag.armed) buzz(8);
       drag.armed = past; x = n; paint();
     });
-    const up = () => { if (!drag) return; const a = drag.armed; drag = null; if (a) complete(); else { st = 'idle'; x = 0; paint(); } };
+    /* onRelease runs right inside the finger's release: iOS only opens other apps (Telegram) from a real gesture, not after a timer */
+    const up = () => { if (!drag) return; const a = drag.armed; drag = null; if (a) { if (p.onRelease) p.onRelease(); complete(); } else { st = 'idle'; x = 0; paint(); } };
     th.addEventListener('pointerup', up); th.addEventListener('pointercancel', up);
     th.addEventListener('keydown', e => {
       if (locked()) return;

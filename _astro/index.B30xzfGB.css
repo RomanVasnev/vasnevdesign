@@ -1826,6 +1826,9 @@ a.fb-b:hover{transform:translateY(-4px);box-shadow:0 0 0 2px var(--c-sel)}
   .f4-cta .cta-b-ghost{background:#fff}
 }
 
+/* phone menu: «Studio» and «Статьи» are not built yet — hidden so the sheet fits the screen without cutting a tile in half */
+@media (max-width:900px){.menu .mn-h[aria-disabled="true"]{display:none}}
+
 .ck{position:fixed;z-index:80;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:min(392px,calc(100vw - 32px));display:flex;align-items:center;gap:14px;padding:14px 14px 14px 18px;border-radius:20px;background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);box-shadow:0 0 0 1px rgba(11,11,12,.07),0 24px 60px -20px rgba(11,11,12,.25),0 4px 12px rgba(11,11,12,.04);font-family:var(--font,'Geist',-apple-system,sans-serif);color:#0B0B0C;opacity:0;transform:translateY(16px);visibility:hidden;transition:opacity .35s,transform .55s cubic-bezier(.32,.72,0,1),visibility 0s .55s}
 .ck.on{opacity:1;transform:none;visibility:visible;transition:opacity .35s,transform .55s cubic-bezier(.32,.72,0,1),visibility 0s}
 .ck p{flex:1;margin:0;font-size:13.5px;line-height:1.4;letter-spacing:-.01em;color:#3A3A3C;text-wrap:pretty}
