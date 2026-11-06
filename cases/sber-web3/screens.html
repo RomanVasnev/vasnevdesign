@@ -1,0 +1,954 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Сбер Крипто · концепт</title>
+<meta name="description" content="Концепт дизайнера: криптовалюта в СберБанк Онлайн. Не связан со СберБанком. by vasnev.art">
+<meta name="theme-color" content="#0C0B0A">
+<link rel="preconnect" href="https://cdn-app.sberdevices.ru" crossorigin>
+<link rel="stylesheet" href="https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansText.0.2.0.css">
+<link rel="stylesheet" href="https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansDisplay.0.2.0.css">
+<link rel="stylesheet" href="https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansTextMono.0.2.0.css">
+<style>
+/* ═════════ tokens ═════════ */
+:root{
+  --steel-950:#0C0B0A;--steel-900:#141311;--steel-800:#1D1C19;--steel-700:#2A2825;
+  --platinum-100:#EDEBE6;--platinum-200:#D5D2CB;--platinum-300:#ADA9A1;--platinum-400:#85817A;
+  --enamel-green:#64EE61;--enamel-teal:#32B8D3;--enamel-blue:#1C5BB8;
+  --ink-primary:#F3F0E9;--ink-secondary:rgba(243,240,233,.66);--ink-tertiary:rgba(243,240,233,.5);
+  --signal-negative:#E0806C;
+  --background:var(--steel-950);--foreground:var(--ink-primary);--card:var(--steel-900);--muted:var(--steel-800);
+  --primary:var(--enamel-green);--border:rgba(237,235,230,.12);--ring:var(--enamel-teal);
+  --enamel:linear-gradient(104deg,#64EE61 0%,#45D88E 48%,#32B8D3 100%);
+  --hair:1px;
+  --r-s:12px;--r-m:16px;--r-l:22px;--r-xl:28px;
+  --side:20px;
+  --safe-t:59px;--safe-b:34px;
+  --spring:cubic-bezier(.32,.72,0,1);
+  --dsp:'SB Sans Display','SB Sans Text',system-ui,sans-serif;
+  --ui:'SB Sans Text',system-ui,sans-serif;
+  --mono:'SB Sans Text Mono',ui-monospace,monospace;
+}
+@media (min-resolution:2dppx){:root{--hair:.5px}}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#070706;color:var(--foreground)}
+body{font:400 16px/20px var(--ui);letter-spacing:-.02em;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;overflow:hidden}
+button{font:inherit;color:inherit;letter-spacing:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:var(--r-s)}
+.tn{font-variant-numeric:tabular-nums}
+
+/* type: Plasma mobile scale */
+.h1{font:300 28px/34px var(--dsp);letter-spacing:0}
+.h2{font:300 24px/30px var(--dsp);letter-spacing:0}
+.h3{font:400 20px/26px var(--dsp);letter-spacing:0}
+.h4{font:400 18px/24px var(--dsp);letter-spacing:0}
+.bm{font:400 16px/20px var(--ui)}
+.bs{font:400 14px/18px var(--ui)}
+.bxs{font:400 12px/14px var(--ui);letter-spacing:0}
+.c2{color:var(--ink-secondary)}.c3{color:var(--ink-tertiary)}
+.mono{font-family:var(--mono);letter-spacing:0}
+
+/* ═════════ stage and device ═════════ */
+.stage{position:fixed;inset:0;display:grid;place-items:center;align-content:center;gap:20px}
+.device{position:relative;width:393px;height:852px;border-radius:56px;background:var(--background);overflow:hidden;
+  box-shadow:0 0 0 1px #2E2C29,0 0 0 9px #121110,0 0 0 10px #2A2825;transform-origin:50% 50%;isolation:isolate}
+.caption{font:400 12px/16px var(--ui);letter-spacing:0;color:rgba(243,240,233,.42);text-align:center}
+.caption a{color:inherit}
+.demo{display:flex;gap:4px;justify-content:center;flex-wrap:wrap}
+.demo button{height:28px;padding:0 12px;border-radius:10px;font:400 12px/14px var(--ui);letter-spacing:0;color:rgba(243,240,233,.5)}
+.demo button[aria-pressed=true]{color:var(--ink-primary);background:var(--steel-800)}
+@media (max-width:520px){
+  .stage{display:block}
+  .device{width:100vw;height:100dvh;border-radius:0;box-shadow:none;transform:none!important}
+  .caption,.demo{display:none}
+  :root{--safe-t:max(env(safe-area-inset-top),20px);--safe-b:max(env(safe-area-inset-bottom),16px)}
+}
+
+/* ═════════ screens ═════════ */
+.scr{position:absolute;inset:0;background:var(--background);overflow:hidden auto;overscroll-behavior:contain;scrollbar-width:none;will-change:transform}
+.scr::-webkit-scrollbar{display:none}
+.scr.enter{transform:translateX(100%)}
+.scr.anim{transition:transform .42s var(--spring),opacity .42s var(--spring)}
+.scr.under{transform:translateX(-28%);opacity:.6}
+.scr.leave{transform:translateX(100%)}
+
+/* nav bar: a system layer, glass once content runs under it */
+.nav{position:sticky;top:0;z-index:5;height:calc(var(--safe-t) + 44px);padding:var(--safe-t) 8px 0;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;transition:background .2s,box-shadow .2s}
+.nav.glass{background:rgba(12,11,10,.72);-webkit-backdrop-filter:blur(24px) saturate(1.4);backdrop-filter:blur(24px) saturate(1.4);box-shadow:0 var(--hair) 0 var(--border)}
+.nav .t{font:500 17px/22px var(--ui);letter-spacing:-.02em;text-align:center}
+.back{display:inline-flex;align-items:center;gap:2px;height:44px;padding:0 8px 0 4px;color:var(--ink-secondary);font:400 17px/22px var(--ui);justify-self:start;border-radius:var(--r-s)}
+.back .li{width:24px;height:24px}
+.iconb{justify-self:end;width:44px;height:44px;display:grid;place-items:center;border-radius:50%}
+.iconb span{width:36px;height:36px;display:grid;place-items:center;border-radius:50%;background:var(--steel-800);box-shadow:inset 0 0 0 var(--hair) var(--border)}
+.iconb .li{width:18px;height:18px;color:var(--ink-secondary)}
+.li{display:block;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+
+/* surfaces: depth from light, never a grey shadow */
+.card{position:relative;border-radius:var(--r-l);background:var(--card);box-shadow:inset 0 0 0 var(--hair) var(--border)}
+
+/* buttons */
+.btn{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:52px;border-radius:var(--r-m);font:500 16px/20px var(--ui);overflow:hidden;transition:transform .2s var(--spring)}
+.btn:active{transform:scale(.98)}
+.btn-p{color:#0C0B0A;font-weight:600;background:var(--enamel)}
+/* engraved texture in the body of the enamel button */
+.btn-p::before{content:"";position:absolute;inset:0;background:repeating-radial-gradient(circle at -12% 50%,rgba(0,40,30,.16) 0 .6px,transparent .6px 3px);mix-blend-mode:multiply;pointer-events:none}
+.btn-p>*{position:relative;z-index:1}
+.btn-s{color:var(--ink-primary);background:var(--steel-800);box-shadow:inset 0 0 0 var(--hair) var(--border)}
+
+/* ═════════ onboarding ═════════ */
+.onb{overflow:hidden;display:flex;flex-direction:column;padding:calc(var(--safe-t) + 44px + 404px) var(--side) calc(var(--safe-b) + 8px)}
+.onb-dial{position:absolute;left:50%;top:calc(var(--safe-t) + 40px);width:424px;height:424px;margin-left:-212px;pointer-events:none}
+.onb-top{position:absolute;left:0;right:0;top:var(--safe-t);height:44px;padding:0 8px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;z-index:3}
+.prog{display:flex;gap:4px;width:88px}
+.onb-top .iconb{justify-self:start}
+.prog i{flex:1;height:2px;border-radius:1px;background:rgba(237,235,230,.16);overflow:hidden}
+.prog i::after{content:"";display:block;height:100%;width:100%;background:var(--platinum-100);transform:scaleX(0);transform-origin:0 50%;transition:transform .45s var(--spring)}
+.prog i.on::after{transform:scaleX(1)}
+.skip{justify-self:end;height:44px;padding:0 12px;color:var(--ink-secondary);font:400 17px/22px var(--ui);border-radius:var(--r-s)}
+.onb-fade{position:absolute;left:0;right:0;top:calc(var(--safe-t) + 340px);height:130px;background:linear-gradient(180deg,rgba(12,11,10,0),var(--background));pointer-events:none}
+.onb-copy{position:relative;display:grid;gap:12px}
+.onb-copy .h1 span{display:block}
+.onb-copy .h1 span+span{color:var(--ink-secondary)}
+.onb-copy.out{opacity:0;transform:translateY(-6px);transition:opacity .18s ease,transform .18s ease}
+.onb-copy.in{animation:cin .42s var(--spring) both}
+@keyframes cin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.onb-foot{position:relative;margin-top:auto;padding-top:16px;display:grid;gap:16px}
+.onb-foot .bxs{text-align:center}
+
+/* ═════════ home ═════════ */
+.home{padding-bottom:calc(var(--safe-b) + 24px)}
+.wm{position:absolute;top:-250px;left:50%;width:820px;height:820px;margin-left:-300px;pointer-events:none;opacity:.3;-webkit-mask-image:linear-gradient(180deg,#000 42%,transparent 72%);mask-image:linear-gradient(180deg,#000 42%,transparent 72%)}
+.hb{position:relative}
+.sum{position:relative;padding:20px var(--side) 0}
+.sum .lbl{margin-bottom:4px}
+.amt{font:300 44px/48px var(--dsp);letter-spacing:-.01em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.amt .f{color:var(--ink-tertiary);font-size:30px}
+.res{margin-top:8px}
+.acts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:24px var(--side) 0}
+.act{display:grid;justify-items:center;align-content:center;gap:6px;height:72px;border-radius:var(--r-m);font:500 14px/18px var(--ui)}
+.act .li{width:22px;height:22px}
+.act.btn-p .li{stroke-width:2}
+.sec{padding:32px var(--side) 0}
+.sech{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px}
+.link{display:inline-flex;align-items:center;gap:2px;color:var(--ink-secondary);font:400 14px/18px var(--ui);border-radius:8px}
+.link .li{width:16px;height:16px}
+.rows{padding:0 16px}
+.row{display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;min-height:68px;padding:12px 0;width:100%;text-align:left}
+.row+.row{box-shadow:0 calc(-1*var(--hair)) 0 var(--border)}
+.row .m{display:grid;gap:2px;min-width:0}
+.row .m b{font:500 16px/20px var(--ui)}
+.row .v{display:grid;gap:2px;justify-items:end;text-align:right}
+.row .v b{font:400 16px/20px var(--ui);font-variant-numeric:tabular-nums}
+.row .v span,.row .m span{font:400 14px/18px var(--ui);color:var(--ink-tertiary);font-variant-numeric:tabular-nums;white-space:nowrap}
+.row .ic{width:40px;height:40px;display:grid;place-items:center}
+.row .ic canvas,.cimg{display:block}
+.lim{padding:16px}
+.lim .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.scale{position:relative;height:10px;margin:14px 0 10px;border-radius:2px;overflow:hidden;
+  background:repeating-linear-gradient(105deg,rgba(237,235,230,.28) 0 var(--hair),transparent var(--hair) 3px)}
+.scale i{position:absolute;inset:0 auto 0 0;background:var(--enamel);
+  -webkit-mask-image:repeating-linear-gradient(105deg,#000 0 1.2px,transparent 1.2px 3px);mask-image:repeating-linear-gradient(105deg,#000 0 1.2px,transparent 1.2px 3px);transition:width .6s var(--spring)}
+.next{padding:20px 16px 16px;display:grid;gap:8px}
+.next .btn{margin-top:12px}
+.empty{padding:18px 16px}
+.quiet{padding:24px var(--side) 0;display:grid}
+.qrow{display:flex;align-items:center;gap:12px;height:48px;color:var(--ink-secondary);font:400 14px/18px var(--ui);text-align:left;border-radius:var(--r-s)}
+.qrow+.qrow{box-shadow:0 calc(-1*var(--hair)) 0 var(--border)}
+.qrow .li{width:18px;height:18px;color:var(--ink-tertiary)}
+.qrow .li:last-child{margin-left:auto;width:16px;height:16px}
+.foot{padding:28px var(--side) 0;text-align:center}
+
+
+/* ═════════ pages ═════════ */
+.page{display:flex;flex-direction:column;padding-bottom:calc(var(--safe-b) + 8px)}
+.page .nav .nb{justify-self:start}
+.pad{padding:8px var(--side) 0;flex:1}
+.dock{position:sticky;bottom:0;padding:16px var(--side) 0;background:linear-gradient(180deg,rgba(12,11,10,0),var(--background) 24px)}
+.ttl{margin:24px 0 16px}.ttl0{margin:16px 0 8px}.sub{margin-bottom:24px}
+.segc{display:flex;padding:2px;border-radius:9px;background:var(--steel-800);box-shadow:inset 0 0 0 var(--hair) var(--border)}
+.segc button{flex:1;height:32px;border-radius:7px;font:500 13px/16px var(--ui);color:var(--ink-secondary);transition:background .2s,color .2s}
+.segc button[aria-selected=true]{background:var(--steel-700);color:var(--ink-primary);}
+.list{padding:4px 16px}
+.li-row{display:grid;grid-template-columns:40px 1fr;gap:12px;padding:14px 0;align-items:start}
+.li-row+.li-row{box-shadow:0 calc(-1*var(--hair)) 0 var(--border)}
+.li-row>span:last-child{display:grid;gap:2px}
+.li-row b{font:500 16px/20px var(--ui)}
+.li-row>span:last-child>span{font:400 14px/18px var(--ui);color:var(--ink-secondary)}
+.gi{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:var(--steel-800);box-shadow:inset 0 0 0 var(--hair) var(--border);color:var(--platinum-300)}
+.gi .li{width:20px;height:20px}
+.coins3{position:relative;width:40px;height:40px}
+.coins3 i{position:absolute}
+.coins3 i:nth-child(1){left:0;top:0}.coins3 i:nth-child(2){left:12px;top:6px}.coins3 i:nth-child(3){left:4px;top:14px}
+.coins3 canvas{display:block}
+.qprog{display:flex;gap:4px;margin:8px 0 16px}
+.qprog i{flex:1;height:2px;border-radius:1px;background:rgba(237,235,230,.16)}
+.qprog i.on{background:var(--platinum-100)}
+.qcard{padding:20px 16px 16px;display:grid;gap:16px}
+.qart{width:100%;height:150px;display:block;margin:-4px 0 0}
+.ans{display:grid;gap:8px}
+.an{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;padding:14px 16px;border-radius:var(--r-m);text-align:left;font:400 16px/20px var(--ui);
+  background:var(--steel-800);box-shadow:inset 0 0 0 var(--hair) var(--border);transition:opacity .2s}
+.an .li{width:20px;height:20px;flex:none}
+.an.ok{box-shadow:inset 0 0 0 1px rgba(237,235,230,.42)}
+.an.dim{opacity:.45}
+.an:disabled{cursor:default}
+.why{font:400 14px/18px var(--ui);color:var(--ink-secondary);padding:0 2px;animation:cin .35s var(--spring) both}
+.why b{color:var(--ink-primary);font-weight:500}
+.hint{text-align:center;height:52px;display:grid;place-items:center}
+.center{display:grid;justify-items:center;text-align:center;gap:12px;align-content:start}
+.seal-xl{width:248px;height:248px;margin:8px 0 12px}
+.lim.wide{width:100%;margin-top:20px;text-align:left}
+.picks{display:grid;gap:12px}
+.pk{display:grid;grid-template-columns:64px 1fr auto;gap:16px;align-items:center;padding:16px;text-align:left;width:100%}
+.pk .m,.pk .v{display:grid;gap:2px}.pk .v{justify-items:end;text-align:right}
+.pkd canvas{display:block}
+.note{margin-top:16px}
+
+
+/* ═════════ trade ═════════ */
+.c1{color:var(--ink-primary)}
+.coinline{display:flex;align-items:center;gap:12px;margin:8px 0 20px}
+.coinline>span:last-child{display:grid;gap:2px}
+.coinline b{font:500 16px/20px var(--ui)}
+.coinline [data-rate]{font:400 14px/18px var(--ui);color:var(--ink-tertiary)}
+.coinline canvas{display:block}
+.unit{width:200px}
+.amtin{display:flex;align-items:baseline;gap:8px;margin:28px 0 4px;cursor:text}
+.amtin{position:relative}
+.amtin input{all:unset;min-width:.6em;flex:none;max-width:290px;font:300 56px/60px var(--dsp);letter-spacing:-.01em;font-variant-numeric:tabular-nums;color:var(--ink-primary);caret-color:var(--enamel-green)}
+.amtin input::placeholder{color:var(--ink-tertiary)}
+.amtin .u{font:300 32px/36px var(--dsp);color:var(--ink-tertiary);flex:none}
+.amtin:focus-within{outline:none}
+.echo{min-height:20px}
+.chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:8px;margin:24px 0 16px}
+.chip{height:40px;border-radius:var(--r-s);font:500 14px/18px var(--ui);font-variant-numeric:tabular-nums;color:var(--ink-primary);background:var(--steel-800);box-shadow:inset 0 0 0 var(--hair) var(--border)}
+.limline{min-height:18px}
+.srcrow{display:flex;gap:10px;align-items:flex-start;margin-top:24px;padding-top:16px;box-shadow:0 calc(-1*var(--hair)) 0 var(--border)}
+.srcrow .li{width:18px;height:18px;flex:none;margin-top:0;color:var(--ink-tertiary)}
+.btn:disabled{opacity:.36;cursor:default;transform:none}
+.dock.col{display:grid;gap:4px}
+.btn.tert{height:44px;color:var(--ink-secondary);background:none;font-weight:400}
+
+/* ═════════ sheet ═════════ */
+.sheetw{position:absolute;inset:0;z-index:40;pointer-events:none}
+.scrim{position:absolute;inset:0;background:rgba(0,0,0,.5);opacity:0;transition:opacity .3s}
+.sheet{position:absolute;left:8px;right:8px;bottom:8px;border-radius:32px;padding:8px 20px calc(var(--safe-b) - 8px);transform:translateY(105%);transition:transform .42s var(--spring);
+  background:linear-gradient(180deg,rgba(43,41,37,.82),rgba(24,23,21,.9));-webkit-backdrop-filter:blur(30px) saturate(1.5);backdrop-filter:blur(30px) saturate(1.5);
+  box-shadow:inset 0 0 0 var(--hair) rgba(237,235,230,.14)}
+.sheetw.on{pointer-events:auto}.sheetw.on .scrim{opacity:1}.sheetw.on .sheet{transform:none}
+.grab{width:36px;height:5px;border-radius:3px;background:rgba(237,235,230,.28);margin:0 auto 16px}
+.sheet .st{margin-bottom:12px}
+.fix{display:flex;align-items:center;gap:8px;padding:10px 0 14px}
+.fix [data-sec]{margin-left:auto}
+.tring{width:18px;height:18px;transform:rotate(-90deg)}
+.tring circle{fill:none;stroke:var(--platinum-200);stroke-width:1.5;stroke-dasharray:100;stroke-dashoffset:0;transition:stroke-dashoffset .25s linear}
+.fix.renew [data-fixl]{color:var(--ink-primary)}
+.ledger{display:grid}
+.ledger>div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;box-shadow:0 calc(-1*var(--hair)) 0 var(--border)}
+.ledger dt{font:400 14px/18px var(--ui);color:var(--ink-secondary)}
+.ledger dd{font:400 14px/18px var(--ui);color:var(--ink-primary);text-align:right}
+.ledger .big dd{font:400 20px/24px var(--dsp);letter-spacing:0}
+.ledger .big{align-items:baseline}
+.renew .ledger dd,.sbody .ledger dd{animation:none}
+.fix.renew~.ledger dd{animation:val .7s ease both}
+@keyframes val{0%{opacity:.2}100%{opacity:1}}
+.fine{margin:12px 0 16px}
+.hold{flex-direction:column;gap:0;height:60px}
+.hold small{font:500 11px/14px var(--ui);letter-spacing:0;opacity:.6}
+.hold .ring{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+.hold .ring rect{fill:none;stroke:#0C0B0A;stroke-width:2;stroke-dasharray:100;stroke-dashoffset:100;opacity:.75}
+.hold.holding .ring rect{stroke-dashoffset:0;transition:stroke-dashoffset 1.1s linear}
+.hold.holding{transform:scale(.985)}
+.faceid{position:absolute;inset:0;z-index:60;display:grid;place-items:center;opacity:0;transition:opacity .2s;pointer-events:none}
+.faceid.on{opacity:1}
+.fbox{width:148px;height:148px;border-radius:32px;display:grid;place-items:center;align-content:center;gap:10px;color:var(--ink-primary);font:500 14px/18px var(--ui);
+  background:rgba(29,28,25,.82);-webkit-backdrop-filter:blur(30px);backdrop-filter:blur(30px);box-shadow:inset 0 0 0 var(--hair) var(--border)}
+.fbox .li{width:56px;height:56px;stroke-width:1.4}
+.faceid.on:not(.ok) .fbox .li{animation:scan 1s ease-in-out infinite alternate}
+@keyframes scan{from{opacity:.55}to{opacity:1}}
+
+/* ═════════ done ═════════ */
+.done{padding-top:calc(var(--safe-t) + 8px)}
+.seal-xl.big{width:288px;height:288px;margin:12px 0 8px}
+.yours{font:300 28px/34px var(--dsp);letter-spacing:0;opacity:0;transform:translateY(8px);transition:opacity .5s var(--spring),transform .5s var(--spring)}
+.yours.on{opacity:1;transform:none}
+.done .ledger.card{width:100%;padding:4px 16px;margin-top:16px;text-align:left}
+.done .ledger.card>div:first-child{box-shadow:none}
+
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.amtin .meas{position:absolute;visibility:hidden;white-space:pre;font:300 56px/60px var(--dsp);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+/* toast: a system layer */
+.toast{position:absolute;left:50%;bottom:calc(var(--safe-b) + 12px);z-index:50;transform:translate(-50%,16px);opacity:0;max-width:calc(100% - 40px);padding:12px 16px;border-radius:var(--r-m);
+  background:rgba(29,28,25,.78);-webkit-backdrop-filter:blur(24px) saturate(1.4);backdrop-filter:blur(24px) saturate(1.4);box-shadow:inset 0 0 0 var(--hair) var(--border);
+  font:400 14px/18px var(--ui);color:var(--ink-primary);transition:transform .35s var(--spring),opacity .25s;pointer-events:none;text-align:center}
+.toast.on{transform:translate(-50%,0);opacity:1}
+@media (prefers-reduced-motion:reduce){.scr.anim{transition-duration:.01s}.onb-copy.in{animation:none}.btn{transition:none}}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="device" id="device" role="application" aria-label="Сбер Крипто, концепт прототипа"></div>
+  <nav class="demo" id="demo" aria-label="Демо-состояния">
+    <button data-scene="new">Новый пользователь</button>
+    <button data-scene="fresh">После теста</button>
+    <button data-scene="demo">С портфелем</button>
+    <button data-demo="skip30" title="Истечь фиксации курса в открытой шторке">+30 с</button>
+  </nav>
+  <p class="caption">Концепт дизайнера · не связан со СберБанком · курсы и суммы условные · by <a href="/">vasnev.art</a></p>
+</div>
+<script src="guilloche.js"></script>
+<script src="medal.js"></script>
+<script src="data.js"></script>
+<script>
+(() => {
+  'use strict';
+  const G = Guilloche, D = SC, F = SC.fmt;
+  const $ = (s, el = document) => el.querySelector(s);
+  const LUCIDE = {"arrow-up-right": "<path d=\"M7 7h10v10\"/> <path d=\"M7 17 17 7\"/>", "book-open": "<path d=\"M12 7v14\"/><path d=\"M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z\"/>", "check": "<path d=\"M20 6 9 17l-5-5\"/>", "chevron-left": "<path d=\"m15 18-6-6 6-6\"/>", "chevron-right": "<path d=\"m9 18 6-6-6-6\"/>", "coins": "<circle cx=\"8\" cy=\"8\" r=\"6\"/><path d=\"M18.09 10.37A6 6 0 1 1 10.34 18\"/><path d=\"M7 6h1v4\"/><path d=\"m16.71 13.88.7.71-2.82 2.82\"/>", "credit-card": "<rect width=\"20\" height=\"14\" x=\"2\" y=\"5\" rx=\"2\"/><line x1=\"2\" x2=\"22\" y1=\"10\" y2=\"10\"/>", "info": "<circle cx=\"12\" cy=\"12\" r=\"10\"/> <path d=\"M12 16v-4\"/> <path d=\"M12 8h.01\"/>", "message-circle": "<path d=\"M7.9 20A9 9 0 1 0 4 16.1L2 22Z\"/>", "minus": "<path d=\"M5 12h14\"/>", "phone-incoming": "<polyline points=\"16 2 16 8 22 8\"/> <line x1=\"22\" x2=\"16\" y1=\"2\" y2=\"8\"/> <path d=\"M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z\"/>", "plus": "<path d=\"M5 12h14\"/> <path d=\"M12 5v14\"/>", "scale": "<path d=\"m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z\"/><path d=\"m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z\"/><path d=\"M7 21h10\"/><path d=\"M12 3v18\"/><path d=\"M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2\"/>", "scan-face": "<path d=\"M3 7V5a2 2 0 0 1 2-2h2\"/><path d=\"M17 3h2a2 2 0 0 1 2 2v2\"/><path d=\"M21 17v2a2 2 0 0 1-2 2h-2\"/><path d=\"M7 21H5a2 2 0 0 1-2-2v-2\"/><path d=\"M8 14s1.5 2 4 2 4-2 4-2\"/><path d=\"M9 9h.01\"/><path d=\"M15 9h.01\"/>", "shield": "<path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"/>", "shield-check": "<path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"/> <path d=\"m9 12 2 2 4-4\"/>", "user": "<path d=\"M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2\"/> <circle cx=\"12\" cy=\"7\" r=\"4\"/>", "x": "<path d=\"M18 6 6 18\"/> <path d=\"m6 6 12 12\"/>"};
+  const ic = n => `<svg class="li" viewBox="0 0 24 24" aria-hidden="true">${LUCIDE[n] || ''}</svg>`;
+  const dev = $('#device');
+  const RM = matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* fit the device into the window on desktop */
+  const fit = () => { if (innerWidth <= 520) { dev.style.transform = ''; return; } const k = Math.min(1, (innerHeight - 96) / 852); dev.style.transform = `scale(${k})`; };
+  addEventListener('resize', fit); fit();
+
+  /* light: one source; the pointer on desktop */
+  if (matchMedia('(pointer:fine)').matches && !RM.matches) G.followPointer();
+
+  /* money as markup: integer loud, kopecks and ₽ a step quieter */
+  const money = (x, o = {}) => { const m = F.rub(x, o); return `${m.sign}${m.int}<span class="f">${m.frac}&nbsp;₽</span>`; };
+
+  /* toast */
+  let tt = 0;
+  const toast = msg => { let el = $('.toast', dev); if (!el) { el = document.createElement('div'); el.className = 'toast'; el.setAttribute('role', 'status'); dev.append(el); } el.textContent = msg; el.classList.add('on'); clearTimeout(tt); tt = setTimeout(() => el.classList.remove('on'), 2400); };
+
+  /* coin dials and seals: bitmaps from the shared context */
+  /* ETH is struck as a medal (try-out): guilloche field under Sber enamel */
+  const MEDAL = { eth: { coin: 'eth', finish: 'enamel' } };
+  const dialImg = (k, size) => MEDAL[k] && window.Medal ? Medal.snapshot(MEDAL[k], size) : G.snapshot(G.preset(k), size);
+  /* in lists: the coins' usual flat icons, read at a glance */
+  const iconImg = (k, size = 40) => { const i = new Image(size, size); i.src = `icons/${k}.svg`; i.alt = ''; i.decoding = 'async'; i.className = 'cimg'; return i; };
+  const sealImg = (op, size) => G.snapshot(G.seedFromString(op.id, op.coin), size);
+
+  /* ═════════ router: go(id, params), a stack, deep links ═════════ */
+  const SCREENS = {};
+  const stack = [];
+  const hashOf = (id, p = {}) => { const a = p.step || p.coin || p.op; return '#' + id + (a ? '/' + a : '') + (p.state ? '?state=' + p.state : ''); };
+  const go = (id, params = {}, o = {}) => {
+    const make = SCREENS[id]; if (!make) { toast('Этот экран соберу следующим'); return; }
+    const el = make(params); el.classList.add('scr'); el.dataset.id = id;
+    const prev = stack[stack.length - 1];
+    if (o.replace && prev) { prev.el.cleanup && prev.el.cleanup(); prev.el.remove(); stack.pop(); }
+    stack.push({ id, params, el });
+    dev.append(el);
+    const anim = prev && !o.replace && !o.instant && !RM.matches;
+    if (anim) {
+      el.classList.add('enter'); el.getBoundingClientRect();
+      el.classList.add('anim'); prev.el.classList.add('anim');
+      requestAnimationFrame(() => { el.classList.remove('enter'); prev.el.classList.add('under'); });
+    } else if (prev && !o.replace) prev.el.classList.add('under');
+    history.replaceState(null, '', hashOf(id, params));
+    el.mounted && el.mounted();
+  };
+  const back = () => {
+    if (stack.length < 2) { toast('Это выход в «Накопления» СберБанк Онлайн'); return false; }
+    const cur = stack.pop(), prev = stack[stack.length - 1];
+    cur.el.classList.add('anim'); prev.el.classList.add('anim');
+    requestAnimationFrame(() => { cur.el.classList.add('leave'); prev.el.classList.remove('under'); });
+    setTimeout(() => { cur.el.cleanup && cur.el.cleanup(); cur.el.remove(); }, RM.matches ? 0 : 440);
+    history.replaceState(null, '', hashOf(prev.id, prev.params));
+    return true;
+  };
+  const reset = (id, params) => { stack.splice(0).forEach(s => { s.el.cleanup && s.el.cleanup(); s.el.remove(); }); go(id, params, { instant: true }); };
+  addEventListener('keydown', e => { if (e.key === 'Escape') back(); });
+
+  /* swipe back from the left edge, as on iOS */
+  (() => {
+    let sx = 0, on = false, cur = null, prev = null, w = 0;
+    dev.addEventListener('pointerdown', e => {
+      const r = dev.getBoundingClientRect(); if (stack.length < 2 || (e.clientX - r.left) / (r.width / dev.offsetWidth) > 20) return;
+      on = true; sx = e.clientX; cur = stack[stack.length - 1].el; prev = stack[stack.length - 2].el; w = r.width;
+      cur.classList.remove('anim'); prev.classList.remove('anim');
+    });
+    addEventListener('pointermove', e => { if (!on) return; const dx = Math.max(0, e.clientX - sx) / w; cur.style.transform = `translateX(${dx * 100}%)`; prev.style.transform = `translateX(${-28 + dx * 28}%)`; prev.style.opacity = .6 + .4 * dx; });
+    addEventListener('pointerup', e => {
+      if (!on) return; on = false; const dx = Math.max(0, e.clientX - sx) / w;
+      cur.style.transform = prev.style.transform = prev.style.opacity = '';
+      if (dx > .33) back(); else { cur.classList.add('anim'); prev.classList.add('anim'); }
+    });
+  })();
+
+  const el = (html, cls) => { const d = document.createElement('section'); if (cls) d.className = cls; d.innerHTML = html; return d; };
+  const glassNav = s => s.addEventListener('scroll', () => { const n = $('.nav', s); n && n.classList.toggle('glass', s.scrollTop > 4); }, { passive: true });
+
+  /* ═════════ onboarding: one rosette, built up layer by layer ═════════ */
+  const ONB = [
+    { t: ['Новый класс активов.', 'Старая школа надёжности.'], p: 'Биткоин, эфир и USDT — в приложении банка, которому доверяют с 1841 года.' },
+    { t: ['У каждого актива — своя гравировка.'], p: 'Как на банкноте: уникальный узор для каждой монеты. Как в блокчейне: запись, которую нельзя переписать.' },
+    { t: ['Каждая операция — под печатью.'], p: 'Подтверждение сети вы увидите своими глазами — печать проявится на экране.' },
+    { t: ['Спокойствие — тоже роскошь.'], p: 'Без шума графиков. Ясные лимиты, честные риски, ни одного лишнего движения.' }
+  ];
+  /* the layers each step adds: frame and calm rings → the coin's rays → the six-part seal band and enamel → the centre */
+  const ONB_LAYERS = [3, 4, 5, 6];
+  const ONB_ROSETTE = {
+    enamel: { stops: ['#64EE61', '#32B8D3', '#1C5BB8'], angle: -42, density: .88 },
+    layers: [
+      { type: 'rosette', rIn: .93, rOut: .93, density: 1, k: 1, amplitude: 0 },
+      { type: 'rosette', rIn: .79, rOut: .79, density: 1, k: 1, amplitude: 0 },
+      { type: 'rosette', rIn: .24, rOut: .76, density: 30, k: 6, amplitude: .004, twist: .5 },
+      { type: 'rosette', rIn: .24, rOut: .76, density: 40, k: 24, amplitude: .026, twist: 1, taper: true },
+      { type: 'rosette', rIn: .815, rOut: .905, density: 10, k: 96, amplitude: .016, twist: 1, sectors: 6, gap: .12, sectorRot: -Math.PI / 2 },
+      { type: 'hypo', R: 1, r: 7 / 24, d: .62, size: .21, density: 2 }
+    ]
+  };
+  SCREENS.onboarding = p => {
+    let step = Math.min(4, Math.max(1, +p.step || 1));
+    const s = el(`
+      <canvas class="onb-dial" aria-hidden="true"></canvas>
+      <div class="onb-fade"></div>
+      <div class="onb-top">
+        <button class="iconb" data-act="back" aria-label="Назад"><span>${ic('chevron-left')}</span></button>
+        <div class="prog" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-label="Шаг знакомства">${'<i></i>'.repeat(4)}</div>
+        <button class="skip" data-act="skip">Пропустить</button>
+      </div>
+      <div class="onb-copy" aria-live="polite"></div>
+      <div class="onb-foot">
+        <p class="bxs c3">Криптовалюта — высокорискованный актив. Её стоимость может снижаться.</p>
+        <button class="btn btn-p" data-act="next"><span></span></button>
+      </div>`, 'onb');
+    let dial = null;
+    const copy = $('.onb-copy', s), btn = $('[data-act=next] span', s), bk = $('[data-act=back]', s);
+    const paint = first => {
+      const d = ONB[step - 1];
+      const html = `<h1 class="h1">${d.t.map(x => `<span>${x}</span>`).join('')}</h1><p class="bm c2">${d.p}</p>`;
+      const swap = () => { copy.innerHTML = html; copy.classList.remove('out'); copy.classList.add('in'); };
+      if (first || RM.matches) swap(); else { copy.classList.remove('in'); copy.classList.add('out'); setTimeout(swap, 180); }
+      btn.textContent = step === 4 ? 'Пройти тест · 2 минуты' : 'Далее';
+      bk.setAttribute('aria-label', step === 1 ? 'Выйти в Накопления' : 'Назад');
+      s.querySelectorAll('.prog i').forEach((x, i) => x.classList.toggle('on', i < step));
+      $('.prog', s).setAttribute('aria-valuenow', step);
+      if (dial) {
+        dial.reveal(ONB_LAYERS[step - 1], first ? 2200 : 1500, .5);
+        dial.fillTo(step >= 3 ? 1 : 0, step === 3 && !first ? 1500 : 10);
+        dial.set({ breathe: step !== 4 });
+      }
+      history.replaceState(null, '', hashOf('onboarding', { step }));
+    };
+    s.addEventListener('click', e => {
+      const a = e.target.closest('[data-act]'); if (!a) return;
+      if (a.dataset.act === 'next') { if (step < 4) { step++; paint(); } else go('terms'); }
+      if (a.dataset.act === 'back') { if (step > 1) { step--; paint(); } else toast('Это выход в «Накопления» СберБанк Онлайн'); }
+      if (a.dataset.act === 'skip') go('terms');
+    });
+    s.mounted = () => {
+      dial = G.mount($('.onb-dial', s), ONB_ROSETTE, { enamel: true, fill: 0, breathe: true });
+      dial.prog.fill(0);
+      paint(true);
+    };
+    s.cleanup = () => dial && dial.destroy();
+    return s;
+  };
+
+  /* ═════════ home «Крипта» ═════════ */
+  /* a watermark under the sum, like the print under a banknote's value: platinum only, seen in the light */
+  const WATERMARK = { enamel: { stops: ['#64EE61', '#32B8D3', '#1C5BB8'], angle: 0, density: 1 }, layers: [
+    { type: 'rosette', rIn: .04, rOut: .98, density: 46, k: 12, amplitude: .005, twist: .5 },
+    { type: 'rosette', rIn: .5, rOut: .98, density: 26, k: 36, amplitude: .012, twist: 1, taper: true }
+  ] };
+  SCREENS.home = p => {
+    const s = el('<canvas class="wm" aria-hidden="true"></canvas><div class="hb"></div>', 'home'); glassNav(s);
+    const body = $('.hb', s);
+    let wm = null;
+    const render = () => {
+      const pf = D.portfolio(), lim = D.limit(), fresh = !D.state.ledger.length, have = pf.positions.map(x => x.coin), rest = D.ORDER.filter(k => !have.includes(k));
+      const ops = D.state.ledger.slice(0, 3);
+      body.innerHTML = `
+      <header class="nav">
+        <button class="back" data-go="out">${ic('chevron-left')}<span>Накопления</span></button>
+        <h1 class="t">Крипта</h1>
+        <button class="iconb" data-go="profile" aria-label="Профиль крипты"><span>${ic('user')}</span></button>
+      </header>
+      ${fresh ? `
+      <div class="sec" style="padding-top:12px">
+        <div class="card next">
+          <p class="bs c3">Тест пройден · ${D.state.test.level}</p>
+          <h2 class="h3">Выберите первую монету</h2>
+          <p class="bs c2">BTC, ETH или USDT. Комиссия Сбера 0,5% входит в сумму — покажем её до подтверждения.</p>
+          <button class="btn btn-p" data-go="pick"><span>Выбрать монету</span></button>
+        </div>
+      </div>` : `
+      <section class="sum" aria-label="Стоимость активов">
+        <p class="bs c2 lbl">Стоимость активов</p>
+        <p class="amt" aria-label="${F.rub(pf.value).text}">${money(pf.value)}</p>
+        <p class="bs c2 res tn">${F.rub(pf.result, { sign: 1 }).text} · ${F.pct(pf.resultPct, { sign: 1 })} за всё время</p>
+      </section>
+      <div class="acts">
+        <button class="act btn btn-p" data-go="buy"><span>${ic('plus')}</span><span>Купить</span></button>
+        <button class="act btn btn-s" data-go="sell">${ic('minus')}<span>Продать</span></button>
+        <button class="act btn btn-s" data-go="send">${ic('arrow-up-right')}<span>Перевести</span></button>
+      </div>
+      <section class="sec" aria-labelledby="h-mine">
+        <div class="sech"><h2 class="h4" id="h-mine">Мои монеты</h2></div>
+        <div class="card rows">${pf.positions.map(x => `
+          <button class="row" data-coin="${x.coin}" aria-label="${D.COINS[x.coin].sym}: ${F.qty(x.qty, x.coin)}, ${F.rub(x.value).text}, результат за всё время ${F.rub(x.result, { sign: 1 }).text}">
+            <span class="ic" data-dial="${x.coin}"></span>
+            <span class="m"><b>${D.COINS[x.coin].sym}</b><span>${F.qty(x.qty, x.coin)}</span></span>
+            <span class="v"><b>${F.rub(x.value).text}</b><span>${F.rub(x.result, { sign: 1 }).text} · ${F.pct(x.resultPct)}</span></span>
+          </button>`).join('')}
+        </div>
+      </section>`}
+      ${rest.length ? `
+      <section class="sec" aria-labelledby="h-can">
+        <div class="sech"><h2 class="h4" id="h-can">Можно купить</h2></div>
+        <div class="card rows">${rest.map(k => `
+          <button class="row" data-coin="${k}" aria-label="${D.COINS[k].sym}, курс ${F.rub(D.market.rate[k]).text}, за день ${F.pct(D.dayChange(k), { sign: 1 })}">
+            <span class="ic" data-dial="${k}"></span>
+            <span class="m"><b>${D.COINS[k].sym}</b><span>${D.COINS[k].name}</span></span>
+            <span class="v"><b>${F.rub(D.market.rate[k], { whole: k !== 'usdt' }).text}</b><span>за день ${F.pct(D.dayChange(k), { sign: 1 })}</span></span>
+          </button>`).join('')}
+        </div>
+      </section>` : ''}
+      <section class="sec" aria-labelledby="h-lim">
+        <div class="card lim">
+          <div class="top"><h2 class="bm" id="h-lim">Лимит на ${lim.year}</h2><span class="bm tn">Доступно ${F.rub(lim.left, { whole: true }).text}</span></div>
+          <div class="scale" role="meter" aria-valuemin="0" aria-valuemax="${lim.cap}" aria-valuenow="${lim.used}" aria-label="Использовано ${F.rub(lim.used, { whole: true }).text} из ${F.rub(lim.cap, { whole: true }).text}"><i style="width:${(lim.share * 100).toFixed(2)}%"></i></div>
+          <p class="bxs c3 tn">Потрачено ${F.rub(lim.used, { whole: true }).text} из ${F.rub(lim.cap, { whole: true }).text} · лимит обновится 1&nbsp;января</p>
+        </div>
+      </section>
+      <section class="sec" aria-labelledby="h-book">
+        <div class="sech"><h2 class="h4" id="h-book">Книга операций</h2>${ops.length ? `<button class="link" data-go="ledger">Вся книга${ic('chevron-right')}</button>` : ''}</div>
+        <div class="card ${ops.length ? 'rows' : 'empty'}">${ops.length ? ops.map(o => `
+          <button class="row" data-op="${o.id}" aria-label="${D.KIND[o.kind]} ${D.COINS[o.coin].sym}, ${F.qty(o.qty, o.coin, { sign: 1 })}, ${F.rub(o.rub).text}, ${F.date(o.at)}">
+            <span class="ic" data-dial="${o.coin}"></span>
+            <span class="m"><b>${D.KIND[o.kind]} ${D.COINS[o.coin].sym}</b><span><span class="mono">№${String(o.n).padStart(6, '0')}</span> · ${F.date(o.at).split(',')[0]}</span></span>
+            <span class="v"><b>${F.qty(o.kind === 'buy' ? o.qty : -o.qty, o.coin, { sign: 1 })}</b><span>${F.rub(o.rub).text}</span></span>
+          </button>`).join('') : `<p class="bs c3">Здесь появится запись о первой покупке — с номером и печатью.</p>`}
+        </div>
+      </section>
+      <nav class="quiet" aria-label="Безопасность">
+        <button class="qrow" data-go="scam-call">${ic('phone-incoming')}<span>Мне звонили про крипту</span>${ic('chevron-right')}</button>
+        <button class="qrow" data-go="reserves">${ic('shield-check')}<span>Проверка резервов Сбера</span>${ic('chevron-right')}</button>
+      </nav>
+      <p class="foot bxs c3">Не застраховано АСВ. Сбер не советует, что покупать.</p>`;
+      s.querySelectorAll('[data-dial]').forEach(x => x.append(iconImg(x.dataset.dial)));
+      if (!wm) wm = G.mount($('.wm', s), WATERMARK, { plate: false, enamel: false, breathe: true, flow: true, width: 1.2 });
+    };
+    s.addEventListener('click', e => {
+      const g = e.target.closest('[data-go],[data-coin],[data-op]'); if (!g) return;
+      if (g.dataset.go === 'out') return toast('Это выход в «Накопления» СберБанк Онлайн');
+      if (g.dataset.go === 'buy') return go('pick');
+      if (g.dataset.go === 'sell') { const pf = D.portfolio(); return go('sell', { coin: (pf.positions.sort((a, b) => b.value - a.value)[0] || {}).coin }); }
+      go(g.dataset.go || (g.dataset.coin ? 'coin' : 'op'), { coin: g.dataset.coin, op: g.dataset.op });
+    });
+    /* live: figures follow the market; the layout stays put */
+    let raf = 0;
+    const off = [D.on('market', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(() => { const t = s.scrollTop; render(); s.scrollTop = t; }); }), D.on('portfolio', () => render())];
+    s.mounted = render;
+    s.cleanup = () => { off.forEach(f => f()); wm && wm.destroy(); };
+    return s;
+  };
+
+
+  /* ═════════ shared parts ═════════ */
+  const navBar = (title, right = '') => `<header class="nav"><button class="iconb nb" data-back aria-label="Назад"><span>${ic('chevron-left')}</span></button><h1 class="t">${title}</h1>${right || '<span></span>'}</header>`;
+  dev.addEventListener('click', e => { if (e.target.closest('[data-back]')) back(); });
+
+  /* ═════════ terms ═════════ */
+  SCREENS.terms = () => {
+    const s = el('', 'page'); glassNav(s);
+    let tab = 'new';
+    const render = () => {
+      s.innerHTML = `${navBar('Условия')}
+      <div class="pad">
+        <div class="segc" role="tablist" aria-label="Кому">
+          <button role="tab" data-tab="new" aria-selected="${tab === 'new'}">Начинающим</button>
+          <button role="tab" data-tab="qual" aria-selected="${tab === 'qual'}">Квалифицированным</button>
+        </div>
+        ${tab === 'new' ? `
+        <h2 class="h2 ttl">Что доступно начинающему инвестору</h2>
+        <div class="card list">
+          <div class="li-row"><span class="gi">${ic('coins')}</span><span><b>Три монеты</b><span>BTC, ETH и USDT. Купить, хранить, продать и перевести на свой кошелёк.</span></span></div>
+          <div class="li-row"><span class="gi">${ic('scale')}</span><span><b>Лимит 300 000 ₽ в год</b><span>Считаем по сумме списания с карты. Обновится 1&nbsp;января.</span></span></div>
+          <div class="li-row"><span class="gi">${ic('book-open')}</span><span><b>Тест из 5 карточек</b><span>Около двух минут. После каждого ответа — короткое пояснение.</span></span></div>
+          <div class="li-row"><span class="gi">${ic('shield')}</span><span><b>Не застраховано АСВ</b><span>Если курс упадёт, разницу никто не вернёт.</span></span></div>
+          <div class="li-row"><span class="gi">${ic('message-circle')}</span><span><b>Банк не советует</b><span>Сбер и GigaChat объясняют термины, но не говорят, что и когда покупать.</span></span></div>
+        </div>` : `
+        <h2 class="h2 ttl">Квалифицированным инвесторам</h2>
+        <div class="card list">
+          <div class="li-row"><span class="gi">${ic('scale')}</span><span><b>Без годового лимита</b><span>Статус подтверждают документами — так же, как в СберИнвестициях.</span></span></div>
+          <div class="li-row"><span class="gi">${ic('info')}</span><span><b>Правила задаёт ЦБ</b><span>Список монет для квалифицированных инвесторов не утверждён. В концепте показан путь начинающего.</span></span></div>
+        </div>`}
+      </div>
+      <div class="dock">
+        ${tab === 'new' ? `<button class="btn btn-p" data-act="test"><span>Пройти тест</span></button>` : `<button class="btn btn-s" data-act="qual">Подтвердить статус</button>`}
+      </div>`;
+      s.querySelectorAll('[data-dial]').forEach(x => x.append(dialImg(x.dataset.dial, 28)));
+    };
+    s.addEventListener('click', e => {
+      const t = e.target.closest('[data-tab]'); if (t) { tab = t.dataset.tab; render(); return; }
+      const a = e.target.closest('[data-act]'); if (!a) return;
+      if (a.dataset.act === 'test') go('test', { step: 1 });
+      if (a.dataset.act === 'qual') toast('Подтверждение статуса — в СберИнвестициях');
+    });
+    s.mounted = render;
+    return s;
+  };
+
+  /* ═════════ test: five cards, one question each ═════════ */
+  const QUIZ = [
+    { q: 'Курс BTC за неделю упал на 30%. Что это значит для вас?', a: ['Мои монеты стоят на 30% меньше', 'Сбер вернёт разницу', 'В банке так не бывает'], ok: 0,
+      why: 'Криптовалюта не застрахована АСВ, и банк не компенсирует падение курса. Курс может упасть и сильнее.' },
+    { q: 'Вы отправили USDT на чужой адрес по ошибке. Можно отменить?', a: ['Нет, перевод в сети нельзя отменить', 'Да, через поддержку Сбера', 'Да, в течение суток'], ok: 0,
+      why: 'Запись в блокчейне не переписать. Поэтому перед переводом мы проверяем адрес и сеть вместе с вами.' },
+    { q: 'Звонит «сотрудник банка» и просит перевести монеты на «безопасный счёт».', a: ['Положу трубку и проверю в приложении', 'Переведу — это же банк'], ok: 0,
+      why: 'Сбер никогда не просит переводить монеты по телефону. В приложении есть кнопка «Мне звонили про крипту».' },
+    { q: 'Можно ли оплатить кофе в BTC?', a: ['Нет, платить криптовалютой в России нельзя', 'Да, если кафе принимает'], ok: 0,
+      why: 'Криптовалюта — не платёжное средство внутри страны. Её можно купить, хранить, продать и перевести.' },
+    { q: 'Вы спросили GigaChat, какую монету купить. Что он ответит?', a: ['Объяснит термины, но не посоветует', 'Подберёт монету под меня'], ok: 0,
+      why: 'Банк не даёт инвестиционных советов. Решение о покупке — только ваше.' }
+  ];
+  SCREENS.test = p => {
+    let n = Math.min(5, Math.max(1, +p.step || 1)), picked = null;
+    const s = el('', 'page test'); let dial = null;
+    const render = () => {
+      const Q = QUIZ[n - 1], done = picked != null;
+      s.innerHTML = `${navBar(`Тест · ${n} из 5`)}
+      <div class="pad">
+        <div class="qprog" aria-hidden="true">${QUIZ.map((_, i) => `<i class="${i < n - (done ? 0 : 1) ? 'on' : ''}"></i>`).join('')}</div>
+        <div class="card qcard">
+          <canvas class="qart" aria-hidden="true"></canvas>
+          <h2 class="h3">${Q.q}</h2>
+          <div class="ans" role="radiogroup" aria-label="Варианты ответа">${Q.a.map((t, i) => {
+            const st = !done ? '' : i === Q.ok ? 'ok' : i === picked ? 'no' : 'dim';
+            return `<button class="an ${st}" role="radio" aria-checked="${i === picked}" data-a="${i}" ${done ? 'disabled' : ''}><span>${t}</span>${st === 'ok' ? ic('check') : st === 'no' ? ic('x') : ''}</button>`;
+          }).join('')}</div>
+          ${done ? `<div class="why" role="status"><b>${picked === Q.ok ? 'Верно.' : 'Не совсем.'}</b> ${Q.why}</div>` : ''}
+        </div>
+      </div>
+      <div class="dock">${done ? `<button class="btn btn-p" data-act="next"><span>${n < 5 ? 'Дальше' : 'Завершить тест'}</span></button>` : `<p class="bs c3 hint">Выберите ответ</p>`}</div>`;
+      if (dial) dial.destroy();
+      dial = G.mount($('.qart', s), G.seedFromString('quiz-' + n), { enamel: false, breathe: true });
+      history.replaceState(null, '', hashOf('test', { step: n }));
+    };
+    s.addEventListener('click', e => {
+      const a = e.target.closest('[data-a]'); if (a && picked == null) { picked = +a.dataset.a; render(); const w = $('.why', s); w && w.scrollIntoView({ block: 'nearest', behavior: RM.matches ? 'auto' : 'smooth' }); return; }
+      const nx = e.target.closest('[data-act=next]'); if (!nx) return;
+      if (n < 5) { n++; picked = null; render(); s.scrollTop = 0; } else { D.passTest(); go('test-passed', {}, { replace: true }); }
+    });
+    s.mounted = render;
+    s.cleanup = () => dial && dial.destroy();
+    return s;
+  };
+
+  /* ═════════ test passed: the seal is engraved, then enamelled ═════════ */
+  SCREENS['test-passed'] = () => {
+    if (!D.state.test.passed) D.passTest();
+    const lim = D.limit();
+    const s = el(`${navBar('')}
+      <div class="pad center">
+        <canvas class="seal-xl" role="img" aria-label="Печать «Тест пройден»"></canvas>
+        <h2 class="h1">Тест пройден</h2>
+        <p class="bm c2">Статус: ${D.state.test.level.toLowerCase()}. Можно покупать BTC, ETH и USDT.</p>
+        <div class="card lim wide">
+          <div class="top"><span class="bm">Доступно в ${lim.year}</span><span class="bm tn">${F.rub(lim.left, { whole: true }).text}</span></div>
+          <div class="scale" role="meter" aria-valuemin="0" aria-valuemax="${lim.cap}" aria-valuenow="${lim.used}" aria-label="Использовано ${F.rub(lim.used, { whole: true }).text} из ${F.rub(lim.cap, { whole: true }).text}"><i style="width:${(lim.share * 100).toFixed(2)}%"></i></div>
+          <p class="bxs c3">Лимит на покупки для начинающего инвестора · обновится 1&nbsp;января</p>
+        </div>
+      </div>
+      <div class="dock"><button class="btn btn-p" data-act="pick"><span>Выбрать монету</span></button></div>`, 'page passed');
+    let dial = null;
+    s.addEventListener('click', e => { if (e.target.closest('[data-act=pick]')) go('pick'); });
+    s.mounted = () => {
+      /* a seal of its own: calm rays, a six-part band like the ring of the Sber sign, the check in the centre */
+      const P = { glyph: 'check', enamel: { stops: ['#64EE61', '#32B8D3', '#1C5BB8'], angle: -42, density: .88 }, layers: [
+        { type: 'rosette', rIn: .34, rOut: .76, density: 40, k: 24, amplitude: .022, twist: 1, taper: true },
+        { type: 'rosette', rIn: .79, rOut: .79, density: 1, k: 1, amplitude: 0 },
+        { type: 'rosette', rIn: .815, rOut: .905, density: 10, k: 96, amplitude: .016, twist: 1, sectors: 6, gap: .12, sectorRot: -Math.PI / 2 },
+        { type: 'rosette', rIn: .93, rOut: .93, density: 1, k: 1, amplitude: 0 }
+      ] };
+      dial = G.mount($('.seal-xl', s), P, { fill: 0 });
+      dial.engrave(1800).then(() => dial.fillTo(1, 700));
+    };
+    s.cleanup = () => dial && dial.destroy();
+    return s;
+  };
+
+  /* ═════════ pick a coin: three equal dials ═════════ */
+  SCREENS.pick = () => {
+    const s = el('', 'page'); glassNav(s);
+    const render = () => {
+      s.innerHTML = `${navBar('')}
+      <div class="pad">
+        <h2 class="h1 ttl0">Выберите монету</h2>
+        <p class="bm c2 sub">Сумму и комиссию увидите до подтверждения.</p>
+        <div class="picks">${D.ORDER.map(k => `
+          <button class="card pk" data-coin="${k}" aria-label="${D.COINS[k].sym}, курс ${F.rub(D.market.rate[k]).text}, за день ${F.pct(D.dayChange(k), { sign: 1 })}">
+            <span class="pkd" data-dial="${k}"></span>
+            <span class="m"><b class="h4">${D.COINS[k].sym}</b><span class="bs c3">${D.COINS[k].name}</span></span>
+            <span class="v"><b class="bm tn">${F.rub(D.market.rate[k], { whole: k !== 'usdt' }).text}</b><span class="bs c3 tn">за день ${F.pct(D.dayChange(k), { sign: 1 })}</span></span>
+          </button>`).join('')}
+        </div>
+        <p class="bxs c3 note">Курс меняется. Точную сумму в монетах зафиксируем на 30 секунд перед подтверждением.</p>
+      </div>`;
+      s.querySelectorAll('[data-dial]').forEach(x => x.append(dialImg(x.dataset.dial, 64)));
+    };
+    s.addEventListener('click', e => { const c = e.target.closest('[data-coin]'); if (c) go('buy', { coin: c.dataset.coin }); });
+    let raf = 0; const off = D.on('market', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(render); });
+    s.mounted = render; s.cleanup = off;
+    return s;
+  };
+
+  /* ═════════ sheet: glass over steel, a system layer ═════════ */
+  let sheetEl = null;
+  const closeSheet = () => {
+    if (!sheetEl) return; const x = sheetEl; sheetEl = null;
+    x.classList.remove('on'); x.cleanup && x.cleanup();
+    setTimeout(() => x.remove(), RM.matches ? 0 : 380);
+  };
+  const openSheet = (html, label) => {
+    closeSheet();
+    const w = document.createElement('div'); w.className = 'sheetw';
+    w.innerHTML = `<div class="scrim" data-close></div><div class="sheet" role="dialog" aria-modal="true" aria-label="${label}"><div class="grab" aria-hidden="true"></div><div class="sbody">${html}</div></div>`;
+    dev.append(w); sheetEl = w; w.getBoundingClientRect(); w.classList.add('on');
+    w.addEventListener('click', e => { if (e.target.closest('[data-close]')) closeSheet(); });
+    /* drag the grabber down to close */
+    const sh = $('.sheet', w); let y0 = null;
+    sh.addEventListener('pointerdown', e => { if (e.target.closest('.grab') || e.clientY - sh.getBoundingClientRect().top < 28) { y0 = e.clientY; sh.style.transition = 'none'; } });
+    addEventListener('pointermove', e => { if (y0 != null) sh.style.transform = `translateY(${Math.max(0, e.clientY - y0)}px)`; });
+    addEventListener('pointerup', e => { if (y0 == null) return; const d = e.clientY - y0; y0 = null; sh.style.transition = sh.style.transform = ''; if (d > 90) closeSheet(); });
+    return w;
+  };
+  addEventListener('keydown', e => { if (e.key === 'Escape' && sheetEl) { e.stopImmediatePropagation(); closeSheet(); } }, true);
+
+  /* Face ID: a system layer; a neutral face glyph, not Apple's */
+  const faceId = () => new Promise(res => {
+    const f = document.createElement('div'); f.className = 'faceid'; f.setAttribute('role', 'status'); f.setAttribute('aria-label', 'Подтверждение по лицу');
+    f.innerHTML = `<div class="fbox">${ic('scan-face')}<span>Face ID</span></div>`;
+    dev.append(f); f.getBoundingClientRect(); f.classList.add('on');
+    setTimeout(() => { f.classList.add('ok'); $('.fbox', f).innerHTML = `${ic('check')}<span>Готово</span>`; }, RM.matches ? 200 : 900);
+    setTimeout(() => { f.classList.remove('on'); setTimeout(() => f.remove(), 250); res(); }, RM.matches ? 500 : 1400);
+  });
+
+  /* hold to confirm: the outline is engraved while you hold */
+  const holdBtn = (label, onDone) => {
+    const b = document.createElement('button'); b.className = 'btn btn-p hold'; b.setAttribute('aria-label', label + '. Удерживайте');
+    b.innerHTML = `<svg class="ring" aria-hidden="true"><rect x="1" y="1" rx="15" pathLength="100"/></svg><span>${label}</span><small>удерживайте</small>`;
+    let t = 0, on = false;
+    const fitR = () => { const r = b.getBoundingClientRect(), k = b.offsetWidth / (r.width || 1), rc = $('rect', b); rc.setAttribute('width', b.offsetWidth - 2); rc.setAttribute('height', b.offsetHeight - 2); };
+    const start = e => { if (b.disabled || on) return; e && e.preventDefault(); fitR(); on = true; b.classList.add('holding'); t = setTimeout(() => { on = false; b.classList.remove('holding'); b.classList.add('held'); onDone(); }, RM.matches ? 300 : 1100); };
+    const stop = () => { if (!on) return; on = false; clearTimeout(t); b.classList.remove('holding'); };
+    b.addEventListener('pointerdown', start); b.addEventListener('pointerup', stop); b.addEventListener('pointerleave', stop); b.addEventListener('pointercancel', stop);
+    b.addEventListener('keydown', e => { if ((e.key === ' ' || e.key === 'Enter') && !e.repeat) start(e); });
+    b.addEventListener('keyup', e => { if (e.key === ' ' || e.key === 'Enter') stop(); });
+    b.addEventListener('click', e => e.preventDefault());
+    return b;
+  };
+
+  /* ═════════ buy and sell: one form ═════════ */
+  const parseNum = v => { const n = parseFloat(String(v).replace(/[\s  ]/g, '').replace(',', '.')); return isFinite(n) ? n : 0; };
+  const groupInput = v => { let [i, f] = String(v).replace(/[^\d,]/g, '').split(','); i = (i || '').replace(/^0+(?=\d)/, ''); return i.replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + (f != null ? ',' + f : ''); };
+  const tradeScreen = kind => p => {
+    const k = D.COINS[p.coin] ? p.coin : 'btc', C = D.COINS[k], buy = kind === 'buy';
+    if (buy && !D.state.test.passed) { setTimeout(() => go('terms', {}, { replace: true })); return el('', 'page'); }
+    let unit = 'rub', raw = buy ? '10 000' : '';
+    const s = el('', 'page trade');
+    const pos = () => D.position(k);
+    /* the numbers for what is typed, at the live rate; the sheet will fix them */
+    const calc = () => {
+      const v = parseNum(raw), rate = D.market.rate[k];
+      if (buy) {
+        const debit = unit === 'rub' ? v : D.fmt.r2(Math.ceil(v * rate / (1 - D.FEE) * 100) / 100);
+        return { q: debit > 0 ? D.makeQuote('buy', k, debit) : null, debit };
+      }
+      const have = pos() ? pos().qty : 0, qty = unit === 'coin' ? v : D.fmt.floorDp(v / rate / (1 - D.FEE), C.dp);
+      return { q: qty > 0 ? D.makeQuote('sell', k, Math.min(qty, have || qty)) : null, qty, have };
+    };
+    const state = () => {
+      const c = calc(), lim = D.limit();
+      if (buy) {
+        if (!c.q) return { c, ok: false, line: `Доступно до конца года: ${F.rub(lim.left, { whole: true }).text}` };
+        if (c.debit > lim.left) return { c, ok: false, line: `Доступно до конца года: ${F.rub(lim.left, { whole: true }).text}`, over: true };
+        return { c, ok: true, line: `Доступно до конца года: ${F.rub(lim.left, { whole: true }).text}` };
+      }
+      if (!c.have) return { c, ok: false, line: `У вас нет ${C.sym}` };
+      if (!c.q) return { c, ok: false, line: `У вас ${F.qty(c.have, k)} ≈ ${F.rub(c.have * D.market.rate[k]).text}` };
+      if (c.qty > c.have + 1e-12) return { c, ok: false, line: `Недостаточно монет: у вас ${F.qty(c.have, k)}`, over: true };
+      return { c, ok: true, line: `У вас ${F.qty(c.have, k)} ≈ ${F.rub(c.have * D.market.rate[k]).text}` };
+    };
+    const echo = st => {
+      const q = st.c.q;
+      if (!q) return '&nbsp;';
+      return buy ? (unit === 'rub' ? `Получите ≈ ${F.qty(q.qty, k)}` : `Спишем ${F.rub(q.debit).text}`)
+                 : (unit === 'coin' ? `На карту ≈ ${F.rub(q.credit).text}` : `Продадите ≈ ${F.qty(q.qty, k)}`);
+    };
+    const chips = () => buy ? (unit === 'rub' ? [1000, 5000, 10000, 50000].map(v => [v, F.rub(v, { whole: true }).text]) : [])
+      : [[.25, '25%'], [.5, '50%'], [1, 'Всё']];
+    const render = () => {
+      const st = state();
+      s.innerHTML = `${navBar(buy ? 'Покупка' : 'Продажа')}
+      <div class="pad">
+        <div class="coinline"><span data-dial="${k}"></span><span><b>${C.sym}</b><span class="tn" data-rate>1 ${C.sym} = ${F.rub(D.market.rate[k], { whole: k !== 'usdt' }).text}</span></span></div>
+        <div class="segc unit" role="tablist" aria-label="Единица суммы">
+          <button role="tab" data-unit="rub" aria-selected="${unit === 'rub'}">в рублях</button>
+          <button role="tab" data-unit="coin" aria-selected="${unit === 'coin'}">в ${C.sym}</button>
+        </div>
+        <label class="amtin">
+          <span class="sr">${buy ? 'Сумма покупки' : 'Сумма продажи'} ${unit === 'rub' ? 'в рублях' : 'в ' + C.sym}</span>
+          <input inputmode="decimal" autocomplete="off" value="${raw}" placeholder="0" aria-describedby="echo lim">
+          <span class="u">${unit === 'rub' ? '₽' : C.sym}</span><span class="meas" aria-hidden="true"></span>
+        </label>
+        <p class="echo bm c2 tn" id="echo" aria-live="polite">${echo(st)}</p>
+        <div class="chips">${chips().map(([v, t]) => `<button class="chip" data-chip="${v}">${t}</button>`).join('')}</div>
+        <p class="bs ${st.over ? 'c1' : 'c3'} limline tn" id="lim">${st.line}</p>
+        ${buy ? `<div class="srcrow bs c2">${ic('credit-card')}<span>Спишем с карты •• 4417 · комиссия Сбера 0,5% внутри суммы</span></div>` : `<div class="srcrow bs c2">${ic('credit-card')}<span>Деньги придут на карту •• 4417 · комиссия Сбера 0,5%</span></div>`}
+      </div>
+      <div class="dock"><button class="btn btn-p" data-act="go" ${st.ok ? '' : 'disabled'}><span>Продолжить</span></button></div>`;
+      s.querySelectorAll('[data-dial]').forEach(x => x.append(iconImg(x.dataset.dial)));
+      const inp = $('input', s), meas = $('.meas', s);
+      const size = () => { meas.textContent = inp.value || '0'; inp.style.width = Math.ceil(meas.getBoundingClientRect().width / (dev.getBoundingClientRect().width / dev.offsetWidth) + 12) + 'px'; };
+      size(); inp.addEventListener('input', size);
+      inp.addEventListener('input', () => { const pos0 = inp.value.length - inp.selectionStart; raw = unit === 'rub' ? groupInput(inp.value) : inp.value.replace(/[^\d,]/g, ''); inp.value = raw; const c = Math.max(0, raw.length - pos0); inp.setSelectionRange(c, c); soft(); });
+    };
+    /* update the figures under the field without touching the field */
+    const soft = () => { const st = state(); $('#echo', s).innerHTML = echo(st); const l = $('#lim', s); l.textContent = st.line; l.className = `bs ${st.over ? 'c1' : 'c3'} limline tn`; $('[data-act=go]', s).disabled = !st.ok; const r = $('[data-rate]', s); if (r) r.textContent = `1 ${C.sym} = ${F.rub(D.market.rate[k], { whole: k !== 'usdt' }).text}`; };
+    s.addEventListener('click', e => {
+      const u = e.target.closest('[data-unit]'); if (u && u.dataset.unit !== unit) { unit = u.dataset.unit; raw = ''; render(); $('input', s).focus(); return; }
+      const ch = e.target.closest('[data-chip]');
+      if (ch) { const v = +ch.dataset.chip; if (buy) raw = groupInput(String(v)); else { const h = pos() ? pos().qty : 0; unit = 'coin'; raw = String(D.fmt.floorDp(h * v, C.dp)).replace('.', ','); } render(); return; }
+      if (e.target.closest('[data-act=go]')) { const st = state(); if (st.ok) review(kind, k, st.c.q); }
+    });
+    const off = D.on('market', () => soft());
+    s.mounted = render; s.cleanup = off;
+    return s;
+  };
+  SCREENS.buy = tradeScreen('buy');
+  SCREENS.sell = tradeScreen('sell');
+
+  /* ═════════ review sheet: the quote is fixed for 30 s ═════════ */
+  let QUOTE = null;
+  const review = (kind, k, draft) => {
+    const C = D.COINS[k], buy = kind === 'buy';
+    const fresh = () => buy ? D.makeQuote('buy', k, draft.debit) : D.makeQuote('sell', k, draft.qty);
+    QUOTE = fresh();
+    let renewed = false, tm = 0;
+    const rows = q => buy ? [
+      ['Курс', `1 ${C.sym} = ${F.rub(q.rate, { whole: k !== 'usdt' }).text}`],
+      ['Спишем с карты', F.rub(q.debit).text],
+      ['Комиссия Сбера 0,5%', F.rub(q.fee).text],
+      ['В монеты', F.rub(q.net).text],
+      ['Получите', F.qty(q.qty, k), 'big'],
+      ['Лимит после покупки', F.rub(q.limitAfter, { whole: q.limitAfter % 1 === 0 }).text]
+    ] : [
+      ['Курс', `1 ${C.sym} = ${F.rub(q.rate, { whole: k !== 'usdt' }).text}`],
+      ['Продадите', F.qty(q.qty, k)],
+      ['Сумма продажи', F.rub(q.gross).text],
+      ['Комиссия Сбера 0,5%', F.rub(q.fee).text],
+      ['Придёт на карту •• 4417', F.rub(q.credit).text, 'big']
+    ];
+    const html = () => `
+      <h2 class="h3 st">${buy ? 'Проверьте покупку' : 'Проверьте продажу'}</h2>
+      <div class="fix ${renewed ? 'renew' : ''}" aria-live="polite">
+        <svg class="tring" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" pathLength="100"/></svg>
+        <span class="bs" data-fixl>${renewed ? 'Курс обновился — проверьте новые цифры' : 'Курс зафиксирован'}</span><span class="bs c3 tn mono" data-sec>0:30</span>
+      </div>
+      <dl class="ledger">${rows(QUOTE).map(([a, b, c]) => `<div class="${c || ''}"><dt>${a}</dt><dd class="tn">${b}</dd></div>`).join('')}</dl>
+      <p class="bxs c3 fine">${buy ? `Не застраховано АСВ. Количество монет округлено вниз до ${C.dp} знаков. Лимит считаем по сумме списания.` : 'Не застраховано АСВ. Продажа не возвращает годовой лимит на покупки.'}</p>
+      <div class="hb-slot"></div>`;
+    const w = openSheet(html(), buy ? 'Проверьте покупку' : 'Проверьте продажу');
+    const mount = () => {
+      const slot = $('.hb-slot', w);
+      slot.replaceWith(holdBtn(renewed ? 'Подтвердить по новому курсу' : buy ? `Купить ${C.sym}` : `Продать ${C.sym}`, async () => {
+        clearInterval(tm);
+        const q = QUOTE; await faceId();
+        const op = D.confirm(q); QUOTE = null; closeSheet();
+        go('done', { op: op.id });
+      }));
+      tick();
+    };
+    const tick = () => {
+      const left = Math.max(0, QUOTE.expiresAt - Date.now()), sec = Math.ceil(left / 1000);
+      const sEl = $('[data-sec]', w); if (!sEl) return;
+      sEl.textContent = `0:${String(sec).padStart(2, '0')}`;
+      $('.tring circle', w).style.strokeDashoffset = 100 - left / D.QUOTE_TTL * 100;
+      if (left <= 0) { renewed = true; QUOTE = fresh(); $('.sbody', w).innerHTML = html(); mount(); }
+    };
+    mount(); tm = setInterval(tick, 250);
+    w.cleanup = () => { clearInterval(tm); QUOTE = null; };
+  };
+  /* demo: let 30 seconds pass */
+  const skip30 = () => { if (QUOTE) QUOTE.expiresAt = Date.now() - 1; else toast('Откройте шторку «Проверьте покупку»'); };
+
+  /* ═════════ done: the seal is cut, enamel fills it, the coins are yours ═════════ */
+  SCREENS.done = p => {
+    const op = D.state.ledger.find(o => o.id === p.op) || D.state.ledger[0];
+    const C = D.COINS[op.coin], buy = op.kind === 'buy', lim = D.limit();
+    const s = el(`
+      <div class="pad center done">
+        <canvas class="seal-xl big" role="img" aria-label="Печать операции ${op.id}"></canvas>
+        <p class="yours" aria-live="polite"><span class="tn">${buy ? F.qty(op.qty, op.coin) : F.rub(op.credit).text}</span> — ${buy ? 'ваши' : 'на карте'}</p>
+        <p class="bs c3"><span class="mono">№${String(op.n).padStart(6, '0')}</span> · ${D.KIND[op.kind]} ${C.sym} · ${F.date(op.at)}</p>
+        <dl class="ledger card">${(buy ? [
+          ['Курс', `1 ${C.sym} = ${F.rub(op.rate, { whole: op.coin !== 'usdt' }).text}`],
+          ['Списано с карты', F.rub(op.debit).text],
+          ['Комиссия Сбера', F.rub(op.fee).text],
+          ['В монеты', F.rub(op.net).text],
+          ['Лимит на ' + lim.year, `осталось ${F.rub(op.limitAfter, { whole: op.limitAfter % 1 === 0 }).text}`]
+        ] : [
+          ['Курс', `1 ${C.sym} = ${F.rub(op.rate, { whole: op.coin !== 'usdt' }).text}`],
+          ['Продано', F.qty(op.qty, op.coin)],
+          ['Комиссия Сбера', F.rub(op.fee).text],
+          ['На карту', F.rub(op.credit).text]
+        ]).map(([a, b]) => `<div><dt>${a}</dt><dd class="tn">${b}</dd></div>`).join('')}</dl>
+      </div>
+      <div class="dock col"><button class="btn btn-p" data-act="ok"><span>Готово</span></button><button class="btn tert" data-act="coin">К монете</button></div>`, 'page');
+    let dial = null;
+    s.addEventListener('click', e => {
+      const a = e.target.closest('[data-act]'); if (!a) return;
+      if (a.dataset.act === 'ok') reset('home', {});
+      if (a.dataset.act === 'coin') { reset('home', {}); go('coin', { coin: op.coin }); }
+    });
+    s.mounted = () => {
+      const y = $('.yours', s);
+      if (MEDAL[op.coin] && window.Medal) {
+        dial = Medal.mount($('.seal-xl', s), Object.assign({ engrave: !RM.matches }, MEDAL[op.coin]));
+        setTimeout(() => y.classList.add('on'), RM.matches ? 0 : 3600);
+        return;
+      }
+      dial = G.mount($('.seal-xl', s), G.seedFromString(op.id, op.coin), { fill: 0 });
+      dial.engrave(1200, .45).then(() => { dial.fillTo(1, 600); setTimeout(() => y.classList.add('on'), RM.matches ? 0 : 450); });
+    };
+    s.cleanup = () => dial && dial.destroy();
+    return s;
+  };
+
+  /* ═════════ start: deep link or the scene the demo is in ═════════ */
+  const parse = () => {
+    const h = location.hash.slice(1), [path, qs] = h.split('?'), [id, step] = path.split('/'), q = new URLSearchParams(qs || '');
+    return { id: id || '', step, state: q.get('state') || undefined };
+  };
+  /* a screen opened by its link gets the state it needs */
+  const SCENE_FOR = { terms: 'new', test: 'new', 'test-passed': 'fresh', pick: 'fresh', buy: 'fresh' };
+  const syncDemo = () => document.querySelectorAll('#demo button').forEach(b => b.setAttribute('aria-pressed', b.dataset.scene === D.scene));
+  const boot = () => {
+    const r = parse();
+    if (r.id === 'home') { D.setScene(r.state === 'fresh' ? 'fresh' : 'demo'); reset('home', { state: r.state }); }
+    else if (r.id === 'onboarding' || !r.id) { D.setScene('new'); reset('onboarding', { step: r.step || 1 }); }
+    else { D.setScene(SCENE_FOR[r.id] || 'demo'); reset(r.id, { step: r.step, coin: r.step, op: r.step }); }
+    syncDemo();
+  };
+  $('#demo').addEventListener('click', e => {
+    if (e.target.closest('[data-demo=skip30]')) { skip30(); return; }
+    const b = e.target.closest('[data-scene]'); if (!b) return;
+    const sc = b.dataset.scene; D.setScene(sc);
+    if (sc === 'new') reset('onboarding', { step: 1 }); else reset('home', { state: sc === 'fresh' ? 'fresh' : undefined });
+    syncDemo();
+  });
+  addEventListener('hashchange', boot);
+  D.start();
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(boot);
+})();
+</script>
+</body>
+</html>

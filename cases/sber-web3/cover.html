@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Сбер Крипто — обложка</title>
+<link rel="preconnect" href="https://cdn-app.sberdevices.ru" crossorigin>
+<link rel="stylesheet" href="https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansTextMono.0.2.0.css">
+<style>
+*{margin:0;padding:0}
+html,body{width:100%;height:100%;background:#000;overflow:hidden}
+canvas{display:block;width:100vw;height:100vh}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+/* the Sber mark set in characters: deep black, the logo gradient running through the glyphs.
+   ?cell= sets the character size in px; the mark fills ~72% of the shorter side */
+(async () => {
+  const MARK_D = 'M19.065 9.98859C19.065 9.40309 19.012 8.82959 18.912 8.27309L16.86 9.79209C16.8615 9.85709 16.8625 9.92309 16.8625 9.98859C16.8625 14.0486 13.574 17.3521 9.5325 17.3521C5.49051 17.3521 2.202 14.0491 2.202 9.98859C2.202 5.92859 5.49051 2.62509 9.53201 2.62509C11.064 2.62509 12.4875 3.10009 13.665 3.91009L15.519 2.53759C13.8825 1.20909 11.8 0.413086 9.5325 0.413086C4.26749 0.413086 0 4.70009 0 9.98859C0 15.2771 4.26801 19.5641 9.5325 19.5641C14.797 19.5641 19.0645 15.2771 19.0645 9.98909L19.065 9.98859ZM5.90677 7.43339L9.54678 9.71839L17.1128 4.13389C17.5643 4.71889 17.9503 5.35689 18.2588 6.03739L9.54678 12.4674L5.90677 10.1824V7.43339Z';
+  const q = new URLSearchParams(location.search);
+  try { await document.fonts.load('400 20px "SB Sans Text Mono"'); await document.fonts.load('700 20px "SB Sans Text Mono"'); } catch (_) {}
+
+  const cv = document.getElementById('c'), W = innerWidth, H = innerHeight, dpr = Math.min(3, +(q.get('dpr') || devicePixelRatio || 1));
+  cv.width = W * dpr; cv.height = H * dpr;
+  const g = cv.getContext('2d'); g.scale(dpr, dpr);
+  g.fillStyle = '#000'; g.fillRect(0, 0, W, H);
+
+  /* the mask: the mark centred, 72% of the shorter side */
+  const m = document.createElement('canvas'); m.width = W; m.height = H;
+  const mg = m.getContext('2d'), size = Math.min(W, H) * (+(q.get('size') || .72)), sc = size / 20;
+  mg.translate(W / 2 - 9.5325 * sc, H / 2 - 9.9886 * sc); mg.scale(sc, sc); mg.fill(new Path2D(MARK_D), 'evenodd');
+  const mask = mg.getImageData(0, 0, W, H).data;
+  const inside = (x, y) => x >= 0 && y >= 0 && x < W && y < H && mask[((y | 0) * W + (x | 0)) * 4 + 3] > 127;
+
+  /* a seeded random, so the cover is the same every time */
+  let h = 20261105; const r = () => ((h = Math.imul(h ^ (h >>> 15), 2246822507) ^ Math.imul(h ^ (h >>> 13), 3266489909)) >>> 0) / 4294967296;
+
+  /* the logo gradient, from the light green at the top left to the azure at the bottom right */
+  const L = [[0, [140, 250, 120]], [.4, [61, 210, 108]], [.75, [33, 170, 150]], [1, [50, 184, 211]]];
+  const col = t => { for (let i = 1; i < L.length; i++) if (t <= L[i][0]) { const [a, ca] = L[i - 1], [b, cb] = L[i], k = (t - a) / (b - a); return ca.map((v, j) => Math.round(v + (cb[j] - v) * k)); } return L[L.length - 1][1]; };
+
+  const fs = +(q.get('cell') || Math.max(8, Math.min(W, H) / 78)), cell = fs * .64, lh = fs * 1.08;
+  const CH = '01СБЕР₽#@8%';
+  g.textAlign = 'center'; g.textBaseline = 'middle';
+  const x0 = W / 2 - size / 2, y0 = H / 2 - size / 2;
+  for (let y = lh / 2; y < H; y += lh) for (let x = cell / 2; x < W; x += cell) {
+    if (!inside(x, y)) continue;
+    const t = Math.max(0, Math.min(1, ((x - x0) * .9 + (y - y0) * 1.1) / (size * 1.75)));
+    const [cr, cg, cb] = col(t), bold = r() > .7, a = .7 + r() * .3;
+    g.font = `${bold ? 700 : 400} ${fs}px "SB Sans Text Mono", ui-monospace, Menlo, monospace`;
+    g.fillStyle = `rgba(${cr},${cg},${cb},${a.toFixed(2)})`;
+    g.fillText(CH[(r() * CH.length) | 0], x, y);
+  }
+
+  /* a soft green breath under the mark, very low, so the black stays deep */
+  const glow = g.createRadialGradient(W / 2, H / 2, size * .2, W / 2, H / 2, size * .85);
+  glow.addColorStop(0, 'rgba(61,210,108,.035)'); glow.addColorStop(1, 'rgba(61,210,108,0)');
+  g.globalCompositeOperation = 'lighter'; g.fillStyle = glow; g.fillRect(0, 0, W, H); g.globalCompositeOperation = 'source-over';
+  document.body.dataset.ready = '1';
+})();
+</script>
+</body>
+</html>

@@ -10,7 +10,7 @@ const ZAI = { key: process.env.ZAI_API_KEY, url: 'https://api.z.ai/api/paas/v4/c
   models: [...new Set([process.env.ZAI_MODEL, 'glm-4.7-flash', 'glm-4.5-flash'].filter(Boolean))],
   extra: { thinking: { type: 'disabled' } }, wait: 12000 };
 
-const SYSTEM = `Ты — ИИ-ассистент на сайте vasnev.art. Отвечаешь посетителям (рекрутерам, нанимающим менеджерам, заказчикам) на вопросы о Романе Васнёве, продуктовом дизайнере.
+const SYSTEM = `Ты — ИИ-ассистент на сайте vasnev.art. Отвечаешь посетителям (рекрутерам, нанимающим менеджерам, заказчикам) на вопросы о Романе Васнёве, Product Builder / Product Designer.
 
 Правила:
 - Говори от первого лица, как сам Роман: «я», «мой опыт», «я сделал», «напишите мне в Telegram @RomanVasnev». Не говори о Романе в третьем лице.

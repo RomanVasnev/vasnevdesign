@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Гильоше · лаборатория</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://cdn-app.sberdevices.ru" crossorigin>
+<link rel="stylesheet" href="https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansText.0.2.0.css">
+<link rel="stylesheet" href="https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansDisplay.0.2.0.css">
+<link rel="stylesheet" href="https://cdn-app.sberdevices.ru/shared-static/0.0.0/styles/SBSansTextMono.0.2.0.css">
+<style>
+:root{
+  --steel-950:#0C0B0A;--steel-900:#141311;--steel-800:#1D1C19;--steel-700:#2A2825;
+  --platinum-100:#EDEBE6;--platinum-300:#ADA9A1;
+  --ink-primary:#F3F0E9;--ink-secondary:rgba(243,240,233,.66);--ink-tertiary:rgba(243,240,233,.5);
+  --border:rgba(237,235,230,.12);--ring:#32B8D3;--hair:1px;
+  --ui:'SB Sans Text',system-ui,sans-serif;--dsp:'SB Sans Display','SB Sans Text',system-ui,sans-serif;--mono:'SB Sans Text Mono',ui-monospace,monospace;
+}
+@media (min-resolution:2dppx){:root{--hair:.5px}}
+*{box-sizing:border-box;margin:0}
+html,body{background:var(--steel-950);color:var(--ink-primary);font:400 14px/18px var(--ui);letter-spacing:-.02em;-webkit-font-smoothing:antialiased}
+body{min-height:100vh;display:grid;grid-template-columns:minmax(0,1fr) 360px}
+main{padding:32px 40px;display:grid;align-content:start;gap:28px;min-width:0}
+header h1{font:300 28px/34px var(--dsp);letter-spacing:0}
+header p{color:var(--ink-secondary);margin-top:6px;max-width:560px}
+.stage{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start}
+.dialw{position:relative;width:min(440px,70vw);aspect-ratio:1}
+#dial{width:100%;height:100%;display:block}
+.meta{display:grid;gap:10px;align-content:start;font:400 12px/16px var(--mono);color:var(--ink-tertiary)}
+.meta b{color:var(--ink-secondary);font-weight:400}
+#loupe{width:192px;height:192px;image-rendering:pixelated;border-radius:12px;box-shadow:inset 0 0 0 var(--hair) var(--border);background:var(--steel-900)}
+.row{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end}
+.mini{display:grid;gap:8px;justify-items:center;font:400 12px/14px var(--mono);color:var(--ink-tertiary)}
+.mini canvas{display:block}
+h2{font:400 18px/24px var(--dsp);color:var(--ink-secondary)}
+aside{border-left:var(--hair) solid var(--border);background:var(--steel-900);padding:24px 20px;overflow:auto;height:100vh;position:sticky;top:0}
+aside section{display:grid;gap:10px;padding:16px 0;border-bottom:var(--hair) solid var(--border)}
+aside h3{font:500 12px/14px var(--ui);color:var(--ink-tertiary);letter-spacing:0}
+.seg{display:flex;gap:4px;padding:2px;border-radius:12px;background:var(--steel-800)}
+.seg button{flex:1;height:32px;border:0;border-radius:10px;background:none;color:var(--ink-secondary);font:500 13px/16px var(--ui);cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--steel-700);color:var(--ink-primary);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+label.r{display:grid;grid-template-columns:72px 1fr 52px;gap:8px;align-items:center;font:400 12px/14px var(--ui);color:var(--ink-secondary)}
+label.r output{font:400 12px/14px var(--mono);color:var(--ink-tertiary);text-align:right}
+input[type=range]{width:100%;accent-color:#64EE61}
+label.c{display:flex;gap:8px;align-items:center;font:400 13px/16px var(--ui);color:var(--ink-secondary)}
+input[type=checkbox]{accent-color:#64EE61}
+.layer{display:grid;gap:8px;padding:12px;border-radius:12px;background:var(--steel-800)}
+.layer .lh{display:flex;justify-content:space-between;font:500 12px/14px var(--mono);color:var(--ink-secondary)}
+select,input[type=text]{height:32px;border-radius:10px;border:0;background:var(--steel-800);color:var(--ink-primary);padding:0 10px;font:400 13px/16px var(--mono);width:100%}
+textarea{width:100%;height:140px;border-radius:12px;border:0;background:var(--steel-800);color:var(--ink-secondary);padding:10px;font:400 11px/14px var(--mono);resize:vertical}
+.btn{height:36px;border-radius:12px;border:0;background:var(--steel-700);color:var(--ink-primary);font:500 13px/16px var(--ui);cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.note{font:400 12px/16px var(--ui);color:var(--ink-tertiary)}
+body.shot{grid-template-columns:1fr}
+body.shot aside{display:none}
+@media (max-width:900px){body{grid-template-columns:1fr}aside{height:auto;position:static;border-left:0}.stage{grid-template-columns:1fr}main{padding:24px 20px}}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Гильоше · лаборатория движка</h1>
+    <p>Параметрические кривые, гравировка волоском в 1 CSS px, сталь, платина и горячая эмаль. Свет за курсором. Концепт дизайнера · не связан со СберБанком · by vasnev.art</p>
+  </header>
+  <div class="stage">
+    <div class="dialw"><canvas id="dial" role="img" aria-label="Гильош-розетка"></canvas></div>
+    <div class="meta">
+      <canvas id="loupe" width="48" height="48" aria-hidden="true"></canvas>
+      <div>лупа ×4 · пиксели устройства</div>
+      <div>DPR <b id="m-dpr"></b></div>
+      <div>отрезков <b id="m-n"></b></div>
+      <div>кадр <b id="m-fps"></b></div>
+      <div>рендер <b id="m-mode"></b></div>
+    </div>
+  </div>
+  <div>
+    <h2>Монеты · мини 64 и 40 px из общего контекста</h2>
+    <div class="row" id="coins" style="margin-top:14px"></div>
+  </div>
+  <div>
+    <h2>Печати операций · узор из номера</h2>
+    <div class="row" id="seals" style="margin-top:14px"></div>
+  </div>
+  <div>
+    <h2>Без эмали · платиновые линии на стали</h2>
+    <div class="row" id="plain" style="margin-top:14px"></div>
+  </div>
+</main>
+<aside aria-label="Параметры">
+  <section>
+    <h3>Пресет</h3>
+    <div class="seg" id="presets">
+      <button data-p="btc" aria-pressed="true">BTC</button><button data-p="eth">ETH</button><button data-p="usdt">USDT</button><button data-p="seal">Печать</button>
+    </div>
+    <input type="text" id="sealid" value="SC-26-000417" aria-label="Номер операции для печати">
+  </section>
+  <section>
+    <h3>Свет</h3>
+    <div class="seg" id="lightm"><button data-l="pointer" aria-pressed="true">Курсор</button><button data-l="orbit">Орбита</button><button data-l="static">Статичный</button></div>
+  </section>
+  <section>
+    <h3>Материал</h3>
+    <label class="c"><input type="checkbox" id="o-enamel" checked> Эмаль</label>
+    <label class="c"><input type="checkbox" id="o-plate" checked> Пластина и безель</label>
+    <label class="c"><input type="checkbox" id="o-breathe" checked> Дыхание фазы</label>
+    <label class="c"><input type="checkbox" id="o-svg"> Фолбэк SVG</label>
+    <label class="r">Заливка<input type="range" id="o-fill" min="0" max="1" step=".01" value="1"><output></output></label>
+    <label class="r">Плотность<input type="range" id="o-ed" min="0" max="1" step=".01" value=".9"><output></output></label>
+    <label class="r">Угол<input type="range" id="o-ea" min="-180" max="180" step="1" value="-38"><output></output></label>
+    <label class="r">Волосок<input type="range" id="o-w" min=".5" max="2" step=".05" value="1"><output></output></label>
+    <label class="r">DPR<select id="o-dpr"><option value="0">авто</option><option>1</option><option>2</option><option>3</option></select><output></output></label>
+    <button class="btn" id="engrave">Гравировать заново</button>
+  </section>
+  <section>
+    <h3>Слои</h3>
+    <div id="layers" style="display:grid;gap:10px"></div>
+  </section>
+  <section>
+    <h3>Параметры JSON</h3>
+    <textarea id="json" aria-label="Параметры розетки"></textarea>
+    <button class="btn" id="apply">Применить JSON</button>
+    <p class="note">Набор параметров слоя: R, r, d, turns, phase, density, amplitude, плюс k, rIn, rOut, twist, wave, size, sectors.</p>
+  </section>
+</aside>
+<script src="guilloche.js"></script>
+<script>
+const G = Guilloche, $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const q = new URLSearchParams(location.search);
+if (q.has('shot')) document.body.classList.add('shot');
+let cur = q.get('p') || 'btc', params = cur === 'seal' ? G.seedFromString($('#sealid').value, 'btc') : G.preset(cur);
+const lightMode = q.get('light') || 'pointer';
+const dial = G.mount($('#dial'), params, { preserve: true, breathe: !q.has('still'), onFrame: () => { fr++; } });
+let fr = 0, last = performance.now();
+setInterval(() => { const n = performance.now(); $('#m-fps').textContent = fr ? (1000 * fr / (n - last)).toFixed(0) + ' fps' : '—'; fr = 0; last = n; }, 1000);
+
+/* light */
+let orbit = 0;
+const setLight = m => {
+  $$('#lightm button').forEach(b => b.setAttribute('aria-pressed', b.dataset.l === m));
+  G.light.mode = m === 'pointer' ? 'pointer' : 'static';
+  if (m === 'pointer' && !G._pf) { G.followPointer(); G._pf = 1; }
+  if (m === 'static') G.setLightDir(-.62, -.78);
+  orbit = m === 'orbit';
+};
+setLight(lightMode);
+if (q.has('lx')) { G.light.mode = 'static'; G.setLightDir(+q.get('lx'), +q.get('ly')); G.light.x = G.light.tx; G.light.y = G.light.ty; }
+(function spin(t) { if (orbit) G.setLightDir(Math.cos(t / 1400), Math.sin(t / 1400)); requestAnimationFrame(spin); })(0);
+
+/* loupe: device pixels around a point on the rim */
+const lp = $('#loupe').getContext('2d'); lp.imageSmoothingEnabled = false;
+setInterval(() => { const c = $('#dial'); if (!c.width) return; const s = 48, x = Math.round(c.width * .5 + c.width * .3), y = Math.round(c.height * .5 - c.height * .26); lp.clearRect(0, 0, s, s); lp.drawImage(c, x - s / 2, y - s / 2, s, s, 0, 0, s, s); $('#m-dpr').textContent = (dial.dpr || 1) + ' · ' + c.width + '×' + c.height; $('#m-n').textContent = (dial.n || 0).toLocaleString('ru'); $('#m-mode').textContent = dial.svgMode ? 'SVG' : 'WebGL2' + (dial.half ? ' · RGBA16F' : ' · RGBA8'); }, 300);
+
+/* minis */
+const minis = () => {
+  const box = $('#coins'); box.innerHTML = '';
+  ['btc', 'eth', 'usdt'].forEach(k => [64, 40].forEach(s => { const d = document.createElement('div'); d.className = 'mini'; d.append(G.snapshot(G.preset(k), s)); d.append(k.toUpperCase() + ' ' + s); box.append(d); }));
+  const sb = $('#seals'); sb.innerHTML = '';
+  ['SC-26-000417', 'SC-26-000418', 'SC-26-000419', 'SC-26-000501', 'SC-26-000417'].forEach((id, i) => { const d = document.createElement('div'); d.className = 'mini'; const c = ['btc', 'eth', 'usdt', 'btc', 'btc'][i]; d.append(G.snapshot(G.seedFromString(id, c), 72)); d.append(id.slice(-6) + (i === 4 ? ' = повтор' : '')); sb.append(d); });
+  const pb = $('#plain'); pb.innerHTML = '';
+  ['btc', 'eth', 'usdt'].forEach(k => { const d = document.createElement('div'); d.className = 'mini'; d.append(G.snapshot(G.preset(k), 96, { enamel: false })); d.append(k.toUpperCase() + ' металл'); pb.append(d); });
+};
+addEventListener('load', minis);
+
+/* controls */
+const out = (el) => { const o = el.parentNode.querySelector('output'); if (o) o.textContent = el.value; };
+const sync = () => {
+  $('#o-ed').value = params.enamel.density; $('#o-ea').value = params.enamel.angle; ['#o-ed', '#o-ea', '#o-fill', '#o-w', '#o-dpr'].forEach(s => out($(s)));
+  $('#json').value = JSON.stringify(params, null, 1);
+  renderLayers();
+};
+const FIELDS = { rosette: ['rIn', 'rOut', 'density', 'k', 'amplitude', 'twist', 'phase'], hypo: ['r', 'd', 'size', 'density', 'turns', 'phase'], epi: ['r', 'd', 'size', 'density', 'turns', 'phase'], rays: ['rIn', 'rOut', 'density', 'k', 'amplitude', 'phase'] };
+const RANGE = { rIn: [0, 1, .005], rOut: [0, 1, .005], density: [1, 120, 1], k: [1, 160, 1], amplitude: [0, .2, .001], twist: [0, 2, .05], phase: [0, 6.283, .01], r: [.02, .5, .001], d: [0, 1, .005], size: [.1, 1, .005], turns: [1, 12, 1] };
+const renderLayers = () => {
+  const box = $('#layers'); box.innerHTML = '';
+  params.layers.forEach((L, i) => {
+    const d = document.createElement('div'); d.className = 'layer';
+    d.innerHTML = `<div class="lh"><span>${i + 1} · ${L.type}${L.wave ? ' · ' + L.wave : ''}</span><label class="c"><input type="checkbox" data-on="${i}" ${L.off ? '' : 'checked'}> вкл</label></div>` +
+      (FIELDS[L.type] || []).map(f => { const [a, b, s] = RANGE[f]; return `<label class="r">${f}<input type="range" data-i="${i}" data-f="${f}" min="${a}" max="${b}" step="${s}" value="${L[f] ?? 0}"><output>${+(L[f] ?? 0).toFixed(3)}</output></label>`; }).join('') +
+      (L.wave ? `<label class="r">wave<select data-i="${i}" data-f="wave">${['sine', 'facet', 'cusp'].map(w => `<option ${w === L.wave ? 'selected' : ''}>${w}</option>`).join('')}</select><output></output></label>` : '');
+    box.append(d);
+  });
+};
+let rb = 0;
+const live = () => { cancelAnimationFrame(rb); rb = requestAnimationFrame(() => { dial.update(Object.assign({}, params, { layers: params.layers.filter(l => !l.off) })); $('#json').value = JSON.stringify(params, null, 1); }); };
+$('#layers').addEventListener('input', e => {
+  const t = e.target;
+  if (t.dataset.on != null) { params.layers[+t.dataset.on].off = !t.checked; live(); return; }
+  const L = params.layers[+t.dataset.i]; if (!L) return;
+  L[t.dataset.f] = t.tagName === 'SELECT' ? t.value : +t.value; out(t); live();
+});
+$('#presets').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; cur = b.dataset.p; $$('#presets button').forEach(x => x.setAttribute('aria-pressed', x === b)); params = cur === 'seal' ? G.seedFromString($('#sealid').value, 'btc') : G.preset(cur); dial.update(params); sync(); dial.engrave(1800); });
+$('#sealid').addEventListener('change', () => { if (cur !== 'seal') return; params = G.seedFromString($('#sealid').value, 'btc'); dial.update(params); sync(); dial.engrave(1800); });
+$('#lightm').addEventListener('click', e => { const b = e.target.closest('button'); if (b) setLight(b.dataset.l); });
+$('#o-enamel').onchange = e => dial.set({ enamel: e.target.checked });
+$('#o-plate').onchange = e => dial.set({ plate: e.target.checked });
+$('#o-breathe').onchange = e => dial.set({ breathe: e.target.checked });
+$('#o-svg').onchange = e => { location.search = e.target.checked ? '?svg=1&p=' + cur : '?p=' + cur; };
+if (q.has('svg')) { $('#o-svg').checked = true; dial.destroy(); dial.svgMode = true; dial.params = params; dial.renderSvg(); }
+$('#o-fill').oninput = e => { out(e.target); dial.set({ fill: +e.target.value }); };
+$('#o-w').oninput = e => { out(e.target); dial.set({ width: +e.target.value }); };
+$('#o-dpr').onchange = e => { out(e.target); dial.set({ dpr: +e.target.value }); };
+$('#o-ed').oninput = e => { out(e.target); params.enamel.density = +e.target.value; dial.dirty = true; dial.set({}); };
+$('#o-ea').oninput = e => { out(e.target); params.enamel.angle = +e.target.value; dial.set({}); };
+$('#engrave').onclick = () => dial.engrave(1800);
+$('#apply').onclick = () => { try { params = JSON.parse($('#json').value); dial.update(params); sync(); } catch (err) { $('#json').setCustomValidity('JSON с ошибкой'); $('#json').reportValidity(); } };
+$$('#presets button').forEach(b => b.setAttribute('aria-pressed', b.dataset.p === cur));
+sync();
+if (!q.has('noengrave')) dial.engrave(1800);
+</script>
+</body>
+</html>

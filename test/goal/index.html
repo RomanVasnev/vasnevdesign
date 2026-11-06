@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Тест: накопления на цель</title>
+<meta name="description" content="Короткий тест двух вариантов накоплений в банковском приложении: 5 минут, анонимно.">
+<style>
+@font-face{font-family:"Geist Mono";src:url(/fonts/geist-mono-400.woff2) format("woff2");font-weight:400;font-display:swap}
+:root{--ink:#172419;--mute:rgba(23,36,25,.56);--t2:rgba(23,36,25,.72);--line:rgba(23,36,25,.08);--bg:#EEF7F1;--card:#fff;--green:#21A038;--green-d:#148F2B;--ok:#21A038;--bad:#E5383B;--mono:"Geist Mono",ui-monospace,monospace;--sys:-apple-system,BlinkMacSystemFont,"SF Pro Display","Roboto","Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;color:var(--ink);font:16px/1.45 var(--sys);-webkit-font-smoothing:antialiased}
+body{background:radial-gradient(90% 60% at 15% 0%,#D3F2DC 0%,rgba(211,242,220,0) 60%),radial-gradient(80% 60% at 100% 10%,#D9EEF8 0%,rgba(217,238,248,0) 55%),#F2F8F4;background-attachment:fixed}
+button{font:inherit;color:inherit;cursor:pointer}
+.wrap{min-height:100svh;display:flex;align-items:center;justify-content:center;padding:24px 16px}
+.panel{width:100%;max-width:480px;background:var(--card);border-radius:24px;padding:28px 24px;box-shadow:0 8px 32px rgba(23,36,25,.06)}
+.panel h1{margin:0 0 12px;font-weight:600;font-size:32px;line-height:1.08;letter-spacing:-.03em}
+.panel h2{margin:0 0 10px;font-weight:600;font-size:24px;line-height:1.15;letter-spacing:-.02em}
+.panel p{margin:0 0 14px;color:var(--t2)}
+.k{display:inline-flex;align-items:center;gap:6px;margin-bottom:14px;padding:5px 10px;border-radius:999px;background:#E6F5EA;color:#107F2A;font-size:13px;font-weight:600}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;height:52px;border:0;border-radius:14px;background:var(--green);color:#fff;font-weight:600;font-size:16px;transition:background .2s}
+.btn:hover{background:var(--green-d)}
+.btn[disabled]{background:#BFE3C8;cursor:default}
+.btn.ghost{background:rgba(23,36,25,.06);color:var(--ink)}
+.row{display:flex;gap:10px}
+.chk{display:flex;gap:10px;align-items:flex-start;margin:6px 0 18px;font-size:14px;color:var(--t2)}
+.chk input{margin-top:2px;width:20px;height:20px;accent-color:var(--green)}
+.opts{display:grid;gap:8px;margin:6px 0 18px}
+.opt{display:flex;align-items:center;gap:10px;min-height:52px;padding:12px 16px;border:0;border-radius:14px;background:rgba(23,36,25,.05);text-align:left;font-size:16px}
+.opt[aria-pressed="true"]{background:var(--green);color:#fff}
+.scale{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:8px 0 4px}
+.scale button{height:46px;border:0;border-radius:12px;background:rgba(23,36,25,.05);font-weight:600}
+.scale button[aria-pressed="true"]{background:var(--green);color:#fff}
+.scale-l{display:flex;justify-content:space-between;margin-bottom:18px;font-size:12.5px;color:var(--mute)}
+textarea{width:100%;min-height:88px;padding:14px;border:0;border-radius:14px;background:rgba(23,36,25,.05);font:inherit;resize:vertical;margin-bottom:16px}
+textarea:focus{outline:2px solid var(--green);outline-offset:-2px}
+.task{margin:0 0 16px;padding:16px 18px;border-radius:16px;background:#F2F8F4;font-size:17px;line-height:1.4}
+.prog{height:4px;border-radius:2px;background:rgba(23,36,25,.08);margin-bottom:22px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--green);transition:width .4s}
+
+/* ---------- the phone: the dark theme of a large bank app as its public design system (Nova) shows it —
+   a gradient wallpaper on top, translucent cards (white 10 %, radius 12–16), fields #1E1E1E, primary button #148F2B, green links.
+   No logo, no bank name, no proprietary font: the system font stands in. ---------- */
+.stage{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:16px}
+.hint{max-width:410px;width:100%;padding:12px 16px;border-radius:16px;background:#fff;box-shadow:0 8px 24px rgba(23,36,25,.06);font-size:15px;line-height:1.4}
+.proto{max-width:410px;width:100%;font-size:12px;line-height:1.3;color:var(--mute);text-align:center}
+.phone{--g:#148F2B;--gl:#3DD26C;--t1:#fff;--t2:rgba(255,255,255,.56);--c1:rgba(255,255,255,.1);--c2:rgba(255,255,255,.06);--fld:#1E1E1E;--ui:-apple-system,BlinkMacSystemFont,"SF Pro Text","Roboto","Helvetica Neue",Arial,sans-serif;position:relative;--w:min(393px,calc((100svh - 150px) * 393 / 852),calc(100vw - 32px));width:calc(var(--w) + 24px);aspect-ratio:417/876;border-radius:calc(var(--w) * .16);background:#1B1B1F;padding:12px;box-shadow:inset 0 0 0 1.5px #3A3A42,0 0 0 2px #0C0C0E,0 30px 70px rgba(23,36,25,.28);font-family:var(--ui);letter-spacing:0;color:var(--t1)}
+.scr{position:relative;height:100%;border-radius:calc(var(--w) * .135);overflow:hidden;display:flex;flex-direction:column;padding-top:52px;background:radial-gradient(120% 55% at 30% 0%,#4A3F7A 0%,#2A2550 35%,#121218 70%) #121218}
+.sb{position:absolute;left:0;right:0;top:0;z-index:6;display:flex;justify-content:space-between;align-items:center;height:48px;padding:4px 30px 0 34px;font-size:15px;font-weight:600}
+/* the Dynamic Island */
+.scr::before{content:"";position:absolute;z-index:7;left:50%;top:11px;width:31%;height:33px;translate:-50% 0;border-radius:20px;background:#000}
+.bar{display:flex;align-items:center;gap:8px;padding:10px 16px 8px;min-height:52px}
+.bar b{font-weight:700;font-size:20px}
+.bar .back{width:32px;height:32px;border:0;border-radius:50%;background:transparent;color:var(--gl);font-size:30px;line-height:1;padding:0}
+.body{flex:1;overflow:auto;padding:4px 14px 14px}
+.foot{padding:10px 14px 14px}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);padding:8px 6px 16px;background:rgba(18,18,24,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.06)}
+.tabs span{display:grid;justify-items:center;gap:3px;font-size:10.5px;color:var(--t2)}
+.tabs span i{width:22px;height:22px;border-radius:7px;background:rgba(255,255,255,.28)}
+.tabs span.on{color:var(--gl)}.tabs span.on i{background:var(--gl)}
+.card{background:var(--c1);border-radius:16px;padding:14px 16px;margin-bottom:10px;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
+.top{display:flex;align-items:center;gap:10px;margin:2px 0 14px}
+.top .me{display:grid;place-items:center;flex:none;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#C9A27E,#7B5A49);font-weight:600;font-size:13px}
+.top .srch{flex:1;height:36px;display:flex;align-items:center;padding:0 12px;border-radius:12px;background:var(--c1);color:var(--t2);font-size:15px}
+.hello{margin:0 2px 2px;font-weight:700;font-size:24px}
+.rates{margin:0 2px 12px;font-size:12.5px;color:var(--t2)}
+.acts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 10px}
+.act{display:grid;align-content:space-between;justify-items:start;gap:16px;min-height:96px;padding:12px;border:0;border-radius:14px;background:var(--c1);color:var(--t1);font-size:13px;line-height:1.2;text-align:left;font-family:var(--ui)}
+.act i{font-style:normal;font-size:22px;line-height:1;color:var(--t1)}
+.act.dim{cursor:default}
+.wal{padding:14px 16px 6px}
+.wal .hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;font-weight:700;font-size:18px}
+.wal .hd i{font-style:normal;color:var(--gl);font-size:24px;font-weight:400}
+.acc{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.acc:last-of-type{border-bottom:0}
+.acc .cd{flex:none;width:30px;height:20px;border-radius:4px;background:linear-gradient(135deg,#3F6BFF,#1B2A6B)}
+.acc .cd.e{background:linear-gradient(135deg,#2A2A32,#4A4A55)}
+.acc b{display:block;font-weight:600;font-size:17px}
+.acc small{color:var(--t2);font-size:12.5px}
+.lnk{display:block;padding:10px 0 8px;color:var(--gl);font-size:15px}
+.ttl{margin:12px 2px 8px;font-weight:700;font-size:18px;color:var(--t1)}
+.ct{display:flex;align-items:center;gap:12px;width:100%;padding:12px 14px;border:0;background:var(--c1);border-radius:14px;margin-bottom:8px;text-align:left;font-size:16px;color:var(--t1);font-family:var(--ui)}
+.av{display:grid;place-items:center;flex:none;width:40px;height:40px;border-radius:50%;background:rgba(61,210,108,.16);color:var(--gl);font-weight:600;font-size:15px}
+.ct span{display:grid}.ct small{color:var(--t2);font-size:13px}
+.fld{display:block;width:100%;height:56px;padding:0 16px;border:0;border-radius:12px;background:var(--fld);font:inherit;font-family:var(--ui);font-size:17px;margin-bottom:8px;color:var(--t1)}
+.fld::placeholder{color:var(--t2)}
+.fld:focus{outline:1.5px solid var(--gl);outline-offset:-1.5px}
+.paste{border:0;background:none;color:var(--gl);font-size:15px;padding:4px 2px;margin-bottom:12px;font-family:var(--ui)}
+.pbtn{display:flex;align-items:center;justify-content:center;width:100%;height:52px;border:0;border-radius:12px;background:var(--g);color:#fff;font-weight:600;font-size:17px;font-family:var(--ui)}
+.pbtn[disabled]{background:rgba(20,143,43,.35);color:rgba(255,255,255,.5);cursor:default}
+.pbtn.sec{background:var(--c1);color:#fff;margin-top:8px}
+.pbtn.red{background:#D7263D}
+.sum{font-weight:700;font-size:34px;margin:4px 0}
+.small{font-size:13px;color:var(--t2);margin-top:10px}
+.lab{color:var(--t2);font-size:13px}
+.new{display:flex;gap:8px;align-items:center;margin-top:10px;padding:10px 12px;border-radius:12px;background:rgba(255,176,32,.16);color:#FFD27A;font-size:14px}
+.ok{display:grid;place-items:center;align-content:center;gap:12px;height:100%;text-align:center;padding:24px}
+.ok i{display:grid;place-items:center;width:76px;height:76px;border-radius:50%;background:var(--g);color:#fff;font-style:normal;font-size:36px}
+.ok b{font-weight:700;font-size:24px}
+.ok span{color:var(--t2)}
+
+.scr::after{content:"";position:absolute;z-index:7;left:50%;bottom:8px;width:36%;height:5px;translate:-50% 0;border-radius:3px;background:rgba(255,255,255,.55);pointer-events:none}
+.tabs{padding-bottom:26px}
+/* on a phone, the prototype is the screen */
+@media (max-width:560px){
+  .stage{padding:0;gap:0;justify-content:flex-start}
+  .hint{max-width:none;border-radius:0;box-shadow:none;padding:12px 16px 8px;background:#fff}
+  .proto{max-width:none;padding:0 16px 8px;background:#fff}
+  .phone{--w:100vw;width:100%;aspect-ratio:auto;height:calc(100svh - var(--hint,96px));min-height:0;padding:0;border-radius:0;background:none;box-shadow:none}
+  .scr{border-radius:0;padding-top:16px}
+  .scr::before,.scr::after,.sb{display:none}
+  .call{top:10px}
+}
+/* the task bar above the phone, with the honest way out */
+.hint{display:flex;align-items:center;gap:12px}
+.hint span{flex:1}
+.quit{flex:none;border:0;border-radius:10px;background:rgba(23,36,25,.06);color:var(--ink);font-size:13px;font-weight:600;padding:8px 10px}
+/* goal screens */
+.nudge{display:grid;gap:4px;width:100%;text-align:left;border:0;color:#fff;font-family:var(--ui);background:linear-gradient(135deg,rgba(33,160,56,.55),rgba(20,143,43,.25)) ,var(--c1);margin-bottom:10px}
+.nudge .nd-h{font-size:12.5px;color:rgba(255,255,255,.72)}
+.nudge b{font-size:18px;font-weight:700}
+.nudge .nd-s{font-size:13px;color:rgba(255,255,255,.72)}
+.nudge .nd-go{margin-top:6px;color:#fff;font-weight:600;font-size:14px}
+.sq{flex:none;width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.12)}
+.lt{display:block;font-weight:600;font-size:17px}
+.pp{margin:6px 0 12px;color:var(--t2);font-size:14px;line-height:1.4}
+.ul{margin:6px 0 0;padding-left:18px;color:rgba(255,255,255,.85);font-size:14px;line-height:1.6}
+.rad{display:flex;align-items:flex-start;gap:12px;width:100%;padding:14px;border:0;border-radius:14px;background:var(--c1);color:#fff;margin-bottom:8px;text-align:left;font-size:16px;font-family:var(--ui)}
+.rad>i{flex:none;width:20px;height:20px;margin-top:1px;border-radius:50%;box-shadow:inset 0 0 0 2px rgba(255,255,255,.35)}
+.rad.on>i{box-shadow:inset 0 0 0 6px var(--gl)}
+.rad.on{box-shadow:inset 0 0 0 1.5px var(--gl)}
+.rad span{display:grid;gap:3px}
+.rad small{color:var(--t2);font-size:13px}
+.rad small b{color:var(--gl);font-weight:600}
+.tag{font-style:normal;margin-left:6px;padding:2px 6px;border-radius:6px;background:rgba(61,210,108,.18);color:var(--gl);font-size:11px;font-weight:600;vertical-align:2px}
+.gbar{height:8px;border-radius:4px;background:rgba(255,255,255,.12);margin:10px 0 8px;overflow:hidden}
+.gbar i{display:block;width:2%;height:100%;background:var(--gl)}
+.ok .card{backdrop-filter:none}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+(() => {
+  const app = document.getElementById('app');
+  const YM = 113963788;
+  const h = (s) => { app.innerHTML = s; window.scrollTo(0, 0); };
+  const $ = (s) => app.querySelector(s);
+  const $$ = (s) => [...app.querySelectorAll(s)];
+  const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const rub = n => Math.round(n).toLocaleString('ru-RU') + ' ₽';
+
+  /* ---------- what we record ---------- */
+  const order = Math.random() < .5 ? ['A', 'B'] : ['B', 'A'];
+  const R = { v: 1, test: 'goal', order: order.join(''), started: new Date().toISOString(), tasks: [], ux: {}, notes: {}, profile: {} };
+  let metrika = false;
+  function loadMetrika() {
+    if (metrika) return; metrika = true;
+    /* local runs never reach the real counter */
+    if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) { window.ym = (...a) => { (window.__ym = window.__ym || []).push(a); }; return; }
+    (function (m, e, t, r, i, k, a) { m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) }; m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a) })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
+    ym(YM, 'init', { clickmap: false, trackLinks: false, webvisor: false });
+  }
+  const goal = (g, p) => { try { if (metrika) ym(YM, 'reachGoal', g, p); } catch (e) {} };
+
+  /* ---------- the person in the prototype ---------- */
+  const SALARY = 85000, SPEND = 45000, ROUND = 1200;
+  const MONTHS = ['январю', 'февралю', 'марту', 'апрелю', 'маю', 'июню', 'июлю', 'августу', 'сентябрю', 'октябрю', 'ноябрю', 'декабрю'];
+  const by = m => { const d = new Date(); d.setMonth(d.getMonth() + Math.ceil(m)); return m > 24 ? `через ${Math.round(m / 12)} ${Math.round(m / 12) < 5 ? 'года' : 'лет'}` : `к ${MONTHS[d.getMonth()]}${d.getFullYear() !== new Date().getFullYear() ? ' ' + d.getFullYear() : ''}`; };
+  const TASK = 'Вы решили начать откладывать деньги. <b>Настройте в приложении автоматические накопления</b> так, как сделали бы для себя.';
+
+  const steps = [];
+  steps.push(intro);
+  order.forEach((ver, round) => { steps.push(() => roundIntro(round)); steps.push(() => runTask(ver, round)); steps.push(() => after(ver, round)); steps.push(() => umux(ver, round)); });
+  steps.push(finalQ);
+  steps.push(thanks);
+  let si = 0;
+  const next = () => { si++; steps[si](); };
+  const progress = () => `<div class="prog"><i style="width:${Math.round(si / (steps.length - 1) * 100)}%"></i></div>`;
+
+  function intro() {
+    h(`<div class="wrap"><div class="panel">
+      <span class="k">Тест · 5 минут · анонимно</span>
+      <h1>Помогите проверить банковское приложение</h1>
+      <p>Вы дважды настроите автоматические накопления — в двух вариантах приложения. Деньги ненастоящие, ничего не спишется.</p>
+      <p>Это учебный прототип для исследования дизайнера Романа Васнёва. Внешне он похож на приложение крупного банка, чтобы задания были привычными, но это не СберБанк и не другой настоящий банк. Прототип не просит карты, коды и пароли.</p>
+      <label class="chk"><input type="checkbox" id="ok"> <span>Согласен, что мои действия в тесте (время, нажатия, ответы) сохранятся обезличенно через Яндекс Метрику.</span></label>
+      <button class="btn" id="go" disabled>Начать</button>
+    </div></div>`);
+    $('#ok').onchange = e => { $('#go').disabled = !e.target.checked; };
+    $('#go').onclick = () => { loadMetrika(); goal('goal_start', { order: R.order }); next(); };
+  }
+  function roundIntro(round) {
+    h(`<div class="wrap"><div class="panel">${progress()}
+      <span class="k">Приложение ${round + 1} из 2</span>
+      <h2>${round ? 'Теперь то же самое во втором приложении' : 'Первое приложение'}</h2>
+      <div class="task">${TASK}</div>
+      <p>Если в жизни вы бы не стали это настраивать — нажмите «Я бы бросил» над телефоном. Это тоже честный ответ.</p>
+      <button class="btn" id="go">Открыть приложение</button>
+    </div></div>`);
+    $('#go').onclick = next;
+  }
+
+  /* ---------- the phone prototype ---------- */
+  function runTask(ver, round) {
+    const rec = { ver, round, task: 'goal', outcome: null, where: null, ms: 0, path: [], method: null, amount: null, goal: null };
+    const t0 = performance.now();
+    const st = { goal: null, target: SPEND, method: null, fixed: 5000, pct: 10 };
+    const finish = (outcome, where) => {
+      if (rec.outcome) return;
+      rec.outcome = outcome; rec.where = where; rec.ms = Math.round(performance.now() - t0);
+      rec.method = st.method; rec.amount = st.method ? monthly() : null; rec.goal = st.goal; rec.target = st.target;
+      R.tasks.push(rec); goal('goal_task', { ver, outcome, where, ms: rec.ms, method: st.method });
+      next();
+    };
+    const go = (name, ...a) => { rec.path.push(name); SCREENS[name](...a); };
+    const monthly = () => st.method === 'pct' ? SALARY * st.pct / 100 : st.method === 'round' ? ROUND : st.fixed;
+    const fitTop = () => { const small = matchMedia('(max-width:560px)').matches; const stg = app.querySelector('.stage'), ph = app.querySelector('.phone'); if (stg && ph && small) stg.style.setProperty('--hint', ph.getBoundingClientRect().top + 'px'); };
+
+    const shell = (title, body, foot = '', back = true, tabs = false) => {
+      h(`<div class="stage">
+        <div class="hint"><span>${TASK}</span><button class="quit" id="quit">Я бы бросил</button></div>
+        <div class="proto">Учебный прототип · не СберБанк · не вводите настоящие данные</div>
+        <div class="phone"><div class="scr">
+          <div class="sb"><span>9:41</span><span>5G ▮</span></div>
+          ${title || back ? `<div class="bar">${back ? '<button class="back" id="bk" aria-label="Назад">‹</button>' : ''}<b>${title}</b></div>` : '<div style="height:14px"></div>'}
+          <div class="body">${body}</div>
+          ${foot ? `<div class="foot">${foot}</div>` : ''}
+          ${tabs ? '<div class="tabs"><span class="on"><i></i>Главный</span><span><i></i>Платежи</span><span><i></i>Диалоги</span><span><i></i>История</span></div>' : ''}
+        </div></div></div>`);
+      $('#quit').onclick = () => finish('abandoned', rec.path[rec.path.length - 1]);
+      const bk = $('#bk'); if (bk) bk.onclick = () => go(back === true ? 'home' : back);
+      fitTop();
+    };
+    const radio = (name, opts, cur) => opts.map(([k, l, sub]) => `<button class="rad${cur === k ? ' on' : ''}" data-${name}="${k}"><i></i><span>${l}${sub ? `<small>${sub}</small>` : ''}</span></button>`).join('');
+
+    const SCREENS = {
+      home() {
+        shell('', `
+          <div class="top"><span class="me">РВ</span><span class="srch">Поиск</span></div>
+          <div class="hello">Роман</div>
+          <div class="rates">Курсы валют сейчас: $ 81,40 · € 94,10</div>
+          ${ver === 'B' ? `<button class="card nudge" id="nudge"><span class="nd-h">Пришла зарплата · ${rub(SALARY)}</span><b>Отложить часть на цель?</b><span class="nd-s">Подскажем, сколько и когда вы накопите</span><span class="nd-go">Поставить цель →</span></button>` : ''}
+          <div class="acts"><button class="act dim"><i>⇄</i>Перевести по&nbsp;номеру</button><button class="act dim"><i>⌗</i>Оплата по&nbsp;QR-коду</button><button class="act" id="svc"><i>⊞</i>Все сервисы</button></div>
+          <div class="card wal"><div class="hd">Кошелёк<i>+</i></div>
+            <div class="acc"><span class="cd"></span><span><b>${rub(SALARY + 12340)}</b><small>Дебетовая ·· 4417</small></span></div>
+            <span class="lnk">Все счета и карты</span></div>`, '', false, true);
+        $('#svc').onclick = () => go('services');
+        const n = $('#nudge'); if (n) n.onclick = () => go('goalPick');
+      },
+      services() {
+        const items = ver === 'A'
+          ? [['deposits', 'Вклады и счета', 'Открыть вклад или накопительный счёт'], ['kopilka', 'Копилка', 'Автоматическое пополнение счёта'], ['inv', 'Инвестиции', ''], ['ins', 'Страхование', ''], ['bonus', 'Бонусы', '']]
+          : [['goals', 'Цели', 'Копить на мечту с автопополнением'], ['deposits', 'Вклады и счета', 'Открыть вклад или накопительный счёт'], ['inv', 'Инвестиции', ''], ['ins', 'Страхование', ''], ['bonus', 'Бонусы', '']];
+        shell('Все сервисы', items.map(([k, l, s]) => `<button class="ct" data-k="${k}"><span class="sq"></span><span>${l}${s ? `<small>${s}</small>` : ''}</span></button>`).join(''));
+        $$('.ct').forEach(b => b.onclick = () => { const k = b.dataset.k; if (k === 'deposits') go('deposits'); else if (k === 'kopilka') go('kopIntro'); else if (k === 'goals') go('goalPick'); });
+      },
+      /* ---- A: the current path — a savings account first, then the Kopilka rule ---- */
+      deposits() {
+        shell('Вклады и счета', `<div class="card"><b class="lt">Накопительный счёт</b><p class="pp">Ставка до 14,5% на остаток. Снимайте и пополняйте без ограничений.</p><button class="pbtn" id="open">Открыть</button></div>
+          <div class="card"><b class="lt">Вклад «Лучший %»</b><p class="pp">На срок от 3 месяцев, без снятия.</p></div>
+          ${ver === 'A' ? '<span class="lnk" id="kop">Настроить Копилку</span>' : ''}`, '', 'services');
+        $('#open').onclick = () => { rec.opened = true; go('opened'); };
+        const k = $('#kop'); if (k) k.onclick = () => go('kopIntro');
+      },
+      opened() {
+        shell('', `<div class="ok"><i>✓</i><b>Счёт открыт</b><span>Накопительный счёт ·· 9021</span></div>`, `<button class="pbtn" id="cont">На главную</button>`, false);
+        $('#cont').onclick = () => go('home');
+      },
+      kopIntro() {
+        shell('Копилка', `<div class="card"><p class="pp" style="margin-top:0">Копилка автоматически переводит деньги с карты на сберегательный счёт по правилу, которое вы выберете.</p>
+          <ul class="ul"><li>Фиксированная сумма по датам</li><li>Процент от поступлений на карту</li><li>Процент от трат по карте</li></ul></div>
+          ${rec.opened ? '' : '<div class="new">Для Копилки нужен сберегательный или накопительный счёт</div>'}`,
+          `<button class="pbtn" id="on">Подключить</button>`, 'services');
+        $('#on').onclick = () => rec.opened ? go('kopMethod') : go('needAcc');
+      },
+      needAcc() {
+        shell('Счёт для Копилки', `<p class="pp" style="margin-top:0">У вас нет счёта, на который Копилка будет переводить деньги. Откройте накопительный счёт и вернитесь к настройке.</p>`,
+          `<button class="pbtn" id="open">Открыть накопительный счёт</button><button class="pbtn sec" id="later">Позже</button>`, 'kopIntro');
+        $('#open').onclick = () => { rec.opened = true; go('kopMethod'); };
+        $('#later').onclick = () => go('home');
+      },
+      kopMethod() {
+        shell('Правило Копилки', `<div class="lab" style="margin:0 2px 8px">Как пополнять</div>${radio('m', [['fixed', 'Фиксированная сумма'], ['income', 'Процент от поступлений'], ['spend', 'Процент от трат']], st.kmeth)}
+          <div id="par"></div>`, `<button class="pbtn" id="nx" ${st.kmeth ? '' : 'disabled'}>Далее</button>`, 'kopIntro');
+        const par = () => { $('#par').innerHTML = st.kmeth === 'fixed' ? `<div class="lab" style="margin:14px 2px 6px">Сумма</div><input class="fld" id="v" inputmode="numeric" value="5000"><div class="lab" style="margin:8px 2px 6px">Периодичность</div>${radio('p', [['m', 'Раз в месяц'], ['w', 'Раз в неделю']], 'm')}` : st.kmeth ? `<div class="lab" style="margin:14px 2px 6px">Процент</div><input class="fld" id="v" inputmode="numeric" value="10">` : ''; };
+        $$('[data-m]').forEach(b => b.onclick = () => { st.kmeth = b.dataset.m; $$('[data-m]').forEach(x => x.classList.toggle('on', x === b)); par(); $('#nx').disabled = false; });
+        par();
+        $('#nx').onclick = () => { const v = +($('#v')?.value || 0); st.method = st.kmeth === 'fixed' ? 'fixed' : st.kmeth === 'income' ? 'pct' : 'spendpct'; if (st.kmeth === 'fixed') st.fixed = v; else st.pct = v; go('kopConfirm'); };
+      },
+      kopConfirm() {
+        const m = st.kmeth === 'fixed' ? `${rub(st.fixed)} раз в месяц` : st.kmeth === 'income' ? `${st.pct}% от поступлений` : `${st.pct}% от трат`;
+        shell('Проверьте данные', `<div class="card"><div class="lab">Списывать с</div><b class="lt">Дебетовая ·· 4417</b><div class="lab" style="margin-top:10px">Зачислять на</div><b class="lt">Накопительный счёт ·· 9021</b><div class="lab" style="margin-top:10px">Правило</div><b class="lt">${m}</b></div>`,
+          `<button class="pbtn" id="cf">Подключить Копилку</button>`, 'kopMethod');
+        $('#cf').onclick = () => go('done', 'Копилка подключена', m);
+      },
+      /* ---- B: the goal first, an attainable suggestion, automation with a forecast ---- */
+      goalPick() {
+        const G = [['cushion', 'Подушка на месяц', `${rub(SPEND)} · столько вы тратите в месяц`, SPEND], ['trip', 'Отпуск', '120 000 ₽', 120000], ['tech', 'Новая техника', '60 000 ₽', 60000], ['own', 'Своя цель', 'Задайте сумму сами', null]];
+        shell('На что копим?', `<div class="lab" style="margin:0 2px 8px">Начните с посильной цели — так проще не бросить</div>${G.map(([k, l, s], i) => `<button class="rad${st.goal === k ? ' on' : ''}" data-g="${k}"><i></i><span>${l}${i === 0 ? ' <em class="tag">Советуем</em>' : ''}<small>${s}</small></span></button>`).join('')}
+          <div id="own"></div>`, `<button class="pbtn" id="nx" ${st.goal ? '' : 'disabled'}>Дальше</button>`);
+        $$('[data-g]').forEach(b => b.onclick = () => { st.goal = b.dataset.g; const g = G.find(x => x[0] === st.goal); st.target = g[3] || st.target; $$('[data-g]').forEach(x => x.classList.toggle('on', x === b)); $('#own').innerHTML = st.goal === 'own' ? `<div class="lab" style="margin:10px 2px 6px">Сумма цели</div><input class="fld" id="tv" inputmode="numeric" value="${st.target}">` : ''; $('#nx').disabled = false; });
+        $('#nx').onclick = () => { const tv = $('#tv'); if (tv) st.target = +tv.value.replace(/\D/g, '') || SPEND; go('goalHow'); };
+      },
+      goalHow() {
+        const opts = [['pct', `${st.pct}% от каждой зарплаты`, SALARY * st.pct / 100], ['round', 'Округлять покупки до 100 ₽', ROUND], ['fixed', `${rub(st.fixed)} в месяц`, st.fixed]];
+        shell('Как пополнять?', `<div class="lab" style="margin:0 2px 8px">Цель: ${rub(st.target)}</div>${opts.map(([k, l, m]) => `<button class="rad fc${st.method === k ? ' on' : ''}" data-h="${k}"><i></i><span>${l}<small>≈ ${rub(m)} в месяц · <b>цель ${by(st.target / m)}</b></small></span></button>`).join('')}
+          <div class="small">Пополнение можно поменять или остановить в любой момент.</div>`, `<button class="pbtn" id="nx" ${st.method ? '' : 'disabled'}>Создать цель</button>`, 'goalPick');
+        $$('[data-h]').forEach(b => b.onclick = () => { st.method = b.dataset.h; $$('[data-h]').forEach(x => x.classList.toggle('on', x === b)); $('#nx').disabled = false; });
+        $('#nx').onclick = () => go('done', 'Цель создана', `${rub(monthly())} в месяц · цель ${by(st.target / monthly())}`);
+      },
+      done(title, sub) {
+        const goalBar = ver === 'B' ? `<div class="card" style="width:100%;text-align:left;margin-top:14px"><div class="lab">${esc(({ cushion: 'Подушка на месяц', trip: 'Отпуск', tech: 'Новая техника', own: 'Своя цель' })[st.goal] || 'Цель')}</div><b class="lt">0 из ${rub(st.target)}</b><div class="gbar"><i></i></div><div class="lab">Первое пополнение — с ближайшей зарплаты</div></div>` : '';
+        shell('', `<div class="ok"><i>✓</i><b>${esc(title)}</b><span>${esc(sub)}</span>${goalBar}</div>`, `<button class="pbtn" id="fin">Готово</button>`, false);
+        $('#fin').onclick = () => finish('done', ver === 'A' ? 'kopilka' : 'goal');
+      }
+    };
+    go('home');
+  }
+
+  function after(ver, round) {
+    const pick = {};
+    h(`<div class="wrap"><div class="panel">${progress()}
+      <span class="k">Приложение ${round + 1} · вопрос</span>
+      <h2>Когда вы накопите отложенное?</h2>
+      <div class="opts" data-g="when">${[['know', 'Знаю примерно, к какому месяцу'], ['vague', 'Понимаю смутно'], ['no', 'Не понимаю']].map(([k, l]) => `<button class="opt" data-k="${k}" aria-pressed="false">${l}</button>`).join('')}</div>
+      <p style="margin-bottom:8px">Что было непонятно или мешало? <span style="color:var(--mute)">(необязательно)</span></p>
+      <textarea id="nt" maxlength="400"></textarea>
+      <button class="btn" id="go" disabled>Дальше</button>
+    </div></div>`);
+    $$('.opt').forEach(b => b.onclick = () => { $$('.opt').forEach(x => x.setAttribute('aria-pressed', String(x === b))); pick.when = b.dataset.k; $('#go').disabled = false; });
+    $('#go').onclick = () => { const t = R.tasks[R.tasks.length - 1]; t.when = pick.when; const v = $('#nt').value.trim(); if (v) R.notes[ver] = v.slice(0, 400); next(); };
+  }
+
+  function umux(ver, round) {
+    const ans = {};
+    const q = (id, text) => `<p style="margin-bottom:4px">${text}</p><div class="scale" data-q="${id}">${[1, 2, 3, 4, 5, 6, 7].map(n => `<button data-n="${n}" aria-pressed="false">${n}</button>`).join('')}</div><div class="scale-l"><span>Совсем не согласен</span><span>Полностью согласен</span></div>`;
+    h(`<div class="wrap"><div class="panel">${progress()}
+      <span class="k">Приложение ${round + 1} · оценка</span>
+      <h2>Как вам это приложение?</h2>
+      ${q('fit', 'Это приложение подходит для моих задач')}
+      ${q('easy', 'Этим приложением легко пользоваться')}
+      ${q('use', 'Я бы реально начал копить с этой функцией')}
+      <button class="btn" id="go" disabled>Дальше</button>
+    </div></div>`);
+    $$('.scale').forEach(s => s.onclick = e => { const b = e.target.closest('button'); if (!b) return; s.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b))); ans[s.dataset.q] = +b.dataset.n; $('#go').disabled = Object.keys(ans).length < 3; });
+    $('#go').onclick = () => { R.ux[ver] = ans; goal('goal_ux_' + ver, ans); next(); };
+  }
+
+  function finalQ() {
+    const pick = {};
+    const group = (id, text, opts) => `<p style="margin-bottom:6px">${text}</p><div class="opts" data-g="${id}">${opts.map(([k, l]) => `<button class="opt" data-k="${k}" aria-pressed="false">${l}</button>`).join('')}</div>`;
+    h(`<div class="wrap"><div class="panel">${progress()}
+      <span class="k">Последний шаг</span>
+      ${group('better', 'В каком приложении вы скорее начнёте копить?', [['first', 'В первом'], ['second', 'Во втором'], ['same', 'Одинаково']])}
+      ${group('age', 'Ваш возраст', [['u35', 'до 35'], ['35_54', '35–54'], ['55p', '55 и старше']])}
+      ${group('saves', 'Вы сейчас откладываете деньги?', [['regular', 'Да, регулярно'], ['sometimes', 'Иногда'], ['no', 'Нет']])}
+      <button class="btn" id="go" disabled>Отправить</button>
+    </div></div>`);
+    $$('.opts').forEach(g => g.onclick = e => { const b = e.target.closest('button'); if (!b) return; g.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b))); pick[g.dataset.g] = b.dataset.k; $('#go').disabled = Object.keys(pick).length < 3; });
+    $('#go').onclick = () => {
+      R.profile = { age: pick.age, saves: pick.saves, better: pick.better === 'same' ? 'same' : order[pick.better === 'first' ? 0 : 1] };
+      R.finished = new Date().toISOString();
+      try { if (metrika) ym(YM, 'params', { goalTest: R }); } catch (e) {}
+      goal('goal_done', { order: R.order });
+      next();
+    };
+  }
+
+  function summary() {
+    const line = r => `${r.ver}: ${r.outcome}${r.where ? '(' + r.where + ')' : ''} ${Math.round(r.ms / 1000)}с, способ ${r.method || '—'}, понятно когда: ${r.when || '—'}`;
+    return 'Тест накоплений · ' + R.order + '\n' + R.tasks.map(line).join('\n') + '\nUX A ' + JSON.stringify(R.ux.A || {}) + ' · B ' + JSON.stringify(R.ux.B || {}) + '\nСкорее начнёт копить: ' + R.profile.better + ' · возраст ' + R.profile.age + ' · копит: ' + R.profile.saves + (R.notes.A ? '\nA: ' + R.notes.A : '') + (R.notes.B ? '\nB: ' + R.notes.B : '');
+  }
+  function thanks() {
+    h(`<div class="wrap"><div class="panel">
+      <span class="k">Готово</span>
+      <h1>Спасибо!</h1>
+      <p>Ответы сохранились. Если хотите, отправьте их Роману в Telegram — так результаты точно дойдут.</p>
+      <button class="btn" id="tg">Скопировать и открыть Telegram</button>
+      <p class="small" id="cp" style="margin-top:12px"></p>
+    </div></div>`);
+    $('#tg').onclick = async () => {
+      const text = summary();
+      try { await navigator.clipboard.writeText(text); $('#cp').textContent = 'Результаты скопированы — вставьте их в чат.'; } catch (e) { $('#cp').textContent = text; }
+      window.open('https://t.me/RomanVasnev', '_blank', 'noopener');
+    };
+  }
+
+  intro();
+})();
+
+</script>
+</body>
+</html>

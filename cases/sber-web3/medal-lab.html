@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Медаль · ETH</title>
+<style>
+  :root { --bg:#050506; --fg:rgba(255,255,255,.92); --mute:rgba(255,255,255,.5); --line:rgba(255,255,255,.12); }
+  * { box-sizing:border-box; margin:0; }
+  html, body { height:100%; background:var(--bg); color:var(--fg); font:15px/1.4 "SB Sans Text", -apple-system, system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+  body { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:28px; padding:24px 20px; overflow:hidden; }
+  .stage { position:relative; width:min(78vw, 66vh, 560px); aspect-ratio:1; }
+  .stage::after { content:''; position:absolute; inset:8% 10% -6%; border-radius:50%; background:radial-gradient(closest-side, rgba(0,0,0,.9), transparent); z-index:-1; filter:blur(18px); transform:translateY(8%); }
+  canvas { width:100%; height:100%; display:block; touch-action:none; }
+  .cap { text-align:center; }
+  .cap b { display:block; font-size:22px; font-weight:600; letter-spacing:-.01em; }
+  .cap span { color:var(--mute); font-size:14px; }
+  .seg { display:flex; gap:2px; padding:2px; border-radius:10px; background:rgba(255,255,255,.06); }
+  .seg button { appearance:none; border:0; background:none; color:var(--mute); font:inherit; font-size:13px; padding:8px 14px; border-radius:8px; cursor:pointer; }
+  .seg button[aria-pressed="true"] { background:rgba(255,255,255,.14); color:var(--fg); }
+  .shot .seg { display:none; }
+</style>
+</head>
+<body>
+  <div class="stage"><canvas id="c" aria-label="Монета Ethereum: выпуклый знак, гильош под эмалью"></canvas></div>
+  <div class="cap"><b>Ethereum</b><span>Наведите курсор или наклоните телефон</span></div>
+  <div class="seg" role="group" aria-label="Финиш">
+    <button data-f="gradient" aria-pressed="true">Градиентный металл</button>
+    <button data-f="enamel" aria-pressed="false">Эмаль</button>
+    <button data-f="platinum" aria-pressed="false">Платина</button>
+    <button id="eng" type="button">Нанести гильош ↻</button>
+  </div>
+<script src="medal.js"></script>
+<script>
+  const q = new URLSearchParams(location.search);
+  if (q.has('shot')) document.body.classList.add('shot');
+  const light = q.get('light') ? q.get('light').split(',').map(Number) : null;
+  const m = Medal.mount(document.getElementById('c'), { finish: q.get('f') || 'gradient', still: q.has('still'), light, engrave: !q.has('noengrave'), progress: q.has('p') ? +q.get('p') : null });
+  document.getElementById('eng').onclick = () => m.engrave();
+  document.querySelectorAll('.seg button[data-f]').forEach(b => {
+    if (b.dataset.f === (q.get('f') || 'gradient')) document.querySelectorAll('.seg button[data-f]').forEach(x => x.setAttribute('aria-pressed', x === b));
+    b.onclick = () => { document.querySelectorAll('.seg button[data-f]').forEach(x => x.setAttribute('aria-pressed', x === b)); m.set({ finish: b.dataset.f }); };
+  });
+  /* iOS asks before giving the tilt */
+  addEventListener('click', () => { if (window.DeviceOrientationEvent && DeviceOrientationEvent.requestPermission) DeviceOrientationEvent.requestPermission().catch(() => {}); }, { once: true });
+</script>
+</body>
+</html>
