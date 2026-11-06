@@ -9,7 +9,7 @@
 <script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(113963788,"init",{webvisor:true,clickmap:true,trackLinks:true,accurateTrackBounce:true,trackHash:true});document.addEventListener("click",function(e){var el=e.target.closest&&e.target.closest("a[href],button");if(!el)return;var h=el.getAttribute("href")||"",g=null;if(h.indexOf("t.me/")>-1)g="contact_telegram";else if(h.indexOf("mailto:")===0)g="contact_email";else if(h.indexOf("max.ru/")>-1)g="contact_max";else if(/^Открыть (ИИ|AI)-ассистента/.test(el.getAttribute("aria-label")||""))g="chat_open";if(g)ym(113963788,"reachGoal",g)},true);
 </script>
 
-<link rel="stylesheet" href="/_astro/index.B30xzfGB.css"></head><body><noscript><div><img src="https://mc.yandex.ru/watch/113963788" style="position:absolute;left:-9999px" alt=""></div></noscript>
+<link rel="stylesheet" href="/_astro/index.ifVA942c.css"></head><body><noscript><div><img src="https://mc.yandex.ru/watch/113963788" style="position:absolute;left:-9999px" alt=""></div></noscript>
 
 <div class="nav-wrap" id="navWrap">
   <nav class="nav" aria-label="Разделы">
@@ -3715,7 +3715,21 @@ window.VA_DATA = {
   const syncInput = () => { input.readOnly = inline(); };
   mq.addEventListener('change', syncInput); syncInput();
 
-  function placePanel() {}
+  /* iOS keeps fixed sheets under the keyboard: follow the visual viewport, lift the sheet above the keyboard
+     and scroll it to the end while typing so the field and the last answers stay in sight */
+  const vv = window.visualViewport;
+  function placePanel() {
+    if (!vv) return;
+    const kb = Math.max(0, Math.round(innerHeight - vv.height - vv.offsetTop));
+    const up = open && mq.matches && kb > 80;
+    panel.classList.toggle('kb', up);
+    panel.style.setProperty('--kb', up ? kb + 'px' : '0px');
+    panel.style.setProperty('--vvh', up ? Math.round(vv.height) + 'px' : '');
+    if (up) requestAnimationFrame(() => { panel.scrollTop = panel.scrollHeight; });
+  }
+  if (vv) { vv.addEventListener('resize', placePanel); vv.addEventListener('scroll', placePanel); }
+  input.addEventListener('focus', () => setTimeout(placePanel, 60));
+  input.addEventListener('blur', () => setTimeout(placePanel, 60));
   /* a video that was moved between parents may come back blank in Safari: reload it in place */
   const wake = () => va.querySelectorAll('video').forEach(v => { try { v.load(); } catch (_) {} v.play().catch(() => {}); });
   function openPanel() {
