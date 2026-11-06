@@ -9,7 +9,7 @@
 <script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(113963788,"init",{webvisor:true,clickmap:true,trackLinks:true,accurateTrackBounce:true,trackHash:true});document.addEventListener("click",function(e){var el=e.target.closest&&e.target.closest("a[href],button");if(!el)return;var h=el.getAttribute("href")||"",g=null;if(h.indexOf("t.me/")>-1)g="contact_telegram";else if(h.indexOf("mailto:")===0)g="contact_email";else if(h.indexOf("max.ru/")>-1)g="contact_max";else if(/^Открыть (ИИ|AI)-ассистента/.test(el.getAttribute("aria-label")||""))g="chat_open";if(g)ym(113963788,"reachGoal",g)},true);
 </script>
 
-<link rel="stylesheet" href="/_astro/index.CqXscZIQ.css"></head><body><noscript><div><img src="https://mc.yandex.ru/watch/113963788" style="position:absolute;left:-9999px" alt=""></div></noscript>
+<link rel="stylesheet" href="/_astro/index.CJ5vsVFE.css"></head><body><noscript><div><img src="https://mc.yandex.ru/watch/113963788" style="position:absolute;left:-9999px" alt=""></div></noscript>
 
 <div class="nav-wrap" id="navWrap">
   <nav class="nav" aria-label="Разделы">
@@ -907,7 +907,10 @@
       <h2 class="f-h f-h-m" id="fx-h">Задачи, которые я решал</h2>
       <a class="cta-b cta-b-ghost fx-all" href="#cases" data-sec>Все кейсы →</a>
     </header>
-    <ul class="fds fx-fds" id="fxG"></ul>
+    <div class="wip">
+      <ul class="fds fx-fds" id="fxG"></ul>
+      <div class="wip-note" role="status"><span class="wip-dot" aria-hidden="true"></span><b>Кейсы обновляются</b><span>Пересобираю подачу — скоро открою</span></div>
+    </div>
   </div>
 </section>
 
@@ -995,9 +998,12 @@
   <div class="cp-in">
     <header class="cp-hd">
       <h2 class="f-h" id="fc-h">Кейсы</h2>
-      <p class="f-p">Продукты в финтехе и Web3: от исследования и механики до передачи в разработку. Концепт Сбер Крипто открыт, остальные кейсы под паролем — пришлю после знакомства.</p>
+      <p class="f-p">Продукты в финтехе и Web3: от исследования и механики до передачи в разработку. Все кейсы под паролем — пришлю после знакомства.</p>
     </header>
-    <ul class="fds" id="fds"></ul>
+    <div class="wip">
+      <ul class="fds" id="fds"></ul>
+      <div class="wip-note" role="status"><span class="wip-dot" aria-hidden="true"></span><b>Кейсы обновляются</b><span>Пересобираю подачу — скоро открою</span></div>
+    </div>
   </div>
 </section>
 
@@ -2726,6 +2732,8 @@
     });
   }
   paint();
+  /* cases «в процессе»: blurred grids can't be clicked, tabbed into or read out */
+  $$('.wip > .fds').forEach(u => { u.inert = true; u.setAttribute('aria-hidden', 'true'); });
   $$('.fd', fds).forEach(li => $('.fd-b', li).addEventListener('click', () => {
     const k = CASES.find(c => c.id === li.dataset.id);
     if (k.href) { window.open(k.href, '_blank', 'noopener'); return; }
@@ -2778,7 +2786,7 @@
     $$('.ec', H).forEach(e => e.remove());
     const lis = $$(S, G);
     lis.forEach(li => { li.getAnimations().forEach(a => a.cancel()); li.style.opacity = ''; });
-    if (reduce || !('IntersectionObserver' in window)) return;
+    if (reduce || !('IntersectionObserver' in window) || G.closest('.wip')) return;
     lis.forEach(li => { li.style.opacity = '0'; });
     let batch = [], tm = 0;
     dio = new IntersectionObserver(es => {
