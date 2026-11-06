@@ -1835,6 +1835,17 @@ a.fb-b:hover{transform:translateY(-4px);box-shadow:0 0 0 2px var(--c-sel)}
   .va-float.kb,.va-float.kb.on{bottom:var(--kb,0px)!important;max-height:calc(var(--vvh,100dvh) - 8px)!important;border-radius:24px 24px 0 0;padding-bottom:6px;transition:none}
 }
 
+/* «Что я делаю сам»: the GitHub pill is a real button; on phones the Studio cursor stays inside its card */
+.fb-gh{z-index:1;height:36px;padding:0 14px 0 9px;gap:8px;color:#0B0B0C;text-decoration:none;font-weight:500;box-shadow:0 0 0 1px rgba(11,11,12,.1),0 4px 12px rgba(11,11,12,.06);transition:transform .45s var(--spr-jelly,cubic-bezier(.34,1.45,.64,1)),box-shadow .2s}
+.fb-gh svg{flex:none;width:11px!important;height:11px!important;display:block;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.fb-gh:hover{box-shadow:0 0 0 1px rgba(11,11,12,.18),0 6px 16px rgba(11,11,12,.1)}
+.fb-gh:active{transform:scale(.96)}
+.fb-gh:focus-visible{outline:2px solid var(--c-sel);outline-offset:3px}
+@media (max-width:900px){
+  .fb-mq{left:10%;width:62%}
+  @keyframes fbDraw{0%{width:0;height:0;opacity:0}8%{width:0;height:0;opacity:1}55%,85%{width:62%;height:56%;opacity:1}100%{width:62%;height:56%;opacity:0}}
+}
+
 .ck{position:fixed;z-index:80;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:min(392px,calc(100vw - 32px));display:flex;align-items:center;gap:14px;padding:14px 14px 14px 18px;border-radius:20px;background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);box-shadow:0 0 0 1px rgba(11,11,12,.07),0 24px 60px -20px rgba(11,11,12,.25),0 4px 12px rgba(11,11,12,.04);font-family:var(--font,'Geist',-apple-system,sans-serif);color:#0B0B0C;opacity:0;transform:translateY(16px);visibility:hidden;transition:opacity .35s,transform .55s cubic-bezier(.32,.72,0,1),visibility 0s .55s}
 .ck.on{opacity:1;transform:none;visibility:visible;transition:opacity .35s,transform .55s cubic-bezier(.32,.72,0,1),visibility 0s}
 .ck p{flex:1;margin:0;font-size:13.5px;line-height:1.4;letter-spacing:-.01em;color:#3A3A3C;text-wrap:pretty}
