@@ -2622,7 +2622,8 @@
       else if (!e.shiftKey && i === vis.length - 1) { btn.focus(); e.preventDefault(); }
     }
   });
-  document.addEventListener('pointerdown', e => { if (isOpen() && !menu.contains(e.target) && !btn.contains(e.target) && !e.target.closest('.nav')) setOpen(false); });
+  /* the path is fixed when the tap starts, so it still holds the menu even if the touched element is re-rendered */
+  document.addEventListener('pointerdown', e => { const path = e.composedPath(); if (isOpen() && !path.includes(menu) && !path.includes(btn) && !path.some(n => n.classList && n.classList.contains('nav'))) setOpen(false); });
   addEventListener('resize', () => { if (isOpen() && getComputedStyle(btn).display === 'none') setOpen(false); });
 
   /* section links: smooth scroll to the frame; sections not built yet say so */
@@ -3320,7 +3321,9 @@
       lb.style.opacity = (done || load || st === 'error') ? 1 : Math.max(0, 1 - pr * 1.6);
       th.style.transition = dragging ? 'transform 80ms linear' : 'transform 520ms cubic-bezier(.34,1.45,.64,1)';
       th.style.transform = `translateX(${x}px) scale(${dragging ? 1.04 : 1})`;
-      th.innerHTML = load ? ICON.spin : done ? ICON.check : ICON.arrow;
+      /* swap the icon only when it really changes: replacing it under the finger detaches the touched element,
+         and «tap outside» handlers then think the tap was outside (the phone menu closed on the first touch) */
+      const icon = load ? 'spin' : done ? 'check' : 'arrow'; if (th.dataset.icon !== icon) { th.dataset.icon = icon; th.innerHTML = ICON[icon]; }
       th.classList.toggle('drag', dragging); th.classList.toggle('lock', load || done);
       th.setAttribute('aria-valuenow', Math.round(pr * 100));
       th.setAttribute('aria-valuetext', done ? p.successLabel : load ? p.loadingLabel : Math.round(pr * 100) + '%');
@@ -3771,7 +3774,7 @@ window.VA_DATA = {
   grab.addEventListener('pointerup', gEnd); grab.addEventListener('pointercancel', gEnd);
   va.querySelector('[data-va="close"]').addEventListener('click', () => closePanel());
   addEventListener('keydown', e => { if (e.key === 'Escape' && open) closePanel(); });
-  document.addEventListener('pointerdown', e => { if (open && !panel.contains(e.target) && !ro.contains(e.target) && !e.target.closest('#mnRo')) closePanel(); });
+  document.addEventListener('pointerdown', e => { const path = e.composedPath(); if (open && !path.includes(panel) && !path.includes(ro) && !path.some(n => n.id === 'mnRo')) closePanel(); });
 
   new IntersectionObserver(es => {
     heroIn = es[0].isIntersecting;
