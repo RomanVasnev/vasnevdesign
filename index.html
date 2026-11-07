@@ -3914,6 +3914,37 @@ window.VA_DATA = {
   }
   window.__pp = { play: () => boards[0].play(), show: i => boards[0].show(i), boards };
 })();
+
+/* «Обсудить проект» and any other link to the contacts: bring the yellow frame to the middle of the screen,
+   clear of the sticky header, instead of the browser's jump that leaves it under the bar — by vasnev.art */
+(() => {
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href="#hi"]'); if (!a) return;
+    const f = document.getElementById('f4') || document.getElementById('hi'); if (!f) return;
+    e.preventDefault();
+    const smooth = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+    /* layout position, not the on-screen box: frames slide in with a transform, which would skew the target */
+    const target = () => {
+      const nav = document.querySelector('.nav'), top = nav ? nav.getBoundingClientRect().bottom + 12 : 16;
+      let fy = 0; for (let n = f; n; n = n.offsetParent) fy += n.offsetTop;
+      return Math.max(0, fy - top - Math.max(0, (innerHeight - top - f.offsetHeight) / 2));
+    };
+    scrollTo({ top: target(), behavior: smooth ? 'smooth' : 'auto' });
+    /* on the way blocks grow and other animations may nudge the page: for a few seconds, whenever the scroll
+       comes to rest away from the frame, aim again (polling: Safari has no scrollend) */
+    clearInterval(window.__hiAim);
+    let still = 0, last = scrollY, fixes = 0; const t0 = Date.now();
+    window.__hiAim = setInterval(() => {
+      if (Date.now() - t0 > 4000 || fixes > 3) return clearInterval(window.__hiAim);
+      if (Math.abs(scrollY - last) > 1) { last = scrollY; still = 0; return; }
+      if (++still < 2) return;
+      const t = target(); if (Math.abs(t - scrollY) > 6) { fixes++; still = 0; scrollTo({ top: t, behavior: smooth ? 'smooth' : 'auto' }); }
+      else clearInterval(window.__hiAim);
+    }, 150);
+    /* a wheel or a touch from the visitor wins over the auto-aim */
+    ['wheel', 'touchstart'].forEach(ev => addEventListener(ev, () => clearInterval(window.__hiAim), { once: true, passive: true }));
+  });
+})();
 </script>
 
 <section class="ck" id="ck" role="region" aria-label="Уведомление о cookie" hidden>
