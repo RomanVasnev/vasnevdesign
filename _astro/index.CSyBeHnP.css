@@ -1841,9 +1841,13 @@ a.fb-b:hover{transform:translateY(-4px);box-shadow:0 0 0 2px var(--c-sel)}
 .fb-gh:hover{box-shadow:0 0 0 1px rgba(11,11,12,.18),0 6px 16px rgba(11,11,12,.1)}
 .fb-gh:active{transform:scale(.96)}
 .fb-gh:focus-visible{outline:2px solid var(--c-sel);outline-offset:3px}
+/* the pill hugs its text: an absolutely placed box with left:50% would only get half the width and squeeze it */
+.fb-gh{width:max-content;max-width:calc(100% - 24px)}
 @media (max-width:900px){
-  .fb-mq{left:10%;width:62%}
-  @keyframes fbDraw{0%{width:0;height:0;opacity:0}8%{width:0;height:0;opacity:1}55%,85%{width:62%;height:56%;opacity:1}100%{width:62%;height:56%;opacity:0}}
+  /* Studio on phones: a smaller frame, so its name, the size tag and the cursor each have their own room */
+  .fb-mq{left:12%;top:20%;width:56%;height:44%}
+  @keyframes fbDraw{0%{width:0;height:0;opacity:0}8%{width:0;height:0;opacity:1}55%,85%{width:56%;height:44%;opacity:1}100%{width:56%;height:44%;opacity:0}}
+  .fb-st .fb-v{min-height:220px}
 }
 
 .ck{position:fixed;z-index:80;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:min(392px,calc(100vw - 32px));display:flex;align-items:center;gap:14px;padding:14px 14px 14px 18px;border-radius:20px;background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);box-shadow:0 0 0 1px rgba(11,11,12,.07),0 24px 60px -20px rgba(11,11,12,.25),0 4px 12px rgba(11,11,12,.04);font-family:var(--font,'Geist',-apple-system,sans-serif);color:#0B0B0C;opacity:0;transform:translateY(16px);visibility:hidden;transition:opacity .35s,transform .55s cubic-bezier(.32,.72,0,1),visibility 0s .55s}
