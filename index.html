@@ -11,6 +11,254 @@
 
 <link rel="stylesheet" href="/_astro/index.CSyBeHnP.css"></head><body><noscript><div><img src="https://mc.yandex.ru/watch/113963788" style="position:absolute;left:-9999px" alt=""></div></noscript>
 
+<script>/* RU / EN: the site is written in Russian; English is laid over it at load, before any other script runs.
+   The choice is kept in localStorage ('va-lang'), ?lang=en|ru sets it, and visitors without Russian
+   in their browser languages get English first. Switching reloads the page, so letter-split headings
+   and typed texts are built from the right language. window.__t(s) translates a string for scripts. — by vasnev.art */
+(() => {
+  const D = {
+    /* ── navigation, header, menu ── */
+    'Обо мне': 'About', 'Кейсы': 'Cases', 'Статьи': 'Articles', 'Спросить Романа': 'Ask Roman',
+    'Опыт и процесс': 'Experience and process', 'Обновляю': 'Updating', '10 компонентов · код и превью': '10 components · code and preview',
+    'Скоро': 'Soon', 'Москва': 'Moscow', 'AI-ассистент': 'AI assistant', 'Главная': 'Home', 'Меню': 'Menu', 'Закрыть меню': 'Close menu',
+    'Разделы': 'Sections', 'раздел скоро появится': 'section coming soon', 'портфолио Романа Васнёва': 'Roman Vasnev’s portfolio',
+    'Время в Москве': 'Time in Moscow', 'Открыть AI-ассистента Романа': 'Open Roman’s AI assistant',
+    'Свайпни, чтобы написать': 'Swipe to write', 'Открываю Telegram…': 'Opening Telegram…', 'До связи': 'Talk soon',
+    'Слои': 'Layers', 'Фреймы страницы': 'Page frames', 'профиль скоро появится': 'profile coming soon',
+    'Скопировано': 'Copied', 'выдели и скопируй адрес': 'select and copy the address', '⌥ копия': '⌥ copy',
+    'Дизайн-система': 'Design system', 'Финансы': 'Finance', 'Роман': 'Roman',
+    'Загрузка сайта vasnev.art': 'Loading vasnev.art',
+
+    /* ── hero ── */
+    'Васнёв Роман': 'Roman Vasnev', 'Роман Васнёв': 'Roman Vasnev',
+    '8+ лет в дизайне, опыт в финтехе, Web3, e-commerce и запуске MVP. Беру продукт целиком: исследование, механики и логика состояний, интерфейс, дизайн-система и рабочий MVP в коде.':
+      '8+ years in design across fintech, Web3, e-commerce and MVP launches. I take on the whole product: research, mechanics and state logic, interface, design system and a working MVP in code.',
+    'Коротко обо мне': 'About me in short', 'Почта': 'Email', 'Скопировать': 'Copy', 'Открыть': 'Open',
+    'нажми, чтобы скопировать': 'click to copy',
+
+    /* ── assistant ── */
+    'Чат': 'Chat', 'Контакты': 'Contacts', 'Отвечает за пару секунд': 'Replies in a couple of seconds', 'Роман · AI-ассистент': 'Roman · AI assistant',
+    'Привет! Я отвечаю за Романа: про опыт, продукты и как он работает.': 'Hi! I answer for Roman: about his experience, products and how he works.',
+    'Какой у тебя опыт?': 'What’s your experience?', 'С какими продуктами работал?': 'What products have you worked on?', 'Как ты работаешь?': 'How do you work?',
+    'Как ты работаешь с метриками?': 'How do you work with metrics?', 'Покажи лучший кейс': 'Show me your best case', 'Как с тобой связаться?': 'How can I reach you?',
+    'Написать Роману': 'Message Roman', 'Telegram, быстрее всего': 'Telegram, the fastest', 'Вопрос Роману': 'Question for Roman',
+    'Думает…': 'Thinking…', 'Печатает…': 'Typing…', 'Ассистент Романа Васнёва': 'Roman Vasnev’s assistant', 'AI-ассистент: вопросы обо мне': 'AI assistant: questions about me',
+    'Роман в белой футболке смотрит в камеру и улыбается': 'Roman in a white T-shirt looks at the camera and smiles',
+    'Разделы ассистента': 'Assistant sections', 'Свернуть ассистента': 'Collapse the assistant', 'Отправить': 'Send',
+    'Есть награды?': 'Any awards?', 'Как Роман работает?': 'How does Roman work?', 'Как он делает компоненты?': 'How does he build components?', 'Как связаться?': 'How to get in touch?',
+    'Написать Роману?': 'Message Roman?', 'Рассказать про продукты?': 'Tell you about the products?', 'Спросить про опыт?': 'Ask about experience?',
+    'На это лучше ответит сам Роман. Напишите ему в Telegram @RomanVasnev, он отвечает быстро.': 'Roman will answer this better himself. Message him on Telegram @RomanVasnev, he replies fast.',
+    '8+ лет в дизайне. Последние годы — продуктовый дизайнер: EvaCodes (2024–2026), Aragon (2023–2024), iCrypto World (2021–2022). До этого UX/UI в MetaLamp и KOTELOV и веб-дизайн в студии.':
+      '8+ years in design. Most recently a product designer at EvaCodes (2024–2026), Aragon (2023–2024) and iCrypto World (2021–2022). Before that UX/UI at MetaLamp and KOTELOV, and web design at a studio.',
+    'Финтех и платёжные сервисы, Web3, маркетплейсы, B2B-системы и e-commerce. Часто вёл продукт целиком — от исследования до релиза.':
+      'Fintech and payments, Web3, marketplaces, B2B systems and e-commerce. Often led the whole product, from research to release.',
+    'Исследую задачу и данные, проектирую сценарии и прототипы, собираю дизайн-систему по атомарному принципу и довожу до кода: прототипы на React, передача через Dev Mode и MCP.':
+      'I research the problem and the data, design flows and prototypes, build an atomic design system and take it to code: React prototypes, handoff through Dev Mode and MCP.',
+    'Быстрее всего — Telegram @RomanVasnev. Ещё есть MAX и почта roman.vasnev@mail.ru.': 'Telegram @RomanVasnev is the fastest. There’s also MAX and email roman.vasnev@mail.ru.',
+    'Проект в iCrypto World победил на CryptoExpo Dubai в номинации Best DeFi NFT & GameFi.': 'A project at iCrypto World won Best DeFi NFT & GameFi at CryptoExpo Dubai.',
+
+    /* ── process ── */
+    'Мой подход': 'My approach', 'Продуктовый дизайн': 'Product design', 'Брендинг': 'Branding',
+    'Процесс: от discovery до релиза': 'Process: from discovery to release',
+    'Каждый этап заканчивается артефактом, который становится входными данными для следующего.': 'Each stage ends with an artifact that becomes the input for the next one.',
+    'Семь этапов продуктовой разработки. Каждый заканчивается артефактом, который становится входными данными для следующего.': 'Seven stages of product development. Each ends with an artifact that becomes the input for the next one.',
+    'Исследование': 'Research', 'Интервью с пользователями, анализ воронки и конкурентов. Формулирую проблему, гипотезу и целевую метрику.': 'User interviews, funnel and competitor analysis. I define the problem, the hypothesis and the target metric.',
+    'Интервью с пользователями': 'User interviews', 'Анализ воронки': 'Funnel analysis', 'Анализ конкурентов': 'Competitor analysis', 'Problem statement и гипотеза': 'Problem statement and hypothesis',
+    'Целевая метрика': 'Target metric', 'На выходе': 'Output', 'Бриф и гипотеза': 'Brief and hypothesis', 'Стек': 'Stack', 'Приоритизация': 'Prioritization',
+    'Оцениваю решения по влиянию и затратам (ICE / RICE) и фиксирую минимальный объём, достаточный для проверки гипотезы.': 'I score solutions by impact and effort (ICE / RICE) and lock the smallest scope that can test the hypothesis.',
+    'Список возможных решений': 'List of possible solutions', 'Оценка по ICE / RICE': 'ICE / RICE scoring', 'Скоуп MVP': 'MVP scope', 'Бэклог следующих итераций': 'Backlog for next iterations',
+    'Сценарии и валидация': 'Flows and validation', 'Проектирую user flow и карту состояний: основной путь, ошибки, пустые и граничные кейсы. До разработки проверяю прототип юзабилити-тестом.':
+      'I design the user flow and the state map: the main path, errors, empty and edge cases. Before development I check the prototype with a usability test.',
+    'Карта состояний': 'State map', 'Ошибки, пустые и граничные кейсы': 'Errors, empty and edge cases', 'Кликабельный прототип': 'Clickable prototype', 'Юзабилити-тест': 'Usability test',
+    'Валидированный прототип': 'Validated prototype', 'Дизайн-система и UI': 'Design system and UI',
+    'Токены, компоненты и их состояния, светлая и тёмная темы, доступность по WCAG 2.1 AA. Макеты собираю только из компонентов системы.': 'Tokens, components and their states, light and dark themes, WCAG 2.1 AA accessibility. I build mockups only from system components.',
+    'Дизайн-токены': 'Design tokens', 'Компоненты и их состояния': 'Components and their states', 'Светлая и тёмная темы': 'Light and dark themes', 'Доступность WCAG 2.1 AA': 'WCAG 2.1 AA accessibility',
+    'Макеты из компонентов системы': 'Mockups from system components', 'Компоненты и макеты': 'Components and mockups', 'Разработка MVP': 'MVP development',
+    'Собираю фронтенд с AI на компонентах дизайн-системы, делаю код-ревью и проверяю каждый экран в браузере. Закладываю разметку событий аналитики.': 'I build the front end with AI on design system components, review the code and check every screen in the browser. I set up analytics events.',
+    'Фронтенд на компонентах системы': 'Front end on system components', 'Код-ревью': 'Code review', 'Проверка экранов в браузере': 'Screen checks in the browser', 'Разметка событий аналитики': 'Analytics events',
+    'Рабочий билд': 'Working build', 'Готовый продукт': 'Finished product',
+    'Релиз в продакшен. Продукт собран на тех же компонентах и токенах, что и макеты, — без расхождений между дизайном и кодом.': 'Release to production. The product is built on the same components and tokens as the mockups, with no gap between design and code.',
+    'Релиз': 'Release', 'Анализ и итерация': 'Analysis and iteration',
+    'Сравниваю метрику с целевой из брифа и фиксирую решение в decision log. Выводы становятся входными данными для следующей итерации.': 'I compare the metric with the target from the brief and record the decision in a decision log. The findings become the input for the next iteration.',
+    'Сравнение с целевой метрикой': 'Comparison with the target metric', 'Решение в decision log': 'Decision in the decision log', 'Входные данные следующей итерации': 'Input for the next iteration',
+    'Новый бриф': 'New brief', 'Обсудить проект': 'Discuss a project', 'MVP: от гипотезы до запуска': 'MVP: from hypothesis to launch',
+    'Шесть шагов до первой версии, которую можно проверить на пользователях. Дизайн и разработка идут параллельно.': 'Six steps to a first version you can test with users. Design and development run in parallel.',
+    'Гипотеза': 'Hypothesis', 'Если показать пробный период на пейволе, больше людей оформят подписку': 'If we show a free trial on the paywall, more people will subscribe',
+    'Метрика · конверсия в подписку': 'Metric · subscription conversion', 'В MVP': 'In the MVP', 'Пейвол с пробным периодом': 'Paywall with a free trial', 'Выбор тарифа': 'Plan selection',
+    'Оплата': 'Payment', 'Потом': 'Later', 'Промокоды': 'Promo codes', 'Семейный доступ': 'Family sharing', 'Тёмная тема': 'Dark theme', 'Пейвол': 'Paywall', 'Готово': 'Done',
+    'Тест · 3 из 5': 'Test · 3 of 5', 'Не нашли кнопку оплаты под тарифами': 'Couldn’t find the pay button under the plans', 'Решение': 'Solution', 'Кнопка ниже, в зону большого пальца': 'Button lower, in thumb reach',
+    'Конверсия в подписку': 'Subscription conversion', '+1,9 п. п. после релиза': '+1.9 pp after release', 'Релиз v1.0': 'Release v1.0', 'Решение по гипотезе': 'Hypothesis decision',
+    'Развивать': 'Grow', 'Менять': 'Change', 'Закрыть': 'Close', 'Следующий цикл · v1.1': 'Next cycle · v1.1', '7 дней бесплатно, потом по тарифу': '7 days free, then the plan price',
+    'Месяц': 'Month', 'Год': 'Year', 'Оформить': 'Subscribe', 'Тариф': 'Plan', 'Гипотеза и скоуп': 'Hypothesis and scope', 'Прототип ключевого сценария': 'Prototype of the key flow',
+    'Карта кликов и комментарии': 'Click map and comments', 'Экран из компонентов UI Library': 'Screen from UI Library components', 'Тот же экран в коде': 'The same screen in code', 'Релиз и метрика': 'Release and metric',
+    'Формулирую одну ключевую гипотезу и целевую метрику. Фиксирую, что точно не входит в первую версию.': 'I define one key hypothesis and a target metric, and pin down what definitely stays out of the first version.',
+    'Ключевая гипотеза': 'Key hypothesis', 'Границы первой версии': 'First version limits', 'Ключевой сценарий': 'Key flow',
+    'Проектирую один путь пользователя: от входа до момента, когда он получает ценность. Собираю вайрфреймы.': 'I design one user path: from entry to the moment they get value. I put together wireframes.',
+    'Основной путь пользователя': 'Main user path', 'Вайрфреймы': 'Wireframes', 'Состояния и ошибки': 'States and errors', 'Прототип и тест': 'Prototype and test',
+    'Собираю кликабельный прототип и проверяю его на пользователях до начала разработки.': 'I build a clickable prototype and test it with users before development starts.',
+    'Правки по итогам': 'Fixes from the results', 'Проверенный прототип': 'Tested prototype', 'UI на готовой базе': 'UI on a ready base',
+    'Собираю экраны из готовых компонентов и токенов, без своей дизайн-системы с нуля: так первая версия выходит быстрее.': 'I build screens from ready components and tokens instead of a design system from scratch, so the first version ships faster.',
+    'Готовые компоненты': 'Ready components', 'Токены': 'Tokens', 'Ключевые экраны': 'Key screens', 'Макеты ключевых экранов': 'Mockups of key screens', 'Сборка с AI': 'Building with AI',
+    'Собираю фронтенд с AI на компонентах, делаю код-ревью и закладываю разметку событий аналитики.': 'I build the front end with AI on components, review the code and set up analytics events.',
+    'Фронтенд на компонентах': 'Front end on components', 'Запуск и первые пользователи': 'Launch and first users',
+    'Выпускаю первую версию, собираю метрику и принимаю решение по гипотезе: развивать, менять или закрывать.': 'I ship the first version, collect the metric and decide on the hypothesis: grow, change or close.',
+    'Сбор метрики': 'Metric collection', 'Айдентика: от стратегии до носителей': 'Identity: from strategy to touchpoints',
+    'Шесть этапов: от позиционирования до брендбука. Один визуальный язык на сайте, в продукте и в рекламе.': 'Six stages from positioning to a brand book. One visual language on the site, in the product and in ads.',
+    'Холст': 'Canvas', 'Код': 'Code', 'Продукт': 'Product', 'Система': 'System', 'Цвет': 'Color', 'Геометрия': 'Geometry', 'Скорость': 'Speed', 'Выбрано': 'Selected', 'Охранное поле': 'Clear space',
+    'Ассоциации и референсы': 'Associations and references', 'Три ключевых слова': 'Three key words', 'Наброски знака': 'Logo sketches', 'Конструкция знака': 'Logo construction',
+    'Один знак — все носители': 'One mark, every touchpoint', 'Брендбук и токены': 'Brand book and tokens',
+    'Изучаю аудиторию, конкурентов и рынок. Ищу место, которое бренд может занять.': 'I study the audience, competitors and market, and look for the place the brand can own.',
+    'Аудитория': 'Audience', 'Конкуренты': 'Competitors', 'Позиционирование': 'Positioning', 'Бриф': 'Brief', 'Платформа бренда': 'Brand platform',
+    'Формулирую ценности, тон голоса и ключевое сообщение: то, на что опирается весь визуал.': 'I define the values, tone of voice and key message that all the visuals rest on.',
+    'Ценности': 'Values', 'Тон голоса': 'Tone of voice', 'Ключевое сообщение': 'Key message', 'Концепции': 'Concepts',
+    'Собираю два-три направления с мудбордами и вместе с командой выбираю одно.': 'I put together two or three directions with moodboards and pick one with the team.',
+    'Мудборды': 'Moodboards', '2–3 направления': '2–3 directions', 'Выбор концепции': 'Concept choice', 'Концепция': 'Concept', 'Айдентика': 'Identity',
+    'Рисую знак, подбираю цвет и типографику, собираю графику. Если нужно — маскот, как в Pump DAO.': 'I draw the mark, choose color and typography and build the graphics. A mascot if needed, as in Pump DAO.',
+    'Знак': 'Mark', 'Цвет и типографика': 'Color and typography', 'Графика': 'Graphics', 'Маскот': 'Mascot', 'Визуальный язык': 'Visual language', 'Носители': 'Touchpoints',
+    'Переношу айдентику на сайт, продукт, соцсети и рекламу: один визуальный язык везде.': 'I carry the identity to the site, product, social media and ads: one visual language everywhere.',
+    'Сайт': 'Website', 'Соцсети': 'Social media', 'Реклама': 'Ads', 'Макеты носителей': 'Touchpoint mockups', 'Гайдлайн и передача': 'Guidelines and handoff',
+    'Собираю брендбук и токены для продукта, чтобы бренд и интерфейс не расходились.': 'I put together a brand book and product tokens so the brand and the interface stay in sync.',
+    'Брендбук': 'Brand book', 'Токены для продукта': 'Product tokens', 'Исходники': 'Source files',
+    'Исследование и постановка проблемы.': 'Research and problem framing.', 'Приоритизация и скоуп MVP.': 'Prioritization and MVP scope.', 'Сценарии, состояния и валидация.': 'Flows, states and validation.',
+    'Дизайн-система и UI.': 'Design system and UI.', 'Разработка MVP.': 'MVP development.', 'Готовый продукт.': 'Finished product.', 'Анализ результатов и итерация.': 'Results analysis and iteration.',
+    'Гипотеза и скоуп MVP.': 'Hypothesis and MVP scope.', 'Ключевой сценарий.': 'Key flow.', 'Прототип и тест.': 'Prototype and test.', 'UI на готовой базе.': 'UI on a ready base.',
+    'Сборка с AI.': 'Building with AI.', 'Запуск и первые пользователи.': 'Launch and first users.', 'Пример — подписка в мобильном приложении': 'Example: a subscription in a mobile app',
+    'Исследование.': 'Research.', 'Платформа бренда.': 'Brand platform.', 'Концепции.': 'Concepts.', 'Айдентика.': 'Identity.', 'Носители.': 'Touchpoints.', 'Гайдлайн и передача.': 'Guidelines and handoff.',
+    'Пример — айдентика vasnev.art': 'Example: the vasnev.art identity', 'Направление': 'Track', 'Этапы': 'Stages', 'Этапы по порядку': 'Stages in order',
+    'Предыдущий этап': 'Previous stage', 'Следующий этап': 'Next stage',
+
+    /* ── interlude, cases ── */
+    'Переход к кейсам': 'On to the cases', 'Как это работает': 'How it works', 'в реальных продуктах': 'in real products', 'Как это работает в реальных продуктах': 'How it works in real products',
+    'Задачи, которые я решал': 'Problems I’ve solved', 'Все кейсы →': 'All cases →', 'Смотреть': 'View', 'Сбер Крипто': 'Sber Crypto',
+    'Крипта внутри СберБанк Онлайн: покупка, перевод и честные лимиты.': 'Crypto inside SberBank Online: buying, transfers and honest limits.',
+    'По паролю': 'Password', 'Геймифицированный реинвест сохранил ~$2 млн капитализации.': 'Gamified reinvesting kept ~$2M of market cap.',
+    'Криптобиржа к выходу на IPO: продукт и бренд.': 'A crypto exchange heading for an IPO: product and brand.', 'Кейсы обновляются': 'Cases are being updated',
+    'Пересобираю подачу — скоро открою': 'Reworking the presentation, opening soon', 'Трейдинг-терминал между блокчейнами.': 'A trading terminal across blockchains.',
+    'Крипто-кошелёк внутри Telegram.': 'A crypto wallet inside Telegram.', 'Онбординг в инвестиции. Под NDA.': 'Onboarding into investing. Under NDA.',
+    'Тестнет блокчейна третьего уровня. Под NDA.': 'A layer-3 blockchain testnet. Under NDA.',
+    'Продукты в финтехе и Web3: от исследования и механики до передачи в разработку. Все кейсы под паролем — пришлю после знакомства.':
+      'Fintech and Web3 products, from research and mechanics to developer handoff. All cases are password-protected; I’ll send the password once we’ve talked.',
+    'Кейс по паролю': 'Password-protected case', 'Этот кейс под NDA или ещё оформляется. Пароль пришлю после короткого знакомства.': 'This case is under NDA or still being written up. I’ll send the password after a short intro call.',
+    'Пароль': 'Password', 'Открыть Pump DAO': 'Open Pump DAO', 'Понятно': 'Got it', 'Запросить пароль в Telegram': 'Ask for the password on Telegram',
+    'Открыть кейс': 'Open the case', 'Кейс оформляется': 'Case in progress', 'Открыть прототип в новой вкладке': 'Open the prototype in a new tab',
+    'Неверный пароль. Попросите актуальный в Telegram.': 'Wrong password. Ask for the current one on Telegram.',
+
+    /* ── experience ── */
+    'Опыт': 'Experience', 'От веб-студии до продуктовых команд в Web3 и финтехе.': 'From a web studio to product teams in Web3 and fintech.',
+    'Web3 и финтех-продукты для клиентов: от исследования до дизайн-системы и MVP': 'Web3 and fintech products for clients, from research to design system and MVP',
+    'Инструменты для DAO: голосования и онбординг участников': 'Tools for DAOs: voting and member onboarding',
+    'DeFi, NFT и GameFi-продукт: механики, интерфейс и арт-дирекшн': 'A DeFi, NFT and GameFi product: mechanics, interface and art direction',
+    'UX/UI для веб-сервисов и мобильных приложений': 'UX/UI for web services and mobile apps', 'Интерфейсы Web3-проектов: DeFi-дашборды и кошельки': 'Interfaces for Web3 projects: DeFi dashboards and wallets',
+    'Outstaff-студия': 'Outstaff studio', 'Сайты и лендинги для клиентов студии, первые e-commerce-проекты': 'Websites and landing pages for studio clients, first e-commerce projects',
+    'Места работы': 'Workplaces', 'награда CryptoExpo Dubai': 'CryptoExpo Dubai award',
+
+    /* ── builds ── */
+    'Что я делаю сам': 'What I build myself', 'Кроме клиентских задач делаю свои продукты: так проверяю идеи и инструменты на себе.': 'Besides client work, I build my own products to test ideas and tools on myself.',
+    '10 компонентов с кодом. Выкладываю на 21st.dev и Craftwork.': '10 components with code. I publish them on 21st.dev and Craftwork.', 'Свои продукты, от идеи до релиза.': 'My own products, from idea to release.',
+    'AI-инструменты': 'AI tools', 'Пишу скиллы для дизайнеров: инструкции для AI и подключение инструментов по MCP. Публикую на GitHub.': 'I write skills for designers: instructions for AI and tool connections over MCP. I publish them on GitHub.',
+    'Ассистент на этом сайте тоже собрал сам.': 'I built the assistant on this site myself too.', 'Спросить ассистента': 'Ask the assistant', 'Скилл': 'Skill', 'Смотреть на GitHub': 'View on GitHub',
+
+    /* ── UI library ── */
+    'Компоненты, которые я проектирую и сам довожу до кода. Бесплатные публикую на 21st.dev, платные паки — на Craftwork. Каждый можно потрогать прямо здесь, открыть код и скопировать.':
+      'Components I design and take to code myself. Free ones go to 21st.dev, paid packs to Craftwork. You can try each one right here, open the code and copy it.',
+    'Все': 'All', 'Бесплатные': 'Free', 'Платные': 'Paid', 'Фильтр компонентов': 'Component filter', 'Показать бесплатные': 'Show free ones', 'Загрузка компонента…': 'Loading the component…',
+    'Превью': 'Preview', 'Вид': 'View', 'Файлы': 'Files', 'Настройки демо': 'Demo settings', 'Не вышло': 'Didn’t work', 'Не удалось загрузить компонент': 'Couldn’t load the component',
+    'Платные компоненты скоро появятся': 'Paid components are coming soon', 'Пока пусто': 'Nothing here yet',
+    'Готовлю паки для Craftwork: в каждом исходники, все состояния и демо. А пока — бесплатные компоненты с 21st.dev.': 'I’m preparing packs for Craftwork, each with source files, every state and a demo. Meanwhile, here are free components from 21st.dev.',
+    'Свайп-подтверждение для платежей и необратимых действий: загрузка, успех, ошибка, haptics и клавиатура.': 'Swipe to confirm for payments and irreversible actions: loading, success, error, haptics and keyboard.',
+    'Стеклянная папка: при наведении веером выходят иконки инструментов с подсказками. Две темы и клавиатура.': 'A glass folder: on hover, tool icons fan out with tooltips. Two themes and keyboard support.',
+
+    /* ── contacts, footer ── */
+    'Ищете продуктового': 'Looking for a product', 'дизайнера': 'designer', 'Формат =': 'Format =', 'В команду': 'In-house', 'в команду?': 'for your team?',
+    'Контракт': 'Contract', 'на контракт?': 'on contract?', 'Проект через ИП': 'Project', 'на проект через ИП?': 'for a project?',
+    'Формат работы: в команду, на контракт или на проект через ИП.': 'Work format: in-house, on contract or per project.',
+    'Написать в Telegram': 'Message on Telegram', 'Вы': 'You', 'Написать': 'Write', 'Ресурсы': 'Resources', 'привет!': 'hello!', 'Можно крупнее?': 'Make it bigger?', 'Контакты и ресурсы': 'Contacts and resources',
+    'мессенджер MAX': 'MAX messenger', 'UI-компоненты': 'UI components', 'шаблоны и киты': 'templates and kits',
+    'Онбординг': 'Onboarding', 'Платежи': 'Payments', 'Поддержка': 'Support', 'Сгруппировать': 'Group', 'Пользователи теряются': 'Users get lost', 'на шаге оплаты': 'at the payment step',
+    '3 из 5 интервью': '3 of 5 interviews', 'Инсайт': 'Insight', 'Баланс': 'Balance', 'Кофе': 'Coffee', 'Такси': 'Taxi', 'Кино': 'Cinema', 'Перевести': 'Transfer',
+    'Перевод отправлен': 'Transfer sent', 'Новый кейс': 'New case',
+    'Сайт использует cookie и Яндекс Метрику для статистики.': 'This site uses cookies and Yandex Metrica for statistics.', 'Подробнее': 'Learn more', 'Принять': 'Accept',
+    'Уведомление о cookie': 'Cookie notice', 'Яндекс Метрика': 'Yandex Metrica', 'Обновить': 'Refresh',
+    'Studio': 'Studio', 'Скролл': 'Scroll'
+  };
+  const RULES = [
+    [/^(\d+) из (\d+)$/, '$1 of $2'],
+    [/^Тест · (\d+) из (\d+)$/, 'Test · $1 of $2'],
+    [/^(.+): код и превью$/, (m, a) => a + ': code and preview'],
+    [/^Скролл → (.+)$/, (m, a) => 'Scroll → ' + tr(a)],
+    [/^Скролл$/, 'Scroll']
+  ];
+  const CY = /[А-Яа-яЁё]/;
+  function tr(s) {
+    if (!s || !CY.test(s)) return s;
+    const k = s.replace(/\s+/g, ' ').trim();
+    if (D[k] != null) return s.match(/^\s*/)[0] + D[k] + s.match(/\s*$/)[0];
+    for (const [re, to] of RULES) if (re.test(k)) return k.replace(re, to);
+    /* compound labels: «Name. Line.. Status» or «a · b» — translate the parts */
+    const parts = k.split(/(\.{1,2}\s+|\s·\s|:\s)/);
+    if (parts.length > 1) { const out = parts.map(p => (/^(\.{1,2}\s+|\s·\s|:\s)$/.test(p) || !CY.test(p)) ? p : (D[p.replace(/&nbsp;/g, ' ')] ?? D[p] ?? null)); if (out.every(p => p != null)) return out.join(''); }
+    return s;
+  }
+
+  const q = new URLSearchParams(location.search).get('lang');
+  let lang = null;
+  try { if (q === 'en' || q === 'ru') localStorage.setItem('va-lang', q); lang = localStorage.getItem('va-lang'); } catch (e) { lang = q; }
+  if (lang !== 'en' && lang !== 'ru') lang = (navigator.languages || [navigator.language || 'ru']).some(l => /^ru|^uk|^be|^kk/i.test(l)) ? 'ru' : 'en';
+  /* keep the address clean: the switch marker and ?lang= have done their job */
+  try { const u = new URL(location.href); if (u.searchParams.has('l') || u.searchParams.has('lang')) { u.searchParams.delete('l'); u.searchParams.delete('lang'); history.replaceState(history.state, '', u.pathname + u.search + u.hash); } } catch (e) {}
+  window.__lang = lang;
+  window.__t = s => lang === 'en' ? tr(s) : s;
+  document.documentElement.lang = lang;
+  window.__locale = lang === 'en' ? 'en-GB' : 'ru-RU';
+
+  const ATTR = ['aria-label', 'placeholder', 'title', 'alt', 'data-tip', 'data-tip-sub', 'aria-roledescription', 'aria-valuetext'];
+  const skip = n => { const p = n.nodeType === 1 ? n : n.parentElement; return !p || p.classList.contains('ch') || !!p.closest('script,style,code,pre,textarea,[data-i18n-skip]'); };
+  const doText = n => { if (skip(n)) return; const v = n.nodeValue, t = tr(v); if (t !== v) n.nodeValue = t; };
+  const doEl = e => { if (skip(e)) return; for (const a of ATTR) { const v = e.getAttribute(a); if (v && CY.test(v)) { const t = tr(v); if (t !== v) e.setAttribute(a, t); } } };
+  const walk = root => {
+    if (root.nodeType === 3) return doText(root);
+    if (root.nodeType !== 1) return;
+    doEl(root);
+    const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT);
+    let n; while ((n = w.nextNode())) n.nodeType === 3 ? (CY.test(n.nodeValue) && doText(n)) : doEl(n);
+  };
+
+  /* the toggle: «RU/EN», the active one is bright */
+  const paintToggle = () => document.querySelectorAll('.lang').forEach(a => {
+    a.innerHTML = lang === 'en' ? '<span>RU/</span>EN' : 'RU<span>/EN</span>';
+    a.setAttribute('aria-label', lang === 'en' ? 'Переключить на русский' : 'Switch to English'); a.setAttribute('data-i18n-skip', '');
+    a.setAttribute('href', '?lang=' + (lang === 'en' ? 'ru' : 'en') + location.hash);
+  });
+  document.addEventListener('click', e => {
+    const a = e.target.closest('.lang'); if (!a) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    const next = lang === 'en' ? 'ru' : 'en';
+    try { localStorage.setItem('va-lang', next); sessionStorage.setItem('va-lang-y', String(scrollY)); } catch (err) {}
+    const u = new URL(location.href); u.searchParams.delete('lang'); u.searchParams.set('l', next); location.replace(u.pathname + u.search + u.hash);
+  }, true);
+
+  const start = () => {
+    paintToggle();
+    if (lang !== 'en') return;
+    document.title = tr(document.title.replace('vasnev.art — ', '')) ? 'vasnev.art — ' + tr(document.title.replace('vasnev.art — ', '')) : document.title;
+    const md = document.querySelector('meta[name="description"]'); if (md && D[md.content]) md.content = D[md.content];
+    walk(document.body);
+    new MutationObserver(ms => ms.forEach(m => {
+      if (m.type === 'characterData') doText(m.target);
+      else if (m.type === 'attributes') { if (m.target.nodeType === 1 && CY.test(m.target.getAttribute(m.attributeName) || '')) doEl(m.target); }
+      else m.addedNodes.forEach(walk);
+      if (m.target === document.querySelector('title')) { const t = document.title.replace('vasnev.art — ', ''); if (CY.test(t)) document.title = 'vasnev.art — ' + tr(t); }
+    })).observe(document.documentElement, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ATTR });
+  };
+  /* the script sits at the top of <body>: the observer translates nodes as the parser adds them,
+     and __i18nWalk() runs once more right before the page scripts (letters are split from the translated text) */
+  window.__i18nWalk = () => { if (lang === 'en') walk(document.body); paintToggle(); };
+  if (document.body) start(); else document.addEventListener('DOMContentLoaded', start);
+  document.addEventListener('DOMContentLoaded', paintToggle);
+  /* back to where the visitor was before switching */
+  try { const y = +sessionStorage.getItem('va-lang-y'); if (y) { sessionStorage.removeItem('va-lang-y'); addEventListener('vasnev:ready', () => scrollTo(0, y), { once: true }); } } catch (e) {}
+})();
+</script>
 <div class="nav-wrap" id="navWrap">
   <nav class="nav" aria-label="Разделы">
     <div class="nav-l">
@@ -1056,7 +1304,7 @@
     <script>
       (() => {
         const root = document.getElementById('fsw'), t = root.querySelector('.fsw-t'), tag = root.querySelector('.fsw-tag b');
-        const V = [['В команду', 'в команду?'], ['Контракт', 'на контракт?'], ['Проект через ИП', 'на проект через ИП?']];
+        const T = window.__t || (x => x), V = [['В команду', 'в команду?'], ['Контракт', 'на контракт?'], ['Проект через ИП', 'на проект через ИП?']].map(([a, b]) => [T(a), T(b)]);
         let i = 0, busy = false, timer = 0;
         const wait = ms => new Promise(r => setTimeout(r, ms));
         async function to(n) {
@@ -1211,6 +1459,7 @@
   </div>
 </div>
 
+<script>window.__i18nWalk && window.__i18nWalk();</script>
 <script>
 (() => {
   /* ---- squircle for the avatar (superellipse n=5) ---- */
@@ -2334,8 +2583,8 @@
 
   /* ---------- export panel: CV download plays like an export, Moscow time ticks ---------- */
   $$('.xb[data-pending]').forEach(a => { a.dataset.tipSub = 'профиль скоро появится'; a.addEventListener('click', e => e.preventDefault()); });
-  const twFmt = new Intl.DateTimeFormat('ru-RU', { timeZone: 'Europe/Moscow', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
-  const twDate = new Intl.DateTimeFormat('ru-RU', { timeZone: 'Europe/Moscow', weekday: 'long', day: 'numeric', month: 'long' });
+  const twFmt = new Intl.DateTimeFormat(window.__locale || 'ru-RU', { timeZone: 'Europe/Moscow', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+  const twDate = new Intl.DateTimeFormat(window.__locale || 'ru-RU', { timeZone: 'Europe/Moscow', weekday: 'long', day: 'numeric', month: 'long' });
   let twLastM = '';
   function twTick() {
     const now = new Date(), parts = Object.fromEntries(twFmt.formatToParts(now).map(p => [p.type, p.value]));
@@ -2531,8 +2780,8 @@
   const isOpen = () => menu.classList.contains('open');
   const bd = document.getElementById('menuBd');
   /* Moscow clock: the footer widget, without the globe */
-  const twF = new Intl.DateTimeFormat('ru-RU', { timeZone: 'Europe/Moscow', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' });
-  const twDt = new Intl.DateTimeFormat('ru-RU', { timeZone: 'Europe/Moscow', weekday: 'long', day: 'numeric', month: 'long' });
+  const twF = new Intl.DateTimeFormat(window.__locale || 'ru-RU', { timeZone: 'Europe/Moscow', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' });
+  const twDt = new Intl.DateTimeFormat(window.__locale || 'ru-RU', { timeZone: 'Europe/Moscow', weekday: 'long', day: 'numeric', month: 'long' });
   const clk = () => {
     const now = new Date(), [h, m, sec] = twF.format(now).split(':');
     document.getElementById('mnHM').textContent = h + ':' + m;
@@ -2666,7 +2915,7 @@
 
   /* placeholder types example questions */
   if (inp && !reduce) {
-    const base = inp.placeholder, Q = ['Какой у тебя опыт?', 'Как ты работаешь с метриками?', 'Покажи лучший кейс', 'Как с тобой связаться?'];
+    const base = inp.placeholder, Q = ['Какой у тебя опыт?', 'Как ты работаешь с метриками?', 'Покажи лучший кейс', 'Как с тобой связаться?'].map(x => window.__t ? window.__t(x) : x);
     let qi = 0, ci = 0, dir = 1, hold = 0;
     setInterval(() => {
       if (document.activeElement === inp || inp.value) { inp.placeholder = base; return; }
@@ -2684,6 +2933,7 @@
 /* Кейсы: folders, password dialog and the case page — by vasnev.art */
 (() => {
   const IMG = {"c-sber": "img/sber-crypto-cover.jpg", "c-anty": "img/9e2759c82c.webp", "c-bitflare": "img/c071782184.webp", "c-l3": "img/eb5c86240f.webp", "c-pump": "img/88129f5a33.webp", "c-robinhood": "img/c855a517b3.webp", "c-sloth": "img/f80a17839a.webp", "landing": "img/69405605b0.webp", "m1": "img/6c23acdf6b.webp", "m2": "img/2d425aa177.webp", "m3": "img/1ea37ac3d7.webp", "m4": "img/f3e2c0c233.webp", "mascot": "img/3456c2bc8f.webp", "p02": "img/c84880440e.webp", "p05": "img/779cffa468.webp", "p06": "img/413e28142f.webp", "p07": "img/bb53062352.webp", "p08": "img/0b33d5bdcd.webp", "p10": "img/f175165033.webp", "p14": "img/68701b7900.webp", "ui0": "img/3038c45447.webp"};
+  const T = s => (window.__t ? window.__t(s) : s);
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const HASH = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1v10M8.5 1v10M1 3.5h10M1 8.5h10"/></svg>';
@@ -2732,10 +2982,10 @@
   function paint() {
     $$('.fd').forEach(li => {
       const k = CASES.find(c => c.id === li.dataset.id), st = $('.fd-st', li);
-      if (k.href) { li.classList.remove('lock', 'soon'); st.innerHTML = 'Смотреть' + OUT; $('.fd-b', li).setAttribute('aria-label', `${k.name}. ${k.sub}. Открыть прототип в новой вкладке`); return; }
+      if (k.href) { li.classList.remove('lock', 'soon'); st.innerHTML = 'Смотреть' + OUT; $('.fd-b', li).setAttribute('aria-label', `${k.name}. ${T(k.sub).replace(/&nbsp;/g, ' ')} ${T('Открыть прототип в новой вкладке')}`); return; }
       li.classList.toggle('lock', !unlocked); li.classList.toggle('soon', unlocked && !k.open);
       st.innerHTML = !unlocked ? LOCK + 'По паролю' : k.open ? 'Открыть' + ARROW : 'Скоро';
-      $('.fd-b', li).setAttribute('aria-label', `${k.name}. ${k.sub}. ${!unlocked ? 'Кейс по паролю' : k.open ? 'Открыть кейс' : 'Кейс оформляется'}`);
+      $('.fd-b', li).setAttribute('aria-label', `${k.name}. ${T(k.sub).replace(/&nbsp;/g, ' ')} ${T(!unlocked ? 'Кейс по паролю' : k.open ? 'Открыть кейс' : 'Кейс оформляется')}`);
     });
   }
   paint();
