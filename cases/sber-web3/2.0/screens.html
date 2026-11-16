@@ -23,7 +23,7 @@
   --bg:#121212;--card:#1E1E1E;--card-2:#272727;--card-3:#2E2E2E;   /* Sber Online dark: page #121212, cards #1E1E1E, buttons #272727 */
   --btn:#1A8F31;   /* Sber green, deepened just enough for white text at 4.2:1 */
   --label:#fff;--label-2:rgba(255,255,255,.72);--label-3:rgba(255,255,255,.58);
-  --hair:rgba(255,255,255,.1);--rim:0 0 0 0 transparent;   /* flat grey forms, no outlines (Sber Online) */
+  --hair:rgba(255,255,255,.1);--sheet:#181818;--rim:0 0 0 0 transparent;   /* flat grey forms, no outlines (Sber Online) */
   --up:#21A038;--down:#FF8B7A;   /* one green: the Sber brand green, same as the send button */
   --sber:#21A038;
   --ui:'SB Sans Text',-apple-system,'SF Pro Text','Helvetica Neue',sans-serif;
@@ -50,11 +50,12 @@ html.native .stage{display:block;height:100%}
 html.native .fit{position:fixed;inset:0;width:auto!important;height:auto!important;margin:0!important}
 html.native .phone{position:fixed;left:0;right:0;width:auto;top:calc(env(safe-area-inset-top,0px) - 44px);height:calc(100dvh + 44px - env(safe-area-inset-top,0px));
   border-radius:0;box-shadow:none;transform:none!important}
+html.native .sheet{border-radius:28px 28px 0 0;box-shadow:0 120px 0 var(--sheet),0 -20px 60px rgba(0,0,0,.6)}   /* a real phone: the sheet runs off the bottom edge, no rounded foot showing the page behind */
 html.native .status,html.native .island,html.native .homebar,html.native .scenes,html.native .disc{display:none}
 /* ═════════ stage and phone ═════════ */
 .stage{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
 .fit{position:relative;flex:none}
-.phone{position:absolute;left:0;top:0;width:393px;height:852px;border-radius:56px;background:var(--bg);overflow:hidden;transform-origin:0 0;
+.phone{position:absolute;left:0;top:0;width:393px;height:852px;border-radius:56px;background:var(--bg);overflow:hidden;overflow:clip;transform-origin:0 0;
   box-shadow:0 0 0 1.5px #3b3b3f,0 0 0 9px #0c0c0d,0 0 0 10px #2b2b2e,0 40px 80px -20px rgba(0,0,0,.9);isolation:isolate}
 .status{position:absolute;z-index:60;left:0;right:0;top:0;height:54px;display:flex;justify-content:space-between;align-items:center;padding:14px 34px 0 52px;font:600 16px/20px var(--ui);pointer-events:none}
 .status svg{display:block}
@@ -81,8 +82,9 @@ html.native .status,html.native .island,html.native .homebar,html.native .scenes
 .gc>.g{position:absolute;inset:0;z-index:-3;background:linear-gradient(180deg,var(--t) 0%,var(--b) 38%,var(--b) 72%,var(--bt) 100%)}
 .gc>.c{position:absolute;left:7%;right:7%;top:12%;bottom:-8%;z-index:-2;border-radius:80px;filter:blur(30px);background:var(--k)}
 .gc>.n{position:absolute;inset:0;z-index:-1;background-image:var(--grain);opacity:.2;mix-blend-mode:overlay;pointer-events:none}
-.gc>.rim{position:absolute;inset:0;z-index:9;border-radius:inherit;pointer-events:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.24),inset 0 0 0 1px rgba(255,255,255,.07)}
+.gc>.rim{display:none}   /* flat, like Sber Online: no rim of light around the cards */
 .gc[data-glow=bottom]>.c{left:var(--side-in,3%);right:var(--side-in,3%);top:-30%;bottom:var(--foot,30%);border-radius:120px;filter:blur(30px)}
+.gc[data-glow=bottom]::before{content:'';position:absolute;left:0;right:0;top:0;height:150px;z-index:-1;background:linear-gradient(var(--bg) 30%,rgba(18,18,18,0));pointer-events:none}   /* the card's top is the page itself, so nothing shows behind the header */
 .gc[data-glow=bottom]>.g{background:radial-gradient(70% 55% at 88% 104%,var(--x,transparent),transparent 70%),linear-gradient(180deg,var(--k) 0%,var(--k) 22%,var(--b) 60%,var(--bt) 100%)}
 /* tones from the Sber logo: green, blue, cyan and the yellow-green of its highlight */
 [data-tone=brand]{--b:#0F6B2A;--bt:#9BE15D;--x:rgba(15,168,224,.85);--k:#0B0E0C}   /* a touch darker than the page so the green reads */
@@ -102,11 +104,11 @@ html.native .status,html.native .island,html.native .homebar,html.native .scenes
 /* chips, buttons */
 .pill{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:13px;background:rgba(0,0,0,.62);font:500 12px/16px var(--mono);color:#fff;white-space:nowrap;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .pill i{width:6px;height:6px;border-radius:50%;background:currentColor}
-.glass{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.14);color:#fff;transition:transform .25s var(--soft),background .2s}
+.glass{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.12);box-shadow:none;color:#fff;transition:transform .25s var(--soft),background .2s}
 .glass:active{transform:scale(.88);background:rgba(255,255,255,.2)}
 .glass svg{width:18px;height:18px}
 .wbtn,.dbtn{display:flex;align-items:center;justify-content:center;gap:8px;height:52px;border-radius:16px;font:500 17px/22px var(--ui);transition:transform .3s var(--soft),opacity .25s,background .2s}
-.wbtn{background:var(--btn);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.14)}
+.wbtn{background:var(--btn);color:#fff;box-shadow:none}
 .wbtn:active{background:#167A2A}
 .dbtn{background:rgba(255,255,255,.14);color:#fff;box-shadow:none;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 .wbtn:active,.dbtn:active{transform:scale(.96)}
@@ -127,7 +129,7 @@ html.native .status,html.native .island,html.native .homebar,html.native .scenes
 /* ═════════ home ═════════ */
 /* header: profile · search · GigaChat · notifications */
 .head{position:sticky;top:0;z-index:22;display:flex;align-items:center;gap:8px;padding:58px var(--side) 12px;transition:background .3s,box-shadow .3s}
-.head.stuck{background:rgba(18,18,18,.72);-webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5);box-shadow:none}
+.head.stuck{background:rgba(18,18,18,.94);-webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5);box-shadow:none}
 #v-home .statusfade{display:none}
 .head .ava{width:46px;height:46px;border-radius:15px;background:var(--card-3);box-shadow:var(--rim);display:grid;place-items:center;flex:none;transition:transform .25s var(--soft)}
 .head .ava svg{width:22px;height:22px}
@@ -220,10 +222,10 @@ html.native .status,html.native .island,html.native .homebar,html.native .scenes
 /* buy / sell inside the card: dark glass that sits in the glow instead of a white slab on top of it */
 .btns.act{padding-top:22px;gap:8px}
 .btns.act .gb{height:52px;border-radius:16px;font:500 17px/22px var(--ui);background:rgba(0,0,0,.34);box-shadow:none;-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4)}   /* on the glow: translucent, like Sber's chips over imagery */
-.btns.act .gb.pri{background:var(--btn);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.14);-webkit-backdrop-filter:none;backdrop-filter:none}
+.btns.act .gb.pri{background:var(--btn);color:#fff;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
 .btns.act .gb.pri:active{background:#167A2A}
 .gb{display:flex;align-items:center;justify-content:center;gap:8px;height:46px;border-radius:23px;font:600 15px/20px var(--ui);color:#fff;
-  background:rgba(0,0,0,.46);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 0 0 0 1px rgba(255,255,255,.08);
+  background:rgba(0,0,0,.46);box-shadow:none;
   -webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);transition:transform .3s var(--soft),background .2s}
 .gb svg{width:18px;height:18px;stroke-width:2.2}
 .gb:active{transform:scale(.96);background:rgba(0,0,0,.6)}
@@ -334,7 +336,7 @@ button.row:active{background:var(--card-2)}
 
 /* ═════════ coin view ═════════ */
 .nav{position:absolute;z-index:20;left:0;right:0;top:0;height:100px;padding:54px 8px 0;display:flex;align-items:center;justify-content:space-between}
-.nav::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.72);-webkit-backdrop-filter:saturate(180%) blur(24px);backdrop-filter:saturate(180%) blur(24px);border-bottom:1px solid var(--hair);opacity:var(--mat,0)}
+.nav::before{content:'';position:absolute;inset:0;background:rgba(18,18,18,.94);-webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5);opacity:var(--mat,0)}   /* page colour, no hairline: the header melts into the page */
 .nav>*{position:relative}
 .nav .back{display:flex;align-items:center;gap:2px;height:44px;padding:0 12px 0 4px;font:400 17px/22px var(--ui);color:#fff;transition:opacity .2s}
 .nav .back:active{opacity:.5}
@@ -377,9 +379,9 @@ button.row:active{background:var(--card-2)}
 .fp.cur{transform:none}
 .fp.past{transform:translateX(-26%)}
 .fp.past::after{opacity:.6}
-.fscroll{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding:104px 0 140px;scrollbar-width:none;overscroll-behavior:contain}
+.fscroll{position:absolute;inset:100px 0 0;overflow-y:auto;overflow-x:hidden;padding:4px 0 140px;-webkit-mask:linear-gradient(transparent,#000 10px);mask:linear-gradient(transparent,#000 10px);scrollbar-width:none;overscroll-behavior:contain}
 .fscroll::-webkit-scrollbar{display:none}
-.ftop{position:absolute;z-index:6;left:0;right:0;top:54px;height:46px;display:flex;align-items:center;gap:14px;padding:0 14px 0 12px;background:linear-gradient(var(--bg) 60%,rgba(18,18,18,0))}
+.ftop{position:absolute;z-index:6;left:0;right:0;top:54px;height:46px;display:flex;align-items:center;gap:14px;padding:0 14px 0 12px;background:none}
 .ftop .glass{flex:none}
 .ftop .glass svg{width:20px;height:20px}
 .ftitle{flex:1;text-align:center;font:600 17px/22px var(--ui);margin-right:48px}
@@ -457,10 +459,10 @@ button.row:active{background:var(--card-2)}
 
 /* scene 4: the bank stands guard */
 .guard{position:absolute;inset:0}
-.halo{position:absolute;left:50%;top:50%;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);transform:translate(-50%,-50%)}
+.halo{position:absolute;left:50%;top:50%;border-radius:50%;box-shadow:none;background:rgba(255,255,255,.03);transform:translate(-50%,-50%)}
 .halo.a{width:132px;height:132px;background:radial-gradient(closest-side,rgba(33,160,56,.3),rgba(15,168,224,.08) 70%,transparent)}
 .halo.b{width:230px;height:230px;animation:pulse 4s ease-in-out infinite}
-.halo.c{width:310px;height:310px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.07);animation:pulse 4s 1s ease-in-out infinite}
+.halo.c{width:310px;height:310px;box-shadow:none;background:rgba(255,255,255,.02);animation:pulse 4s 1s ease-in-out infinite}
 @keyframes pulse{50%{transform:translate(-50%,-50%) scale(1.05);opacity:.55}}
 .gm{position:absolute;left:50%;top:50%;width:96px;height:96px;margin:-48px 0 0 -48px;border-radius:50%;background:#0B0C0C;box-shadow:var(--rim),0 20px 50px rgba(0,0,0,.8);display:grid;place-items:center}
 .gm svg{width:52px;height:54px}
@@ -518,7 +520,7 @@ button.row:active{background:var(--card-2)}
 /* ═════════ sheet ═════════ */
 .scrim{position:absolute;z-index:40;inset:0;background:rgba(0,0,0,.4);opacity:0;pointer-events:none;transition:opacity .45s var(--spring)}
 .phone.sheet-on .scrim{opacity:1;pointer-events:auto}
-.sheet{position:absolute;z-index:50;left:0;right:0;bottom:0;height:640px;border-radius:38px 38px 56px 56px;background:#0E0F10;box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 -20px 60px rgba(0,0,0,.6);transform:translateY(105%);transition:transform .55s var(--spring),height .55s var(--spring);overflow:hidden;will-change:transform}
+.sheet{position:absolute;z-index:50;left:0;right:0;bottom:0;height:640px;border-radius:38px 38px 56px 56px;background:var(--sheet);box-shadow:0 -20px 60px rgba(0,0,0,.6);transform:translateY(105%);transition:transform .55s var(--spring),height .55s var(--spring);overflow:hidden;will-change:transform}
 .phone.sheet-on .sheet{transform:none}
 .sheet.drag{transition:none}
 .grab{position:absolute;z-index:3;left:0;right:0;top:0;height:60px;touch-action:none;cursor:grab}
@@ -529,7 +531,7 @@ button.row:active{background:var(--card-2)}
 .pane{position:absolute;left:0;right:0;top:62px;padding:0 var(--side) 34px;opacity:0;transform:translateX(28px);pointer-events:none;transition:opacity .35s var(--soft),transform .5s var(--spring)}
 .pane.on{opacity:1;transform:none;pointer-events:auto}
 .pane.past{transform:translateX(-28px)}
-.pick{position:relative;display:grid;grid-template-columns:repeat(3,1fr);height:46px;padding:4px;border-radius:23px;background:var(--card-2);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);margin-top:6px}
+.pick{position:relative;display:grid;grid-template-columns:repeat(3,1fr);height:46px;padding:4px;border-radius:23px;background:var(--card-2);box-shadow:none;margin-top:6px}
 .pick i{position:absolute;top:4px;bottom:4px;left:4px;width:calc((100% - 8px)/3);border-radius:19px;background:#48484C;transform:translateX(calc(var(--i,0)*100%));transition:transform .45s var(--spring)}
 .pick button{position:relative;display:flex;align-items:center;justify-content:center;gap:7px;font:600 14px/18px var(--ui);color:var(--label-2);transition:color .3s}
 .pick button.on{color:#fff}
@@ -537,7 +539,8 @@ button.row:active{background:var(--card-2)}
 .amt{height:132px;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .amt .bigin{display:flex;align-items:center;font:300 62px/1 var(--dsp);letter-spacing:-.045em;font-variant-numeric:tabular-nums;white-space:nowrap;transform-origin:50% 60%;transition:transform .3s var(--soft)}
 .amt .bigin.zero .num{color:var(--label-3)}
-.amt .bigin .cur{color:var(--label-3);margin-left:.16em}
+.amt .bigin .cur{color:var(--label-3);margin-left:.2em;display:flex}
+.amt .bigin .cur svg{width:.5em;height:.69em}   /* the official sign (Wikimedia Commons, Ruble_sign.svg), cap height of the digits */
 .amt .bigin .car{width:2.5px;height:.84em;border-radius:2px;background:rgba(255,255,255,.5);margin-left:3px;animation:blink 1.1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
 .amt .bigin.shake{animation:shake .4s var(--soft)}
@@ -575,7 +578,7 @@ button.row:active{background:var(--card-2)}
 .hold span{position:relative;color:#fff}
 
 /* done: roubles turn into the coin. A disc flips from ₽ to the coin you bought (and back for a sale),
-   a ring of blocks closes around it, sparks in the coin's colour, then the tick */
+   a thin ring draws round it, then the tick */
 .swap{position:relative;width:240px;height:204px;margin:0 auto;perspective:900px}
 .swap .glow{position:absolute;left:50%;top:50%;width:230px;height:230px;margin:-115px;border-radius:50%;background:radial-gradient(closest-side,var(--cc),transparent 72%);opacity:0}
 .done.on .swap .glow{animation:bloom2 1.5s .75s var(--soft) forwards}
@@ -584,12 +587,7 @@ button.row:active{background:var(--card-2)}
 .orb .r1{fill:none;stroke:rgba(255,255,255,.26);stroke-width:1.2;stroke-dasharray:540;stroke-dashoffset:540;transform:rotate(-90deg);transform-origin:98px 98px}
 .done.on .orb .r1{animation:dash 1.1s .15s cubic-bezier(.5,0,.2,1) forwards}
 @keyframes dash{to{stroke-dashoffset:0}}
-.orb .r2{fill:none;stroke:rgba(255,255,255,.16);stroke-width:1.2;stroke-dasharray:2 7;transform-origin:98px 98px;animation:spin 24s linear infinite}
-.orb .blk{transform-origin:98px 98px;opacity:0}
-.done.on .orb .blk{animation:orbit 1.1s .15s cubic-bezier(.5,0,.2,1) forwards,fadeo .4s 1.2s forwards}
-.orb .blk rect{fill:#fff}
-@keyframes orbit{from{transform:rotate(0);opacity:1}to{transform:rotate(360deg);opacity:1}}
-@keyframes fadeo{from{opacity:1}to{opacity:0}}
+.done.on @keyframes fadeo{from{opacity:1}to{opacity:0}}
 @keyframes spin{to{transform:rotate(360deg)}}
 .flipd{position:absolute;left:50%;top:50%;width:112px;height:112px;margin:-56px;transform-style:preserve-3d;transform:scale(.7)}
 .done.on .flipd{animation:flip 1.2s .15s cubic-bezier(.55,0,.2,1) forwards}
@@ -597,15 +595,13 @@ button.row:active{background:var(--card-2)}
 .face{position:absolute;inset:0;border-radius:50%;-webkit-backface-visibility:hidden;backface-visibility:hidden;display:grid;place-items:center;box-shadow:0 18px 40px rgba(0,0,0,.6)}
 .face.back{transform:rotateY(180deg)}
 .face img{width:112px;height:112px;border-radius:50%}
-.face.rub{background:radial-gradient(120% 120% at 30% 20%,#3BD25C,#13863A 55%,#0B5E3F);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -6px 16px rgba(0,0,0,.25),0 18px 40px rgba(0,0,0,.6);font:300 58px/1 var(--dsp);color:#fff}
-.swap .badge{position:absolute;left:50%;top:50%;width:34px;height:34px;margin:24px 0 0 24px;border-radius:50%;background:#21A038;color:#04170a;display:grid;place-items:center;box-shadow:0 0 0 4px #0E0F10;transform:scale(0)}
+.face.rub{background:#21A038;box-shadow:0 18px 40px rgba(0,0,0,.6);color:#fff}
+.face.rub svg{width:40px;height:55px}
+.swap .badge{position:absolute;left:50%;top:50%;width:34px;height:34px;margin:24px 0 0 24px;border-radius:50%;background:#21A038;color:#fff;display:grid;place-items:center;box-shadow:0 0 0 4px var(--sheet);transform:scale(0)}
 .swap .badge svg{width:18px;height:18px;stroke-width:3}
 .done.on .swap .badge{animation:pop .5s 1.3s cubic-bezier(.3,1.6,.5,1) forwards}
 @keyframes pop{to{transform:scale(1)}}
-.swap .spark{position:absolute;left:50%;top:50%;width:5px;height:5px;margin:-2.5px;border-radius:50%;background:var(--sc);opacity:0}
-.done.on .swap .spark{animation:spark 1s 1.08s var(--soft) forwards}
-@keyframes spark{0%{opacity:1;transform:rotate(var(--a)) translateX(54px)}100%{opacity:0;transform:rotate(var(--a)) translateX(var(--r)) scale(.3)}}
-/* test passed: the Sber ring sweeps closed, then the tick lands */
+.done.on /* test passed: the Sber ring sweeps closed, then the tick lands */
 @property --sw{syntax:'<angle>';inherits:false;initial-value:0deg}
 .done{text-align:center}
 .seal{position:relative;width:220px;height:196px;margin:0 auto;display:grid;place-items:center}
@@ -625,7 +621,7 @@ button.row:active{background:var(--card-2)}
 .done.on h3,.done.on p,.done.on .rv,.done.on .wbtn{animation:rise .7s var(--soft) both}
 .done.on h3{animation-delay:.7s}.done.on p{animation-delay:.78s}.done.on .rv{animation-delay:.86s}.done.on .wbtn{animation-delay:.94s}
 
-.toast{position:absolute;z-index:80;left:50%;top:60px;transform:translate(-50%,-80px);padding:11px 16px;border-radius:22px;background:rgba(40,41,44,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.1);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);font:500 14px/18px var(--ui);white-space:nowrap;transition:transform .55s var(--spring),opacity .3s;opacity:0}
+.toast{position:absolute;z-index:80;left:50%;top:60px;transform:translate(-50%,-80px);padding:11px 16px;border-radius:22px;background:rgba(40,41,44,.9);box-shadow:none;-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);font:500 14px/18px var(--ui);white-space:nowrap;transition:transform .55s var(--spring),opacity .3s;opacity:0}
 .toast.on{transform:translate(-50%,0);opacity:1}
 
 /* below the phone */
@@ -674,7 +670,7 @@ button.row:active{background:var(--card-2)}
 <stop offset="0.9216" style="stop-color:rgb(5.882353%,65.882353%,87.843137%);stop-opacity:1;"/>
 </linearGradient>
 <symbol id="sb" viewBox="0 0 47 48"><g class="ring"><path fill="url(#sg0)" d="M 5.47 23.84 C 5.47 23.52 5.47 23.24 5.52 22.92 L 0.18 22.64 C 0.18 23.01 0.14 23.43 0.14 23.79 C 0.14 30.25 2.74 36.11 6.93 40.35 L 10.72 36.52 C 7.48 33.29 5.47 28.82 5.47 23.84 Z M 5.47 23.84 "/><path fill="url(#sg1)" d="M 23.27 5.86 C 23.59 5.86 23.86 5.86 24.18 5.9 L 24.45 0.51 C 24.09 0.51 23.68 0.46 23.31 0.46 C 16.93 0.46 11.13 3.09 6.93 7.33 L 10.72 11.16 C 13.91 7.89 18.38 5.86 23.27 5.86 Z M 23.27 5.86 "/><path fill="url(#sg2)" d="M 23.27 41.82 C 22.95 41.82 22.67 41.82 22.35 41.78 L 22.08 47.17 C 22.45 47.17 22.86 47.22 23.22 47.22 C 29.61 47.22 35.4 44.59 39.6 40.35 L 35.81 36.52 C 32.62 39.84 28.19 41.82 23.27 41.82 Z M 23.27 41.82 "/><path fill="url(#sg3)" d="M 33.3 8.99 L 37.82 5.62 C 33.85 2.4 28.79 0.41 23.27 0.41 L 23.27 5.81 C 27.01 5.86 30.47 7.01 33.3 8.99 Z M 33.3 8.99 "/><path fill="#21A038" d="M 46.44 23.84 C 46.44 22.41 46.3 21.03 46.07 19.64 L 41.1 23.38 C 41.1 23.52 41.1 23.7 41.1 23.84 C 41.1 29.14 38.82 33.89 35.22 37.17 L 38.82 41.18 C 43.48 36.94 46.44 30.71 46.44 23.84 Z M 46.44 23.84 "/><path fill="url(#sg4)" d="M 23.27 41.82 C 18.02 41.82 13.32 39.52 10.08 35.88 L 6.11 39.52 C 10.36 44.27 16.47 47.22 23.27 47.22 Z M 23.27 41.82 "/><path fill="url(#sg5)" d="M 11.36 10.51 L 7.75 6.5 C 3.05 10.79 0.14 16.97 0.14 23.84 L 5.47 23.84 C 5.47 18.58 7.75 13.79 11.36 10.51 Z M 11.36 10.51 "/></g><g class="tick"><path fill="#21A038" d="M 41.61 9.55 C 42.7 10.98 43.61 12.54 44.39 14.2 L 23.31 29.93 L 14.46 24.3 L 14.46 17.57 L 23.27 23.15 Z M 41.61 9.55 "/></g></symbol>
-<symbol id="sbm" viewBox="0 0 47 48" fill="currentColor"><path d="M 41.61 9.55 C 42.7 10.98 43.61 12.54 44.39 14.2 L 23.31 29.93 L 14.46 24.3 L 14.46 17.57 L 23.27 23.15 Z M 41.61 9.55 "/><path d="M 5.47 23.84 C 5.47 23.52 5.47 23.24 5.52 22.92 L 0.18 22.64 C 0.18 23.01 0.14 23.43 0.14 23.79 C 0.14 30.25 2.74 36.11 6.93 40.35 L 10.72 36.52 C 7.48 33.29 5.47 28.82 5.47 23.84 Z M 5.47 23.84 "/><path d="M 23.27 5.86 C 23.59 5.86 23.86 5.86 24.18 5.9 L 24.45 0.51 C 24.09 0.51 23.68 0.46 23.31 0.46 C 16.93 0.46 11.13 3.09 6.93 7.33 L 10.72 11.16 C 13.91 7.89 18.38 5.86 23.27 5.86 Z M 23.27 5.86 "/><path d="M 23.27 41.82 C 22.95 41.82 22.67 41.82 22.35 41.78 L 22.08 47.17 C 22.45 47.17 22.86 47.22 23.22 47.22 C 29.61 47.22 35.4 44.59 39.6 40.35 L 35.81 36.52 C 32.62 39.84 28.19 41.82 23.27 41.82 Z M 23.27 41.82 "/><path d="M 33.3 8.99 L 37.82 5.62 C 33.85 2.4 28.79 0.41 23.27 0.41 L 23.27 5.81 C 27.01 5.86 30.47 7.01 33.3 8.99 Z M 33.3 8.99 "/><path d="M 46.44 23.84 C 46.44 22.41 46.3 21.03 46.07 19.64 L 41.1 23.38 C 41.1 23.52 41.1 23.7 41.1 23.84 C 41.1 29.14 38.82 33.89 35.22 37.17 L 38.82 41.18 C 43.48 36.94 46.44 30.71 46.44 23.84 Z M 46.44 23.84 "/><path d="M 23.27 41.82 C 18.02 41.82 13.32 39.52 10.08 35.88 L 6.11 39.52 C 10.36 44.27 16.47 47.22 23.27 47.22 Z M 23.27 41.82 "/><path d="M 11.36 10.51 L 7.75 6.5 C 3.05 10.79 0.14 16.97 0.14 23.84 L 5.47 23.84 C 5.47 18.58 7.75 13.79 11.36 10.51 Z M 11.36 10.51 "/></symbol>
+<symbol id="rub" viewBox="0 0 72.5 100" fill="currentColor"><path fill-rule="evenodd" d="M5 0h40a27.5 27.5 0 0 1 0 55h-30v6h38v10h-38v29h-10v-29h-5v-10h5v-6h-5v-10h5zM15 10h30a17.5 17.5 0 0 1 0 35h-30z"/></symbol><symbol id="sbm" viewBox="0 0 47 48" fill="currentColor"><path d="M 41.61 9.55 C 42.7 10.98 43.61 12.54 44.39 14.2 L 23.31 29.93 L 14.46 24.3 L 14.46 17.57 L 23.27 23.15 Z M 41.61 9.55 "/><path d="M 5.47 23.84 C 5.47 23.52 5.47 23.24 5.52 22.92 L 0.18 22.64 C 0.18 23.01 0.14 23.43 0.14 23.79 C 0.14 30.25 2.74 36.11 6.93 40.35 L 10.72 36.52 C 7.48 33.29 5.47 28.82 5.47 23.84 Z M 5.47 23.84 "/><path d="M 23.27 5.86 C 23.59 5.86 23.86 5.86 24.18 5.9 L 24.45 0.51 C 24.09 0.51 23.68 0.46 23.31 0.46 C 16.93 0.46 11.13 3.09 6.93 7.33 L 10.72 11.16 C 13.91 7.89 18.38 5.86 23.27 5.86 Z M 23.27 5.86 "/><path d="M 23.27 41.82 C 22.95 41.82 22.67 41.82 22.35 41.78 L 22.08 47.17 C 22.45 47.17 22.86 47.22 23.22 47.22 C 29.61 47.22 35.4 44.59 39.6 40.35 L 35.81 36.52 C 32.62 39.84 28.19 41.82 23.27 41.82 Z M 23.27 41.82 "/><path d="M 33.3 8.99 L 37.82 5.62 C 33.85 2.4 28.79 0.41 23.27 0.41 L 23.27 5.81 C 27.01 5.86 30.47 7.01 33.3 8.99 Z M 33.3 8.99 "/><path d="M 46.44 23.84 C 46.44 22.41 46.3 21.03 46.07 19.64 L 41.1 23.38 C 41.1 23.52 41.1 23.7 41.1 23.84 C 41.1 29.14 38.82 33.89 35.22 37.17 L 38.82 41.18 C 43.48 36.94 46.44 30.71 46.44 23.84 Z M 46.44 23.84 "/><path d="M 23.27 41.82 C 18.02 41.82 13.32 39.52 10.08 35.88 L 6.11 39.52 C 10.36 44.27 16.47 47.22 23.27 47.22 Z M 23.27 41.82 "/><path d="M 11.36 10.51 L 7.75 6.5 C 3.05 10.79 0.14 16.97 0.14 23.84 L 5.47 23.84 C 5.47 18.58 7.75 13.79 11.36 10.51 Z M 11.36 10.51 "/></symbol>
 <linearGradient id="spkfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
 </defs></svg>
 <div class="stage">
@@ -832,7 +828,7 @@ button.row:active{background:var(--card-2)}
         <div class="shead"><span id="sh-ttl">Купить</span><button class="glass" id="sh-x" aria-label="Закрыть"><svg class="i" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
         <div class="pane" id="p-amt">
           <div class="pick" id="pick"><i></i></div>
-          <div class="amt"><div class="bigin" id="bigin"><span class="num" id="num">0</span><span class="car"></span><span class="cur">₽</span></div><div class="sub" id="sub"></div></div>
+          <div class="amt"><div class="bigin" id="bigin"><span class="num" id="num">0</span><span class="car"></span><span class="cur"><svg aria-label="₽"><use href="#rub"/></svg></span></div><div class="sub" id="sub"></div></div>
           <div class="chips" id="chips"></div>
           <div class="pad" id="pad"></div>
           <button class="wbtn" id="next" disabled>Продолжить</button>
@@ -866,6 +862,9 @@ button.row:active{background:var(--card-2)}
   const $ = id => document.getElementById(id), F = SC.fmt, TAU = Math.PI * 2;
   const AUDIT = /[?&]audit/.test(location.search); if (AUDIT) document.documentElement.classList.add('audit');
   const phone = $('phone'), RM = AUDIT || matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // overflow:hidden boxes can still be scrolled by focus or scrollIntoView: that slid the whole app up (the sheet peeked in, the test card ran under the header)
+  ['phone', 'views'].forEach(id => { const el = id === 'phone' ? phone : document.querySelector('.views'); el && el.addEventListener('scroll', () => { el.scrollTop = 0; el.scrollLeft = 0; }); });
+  document.querySelectorAll('.view,.fp,#v-flow').forEach(el => el.addEventListener('scroll', () => { el.scrollTop = 0; el.scrollLeft = 0; }));
   const clamp = (x, a, b) => Math.max(a, Math.min(b, x)), ease = t => 1 - Math.pow(1 - t, 3);
   const TONE = new Proxy({}, { get: (_, k) => SC.dayChange(k) >= 0 ? 'up' : 'down' });   /* tone follows the day's move */
   /* coin colours for the allocation bar and chart tint */
@@ -1194,12 +1193,10 @@ button.row:active{background:var(--card-2)}
   /* the confirmation: a disc turns from roubles into the coin (or back), the amount counts up as it lands */
   const CC = { btc: ['247,147,26', '#FFB45A'], eth: ['98,126,234', '#A9B8FF'], usdt: ['38,161,123', '#7FE3BD'] };
   const swapArt = (coin, buy) => {
-    const rub = '<div class="face rub" aria-hidden="true">₽</div>', cn = `<div class="face"><img src="icons/${coin}.svg" alt=""></div>`;
+    const rub = '<div class="face rub" aria-hidden="true"><svg><use href="#rub"/></svg></div>', cn = `<div class="face"><img src="icons/${coin}.svg" alt=""></div>`;
     const front = buy ? rub : cn, back = (buy ? cn : rub).replace('class="face', 'class="face back');
     const sc = buy ? CC[coin][1] : '#21A038';
-    const sparks = Array.from({ length: 14 }, (_, i) => `<i class="spark" style="--sc:${sc};--a:${(i * 360 / 14 + (i % 2) * 9).toFixed(0)}deg;--r:${84 + (i % 3) * 14}px"></i>`).join('');
-    const blocks = [0, 1, 2].map(i => `<g class="blk" style="animation-delay:${.15 + i * .08}s,${1.2 + i * .05}s"><rect x="94" y="0" width="8" height="8" rx="2" transform="rotate(45 98 4)"/></g>`).join('');
-    return `<i class="glow" style="--cc:rgba(${CC[coin][0]},${buy ? .55 : .3})"></i><svg class="orb" viewBox="0 0 196 196" aria-hidden="true"><circle class="r2" cx="98" cy="98" r="96"/><circle class="r1" cx="98" cy="98" r="86"/>${blocks}</svg><div class="flipd">${front}${back}</div>${sparks}<span class="badge"><svg class="i" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>`;
+    return `<i class="glow" style="--cc:rgba(${CC[coin][0]},${buy ? .55 : .3})"></i><svg class="orb" viewBox="0 0 196 196" aria-hidden="true"><circle class="r1" cx="98" cy="98" r="86"/></svg><div class="flipd">${front}${back}</div><span class="badge"><svg class="i" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>`;
   };
   const countUp = (el, prefix, to, fmt, delay) => {
     if (RM) { el.textContent = prefix + fmt(to); return; }
