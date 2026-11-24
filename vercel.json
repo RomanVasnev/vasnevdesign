@@ -1,0 +1,8 @@
+{
+  "framework": null,
+  "buildCommand":"node portfolio/build.cjs",
+  "outputDirectory":"preview-public",
+  "functions":{"api/access.js":{"includeFiles":"{legacy,portfolio}/**"}},
+  "rewrites":[{"source":"/projects/:id","destination":"/api/access?id=:id"},{"source":"/project-media/:media*","destination":"/api/access?media=:media*"}],
+  "headers":[{"source":"/(.*)","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow"}]}]
+}

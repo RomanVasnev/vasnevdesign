@@ -1,0 +1,14 @@
+.case-gate[hidden]{display:none}
+.case-gate{width:min(330px,calc(100% - 32px));white-space:normal;gap:12px}
+.case-gate label{display:block;width:100%}
+.case-gate .gate-row{display:flex;gap:6px;width:100%}
+.case-gate input,.case-gate button{font:inherit;height:44px;border-radius:12px}
+.case-gate input{min-width:0;width:100%;padding:0 12px;background:#f2f2f4;color:#181819;border:1px solid #dadadc}
+.case-gate input[aria-invalid=true]{border-color:#bd3535}
+.case-gate button{padding:0 14px;background:#141415;color:white;border:0;cursor:pointer}
+.case-gate output{font-size:13px;color:#343439}
+.case-gate input[aria-invalid=true]~output,.case-gate:has([aria-invalid=true]) output{color:#a22727}
+.case-gate output:empty{display:none}
+.fds .kc-m{display:block;width:100%;aspect-ratio:1.75;height:auto;border-radius:inherit;overflow:hidden}
+.fds .kc-m img{height:100%;width:100%;object-fit:cover}
+.fds a.kc{display:block;padding:0;overflow:hidden}

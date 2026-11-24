@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="960" viewBox="0 0 1920 960"><rect width="1920" height="960" fill="#0B0B0B"/>
+<line x1="110" y1="260" x2="1810" y2="260" stroke="#1E1E1E" stroke-width="2"/>
+<line x1="110" y1="370" x2="1810" y2="370" stroke="#1E1E1E" stroke-width="2"/>
+<line x1="110" y1="480" x2="1810" y2="480" stroke="#1E1E1E" stroke-width="2"/>
+<line x1="110" y1="590" x2="1810" y2="590" stroke="#1E1E1E" stroke-width="2"/>
+<line x1="110" y1="700" x2="1810" y2="700" stroke="#1E1E1E" stroke-width="2"/>
+<line x1="110" y1="150" x2="110" y2="720" stroke="#2E2E2E" stroke-width="2" stroke-dasharray="4 8"/>
+<rect x="124" y="150" width="248" height="52" rx="26" fill="#1A1A1A"/><text x="248" y="185" text-anchor="middle" font-family="Geist, 'Noto Sans CJK SC', Inter, sans-serif" font-size="26" fill="#FFFFFF">Исследование</text>
+<line x1="450" y1="150" x2="450" y2="720" stroke="#2E2E2E" stroke-width="2" stroke-dasharray="4 8"/>
+<rect x="464" y="150" width="163" height="52" rx="26" fill="#1A1A1A"/><text x="546" y="185" text-anchor="middle" font-family="Geist, 'Noto Sans CJK SC', Inter, sans-serif" font-size="26" fill="#FFFFFF">Решение</text>
+<line x1="790" y1="150" x2="790" y2="720" stroke="#2E2E2E" stroke-width="2" stroke-dasharray="4 8"/>
+<rect x="804" y="150" width="180" height="52" rx="26" fill="#C3FF38"/><text x="894" y="185" text-anchor="middle" font-family="Geist, 'Noto Sans CJK SC', Inter, sans-serif" font-size="26" fill="#0B0B0B">Создание</text>
+<line x1="1300" y1="150" x2="1300" y2="720" stroke="#2E2E2E" stroke-width="2" stroke-dasharray="4 8"/>
+<rect x="1314" y="150" width="180" height="52" rx="26" fill="#1A1A1A"/><text x="1404" y="185" text-anchor="middle" font-family="Geist, 'Noto Sans CJK SC', Inter, sans-serif" font-size="26" fill="#FFFFFF">Проверка</text>
+<line x1="1640" y1="150" x2="1640" y2="720" stroke="#2E2E2E" stroke-width="2" stroke-dasharray="4 8"/>
+<rect x="1654" y="150" width="180" height="52" rx="26" fill="#1A1A1A"/><text x="1744" y="185" text-anchor="middle" font-family="Geist, 'Noto Sans CJK SC', Inter, sans-serif" font-size="26" fill="#FFFFFF">Передача</text>
+<rect x="110.0" y="678.0" width="24.5" height="22.0" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="140.5" y="650.4" width="24.5" height="49.6" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="170.9" y="606.1" width="24.5" height="93.9" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="201.4" y="551.1" width="24.5" height="148.9" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="231.9" y="502.4" width="24.5" height="197.6" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="262.3" y="480.2" width="24.5" height="219.8" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="292.8" y="495.2" width="24.5" height="204.8" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="323.2" y="540.1" width="24.5" height="159.9" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="353.7" y="595.0" width="24.5" height="105.0" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="384.2" y="640.6" width="24.5" height="59.4" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="414.6" y="666.4" width="24.5" height="33.6" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="445.1" y="669.3" width="24.5" height="30.7" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="475.6" y="648.5" width="24.5" height="51.5" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="506.0" y="604.6" width="24.5" height="95.4" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="536.5" y="544.5" width="24.5" height="155.5" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="567.0" y="486.2" width="24.5" height="213.8" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="597.4" y="453.4" width="24.5" height="246.6" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="627.9" y="461.1" width="24.5" height="238.9" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="658.4" y="504.8" width="24.5" height="195.2" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="688.8" y="563.2" width="24.5" height="136.8" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="719.3" y="612.7" width="24.5" height="87.3" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="749.8" y="639.6" width="24.5" height="60.4" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="780.2" y="641.6" width="24.5" height="58.4" rx="4" fill="#C3FF38" fill-opacity="0.95"/>
+<rect x="810.7" y="622.2" width="24.5" height="77.8" rx="4" fill="#C3FF38" fill-opacity="0.95"/>
+<rect x="841.1" y="585.9" width="24.5" height="114.1" rx="4" fill="#C3FF38" fill-opacity="0.95"/>
+<rect x="871.6" y="536.4" width="24.5" height="163.6" rx="4" fill="#C3FF38" fill-opacity="0.95"/>
+<rect x="902.1" y="478.1" width="24.5" height="221.9" rx="4" fill="#C3FF38" fill-opacity="0.95"/>
+<rect x="932.5" y="417.3" width="24.5" height="282.7" rx="4" fill="#C3FF38" fill-opacity="0.95"/>
+<rect x="963.0" y="362.1" width="24.5" height="337.9" rx="4" fill="#C3FF38" fill-opacity="0.95"/>
+<rect x="993.5" y="321.0" width="24.5" height="379.0" rx="4" fill="#C3FF38" fill-opacity="0.95"/>
+<rect x="1023.9" y="301.1" width="24.5" height="398.9" rx="4" fill="#C3FF38" fill-opacity="0.95"/>
+<rect x="1054.4" y="306.2" width="24.5" height="393.8" rx="4" fill="#C3FF38" fill-opacity="0.95"/>
+<rect x="1084.9" y="335.2" width="24.5" height="364.8" rx="4" fill="#C3FF38" fill-opacity="0.95"/>
+<rect x="1115.3" y="383.0" width="24.5" height="317.0" rx="4" fill="#C3FF38" fill-opacity="0.95"/>
+<rect x="1145.8" y="441.5" width="24.5" height="258.5" rx="4" fill="#C3FF38" fill-opacity="0.95"/>
+<rect x="1176.2" y="502.2" width="24.5" height="197.8" rx="4" fill="#C3FF38" fill-opacity="0.95"/>
+<rect x="1206.7" y="558.0" width="24.5" height="142.0" rx="4" fill="#C3FF38" fill-opacity="0.95"/>
+<rect x="1237.2" y="604.2" width="24.5" height="95.8" rx="4" fill="#C3FF38" fill-opacity="0.95"/>
+<rect x="1267.6" y="637.7" width="24.5" height="62.3" rx="4" fill="#C3FF38" fill-opacity="0.95"/>
+<rect x="1298.1" y="652.3" width="24.5" height="47.7" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="1328.6" y="635.0" width="24.5" height="65.0" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="1359.0" y="588.1" width="24.5" height="111.9" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="1389.5" y="559.0" width="24.5" height="141.0" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="1420.0" y="589.6" width="24.5" height="110.4" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="1450.4" y="647.2" width="24.5" height="52.8" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="1480.9" y="678.7" width="24.5" height="21.3" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="1511.4" y="667.3" width="24.5" height="32.7" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="1541.8" y="631.1" width="24.5" height="68.9" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="1572.3" y="623.2" width="24.5" height="76.8" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="1602.8" y="657.6" width="24.5" height="42.4" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="1633.2" y="680.0" width="24.5" height="20.0" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="1663.7" y="680.0" width="24.5" height="20.0" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="1694.1" y="672.8" width="24.5" height="27.2" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="1724.6" y="662.8" width="24.5" height="37.2" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="1755.1" y="680.0" width="24.5" height="20.0" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<rect x="1785.5" y="680.0" width="24.5" height="20.0" rx="4" fill="#C3FF38" fill-opacity="0.45"/>
+<path d="M110.0,640.0 L140.4,638.8 L170.7,636.0 L201.1,630.8 L231.4,622.6 L261.8,611.7 L292.1,599.5 L322.5,588.2 L352.9,579.3 L383.2,573.5 L413.6,570.2 L443.9,568.3 L474.3,566.6 L504.6,563.8 L535.0,558.5 L565.4,549.9 L595.7,538.1 L626.1,524.4 L656.4,511.2 L686.8,500.4 L717.1,492.8 L747.5,488.0 L777.9,484.6 L808.2,481.4 L838.6,477.1 L868.9,470.8 L899.3,461.7 L929.6,449.5 L960.0,433.8 L990.4,415.1 L1020.7,394.1 L1051.1,372.0 L1081.4,350.2 L1111.8,330.1 L1142.1,312.5 L1172.5,298.2 L1202.9,287.3 L1233.2,279.4 L1263.6,274.1 L1293.9,270.7 L1324.3,268.0 L1354.6,264.4 L1385.0,258.2 L1415.4,250.4 L1445.7,244.3 L1476.1,241.4 L1506.4,240.2 L1536.8,238.4 L1567.1,234.6 L1597.5,230.3 L1627.9,228.0 L1658.2,226.9 L1688.6,225.8 L1718.9,224.3 L1749.3,222.2 L1779.6,221.1 L1810.0,220.0" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="1810.0" cy="220.0" r="12" fill="#C3FF38" stroke="#0B0B0B" stroke-width="5"/>
+<text x="1810" y="266" text-anchor="end" font-family="Geist, 'Noto Sans CJK SC', Inter, sans-serif" font-size="22" fill="#FFFFFF">Готово к разработке</text>
+<rect x="110" y="70" width="18" height="18" rx="4" fill="#C3FF38"/><text x="140" y="86" font-family="Geist, 'Noto Sans CJK SC', Inter, sans-serif" font-size="20" fill="#8A8A8A">сколько вариантов в работе</text>
+<line x1="440" y1="79" x2="474" y2="79" stroke="#fff" stroke-width="3"/><text x="486" y="86" font-family="Geist, 'Noto Sans CJK SC', Inter, sans-serif" font-size="20" fill="#8A8A8A">готовность продукта</text>
+<text font-family="Geist, 'Noto Sans CJK SC', Inter, sans-serif" font-size="20" fill="#8A8A8A"><tspan x="124" y="764">Рынок и</tspan><tspan x="124" y="790">конкуренты</tspan></text>
+<text font-family="Geist, 'Noto Sans CJK SC', Inter, sans-serif" font-size="20" fill="#8A8A8A"><tspan x="294" y="764">Механика</tspan><tspan x="294" y="790">3 × 3 тира</tspan></text>
+<text font-family="Geist, 'Noto Sans CJK SC', Inter, sans-serif" font-size="20" fill="#8A8A8A"><tspan x="464" y="764">Архитектура</tspan><tspan x="464" y="790">и user flow</tspan></text>
+<text font-family="Geist, 'Noto Sans CJK SC', Inter, sans-serif" font-size="20" fill="#8A8A8A"><tspan x="634" y="764">Прототипы и</tspan><tspan x="634" y="790">фокус-группы</tspan></text>
+<text font-family="Geist, 'Noto Sans CJK SC', Inter, sans-serif" font-size="20" fill="#8A8A8A"><tspan x="804" y="764">Бренд, UX/UI</tspan><tspan x="804" y="790">и 330 экранов</tspan></text>
+<text font-family="Geist, 'Noto Sans CJK SC', Inter, sans-serif" font-size="20" fill="#8A8A8A"><tspan x="1314" y="764">Ревью с командой</tspan><tspan x="1314" y="790">и разработкой</tspan></text>
+<text font-family="Geist, 'Noto Sans CJK SC', Inter, sans-serif" font-size="20" fill="#8A8A8A"><tspan x="1654" y="764">Handoff и</tspan><tspan x="1654" y="790">UI-kit в коде</tspan></text>
+</svg>

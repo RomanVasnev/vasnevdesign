@@ -1,0 +1,17 @@
+:root{color-scheme:light;--bg:#f8f8f9;--fg:#131314;--muted:#616168;--dim:#626268;--line:#dcdce0}
+html body main.av3{--ink:#18181a;--mut3:#5e5e66;--pan:#eeeef1;--pan2:#e6e6ea}
+html,body{color:var(--fg);background:var(--bg)}
+.hdr::before{background:rgba(248,248,249,.88)}
+main .lead,main .body3,main .facts dt{color:#585860}
+main .facts{border-color:#d4d4da}
+main .prob-cols b,.lang button.on,.lang button:hover{color:#17171a}
+main .back3 .c24,.dot18{background:#e1e1e5}
+.project-nav{max-width:1180px;margin:clamp(44px,7vw,112px) auto;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.project-nav a{display:grid;gap:5px;padding:16px clamp(12px,2vw,26px);border-radius:16px;background:#eaeaec;color:#161618;text-align:left;letter-spacing:-.025em}
+.project-nav a:last-child{text-align:right}
+.project-nav small{font-size:13px;color:#5d5d65}.project-nav strong{font-size:clamp(17px,2vw,25px);font-weight:500}
+.project-nav a:hover{background:#dddde2}
+main .scn b,main .scn li.on b,main .path b,main .path li.on b,main .side li b,main .kc figcaption b,main .fc-leg b,main .err3 b{color:#1c1c20}
+main .scn li.on button,main .path li.on button,main .lv li.on span,main .calc3 span{color:#4c4c54}
+main .proto-meta span{background:#eeeef1;border-color:#d6d6db}
+main .lvl b{color:#202023}
