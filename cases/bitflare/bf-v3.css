@@ -1,16 +1,17 @@
+@scope (.av3) {
 /* ===== Bitflare v3 — extends anty-v3.css + pump-v3.css ===== */
-.av3.bf{--ac:#c6ff00;--ac2:#d8ff4d;--ink2:#0b0b0d}
-.bf .glow3{background:radial-gradient(closest-side,rgba(198,255,0,.32),rgba(198,255,0,.07) 55%,transparent)}
-.bf .reelbar i::after{background:var(--ac)}
-.bf .eyebrow img{border-radius:8px}
-.bf .br{background:#f0f0f0}
-.bf .br-top{background:#e9e9e9;border-bottom:1px solid #dcdcdc}
-.bf .br-top span{color:#8a8a8a}
-.bf .fc-leg i{background:var(--ac);color:#000}
-.bf .chip3{background:rgba(20,22,10,.85);border-color:#3b4a0c;color:#e7ff9e}
-.bf .cab-tabs button.on{border-color:#4a5c0a;background:#151a05}
-.bf .cab-tabs button i{background:var(--ac)}
-.bf .cab-vp{background:#000}
+:scope.bf{--ac:#c6ff00;--ac2:#d8ff4d;--ink2:#0b0b0d}
+:scope.bf .glow3{background:radial-gradient(closest-side,rgba(198,255,0,.32),rgba(198,255,0,.07) 55%,transparent)}
+:scope.bf .reelbar i::after{background:var(--ac)}
+:scope.bf .eyebrow img{border-radius:8px}
+:scope.bf .br{background:#f0f0f0}
+:scope.bf .br-top{background:#e9e9e9;border-bottom:1px solid #dcdcdc}
+:scope.bf .br-top span{color:#8a8a8a}
+:scope.bf .fc-leg i{background:var(--ac);color:#000}
+:scope.bf .chip3{background:rgba(20,22,10,.85);border-color:#3b4a0c;color:#e7ff9e}
+:scope.bf .cab-tabs button.on{border-color:#4a5c0a;background:#151a05}
+:scope.bf .cab-tabs button i{background:var(--ac)}
+:scope.bf .cab-vp{background:#000}
 
 /* hero */
 .bf-hero{display:block;height:470px}
@@ -90,9 +91,9 @@
 .wal-vis.in .wal-ph,.wal-vis.in .wal-md{transform:none;opacity:1}
 
 /* bento */
-.bf .crop.duo .ph{--w:200px}
-.bf .fan .ph{--w:180px;margin-left:-90px}
-.bf .cell.wide .fan{min-height:430px}
+:scope.bf .crop.duo .ph{--w:200px}
+:scope.bf .fan .ph{--w:180px;margin-left:-90px}
+:scope.bf .cell.wide .fan{min-height:430px}
 .ido{flex:1;padding:24px 20px 26px;display:flex;flex-direction:column;justify-content:flex-end;gap:16px}
 .ido-br{background:#000}.ido-br .br-top{background:#141414;border-bottom-color:#222}
 .ido-vp{position:relative;aspect-ratio:1152/625;background:#000}
@@ -134,9 +135,9 @@
   .buy-stage{padding:30px 30px 34px}
   .wal-ph{--w:220px}
   .wal-md{width:44%;left:14%}
-  .bf .crop.duo .ph{--w:230px}
-  .bf .fan .ph{--w:220px;margin-left:-110px}
-  .bf .cell.wide .fan{min-height:600px}
+  :scope.bf .crop.duo .ph{--w:230px}
+  :scope.bf .fan .ph{--w:220px;margin-left:-110px}
+  :scope.bf .cell.wide .fan{min-height:600px}
   .ido{padding:30px 36px 36px}
   .vip-in{grid-template-columns:.85fr 1.15fr;align-items:center;gap:60px}
   .vip-ph{--w:200px}
@@ -152,8 +153,8 @@
 .seg button{position:relative;z-index:1;height:44px;border:0;background:none;font:inherit;font-size:15px;letter-spacing:-.02em;color:#1d1d22;cursor:pointer;transition:color .35s ease}
 .seg button.on{color:#000;font-weight:500}
 .seg-k{position:absolute;top:4px;bottom:4px;left:4px;width:calc((100% - 8px)/3);border-radius:22px;transition:transform .45s cubic-bezier(.2,.8,.2,1);transform:translateX(calc(var(--i,0)*100%))}
-.bf .bseg .seg-k{background:var(--ac)}
-.av3 .vip-s{max-width:none;width:100%;margin-left:0;margin-right:0}
+:scope.bf .bseg .seg-k{background:var(--ac)}
+:scope .vip-s{max-width:none;width:100%;margin-left:0;margin-right:0}
 
 /* ===== v3.1 buy scenarios ===== */
 .scn{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:8px;max-width:520px}
@@ -199,3 +200,5 @@
 .proto-grid{grid-template-columns:1fr}
 @media (min-width:600px){.proto-grid{grid-template-columns:repeat(3,1fr)}}
 @media (min-width:900px){.proto-grid{max-width:none}}
+
+}

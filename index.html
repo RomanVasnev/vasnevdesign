@@ -9,9 +9,11 @@
 <script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(113963788,"init",{webvisor:true,clickmap:true,trackLinks:true,accurateTrackBounce:true,trackHash:true});document.addEventListener("click",function(e){var el=e.target.closest&&e.target.closest("a[href],button");if(!el)return;var h=el.getAttribute("href")||"",g=null;if(h.indexOf("t.me/")>-1)g="contact_telegram";else if(h.indexOf("mailto:")===0)g="contact_email";else if(h.indexOf("max.ru/")>-1)g="contact_max";else if(/^Открыть (ИИ|AI)-ассистента/.test(el.getAttribute("aria-label")||""))g="chat_open";if(g)ym(113963788,"reachGoal",g)},true);
 </script>
 
-<link rel="stylesheet" href="/_astro/index.CSyBeHnP.css"><style>/* The demo card uses the original case title and description at full length. */
-#fds:has(.kc), #fxG:has(.kc) { grid-template-columns: minmax(0, 460px); }
+<link rel="stylesheet" href="/_astro/index.CSyBeHnP.css"><style>/* Portfolio covers stay visible while the selected case is locked. */
 #fds .kc-d, #fxG .kc-d { display: block; }
+.fd .kc .fd-st { display: inline-grid; width: 34px; height: 34px; padding: 0; place-items: center; }
+.fd .kc .fd-st svg { width: 14px; height: 14px; }
+#pwI { -webkit-text-security: disc; }
 </style></head><body><noscript><div><img src="https://mc.yandex.ru/watch/113963788" style="position:absolute;left:-9999px" alt=""></div></noscript>
 
 <script>/* RU / EN: the site is written in Russian; English is laid over it at load, before any other script runs.
@@ -20,7 +22,11 @@
    and typed texts are built from the right language. window.__t(s) translates a string for scripts. — by vasnev.art */
 (() => {
   const D = {
-    'Открыть кейсы': 'Unlock cases',
+    'Введите пароль': 'Enter password',
+    'Введите пароль, чтобы открыть этот кейс.': 'Enter the password to open this case.',
+    'Кейс по запросу': 'Case available on request',
+    'Материалы под NDA. Запросите доступ в Telegram.': 'This material is under NDA. Request access via Telegram.',
+    'По паролю': 'Password required',
     'Кейсы по паролю': 'Password-protected cases',
     'Введите пароль, чтобы открыть кейсы.': 'Enter the password to unlock the cases.',
     'Неверный пароль.': 'Incorrect password.',
@@ -28,7 +34,6 @@
     'Bitflare — лаунчпад для запуска IPO': 'Bitflare — a launchpad for public offerings',
     'Как я спроектировал SaaS и бренд для запуска IPO с нуля за 2 месяца': 'How I designed a SaaS platform and brand for launching IPOs from scratch in two months',
     'Платформа, где стартапы собирают инвестиции, а инвесторы заходят в проект до листинга.': 'A platform where startups raise capital and investors can join before listing.',
-
 
     /* ── navigation, header, menu ── */
     'Обо мне': 'About', 'Кейсы': 'Cases', 'Статьи': 'Articles', 'Спросить Романа': 'Ask Roman',
@@ -1168,8 +1173,48 @@
       <h2 class="f-h f-h-m" id="fx-h">Задачи, которые я решал</h2>
       <a class="cta-b cta-b-ghost fx-all" href="#cases" data-sec>Все кейсы →</a>
     </header>
-    <button class="cta-b cta-b-ghost" type="button" data-case-unlock aria-haspopup="dialog" aria-controls="pw">Открыть кейсы</button>
-    <ul class="fds fx-fds" id="fxG" hidden></ul>
+    <ul class="fds fx-fds" id="fxG">
+  <li class="fd">
+        <a class="fd-b kc" href="/cases/bitflare/" data-case-card="true" aria-haspopup="dialog" aria-controls="pw">
+          <span class="kc-m">
+            <img src="/cases/covers/bitflare.webp" alt="Bitflare — лаунчпад для запуска IPO" loading="lazy" decoding="async">
+            <span class="fd-st" aria-hidden="true" title="По паролю">
+              <svg viewBox="0 0 12 12"><rect x="2" y="5.5" width="8" height="5.5" rx="1.5"></rect><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5"></path></svg>
+            </span>
+          </span>
+          <span class="kc-p">
+            <b class="kc-t">Как я спроектировал SaaS и бренд для запуска IPO с нуля за 2 месяца</b>
+            <span class="kc-d">Платформа, где стартапы собирают инвестиции, а инвесторы заходят в проект до листинга.</span>
+          </span>
+        </a>
+      </li><li class="fd">
+        <a class="fd-b kc" href="/cases/pump-dao/" data-case-card="true" aria-haspopup="dialog" aria-controls="pw">
+          <span class="kc-m">
+            <img src="/cases/covers/pump-dao.webp" alt="Pump DAO: курс после пресейла держится, пока обычные пресейлы падают до −99%" loading="lazy" decoding="async">
+            <span class="fd-st" aria-hidden="true" title="По паролю">
+              <svg viewBox="0 0 12 12"><rect x="2" y="5.5" width="8" height="5.5" rx="1.5"></rect><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5"></path></svg>
+            </span>
+          </span>
+          <span class="kc-p">
+            <b class="kc-t">Механика удержания, которая сохранила ~$2 млн капитализации после пресейла</b>
+            <span class="kc-d">Сделал продукт для мем-токена на фоне плохого рынка и неожиданных новостей: запустил в сжатые сроки и сохранил капитализацию $2 млн.</span>
+          </span>
+        </a>
+      </li><li class="fd">
+        <a class="fd-b kc" href="/cases/slothereum/" data-case-card="true" aria-haspopup="dialog" aria-controls="pw">
+          <span class="kc-m">
+            <img src="/cases/covers/slothereum.webp" alt="Slothereum OS — торговый терминал" loading="lazy" decoding="async">
+            <span class="fd-st" aria-hidden="true" title="По паролю">
+              <svg viewBox="0 0 12 12"><rect x="2" y="5.5" width="8" height="5.5" rx="1.5"></rect><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5"></path></svg>
+            </span>
+          </span>
+          <span class="kc-p">
+            <b class="kc-t">Как я спроектировал первый трейдинг-терминал между блокчейнами</b>
+            <span class="kc-d">Мем-ОС на Ethereum: запуск токена, торговля в любой сети и покупки прямо из Twitter — даже без криптокошелька.</span>
+          </span>
+        </a>
+      </li>
+</ul>
   </div>
 </section>
 
@@ -1259,8 +1304,100 @@
       <h2 class="f-h" id="fc-h">Кейсы</h2>
       <p class="f-p">Продукты в финтехе и Web3: от исследования и механики до передачи в разработку.</p>
     </header>
-    <button class="cta-b cta-b-ghost" type="button" data-case-unlock aria-haspopup="dialog" aria-controls="pw">Открыть кейсы</button>
-    <ul class="fds" id="fds" hidden></ul>
+    <ul class="fds" id="fds">
+  <li class="fd">
+        <a class="fd-b kc" href="/cases/bitflare/" data-case-card="true" aria-haspopup="dialog" aria-controls="pw">
+          <span class="kc-m">
+            <img src="/cases/covers/bitflare.webp" alt="Bitflare — лаунчпад для запуска IPO" loading="lazy" decoding="async">
+            <span class="fd-st" aria-hidden="true" title="По паролю">
+              <svg viewBox="0 0 12 12"><rect x="2" y="5.5" width="8" height="5.5" rx="1.5"></rect><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5"></path></svg>
+            </span>
+          </span>
+          <span class="kc-p">
+            <b class="kc-t">Как я спроектировал SaaS и бренд для запуска IPO с нуля за 2 месяца</b>
+            <span class="kc-d">Платформа, где стартапы собирают инвестиции, а инвесторы заходят в проект до листинга.</span>
+          </span>
+        </a>
+      </li><li class="fd">
+        <button class="fd-b kc" type="button" data-case-card="true" aria-haspopup="dialog" aria-controls="pw">
+          <span class="kc-m">
+            <img src="/cases/covers/robinhood.webp" alt="Robinhood Learn — уроки по инвестициям в приложении Robinhood" loading="lazy" decoding="async">
+            <span class="fd-st" aria-hidden="true" title="По паролю">
+              <svg viewBox="0 0 12 12"><rect x="2" y="5.5" width="8" height="5.5" rx="1.5"></rect><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5"></path></svg>
+            </span>
+          </span>
+          <span class="kc-p">
+            <b class="kc-t">Как короткие уроки помогли новичкам решиться на первую инвестицию в Robinhood</b>
+            <span class="kc-d">Вместе с командой сделали онбординг для Robinhood, который повысил первые инвестиции новичков на 92%.</span>
+          </span>
+        </button>
+      </li><li class="fd">
+        <a class="fd-b kc" href="/cases/pump-dao/" data-case-card="true" aria-haspopup="dialog" aria-controls="pw">
+          <span class="kc-m">
+            <img src="/cases/covers/pump-dao.webp" alt="Pump DAO: курс после пресейла держится, пока обычные пресейлы падают до −99%" loading="lazy" decoding="async">
+            <span class="fd-st" aria-hidden="true" title="По паролю">
+              <svg viewBox="0 0 12 12"><rect x="2" y="5.5" width="8" height="5.5" rx="1.5"></rect><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5"></path></svg>
+            </span>
+          </span>
+          <span class="kc-p">
+            <b class="kc-t">Механика удержания, которая сохранила ~$2 млн капитализации после пресейла</b>
+            <span class="kc-d">Сделал продукт для мем-токена на фоне плохого рынка и неожиданных новостей: запустил в сжатые сроки и сохранил капитализацию $2 млн.</span>
+          </span>
+        </a>
+      </li><li class="fd">
+        <a class="fd-b kc" href="/cases/slothereum/" data-case-card="true" aria-haspopup="dialog" aria-controls="pw">
+          <span class="kc-m">
+            <img src="/cases/covers/slothereum.webp" alt="Slothereum OS — торговый терминал" loading="lazy" decoding="async">
+            <span class="fd-st" aria-hidden="true" title="По паролю">
+              <svg viewBox="0 0 12 12"><rect x="2" y="5.5" width="8" height="5.5" rx="1.5"></rect><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5"></path></svg>
+            </span>
+          </span>
+          <span class="kc-p">
+            <b class="kc-t">Как я спроектировал первый трейдинг-терминал между блокчейнами</b>
+            <span class="kc-d">Мем-ОС на Ethereum: запуск токена, торговля в любой сети и покупки прямо из Twitter — даже без криптокошелька.</span>
+          </span>
+        </a>
+      </li><li class="fd">
+        <a class="fd-b kc" href="/cases/anty-wallet/" data-case-card="true" aria-haspopup="dialog" aria-controls="pw">
+          <span class="kc-m">
+            <img src="/cases/covers/anty-wallet.webp" alt="Anty Wallet — крипто-кошелёк внутри Telegram" loading="lazy" decoding="async">
+            <span class="fd-st" aria-hidden="true" title="По паролю">
+              <svg viewBox="0 0 12 12"><rect x="2" y="5.5" width="8" height="5.5" rx="1.5"></rect><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5"></path></svg>
+            </span>
+          </span>
+          <span class="kc-p">
+            <b class="kc-t">Собрал MVP с UX-решением, которое выкупил крупный Web3-проект</b>
+            <span class="kc-d">Webapp-кошелёк для массовой аудитории, где точка входа — Telegram. 50 000 пользователей в месяц.</span>
+          </span>
+        </a>
+      </li><li class="fd">
+        <button class="fd-b kc" type="button" data-case-card="true" aria-haspopup="dialog" aria-controls="pw">
+          <span class="kc-m">
+            <img src="/cases/covers/aether-testnet.webp" alt="Aether Testnet — тестнет L3-блокчейна" loading="lazy" decoding="async">
+            <span class="fd-st" aria-hidden="true" title="По паролю">
+              <svg viewBox="0 0 12 12"><rect x="2" y="5.5" width="8" height="5.5" rx="1.5"></rect><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5"></path></svg>
+            </span>
+          </span>
+          <span class="kc-p">
+            <b class="kc-t">Спроектировал тестнет L3-блокчейна</b>
+            <span class="kc-d">Тестнет для сети третьего уровня: кошелёк, кран и эксплорер в одном интерфейсе.</span>
+          </span>
+        </button>
+      </li><li class="fd">
+        <a class="fd-b kc" href="/cases/klubok/" data-case-card="true" aria-haspopup="dialog" aria-controls="pw">
+          <span class="kc-m">
+            <img src="/cases/covers/klubok.webp" alt="Клубок — маркетплейс авторских туров" loading="lazy" decoding="async">
+            <span class="fd-st" aria-hidden="true" title="По паролю">
+              <svg viewBox="0 0 12 12"><rect x="2" y="5.5" width="8" height="5.5" rx="1.5"></rect><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5"></path></svg>
+            </span>
+          </span>
+          <span class="kc-p">
+            <b class="kc-t">Спроектировал маркетплейс авторских туров с нуля</b>
+            <span class="kc-d">Путешественник бронирует тур без переписки, а гид продаёт без менеджера платформы. 257 экранов для desktop и mobile.</span>
+          </span>
+        </a>
+      </li>
+</ul>
   </div>
 </section>
 
@@ -1268,11 +1405,11 @@
   <div class="pw-c">
     <button type="button" class="pw-x" id="pwX" aria-label="Закрыть"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 2l8 8M10 2 2 10"></path></svg></button>
     <span class="pw-ic" aria-hidden="true"><svg viewBox="0 0 18 18"><rect x="3" y="8" width="12" height="8" rx="2.5"></rect><path d="M6 8V6a3 3 0 0 1 6 0v2"></path></svg></span>
-    <h3 id="pwH">Кейсы по паролю</h3>
-    <p id="pwP">Введите пароль, чтобы открыть кейсы.</p>
+    <h3 id="pwH">Введите пароль</h3>
+    <p id="pwP">Введите пароль, чтобы открыть этот кейс.</p>
     <form class="pw-f" id="pwF" autocomplete="off">
       <label class="sr-only" for="pwI">Пароль</label>
-      <input id="pwI" type="password" inputmode="numeric" placeholder="Пароль" autocomplete="off" spellcheck="false">
+      <input id="pwI" type="text" inputmode="numeric" maxlength="6" placeholder="Пароль" autocomplete="one-time-code" spellcheck="false">
       <button type="submit">Открыть</button>
     </form>
     <p class="pw-e" id="pwE" role="alert"></p>
@@ -2943,28 +3080,17 @@
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fds = $('#fds');
-  const grids = [fds, $('#fxG')];
-  const unlockButtons = $$('[data-case-unlock]');
-  const card = `
-    <li class="fd">
-      <a class="fd-b kc" href="/cases/bitflare/">
-        <span class="kc-m"><img src="/cases/bitflare/assets/main/cover-bitflare2.webp" alt="Bitflare — лаунчпад для запуска IPO" loading="lazy" decoding="async"></span>
-        <span class="kc-p">
-          <b class="kc-t">Как я спроектировал SaaS и бренд для запуска IPO с нуля за 2 месяца</b>
-          <span class="kc-d">Платформа, где стартапы собирают инвестиции, а инвесторы заходят в проект до листинга.</span>
-        </span>
-      </a>
-    </li>`;
-
-  function showCases() {
-    grids.forEach(grid => {
-      if (!grid.firstElementChild) grid.innerHTML = card;
-      grid.hidden = false;
+  const access = window.caseAccess;
+  const cards = $$('[data-case-card]');
+  const refreshLocks = () => {
+    if (!access.isUnlocked()) return;
+    cards.filter(card => card.matches('a')).forEach(card => {
+      card.querySelector('.fd-st').hidden = true;
+      card.removeAttribute('aria-haspopup');
+      card.removeAttribute('aria-controls');
     });
-    unlockButtons.forEach(button => { button.hidden = true; });
-    window.__i18nWalk?.();
-  }
-  if (window.caseAccess.isUnlocked()) showCases();
+  };
+  refreshLocks();
 
   /* folders slide in when the page is shown */
   /* the folders are carried onto the page by cursors and dropped into the grid, like the cards on the canvas */
@@ -3025,17 +3151,27 @@
   let trigger;
   let closeTimer;
 
-  unlockButtons.forEach(button => button.addEventListener('click', () => {
+  const translate = text => window.__t ? window.__t(text) : text;
+  const name = $('#pwH'), details = $('#pwP');
+  let destination;
+
+  cards.forEach(card => card.addEventListener('click', event => {
+    destination = card.getAttribute('href');
+    if (destination && access.isUnlocked()) return;
+    event.preventDefault();
     clearTimeout(closeTimer);
     pw.inert = false;
-    trigger = button;
+    trigger = card;
     form.reset();
     form.classList.remove('bad');
     error.textContent = '';
+    form.hidden = access.isUnlocked();
+    name.textContent = translate(form.hidden ? 'Кейс по запросу' : 'Введите пароль');
+    details.textContent = translate(form.hidden ? 'Материалы под NDA. Запросите доступ в Telegram.' : 'Введите пароль, чтобы открыть этот кейс.');
     pw.hidden = false;
     requestAnimationFrame(() => {
       pw.classList.add('open');
-      input.focus();
+      (form.hidden ? $('#pwX') : input).focus();
     });
   }));
 
@@ -3051,9 +3187,18 @@
 
   form.addEventListener('submit', event => {
     event.preventDefault();
-    if (window.caseAccess.unlock(input.value.trim())) {
-      showCases();
-      closePass($('.fd-b', trigger.nextElementSibling));
+    if (access.unlock(input.value.trim())) {
+      form.reset();
+      refreshLocks();
+      if (destination) {
+        location.assign(destination);
+      } else {
+        form.hidden = true;
+        name.textContent = translate('Кейс по запросу');
+        details.textContent = translate('Материалы под NDA. Запросите доступ в Telegram.');
+        error.textContent = '';
+        $('#pwX').focus();
+      }
       return;
     }
     error.textContent = window.__t?.('Неверный пароль.') ?? 'Неверный пароль.';
@@ -3068,7 +3213,7 @@
   pw.addEventListener('keydown', event => {
     if (event.key === 'Escape') closePass();
     if (event.key !== 'Tab') return;
-    const items = $$('button, a[href], input', pw);
+    const items = $$('button, a[href], input', pw).filter(item => !item.closest('[hidden]'));
     const first = items[0], last = items.at(-1);
     if (event.shiftKey && document.activeElement === first) {
       event.preventDefault();

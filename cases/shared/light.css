@@ -1,0 +1,70 @@
+@scope (.av3) {
+:scope {
+  --ink: #0b0b0c;
+  --mut3: #59595f;
+  --pan: #f5f5f6;
+  --pan2: #fff;
+}
+:scope.bf .lead, :scope.bf .calc3 span, :scope.bf .stepcap { color: var(--mut3); }
+:scope.bf .facts, :scope.bf .rc, :scope.bf .cell, :scope.bf .q3, :scope.bf .buy-stage { border-color: var(--line); }
+:scope.bf .q3, :scope.bf .buy-stage { background: #fff; }
+:scope.bf .qn, :scope.bf .proto-meta b, :scope.bf .stepcap b { color: #496000; }
+:scope.bf .badges i { border-color: var(--line); color: var(--mut3); }
+:scope.bf .badges.in i { background: #f3fbdc; border-color: #afc76c; color: #3e5300; }
+:scope.bf .bseg { box-shadow: inset 0 0 0 1px var(--line); }
+:scope.bf .cab-tabs button, :scope.bf .scn button, :scope.bf .chip, :scope.bf .proto-meta span {
+  background: #fff;
+  border-color: var(--line);
+  color: var(--mut3);
+}
+:scope.bf .cab-tabs button.on, :scope.bf .scn li.on button, :scope.bf .chip.done {
+  background: #f5fbdc;
+  border-color: #afc76c;
+  color: var(--fg);
+}
+:scope.bf .cab-tabs button i, :scope.bf .scn button::after, :scope.bf .ido-bar s { background: #597400; }
+:scope.bf .scn b { color: var(--fg); }
+:scope.bf .scn i { background: #ededf0; color: var(--mut3); }
+:scope.bf .scn li.on i, :scope.bf .chip.cur { background: var(--ac); color: var(--fg); }
+:scope.bf .chip.err.cur { background: #bd3035; color: #fff; border-color: #bd3035; }
+:scope.bf .chev { color: var(--mut3); }
+
+:scope.bf .vip-s { background: linear-gradient(180deg, transparent, #fff4e0 70%, transparent); }
+:scope.bf .vip-s .h2x { background: none; color: #60410e; }
+:scope.bf .vip-s .body3, :scope.bf .vip-list li { color: #694f29; }
+:scope.bf .vip-list li { border-color: #e5d7be; }
+:scope.bf .vip-list b { color: #795116; }
+:scope { --bg: #f8f8f8; --fg: #0b0b0c; --line: #dedee2; --muted: #646469; --mut3: #59595f; --ink: #0b0b0c; color-scheme: light; }
+:scope .hero3 { padding-top: clamp(110px, 12vw, 168px); }
+.lead, .cab-cap { color: var(--mut3); }
+.facts, .cell, .rc { border-color: var(--line); }
+.nums, .learn, .bento, .outro { color: var(--fg); }
+.cab-tabs button { background: #fff; border-color: var(--line); color: var(--mut3); }
+.cab-tabs button.on { background: #ededf0; border-color: #bbbac1; color: var(--fg); }
+.navx a:only-child { border-radius: 24px; }
+[hidden] { display: none !important; }
+}
+
+@scope (.av3) {
+  :scope { --pan: #f5f5f6; --pan2: #fff; }
+  .prob-cols b, .fc-leg b, .mc figcaption, .lvl b, .states li.on,
+  :scope.kl .side li b, :scope.kl .kc figcaption b, :scope.sl .conf-l li.on b { color: var(--fg); }
+  :scope.kl .side, :scope.kl .rivals span, :scope.sl .tags3 span, :scope.sl .cexs span, :scope.sl .conf-l li,
+  .words3 span {
+    background: #fff;
+    border-color: var(--line);
+    color: var(--mut3);
+  }
+  :scope.sl .cab-tabs button.on, :scope.sl .cexs.in span, :scope.sl .conf-l li.on {
+    background: #edf3ff;
+    border-color: #aabfee;
+    color: var(--fg);
+  }
+  .h2x, .h1x, .step3 h3, .facts dd { color: inherit; }
+}
+
+@scope (.av3) {
+  :scope { overflow: clip; }
+  .lead { text-align: left; text-wrap: pretty; font-weight: 400; }
+  .eyebrow { font-family: inherit; font-weight: 400; }
+}
