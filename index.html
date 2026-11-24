@@ -13,7 +13,38 @@
 #fds .kc-d, #fxG .kc-d { display: block; }
 .fd .kc .fd-st { display: inline-grid; width: 34px; height: 34px; padding: 0; place-items: center; }
 .fd .kc .fd-st svg { width: 14px; height: 14px; }
-#pwI { -webkit-text-security: disc; }
+/* One numeric input keeps paste and autofill available across six visible cells. */
+.pw-f { flex-direction: column; gap: 12px; padding: 0; background: none; box-shadow: none; }
+.pw-f:focus-within, .pw-f.bad { box-shadow: none; }
+.pw-code { position: relative; }
+.pw-code input { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; opacity: 0; }
+.pw-slots { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; }
+.pw-slots span {
+  display: grid; place-items: center; aspect-ratio: 1; border: 1px solid #dedee2;
+  border-radius: 10px; background: #f8f8f8; font-size: 18px; font-variant-numeric: tabular-nums;
+}
+.pw-f:not(.bad) .pw-code:focus-within .pw-slots span.next,
+.pw-f:not(.bad) .pw-code:focus-within .pw-slots:not(:has(.next)) span:last-child {
+  border-color: var(--c-sel); box-shadow: 0 0 0 1px var(--c-sel);
+}
+.pw-f.bad .pw-slots span { border-color: #ff3b30; background: #fff3f2; box-shadow: none; }
+.pw-f button { width: 100%; }
+
+/* Keep the hover target stationary so the card cannot oscillate at its edge. */
+.fd .fd-b.kc {
+  transition: transform .2s ease-out, box-shadow .2s ease-out;
+}
+.fd .kc-m > img, .fd .kc-m > video { transition: transform .28s ease-out; }
+@media (hover: hover) {
+  .fd .fd-b.kc:hover { transform: none; }
+  .fd:hover .fd-b.kc { transform: translateY(-2px); }
+  .fd:hover .kc-m > img, .fd:hover .kc-m > video { transform: scale(1.015); }
+  .fd:hover .fd-b.kc:active { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fd:hover .fd-b.kc, .fd:hover .kc-m > img, .fd:hover .kc-m > video { transform: none; }
+  .fd .fd-b.kc, .fd .kc-m > img, .fd .kc-m > video { transition: none; }
+}
 </style></head><body><noscript><div><img src="https://mc.yandex.ru/watch/113963788" style="position:absolute;left:-9999px" alt=""></div></noscript>
 
 <script>/* RU / EN: the site is written in Russian; English is laid over it at load, before any other script runs.
@@ -1409,7 +1440,10 @@
     <p id="pwP">Введите пароль, чтобы открыть этот кейс.</p>
     <form class="pw-f" id="pwF" autocomplete="off">
       <label class="sr-only" for="pwI">Пароль</label>
-      <input id="pwI" type="text" inputmode="numeric" maxlength="6" placeholder="Пароль" autocomplete="one-time-code" spellcheck="false">
+      <div class="pw-code">
+        <input id="pwI" type="text" inputmode="numeric" autocomplete="one-time-code" spellcheck="false" aria-describedby="pwE">
+        <div class="pw-slots" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
       <button type="submit">Открыть</button>
     </form>
     <p class="pw-e" id="pwE" role="alert"></p>
@@ -3154,6 +3188,22 @@
   const translate = text => window.__t ? window.__t(text) : text;
   const name = $('#pwH'), details = $('#pwP');
   let destination;
+  const slots = $$('.pw-slots span', form);
+
+  function syncCode() {
+    const code = input.value.replace(/[^0-9]/g, '').slice(0, slots.length);
+    if (input.value !== code) input.value = code;
+    slots.forEach((slot, index) => {
+      slot.textContent = code[index] ?? '';
+      slot.classList.toggle('next', index === code.length);
+    });
+    form.classList.remove('bad');
+    input.removeAttribute('aria-invalid');
+    error.textContent = '';
+  }
+
+  input.addEventListener('input', syncCode);
+  input.addEventListener('click', () => input.setSelectionRange(input.value.length, input.value.length));
 
   cards.forEach(card => card.addEventListener('click', event => {
     destination = card.getAttribute('href');
@@ -3163,15 +3213,14 @@
     pw.inert = false;
     trigger = card;
     form.reset();
-    form.classList.remove('bad');
-    error.textContent = '';
-    form.hidden = access.isUnlocked();
-    name.textContent = translate(form.hidden ? 'Кейс по запросу' : 'Введите пароль');
-    details.textContent = translate(form.hidden ? 'Материалы под NDA. Запросите доступ в Telegram.' : 'Введите пароль, чтобы открыть этот кейс.');
+    syncCode();
+    form.hidden = false;
+    name.textContent = translate('Введите пароль');
+    details.textContent = translate('Введите пароль, чтобы открыть этот кейс.');
     pw.hidden = false;
     requestAnimationFrame(() => {
       pw.classList.add('open');
-      (form.hidden ? $('#pwX') : input).focus();
+      input.focus();
     });
   }));
 
@@ -3187,8 +3236,9 @@
 
   form.addEventListener('submit', event => {
     event.preventDefault();
-    if (access.unlock(input.value.trim())) {
+    if (input.value.length === slots.length && access.unlock(input.value)) {
       form.reset();
+      syncCode();
       refreshLocks();
       if (destination) {
         location.assign(destination);
@@ -3201,7 +3251,8 @@
       }
       return;
     }
-    error.textContent = window.__t?.('Неверный пароль.') ?? 'Неверный пароль.';
+    input.setAttribute('aria-invalid', 'true');
+    error.textContent = translate('Неверный пароль.');
     form.classList.remove('bad');
     void form.offsetWidth;
     form.classList.add('bad');
