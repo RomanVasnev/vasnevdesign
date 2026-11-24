@@ -15,3 +15,10 @@ main .scn b,main .scn li.on b,main .path b,main .path li.on b,main .side li b,ma
 main .scn li.on button,main .path li.on button,main .lv li.on span,main .calc3 span{color:#4c4c54}
 main .proto-meta span{background:#eeeef1;border-color:#d6d6db}
 main .lvl b{color:#202023}
+main .side,main .q3,main .funnel,main .scn button,main .lv button,main .conf-l li{background:#efeff1;border-color:#d9d9de;color:#25252a}
+main .scn li.on button,main .lv li.on button,main .conf-l li.on{background:#e4e4e9;border-color:#a3a3ac;color:#25252a}
+main .conf-l li.on b,main .lv li.on b,main .states li.on,main .mc figcaption{color:#242428}
+main .side .who,main .step3 .no,main .kicker,main .states li.on::before{color:#595960}
+main .err3{background:#f8e2e2;color:#852a2a}
+main .words3 span,main .rivals span{background:#eeeef1;border-color:#d6d6dc;color:#424249}
+main .cell{border-color:#dadade}
