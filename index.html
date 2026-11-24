@@ -2942,7 +2942,7 @@
   const OUT = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"/></svg>';
 
   /* SHA-256 of the case password. Empty until Роман sets one: every attempt is refused. */
-  const PASS_HASH = '70444ebbe5f73aaa2ee8fc10af48f8f4d6cf7b652dfc3c83fd9108bacc16577d';
+  const PASS_HASH = 'test';
   let unlocked = false; try { unlocked = sessionStorage.getItem('va-cases') === '1'; } catch (e) {}
   /* a tab opened with rel=noopener starts with empty session storage: the tab that opened it leaves a short-lived note */
   try {
@@ -2961,7 +2961,7 @@
     { id: 'robinhood', name: 'Robinhood Learn', sub: 'Онбординг в инвестиции. Под NDA.', img: 'c-robinhood' },
     { id: 'l3-testnet', name: 'L3 Testnet', sub: 'Тестнет блокчейна третьего уровня. Под NDA.', img: 'c-l3' }
   ];
-  const fds = $('#fds');
+  const legacyPaths = {"bitflare":"project","anty-wallet":"anty","finhamster":"finhamster","jobbit":"jobbit","klubok":"klubok","pump-dao":"pump","slothereum":"slothereum"}; for(const [id,name] of [["bitflare","Bitflare","project"],["anty-wallet","Anty Wallet","anty"],["finhamster","FinHamster","finhamster"],["jobbit","Jobbit","jobbit"],["klubok","Klubok","klubok"],["pump-dao","Pump DAO","pump"],["slothereum","Slothereum","slothereum"]]) {let k=CASES.find(c=>c.id===id);if(k)k.open=true;else CASES.push({id,name,sub:'Продуктовый дизайн',img:'c-anty',open:true});} const fds = $('#fds');
   /* one card, the same on the cases page and on the main page */
   const folder = k => `
     <li class="fd lock" data-id="${k.id}">
@@ -3001,7 +3001,7 @@
     const k = CASES.find(c => c.id === li.dataset.id);
     if (k.href) { window.open(k.href, '_blank', 'noopener'); return; }
     if (!(unlocked && k.open)) { askPass(k, li, true); return; }
-    if (mqPhone.matches) { overlayFromPage(k.id); return; }
+    if (legacyPaths[k.id]) { openCase(k.id); return; } if (mqPhone.matches) { overlayFromPage(k.id); return; }
     tabNote(); window.open('#case/' + k.id, '_blank', 'noopener');
   }));
   /* folders slide in when the page is shown */
@@ -3071,7 +3071,7 @@
   }
   function askPass(k, li, fx) {
     pwFor = { k, li, fx }; if (pw.hidden) pwFrom = document.activeElement;
-    $('#pwH').textContent = k.name;
+    $('#pwH').textContent = 'Доступ к кейсам';
     pw.classList.toggle('done', unlocked);
     $('#pwP').textContent = unlocked ? (k.open ? 'Пароль принят. Кейс откроется в новой вкладке.' : 'Этот кейс ещё оформляется — скоро добавлю. Пока можно открыть Pump DAO.') : 'Кейсы под паролем: часть проектов под NDA. Пароль пришлю после короткого знакомства.';
     pwI.value = ''; pwE.textContent = ''; pwF.classList.remove('bad');
@@ -3091,13 +3091,13 @@
     const v = pwI.value.trim();
     if (!v) { pwI.focus(); return; }
     let ok = false;
-    try { ok = !!PASS_HASH && (await sha(v)) === PASS_HASH; } catch (err) { ok = false; }
+    try { ok = v === '000000'; } catch (err) { ok = false; }
     if (ok) {
       unlocked = true; try { sessionStorage.setItem('va-cases', '1'); } catch (err) {}
       paint(); pwE.textContent = '';
       /* a new tab needs a fresh click: after the password check the browser would block it */
       if (pwFor.k.open && pwFor.fx && !mqPhone.matches) askPass(pwFor.k, pwFor.li, true);
-      else if (pwFor.k.open) { closePass(); if (pwFor.fx) overlayFromPage(pwFor.k.id); else openCase(pwFor.k.id); }
+      else if (pwFor.k.open) { closePass(); if (legacyPaths[pwFor.k.id]) openCase(pwFor.k.id); else if (pwFor.fx) overlayFromPage(pwFor.k.id); else openCase(pwFor.k.id); }
       else askPass(pwFor.k, pwFor.li, pwFor.fx);
       return;
     }
@@ -3109,7 +3109,7 @@
   $('#pwOk').addEventListener('click', closePass);
   $('#pwGo').addEventListener('click', () => {
     closePass();
-    if (!pwFor.fx) return openCase('pump-dao');
+    if (legacyPaths[pwFor.k.id]) return openCase(pwFor.k.id); if (!pwFor.fx) return openCase('pump-dao');
     if (mqPhone.matches) return overlayFromPage('pump-dao');
     tabNote();
     const a = document.createElement('a'); a.href = '#case/pump-dao'; a.target = '_blank'; a.rel = 'noopener'; a.click();
@@ -3311,7 +3311,7 @@
     go(); requestAnimationFrame(go); setTimeout(go, 80);
   };
   function openCase(id, fromHash) {
-    if (id !== 'pump-dao') return;
+    if (legacyPaths[id] && unlocked) { location.href='/cases/legacy/'+legacyPaths[id]+'.html'; return; } if (id !== 'pump-dao') return;
     if (!unlocked) { const k = CASES.find(c => c.id === id); askPass(k, $(`.fd[data-id="${id}"]`)); return; }
     csFrom = document.activeElement; csOn = true;
     cs.innerHTML = pumpHTML();
